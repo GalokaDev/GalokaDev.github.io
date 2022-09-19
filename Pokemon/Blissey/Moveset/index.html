@@ -120,9 +120,9 @@
 					</div>
 					
 					
-					<div class="flexxo3">
+					<div class="flexxo4">
 						<div style="margin-top:5px; margin-left: 0px; margin-right:1px;" class="swiperprev" ></div>
-						<div class="swiper">
+						<div class="swiper2">
 
 						  
 						  <div class="swiper-wrapper">
@@ -170,6 +170,19 @@
 			
 			<script>
 				const swiper = new Swiper('.swiper', {
+				  loop: true,
+				  // Navigation arrows
+				  navigation: {
+					nextEl: '.swipernext',
+					prevEl: '.swiperprev',
+				  },
+				});
+
+			</script>
+			
+			
+			<script>
+				const swiper = new Swiper('.swiper2', {
 				  loop: true,
 				  // Navigation arrows
 				  navigation: {
