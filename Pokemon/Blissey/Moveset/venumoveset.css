@@ -310,3 +310,44 @@ h3{
 .swiper-rtl .swiperprev:after {
   content: 'next';
 }
+
+
+
+
+
+.swiper2prev,
+.swiper2next {
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--swiper-navigation-color, var(--swiper-theme-color));
+}
+.swiper2prev:after,
+.swiper2next:after {
+  font-family: swiper-icons;
+  font-size: 20px;
+  text-transform: none !important;
+  letter-spacing: 0;
+  font-variant: initial;
+  line-height: 0;
+}
+.swiper2prev,
+.swiper2-rtl .swiper2next {
+  left: 10px;
+  right: auto;
+}
+.swiper2prev:after,
+.swiper2-rtl .swiper2next:after {
+  content: 'prev';
+}
+.swiper2next,
+.swiper2-rtl .swiper2prev {
+  right: 10px;
+  left: auto;
+}
+.swiper2next:after,
+.swiper2-rtl .swiper2prev:after {
+  content: 'next';
+}
