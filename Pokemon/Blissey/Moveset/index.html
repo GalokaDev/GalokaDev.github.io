@@ -59,7 +59,7 @@
 					<div class="flexxo2">
 						<img style="margin-top:10px; " src="http://pokemmostats.com/Moves/toxic.png" width="90" height="30">
 						<h3 style="margin-top:10px; margin-left:125px;"> ITEM&nbsp; > </h3>
-						<img   style="margin-top:5px; margin-left:4px; margin-bottom:10px;" src="http://pokemmostats.com/ico/Leftovers.png" width="30" height="30"> 
+						<img   style="margin-top:8px; margin-left:3px; margin-bottom:10px; margin-right:2px" src="http://pokemmostats.com/ico/Leftovers.png" width="20" height="20"> 
 						<h4 style="margin-top:12.5px; color:white; font-size: 10px">LEFTOVERS</h3>
 					</div>
 					<div class="flexxo2">
@@ -71,12 +71,12 @@
 					
 					<div class="flexxo3">
 						<div style="margin-top:5px; margin-left: 0px; margin-right:1px;" class="swiperprev" ></div>
-						<div class="swiper">
+						<div class="swiper s1">
 
 						  
 						  <div class="swiper-wrapper">
-							<div class="swiper2-slide"><img style="margin-top:10px; margin-left:3px;" src="http://pokemmostats.com/Moves/flamethrower.png" width="90" height="30"></div>
-							<div class="swiper2-slide"><img style="margin-top:10px;  margin-left:3px;" src="http://pokemmostats.com/Moves/thunderbolt.png" width="90" height="30"></div>
+							<div class="swiper-slide"><img style="margin-top:10px; margin-left:3px;" src="http://pokemmostats.com/Moves/flamethrower.png" width="90" height="30"></div>
+							<div class="swiper-slide"><img style="margin-top:10px;  margin-left:3px;" src="http://pokemmostats.com/Moves/thunderbolt.png" width="90" height="30"></div>
 						  </div>
 
 
@@ -110,7 +110,7 @@
 					<div class="flexxo2">
 						<img style="margin-top:10px; " src="http://pokemmostats.com/Moves/toxic.png" width="90" height="30">
 						<h3 style="margin-top:10px; margin-left:125px;"> ITEM&nbsp; > </h3>
-						<img   style="margin-top:5px; margin-left:4px; margin-bottom:10px;" src="http://pokemmostats.com/ico/Leftovers.png" width="30" height="30"> 
+						<img   style="margin-top:8px; margin-left:3px; margin-bottom:10px; margin-right:2px" src="http://pokemmostats.com/ico/Leftovers.png" width="20" height="20"> 
 						<h4 style="margin-top:12.5px; color:white; font-size: 10px">LEFTOVERS</h3>
 					</div>
 					<div class="flexxo2">
@@ -118,19 +118,15 @@
 						<h3 style="margin-left: 125px;"> EVs&nbsp; > </h3>
 						<h3 style="margin-left:3px; font-size: 10px; margin-top:2.8px;"> 252 HP &nbsp;&nbsp;&nbsp;252 DEF&nbsp;&nbsp;&nbsp;6 DEF SP</h3>
 					</div>
-					
-					
+				
 					<div class="flexxo3">
 						<div style="margin-top:5px; margin-left: 0px; margin-right:1px;" class="swiper2prev" ></div>
-						<div class="swiper2">
-
-						  
+						<div class="swiper s2">						  
 						  <div class="swiper-wrapper">
-							<div class="swiper2-slide"><img style="margin-top:10px;  margin-left:3px;" src="http://pokemmostats.com/Moves/stealthrock.png" width="90" height="30"></div>
-							<div class="swiper2-slide"><img style="margin-top:10px; margin-left:3px;" src="http://pokemmostats.com/Moves/aromatherapy.png" width="90" height="30"></div>
-							<div class="swiper2-slide"><img style="margin-top:10px;  margin-left:3px;" src="http://pokemmostats.com/Moves/teleport.png" width="90" height="30"></div>
+							<div class="swiper-slide"><img style="margin-top:10px;  margin-left:3px;" src="http://pokemmostats.com/Moves/stealthrock.png" width="90" height="30"></div>
+							<div class="swiper-slide"><img style="margin-top:10px; margin-left:3px;" src="http://pokemmostats.com/Moves/aromatherapy.png" width="90" height="30"></div>
+							<div class="swiper-slide"><img style="margin-top:10px;  margin-left:3px;" src="http://pokemmostats.com/Moves/teleport.png" width="90" height="30"></div>
 						  </div>
-
 
 						</div>
 						<div style="margin-top:5px; margin-left: 1px;" class="swiper2next"></div>		
@@ -169,7 +165,7 @@
 			<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 			
 			<script>
-				const swiper = new Swiper('.swiper', {
+				const swiper = new Swiper('.s1', {
 				  loop: true,
 				  // Navigation arrows
 				  navigation: {
@@ -177,7 +173,14 @@
 					prevEl: '.swiperprev',
 				  },
 				});
-
+				const swiper2 = new Swiper('.s2', {
+				  loop: true,
+				  // Navigation arrows
+				  navigation: {
+					nextEl: '.swiper2next',
+					prevEl: '.swiper2prev',
+				  },
+				});
 			</script>
 			
 			

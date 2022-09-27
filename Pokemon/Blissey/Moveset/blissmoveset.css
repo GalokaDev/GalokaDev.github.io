@@ -273,7 +273,6 @@ h3{
 
 
 
-
 .swiperprev,
 .swipernext {
   z-index: 10;
@@ -334,20 +333,31 @@ h3{
   line-height: 0;
 }
 .swiper2prev,
-.swiper2-rtl .swiper2next {
+.swiper-rtl .swiper2next {
   left: 10px;
   right: auto;
 }
 .swiper2prev:after,
-.swiper2-rtl .swiper2next:after {
+.swiper-rtl .swiper2next:after {
   content: 'prev';
 }
 .swiper2next,
-.swiper2-rtl .swiper2prev {
+.swiper-rtl .swiper2prev {
   right: 10px;
   left: auto;
 }
 .swiper2next:after,
-.swiper2-rtl .swiper2prev:after {
+.swiper-rtl .swiper2prev:after {
   content: 'next';
 }
+
+
+
+
+
+
+
+
+
+
+
