@@ -12,28 +12,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
   </head>
   <body>
-		  <header>
-			    <img onclick="location.href='http://pokemmostats.com'" src="ico/logos.png" width="100" height="30" class="logos">
-				<a href="http://pokemmostats.com" >Home</a>
-				<a href="mailto:admin@pokemmostats.com" class="center" >Contact Us</a>
-				<a href="https://www.paypal.com/donate/?hosted_button_id=HNNUVXH3VTBPY" target="_blank" class="end">Support Us</a>
-		  </header>
-		 
+	<?php $IPATH = $_SERVER["DOCUMENT_ROOT"]."/assets/php/"; include($IPATH."navbar.html"); ?>
+	<div>
+		<img src="ico/pokestats.png" class="logo">
+	</div>
+	<div class="wrapper">
+		<div class="search-input">
+		<a href="" hidden></a>
+		<input type="text" placeholder="Search a pokemon..">
+		<div class="autocom-box">
+			<!-- here list are inserted from javascript -->
+		</div>
+		<div class="icon"><i class="fas fa-search"></i></div>
+		</div>
+	</div>
 
-			<div>
-				<img src="ico/pokestats.png" class="logo">
-			</div>
-			<div class="wrapper">
-			  <div class="search-input">
-				<a href="" hidden></a>
-				<input type="text" placeholder="Search a pokemon..">
-				<div class="autocom-box">
-				  <!-- here list are inserted from javascript -->
-				</div>
-				<div class="icon"><i class="fas fa-search"></i></div>
-			  </div>
-			</div>
-			<script src="js/suggestions.js"></script>
-			<script src="js/script.js"></script>
+	<script src="js/suggestions.js"></script>
+	<script src="js/script.js"></script>
   </body>
 </html>
