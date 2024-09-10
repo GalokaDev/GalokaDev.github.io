@@ -22,7 +22,7 @@ inputBox.onkeyup = (e)=>{
         });
         emptyArray = emptyArray.map((data)=>{
             // passing return data inside li tag
-            return data = `<li><div class="fle"><img src="http://pokemmostats.com/ico/${data}.png" class="iconepic">${data}</div></li>`;
+            return data = `<li><div class="fle"><img src="ico/${data}.png" class="iconepic">${data}</div></li>`;
         });
         searchWrapper.classList.add("active"); //show autocomplete box
         showSuggestions(emptyArray);
@@ -40,7 +40,7 @@ function select(element){
     let selectData = element.textContent;
     inputBox.value = selectData;
     icon.onclick = ()=>{
-        webLink = `http://pokemmostats.com/Pokemon/${selectData}/Weakness/`;
+        webLink = `Pokemon/${selectData}/Weakness/index.html`;
         linkTag.setAttribute("href", webLink);
         linkTag.click();
     }
