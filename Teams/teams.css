@@ -177,7 +177,7 @@ header{
     position: relative;
     width: 320px;
     height: 450px;
-    background: #6997fc;
+    background: #232323;
     border-radius: 20px;
     overflow: hidden;
 }
@@ -317,7 +317,7 @@ header{
     position: relative;
     width: 320px;
     height: 450px;
-    background: #fefefe;
+    background: #232323;
     border-radius: 20px;
     overflow: hidden;
 }
@@ -345,7 +345,7 @@ header{
     font-size: 1.4em;
     font-weight: 700;
     font-style: italic;
-    color: rgba(34, 34, 34, 0.556);
+    color: rgba(231, 228, 228, 0.556);
 
 }
 
@@ -391,7 +391,7 @@ header{
     position: relative;
     font-weight: 600;
     letter-spacing: 1px;
-    color: #232323;
+    color: #fff;
 }
 
 .container .dragonchilde .contentBx .size{
