@@ -28,6 +28,7 @@ header{
     margin-top: 80px;
     margin-left: auto;
     margin-right:auto;
+    margin-bottom: 200px;
 }
 .Teamsline3{
     display: flex;
@@ -40,7 +41,7 @@ header{
     padding-right: 80px;
 }
 .titolo{
-    position: relative;
+
 }
 
 
