@@ -427,12 +427,12 @@ header{
 .container .dragonchilde .contentBx a {
     display: inline-block;
     padding: 10px 20px;
-    background: #232323;
+    background: #fff;
     border-radius: 4px;
     margin-top: 10px;
     text-decoration: none;
     font-weight: 600;
-    color: #ededed;
+    color: #111;
     opacity: 0;
     transform: translateY(50px);
     transition: .5s;
