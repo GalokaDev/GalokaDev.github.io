@@ -24,12 +24,9 @@ h4{
 
 .Teamsline1{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     gap: 50px;
     margin-top: 70px;
-}
-.container {
-    padding-right: 80px;
 }
 
 
