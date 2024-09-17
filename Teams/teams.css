@@ -26,7 +26,7 @@ h4{
 .Teamsline1{
     display: grid;
     grid-template-columns: auto auto auto;
-    gap: 80px;
+    gap: 40px;
     margin-top: 100px;
 }
 .container {
