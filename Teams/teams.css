@@ -172,6 +172,7 @@ header{
     margin-top: 7px;
     text-decoration: none;
     font-weight: 420;
+    font-size: 12px;
     color: #111;
     opacity: 0;
     transform: translateY(35px);
