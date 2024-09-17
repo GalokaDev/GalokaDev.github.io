@@ -7,7 +7,7 @@
 .pagina {
     max-width: 100%;
     margin-top: auto;
-    margin-right:30%;
+    margin-right:20%;
     margin-left:20%;
   }
 body {
@@ -22,7 +22,7 @@ h4{
     border-bottom: 3px solid #295be3;
 }
 
-.teams{
+.Teamsline1{
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 50px;
