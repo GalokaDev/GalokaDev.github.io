@@ -39,6 +39,9 @@ header{
     position: static;
     padding-right: 80px;
 }
+.titolo{
+    position: relative;
+}
 
 
 
