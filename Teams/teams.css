@@ -21,19 +21,19 @@ header{
     display: flex;
     margin-top: 100px;
     margin-left: auto;
-    margin-right:auto
+    margin-right:auto;
 }
 .Teamsline2{
     display: flex;
     margin-top: 80px;
     margin-left: auto;
-    margin-right:auto
+    margin-right:auto;
 }
 .Teamsline3{
     display: flex;
     margin-top: 80px;
     margin-left: auto;
-    margin-right:auto
+    margin-right:auto;
 }
 .container {
     position: static;
