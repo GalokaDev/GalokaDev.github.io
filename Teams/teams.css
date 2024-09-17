@@ -29,7 +29,13 @@ body {
     border-radius: 20px;
     overflow: hidden;
 }
+#paddyrice{
+    background: #e086e8;
+}
 
+#loveivv{
+    background: #d86464;
+}
 .container .card:before {
     content: "";
     position: absolute;
@@ -37,7 +43,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #d86464;
     clip-path: circle(150px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
@@ -103,8 +108,7 @@ body {
     color: #fff;
 }
 
-.container .card .contentBx .size,
-.container .card .contentBx .color {
+.container .card .contentBx .size{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,8 +125,7 @@ body {
 }
 
 
-.container .card .contentBx .size h3,
-.container .card .contentBx .color h3 {
+.container .card .contentBx .size h3 {
     color: white;
     font-weight: 300;
     font-size: 14px;
