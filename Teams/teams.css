@@ -19,12 +19,15 @@ header{
 
 .Teamsline1{
     display: flex;
+    margin-top: 100px;
 }
 .Teamsline2{
     display: flex;
+    margin-top: 100px;
 }
 .Teamsline3{
     display: flex;
+    margin-top: 100px;
 }
 .container {
     position: static;
