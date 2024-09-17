@@ -31,13 +31,6 @@ h4{
     gap: 50px;
     margin-top: 100px;
 }
-.Teamsline2{
-    display: flex;
-    margin-top: 80px;
-    margin-left: auto;
-    margin-right:auto;
-    margin-bottom: 150px;
-}
 .container {
     position: static;
     padding-right: 80px;
