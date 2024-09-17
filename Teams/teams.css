@@ -626,7 +626,7 @@ header{
 }
 
 .container .galokatw:after {
-    content: "85%WR";
+    content: "75%WR";
     position: absolute;
     top: 5%;
     left: 5%;
