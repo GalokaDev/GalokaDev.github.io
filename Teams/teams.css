@@ -5,10 +5,9 @@
 }
 
 .pagina {
-    max-width: 560px;
+    max-width: 50%;
     margin: auto;
     margin-top: auto;
-    margin-top: 2%;
   }
 body {
     margin: auto;
