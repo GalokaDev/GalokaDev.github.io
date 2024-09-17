@@ -91,7 +91,7 @@ header{
 
 .container .paddyrice .imgBx {
     position: absolute;
-    top: 50%;
+    top: 45%;
     transform: translateY(-50%);
     z-index: 1000;
     width: 100%;
@@ -110,7 +110,7 @@ header{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 220px;
+    width: 210px;
 }
 
 .container .paddyrice .contentBx {
