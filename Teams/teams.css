@@ -26,7 +26,8 @@ h4{
 
 .Teamsline1{
     position:absolute;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
     margin-top: 100px;
 }
 .Teamsline2{
