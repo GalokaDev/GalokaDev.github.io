@@ -611,7 +611,7 @@ header{
     left: 0;
     width: 100%;
     height: 100%;
-    background: #f49a34;
+    background: #713df6;
     clip-path: circle(150px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
@@ -621,7 +621,7 @@ header{
 }
 
 .container .galokatw:after {
-    content: "81%WR";
+    content: "75%WR";
     position: absolute;
     top: 5%;
     left: 5%;
