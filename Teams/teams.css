@@ -5,7 +5,8 @@
 }
 
 body {
-    margin: 50%;
+    width: 50%;
+    margin: auto;
     background: #16162e;
 }
 .titolo{
