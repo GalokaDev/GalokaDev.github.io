@@ -25,6 +25,7 @@ h4{
 }
 
 .Teamsline1{
+    position:absolute;
     display: flex;
     margin-top: 100px;
 }
