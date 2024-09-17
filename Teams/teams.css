@@ -330,10 +330,10 @@ header{
 
 .container .dragonchilde {
     position: relative;
-    width: 224px;
-    height: 315px;
+    width: 235px;
+    height: 330px;
     background: #232323;
-    border-radius: 20px;
+    border-radius: 14px;
     overflow: hidden;
 }
 .container .dragonchilde:before {
@@ -344,12 +344,12 @@ header{
     width: 100%;
     height: 100%;
     background: #62a0e7;
-    clip-path: circle(150px at 80% 20%);
+    clip-path: circle(105px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
 
 .container .dragonchilde:hover:before {
-    clip-path: circle(300px at 80% -20%);
+    clip-path: circle(210px at 80% -20%);
 }
 
 .container .dragonchilde:after {
@@ -357,8 +357,8 @@ header{
     position: absolute;
     top: 5%;
     left: 5%;
-    font-size: 1.4em;
-    font-weight: 700;
+    font-size: 1.2em;
+    font-weight: 600;
     font-style: italic;
     color: rgba(231, 228, 228, 0.556);
 
@@ -385,26 +385,26 @@ header{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 270px;
+    width: 210px;
 }
 
 .container .dragonchilde .contentBx {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 100px;
+    height: 70px;
     text-align: center;
     transition: 1s;
     z-index: 90;
 }
 
 .container .dragonchilde:hover .contentBx {
-    height: 210px;
+    height: 147px;
 }
 
 .container .dragonchilde .contentBx h2 {
     position: relative;
-    font-weight: 600;
+    font-weight: 420;
     letter-spacing: 1px;
     color: #fff;
 }
@@ -428,8 +428,8 @@ header{
 
 .container .dragonchilde .contentBx .size h3 {
     color: white;
-    font-weight: 300;
-    font-size: 14px;
+    font-weight: 210;
+    font-size: 9.8px;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-right: 10px;
@@ -446,10 +446,10 @@ header{
     border-radius: 4px;
     margin-top: 10px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 420;
     color: #111;
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(35px);
     transition: .5s;
 }
 .container .dragonchilde:hover .contentBx a {
@@ -467,10 +467,10 @@ header{
 
 .container .iloveyoubro {
     position: relative;
-    width: 224px;
-    height: 315px;
+    width: 235px;
+    height: 330px;
     background: #232323;
-    border-radius: 20px;
+    border-radius: 14px;
     overflow: hidden;
 }
 .container .iloveyoubro:before {
@@ -481,12 +481,12 @@ header{
     width: 100%;
     height: 100%;
     background: #f49a34;
-    clip-path: circle(150px at 80% 20%);
+    clip-path: circle(105px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
 
 .container .iloveyoubro:hover:before {
-    clip-path: circle(300px at 80% -20%);
+    clip-path: circle(210px at 80% -20%);
 }
 
 .container .iloveyoubro:after {
@@ -494,8 +494,8 @@ header{
     position: absolute;
     top: 5%;
     left: 5%;
-    font-size: 1.4em;
-    font-weight: 700;
+    font-size: 1.2em;
+    font-weight: 600;
     font-style: italic;
     color: rgba(231, 228, 228, 0.556);
 
@@ -522,26 +522,26 @@ header{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 270px;
+    width: 210px;
 }
 
 .container .iloveyoubro .contentBx {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 100px;
+    height: 70px;
     text-align: center;
     transition: 1s;
     z-index: 90;
 }
 
 .container .iloveyoubro:hover .contentBx {
-    height: 210px;
+    height: 147px;
 }
 
 .container .iloveyoubro .contentBx h2 {
     position: relative;
-    font-weight: 600;
+    font-weight: 420;
     letter-spacing: 1px;
     color: #fff;
 }
@@ -565,8 +565,8 @@ header{
 
 .container .iloveyoubro .contentBx .size h3 {
     color: white;
-    font-weight: 300;
-    font-size: 14px;
+    font-weight: 210;
+    font-size: 9.8px;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-right: 10px;
@@ -583,10 +583,10 @@ header{
     border-radius: 4px;
     margin-top: 10px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 420;
     color: #111;
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(35px);
     transition: .5s;
 }
 .container .iloveyoubro:hover .contentBx a {
@@ -599,15 +599,14 @@ header{
 
 
 
-
                                                     /* GalokaTw */
 
 .container .galokatw {
     position: relative;
-    width: 224px;
-    height: 315px;
+    width: 235px;
+    height: 330px;
     background: #232323;
-    border-radius: 20px;
+    border-radius: 14px;
     overflow: hidden;
 }
 .container .galokatw:before {
@@ -618,21 +617,21 @@ header{
     width: 100%;
     height: 100%;
     background: #713df6;
-    clip-path: circle(150px at 80% 20%);
+    clip-path: circle(105px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
 
 .container .galokatw:hover:before {
-    clip-path: circle(300px at 80% -20%);
+    clip-path: circle(210px at 80% -20%);
 }
 
 .container .galokatw:after {
-    content: "75%WR";
+    content: "85%WR";
     position: absolute;
     top: 5%;
     left: 5%;
-    font-size: 1.4em;
-    font-weight: 700;
+    font-size: 1.2em;
+    font-weight: 600;
     font-style: italic;
     color: rgba(231, 228, 228, 0.556);
 
@@ -659,26 +658,26 @@ header{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 270px;
+    width: 210px;
 }
 
 .container .galokatw .contentBx {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 100px;
+    height: 70px;
     text-align: center;
     transition: 1s;
     z-index: 90;
 }
 
 .container .galokatw:hover .contentBx {
-    height: 210px;
+    height: 147px;
 }
 
 .container .galokatw .contentBx h2 {
     position: relative;
-    font-weight: 600;
+    font-weight: 420;
     letter-spacing: 1px;
     color: #fff;
 }
@@ -702,8 +701,8 @@ header{
 
 .container .galokatw .contentBx .size h3 {
     color: white;
-    font-weight: 300;
-    font-size: 14px;
+    font-weight: 210;
+    font-size: 9.8px;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-right: 10px;
@@ -720,10 +719,10 @@ header{
     border-radius: 4px;
     margin-top: 10px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 420;
     color: #111;
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(35px);
     transition: .5s;
 }
 .container .galokatw:hover .contentBx a {
