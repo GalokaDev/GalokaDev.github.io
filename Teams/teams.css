@@ -135,9 +135,3 @@ body {
     padding-right: 5px;
     cursor: pointer;
 }
-
-.container .card:hover .contentBx a {
-    opacity: 1;
-    transform: translateY(0px);
-    transition-delay: .7s;
-}
