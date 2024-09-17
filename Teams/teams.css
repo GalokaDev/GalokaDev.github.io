@@ -17,7 +17,13 @@ header{
     border-bottom: 3px solid #295be3;
 }
 
-.Teams{
+.Teamsline1{
+    display: flex;
+}
+.Teamsline2{
+    display: flex;
+}
+.Teamsline3{
     display: flex;
 }
 .container {
