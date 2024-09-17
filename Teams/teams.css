@@ -22,7 +22,7 @@ h4{
     border-bottom: 3px solid #295be3;
 }
 
-.Teamsline1{
+.Teams{
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 50px;
