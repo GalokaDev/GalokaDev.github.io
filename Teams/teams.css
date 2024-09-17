@@ -5,8 +5,10 @@
 }
 
 body {
+    width: 60%;
     margin: auto;
     background: #16162e;
+    min-height: 100%;
 }
 header{
     font-size: 4em;
