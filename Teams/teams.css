@@ -9,6 +9,8 @@ body {
     margin: auto;
     background: #16162e;
     min-height: 100%;
+    margin-right:30%;
+    margin-left:30%
 }
 h4{
     font-size: 4em;
