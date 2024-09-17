@@ -11,6 +11,7 @@ body {
     min-height: 100%;
 }
 h4{
+    position: relative;
     font-size: 4em;
     color: white;
     margin-top:60px;
