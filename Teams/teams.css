@@ -5,8 +5,7 @@
 }
 
 body {
-    margin-left: 50%;
-    margin-right: 50%;
+    margin-left: auto;
     background: #16162e;
 }
 header{
