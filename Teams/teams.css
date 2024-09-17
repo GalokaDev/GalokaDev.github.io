@@ -13,6 +13,8 @@
 body {
     margin: auto;
     background: #16162e;
+    min-height: 100%;
+    margin-right:40%;
 }
 h4{
     font-size: 4em;
