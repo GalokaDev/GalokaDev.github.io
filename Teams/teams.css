@@ -167,7 +167,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #d86464;
+    background: #faa6ed;
     clip-path: circle(150px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
@@ -177,7 +177,7 @@ body {
 }
 
 .container .loveivv:after {
-    content: "85%WR";
+    content: "76%WR";
     position: absolute;
     top: 5%;
     left: 5%;
