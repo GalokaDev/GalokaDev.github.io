@@ -21,7 +21,7 @@ header{
     display: flex;
 }
 .container {
-    position: relative;
+    position: static;
     padding-right: 60px;
 }
 
