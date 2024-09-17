@@ -21,7 +21,19 @@ body {
     padding-right: 60px;
 }
 
-.container .card {
+
+
+
+
+
+
+
+
+
+
+
+
+.container .paddyrice {
     position: relative;
     width: 320px;
     height: 450px;
@@ -29,7 +41,7 @@ body {
     border-radius: 20px;
     overflow: hidden;
 }
-.container .card:before {
+.container .paddyrice:before {
     content: "";
     position: absolute;
     top: 0;
@@ -41,11 +53,11 @@ body {
     transition: 0.5s ease-in-out;
 }
 
-.container .card:hover:before {
+.container .paddyrice:hover:before {
     clip-path: circle(300px at 80% -20%);
 }
 
-.container .card:after {
+.container .paddyrice:after {
     content: "85%WR";
     position: absolute;
     top: 5%;
@@ -57,7 +69,7 @@ body {
 
 }
 
-.container .card .imgBx {
+.container .paddyrice .imgBx {
     position: absolute;
     top: 45%;
     transform: translateY(-50%);
@@ -67,13 +79,13 @@ body {
     transition: .5s;
 }
 
-.container .card:hover .imgBx {
+.container .paddyrice:hover .imgBx {
     top: 0%;
     transform: translateY(-25%);
     /* bug  */
 }
 
-.container .card .imgBx img {
+.container .paddyrice .imgBx img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -81,7 +93,7 @@ body {
     width: 270px;
 }
 
-.container .card .contentBx {
+.container .paddyrice .contentBx {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -91,18 +103,18 @@ body {
     z-index: 90;
 }
 
-.container .card:hover .contentBx {
+.container .paddyrice:hover .contentBx {
     height: 210px;
 }
 
-.container .card .contentBx h2 {
+.container .paddyrice .contentBx h2 {
     position: relative;
     font-weight: 600;
     letter-spacing: 1px;
     color: #fff;
 }
 
-.container .card .contentBx .size{
+.container .paddyrice .contentBx .size{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,14 +124,14 @@ body {
     visibility: hidden;
 }
 
-.container .card:hover .contentBx .size {
+.container .paddyrice:hover .contentBx .size {
     opacity: 1;
     visibility: visible;
     transition-delay: .5s;
 }
 
 
-.container .card .contentBx .size h3 {
+.container .paddyrice .contentBx .size h3 {
     color: white;
     font-weight: 300;
     font-size: 14px;
@@ -128,7 +140,167 @@ body {
     margin-right: 10px;
 }
 
-.container .card .contentBx .size img {
+.container .paddyrice .contentBx .size img {
     padding-right: 5px;
     cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container .loveivv {
+    position: relative;
+    width: 320px;
+    height: 450px;
+    background: #232323;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.container .loveivv:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #d86464;
+    clip-path: circle(150px at 80% 20%);
+    transition: 0.5s ease-in-out;
+}
+
+.container .loveivv:hover:before {
+    clip-path: circle(300px at 80% -20%);
+}
+
+.container .loveivv:after {
+    content: "85%WR";
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 1.4em;
+    font-weight: 700;
+    font-style: italic;
+    color: rgba(231, 228, 228, 0.556);
+
+}
+
+.container .loveivv .imgBx {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    transition: .5s;
+}
+
+.container .loveivv:hover .imgBx {
+    top: 0%;
+    transform: translateY(-25%);
+    /* bug  */
+}
+
+.container .loveivv .imgBx img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 270px;
+}
+
+.container .loveivv .contentBx {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    transition: 1s;
+    z-index: 90;
+}
+
+.container .loveivv:hover .contentBx {
+    height: 210px;
+}
+
+.container .loveivv .contentBx h2 {
+    position: relative;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.container .loveivv .contentBx .size{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 20px;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.container .loveivv:hover .contentBx .size {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: .5s;
+}
+
+
+.container .loveivv .contentBx .size h3 {
+    color: white;
+    font-weight: 300;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-right: 10px;
+}
+
+.container .loveivv .contentBx .size img {
+    padding-right: 5px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
