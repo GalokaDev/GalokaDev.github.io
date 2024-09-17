@@ -35,7 +35,7 @@ function menuBtnChange() {
 
 document.write('<style>');
 document.write('@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");');
-document.write('*{	margin: 0;	padding: 0;	box-sizing: border-box;	font-family: "Poppins" , sans-serif;	}');
+//document.write('*{	margin: 0;	padding: 0;	box-sizing: border-box;	font-family: "Poppins" , sans-serif;	}');
 document.write('.sidebar{	position: fixed;	left: 0;	top: 0;	height: 100%;	width: 78px;	background: #11101D;	padding: 6px 14px;	z-index: 99;	transition: all 0.5s ease;	}');
 document.write('.sidebar.open{	width: 250px;	}');
 document.write('.sidebar .logo-details{	height: 60px;	display: flex;	align-items: center;	position: relative;	}');
