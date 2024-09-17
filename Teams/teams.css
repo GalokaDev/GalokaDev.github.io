@@ -5,12 +5,11 @@
 }
 
 body {
-    width: 60%;
     margin: auto;
     background: #16162e;
     min-height: 100%;
-    margin-right:30%;
-    margin-left:30%
+    margin-right:50%;
+    margin-left:50%
 }
 h4{
     font-size: 4em;
