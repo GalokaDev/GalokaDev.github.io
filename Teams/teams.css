@@ -26,7 +26,7 @@ h4{
     display: grid;
     grid-template-columns: auto auto auto auto;
     gap: 50px;
-    margin-top: 50px;
+    margin-top: 70px;
 }
 .container {
     padding-right: 80px;
