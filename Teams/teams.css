@@ -158,7 +158,11 @@ body {
     transform: translateY(50px);
     transition: .5s;
 }
-
+.container .paddyrice:hover .contentBx a {
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .7s;
+}
 
 
 
@@ -288,6 +292,11 @@ body {
     opacity: 0;
     transform: translateY(50px);
     transition: .5s;
+}
+.container .loveivvhover .contentBx a {
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: .7s;
 }
 
 
