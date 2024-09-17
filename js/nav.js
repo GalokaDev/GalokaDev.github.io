@@ -1,5 +1,5 @@
 document.write('<div class="sidebar">');
-document.write('<div class="logo-details"> <i class="masterball"><img src="ico/masterball.png" width="24" height="24"></img></i>');
+document.write('<div class="logo-details"> <i class="masterball"><img src="https://pokemmostats.com/ico/masterball.png" width="24" height="24"></img></i>');
 document.write('<div class="logo_name">MMO Stats</div> <i class="bx bx-menu" id="btn" ></i></div>');
 document.write('<ul class="nav-list">');
 document.write('<li> <i class=" bx bx-search" ></i> <input type="text" placeholder="Search..."> <span class="tooltip">Search</span></li>');
@@ -11,7 +11,7 @@ document.write('<li><a href="https://pokemmostats.com/Teams/index.html"><i class
 //document.write('<li> <a href="#">		 <i class="bx bx-cart-alt" ></i>		 <span class="links_name">Order</span>	   </a>	   <span class="tooltip">Order</span>	 </li>')
 document.write('<li> <a href="https://www.paypal.com/donate/?hosted_button_id=HNNUVXH3VTBPY" target="_blank">		 <i class="bx bx-heart" ></i> <span class="links_name">Support</span>	   </a>	   <span class="tooltip">Support</span> </li>')
 //document.write('<li> <a href="#">		 <i class="bx bx-cog" ></i>		 <span class="links_name">Setting</span>	   </a>	   <span class="tooltip">Setting</span>	 </li>')
-document.write('<li class="profile">  <div class="profile-details">	<img src="ico/profile.png" alt="profileImg">	<div class="name_job">	<div class="name">Guest</div>	<div class="job"></div></div></div> <i class="bx bx-log-out" id="log_out" ></i>	 </li>')
+document.write('<li class="profile">  <div class="profile-details">	<img src="https://pokemmostats.com/ico/profile.png" alt="profileImg">	<div class="name_job">	<div class="name">Guest</div>	<div class="job"></div></div></div> <i class="bx bx-log-out" id="log_out" ></i>	 </li>')
 document.write('</ul>  </div>')
 
 let sidebar = document.querySelector(".sidebar");
