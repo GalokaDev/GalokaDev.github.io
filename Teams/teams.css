@@ -302,15 +302,16 @@ header{
 }
 .container .loveivv .contentBx a {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 7px 14px;
     background: #fff;
     border-radius: 4px;
-    margin-top: 10px;
+    margin-top: 7px;
     text-decoration: none;
     font-weight: 420;
+    font-size: 16px;
     color: #111;
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(35px);
     transition: .5s;
 }
 .container .loveivv:hover .contentBx a {
@@ -442,12 +443,13 @@ header{
 }
 .container .dragonchilde .contentBx a {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 7px 14px;
     background: #fff;
     border-radius: 4px;
-    margin-top: 10px;
+    margin-top: 7px;
     text-decoration: none;
     font-weight: 420;
+    font-size: 16px;
     color: #111;
     opacity: 0;
     transform: translateY(35px);
@@ -579,12 +581,13 @@ header{
 }
 .container .iloveyoubro .contentBx a {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 7px 14px;
     background: #fff;
     border-radius: 4px;
-    margin-top: 10px;
+    margin-top: 7px;
     text-decoration: none;
     font-weight: 420;
+    font-size: 16px;
     color: #111;
     opacity: 0;
     transform: translateY(35px);
@@ -715,12 +718,13 @@ header{
 }
 .container .galokatw .contentBx a {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 7px 14px;
     background: #fff;
     border-radius: 4px;
-    margin-top: 10px;
+    margin-top: 7px;
     text-decoration: none;
     font-weight: 420;
+    font-size: 16px;
     color: #111;
     opacity: 0;
     transform: translateY(35px);
