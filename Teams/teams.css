@@ -5,16 +5,18 @@
 }
 
 body {
-    width: 50%;
+    width: 60%;
     margin: auto;
     background: #16162e;
 }
-.titolo{
+header{
     font-size: 6em;
     color: white;
-    top:10%
-
+    margin-top:100px;
+    margin-bottom: 200px;
+    border-bottom: 3px solid #295be3;
 }
+
 .Teams{
     display: flex;
 }
