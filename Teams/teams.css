@@ -338,7 +338,7 @@ header{
 }
 
 .container .dragonchilde:after {
-    content: "85%WR";
+    content: "79%WR";
     position: absolute;
     top: 5%;
     left: 5%;
@@ -448,9 +448,9 @@ header{
 
 
 
-                                                    /* Dragonchilde */
+                                                    /* iloveyoubro */
 
-.container .dragonchilde {
+.container .iloveyoubro {
     position: relative;
     width: 320px;
     height: 450px;
@@ -458,24 +458,24 @@ header{
     border-radius: 20px;
     overflow: hidden;
 }
-.container .dragonchilde:before {
+.container .iloveyoubro:before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #62a0e7;
+    background: #f49a34;
     clip-path: circle(150px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
 
-.container .dragonchilde:hover:before {
+.container .iloveyoubro:hover:before {
     clip-path: circle(300px at 80% -20%);
 }
 
-.container .dragonchilde:after {
-    content: "85%WR";
+.container .iloveyoubro:after {
+    content: "81%WR";
     position: absolute;
     top: 5%;
     left: 5%;
@@ -486,7 +486,7 @@ header{
 
 }
 
-.container .dragonchilde .imgBx {
+.container .iloveyoubro .imgBx {
     position: absolute;
     top: 45%;
     transform: translateY(-50%);
@@ -496,13 +496,13 @@ header{
     transition: .5s;
 }
 
-.container .dragonchilde:hover .imgBx {
+.container .iloveyoubro:hover .imgBx {
     top: 0%;
     transform: translateY(-25%);
     /* bug  */
 }
 
-.container .dragonchilde .imgBx img {
+.container .iloveyoubro .imgBx img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -510,7 +510,7 @@ header{
     width: 270px;
 }
 
-.container .dragonchilde .contentBx {
+.container .iloveyoubro .contentBx {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -520,18 +520,18 @@ header{
     z-index: 90;
 }
 
-.container .dragonchilde:hover .contentBx {
+.container .iloveyoubro:hover .contentBx {
     height: 210px;
 }
 
-.container .dragonchilde .contentBx h2 {
+.container .iloveyoubro .contentBx h2 {
     position: relative;
     font-weight: 600;
     letter-spacing: 1px;
     color: #fff;
 }
 
-.container .dragonchilde .contentBx .size{
+.container .iloveyoubro .contentBx .size{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -541,14 +541,14 @@ header{
     visibility: hidden;
 }
 
-.container .dragonchilde:hover .contentBx .size {
+.container .iloveyoubro:hover .contentBx .size {
     opacity: 1;
     visibility: visible;
     transition-delay: .5s;
 }
 
 
-.container .dragonchilde .contentBx .size h3 {
+.container .iloveyoubro .contentBx .size h3 {
     color: white;
     font-weight: 300;
     font-size: 14px;
@@ -557,11 +557,11 @@ header{
     margin-right: 10px;
 }
 
-.container .dragonchilde .contentBx .size img {
+.container .iloveyoubro .contentBx .size img {
     padding-right: 5px;
     cursor: pointer;
 }
-.container .dragonchilde .contentBx a {
+.container .iloveyoubro .contentBx a {
     display: inline-block;
     padding: 10px 20px;
     background: #fff;
@@ -574,7 +574,7 @@ header{
     transform: translateY(50px);
     transition: .5s;
 }
-.container .dragonchilde:hover .contentBx a {
+.container .iloveyoubro:hover .contentBx a {
     opacity: 1;
     transform: translateY(0px);
     transition-delay: .7s;
