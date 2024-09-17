@@ -5,6 +5,7 @@
 }
 
 .pagina {
+    position:absolute;
     max-width: 100%;
     margin-top: auto;
     margin-right:30%;
