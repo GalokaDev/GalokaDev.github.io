@@ -11,12 +11,12 @@ body {
     min-height: 100%;
 }
 h4{
-    position: relative;
     font-size: 4em;
     color: white;
     margin-top:60px;
     margin-bottom: 50px;
     border-bottom: 3px solid #295be3;
+    min-width: 30%;
 }
 
 .Teamsline1{
