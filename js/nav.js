@@ -4,7 +4,7 @@ document.write('<div class="logo_name">MMO Stats</div> <i class="bx bx-menu" id=
 document.write('<ul class="nav-list">');
 document.write('<li> <i class=" bx bx-search" ></i> <input type="text" placeholder="Search..."> <span class="tooltip">Search</span></li>');
 document.write('<li><a href="https://pokemmostats.com/index.html"><i class="bx bx-home" ></i><span class="links_name">Home</span></a><span class="tooltip">Home</span></li>');
-document.write('<li><a href="https://pokemmostats.com/Teams/index.html"><i class="bx bx-list-ol"></i><span class="links_name">Meta Teams</span></a><span class="tooltip">Teams</span></li>');
+document.write('<li><a href="https://pokemmostats.com/Teams/"><i class="bx bx-list-ol"></i><span class="links_name">Meta Teams</span></a><span class="tooltip">Teams</span></li>');
 //document.write('<li>	   <a href="#">		 <i class="bx bx-chat" ></i>		 <span class="links_name">Messages</span>	   </a>	   <span class="tooltip">Messages</span>	 </li>');
 //document.write('<li><a href="#">		 <i class="bx bx-pie-chart-alt-2" ></i>		 <span class="links_name">Analytics</span>	   </a>	   <span class="tooltip">Analytics</span>	 </li>');
 //document.write('<li> <a href="#">		 <i class="bx bx-folder" ></i>		 <span class="links_name">File Manager</span>	   </a>	   <span class="tooltip">Files</span>	 </li>')
