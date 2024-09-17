@@ -188,7 +188,7 @@ header{
     left: 0;
     width: 100%;
     height: 100%;
-    background: #edf0ef;
+    background: #4de5b2;
     clip-path: circle(150px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
