@@ -190,10 +190,10 @@ header{
                                                     /* LoveIVV */
 .container .loveivv {
     position: relative;
-    width: 224px;
-    height: 315px;
+    width: 235px;
+    height: 330px;
     background: #232323;
-    border-radius: 20px;
+    border-radius: 14px;
     overflow: hidden;
 }
 .container .loveivv:before {
@@ -204,12 +204,12 @@ header{
     width: 100%;
     height: 100%;
     background: #4de5b2;
-    clip-path: circle(150px at 80% 20%);
+    clip-path: circle(105px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
 
 .container .loveivv:hover:before {
-    clip-path: circle(300px at 80% -20%);
+    clip-path: circle(210px at 80% -20%);
 }
 
 .container .loveivv:after {
@@ -217,8 +217,8 @@ header{
     position: absolute;
     top: 5%;
     left: 5%;
-    font-size: 1.4em;
-    font-weight: 700;
+    font-size: 1.2em;
+    font-weight: 600;
     font-style: italic;
     color: rgba(231, 228, 228, 0.556);
 
@@ -245,26 +245,26 @@ header{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 270px;
+    width: 210px;
 }
 
 .container .loveivv .contentBx {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 100px;
+    height: 70px;
     text-align: center;
     transition: 1s;
     z-index: 90;
 }
 
 .container .loveivv:hover .contentBx {
-    height: 210px;
+    height: 147px;
 }
 
 .container .loveivv .contentBx h2 {
     position: relative;
-    font-weight: 600;
+    font-weight: 420;
     letter-spacing: 1px;
     color: #fff;
 }
@@ -288,8 +288,8 @@ header{
 
 .container .loveivv .contentBx .size h3 {
     color: white;
-    font-weight: 300;
-    font-size: 14px;
+    font-weight: 210;
+    font-size: 9.8px;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-right: 10px;
@@ -306,7 +306,7 @@ header{
     border-radius: 4px;
     margin-top: 10px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 420;
     color: #111;
     opacity: 0;
     transform: translateY(50px);
