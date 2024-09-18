@@ -33,6 +33,7 @@ h4{
 .tooltip2 {
     position: relative;
     display: inline-block;
+    padding: 0.34vw 0.97vw;
   }
   
 .tooltip2 .tooltiptext2 {
