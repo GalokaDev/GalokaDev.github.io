@@ -57,7 +57,7 @@ h4{
     width: 100%;
     height: 100%;
     background: #d86464;
-    clip-path: circle(105px at 80% 20%);
+    clip-path: circle(7.3vh at 80% 20%);
     transition: 0.5s ease-in-out;
 }
 
