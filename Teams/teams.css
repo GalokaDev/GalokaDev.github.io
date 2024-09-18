@@ -766,7 +766,44 @@ h4{
 
 
                                                     /* DEeMooOn */
-.container .galokatw .imgBx {
+
+.container .deemooon {
+    position: relative;
+    width: 11.36vw;
+    height: 16vw;
+    background: #232323;
+    border-radius: 0.7vw;
+    overflow: hidden;
+}
+.container .deemooon:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #e4fa74;
+    clip-path: circle(5.1vw at 80% 20%);
+    transition: 0.5s ease-in-out;
+}
+
+.container .deemooon:hover:before {
+    clip-path: circle(10.2vw at 80% -20%);
+}
+
+.container .deemooon:after {
+    content: "32%WR";
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 1.2em;
+    font-weight: 600;
+    font-style: italic;
+    color: rgba(231, 228, 228, 0.556);
+
+}
+
+.container .deemooon .imgBx {
     position: absolute;
     top: 45%;
     transform: translateY(-50%);
@@ -776,13 +813,13 @@ h4{
     transition: .5s;
 }
 
-.container .galokatw:hover .imgBx {
+.container .deemooon:hover .imgBx {
     top: 0%;
     transform: translateY(-25%);
     /* bug  */
 }
 
-.container .galokatw .imgBx img {
+.container .deemooon .imgBx img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -790,7 +827,7 @@ h4{
     width: 10.2vw;
 }
 
-.container .galokatw .contentBx {
+.container .deemooon .contentBx {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -800,18 +837,18 @@ h4{
     z-index: 90;
 }
 
-.container .galokatw:hover .contentBx {
+.container .deemooon:hover .contentBx {
     height: 7.17vw;
 }
 
-.container .galokatw .contentBx h2 {
+.container .deemooon .contentBx h2 {
     position: relative;
     font-weight: 420;
     letter-spacing: 0.05vw;
     color: #fff;
 }
 
-.container .galokatw .contentBx .size{
+.container .deemooon .contentBx .size{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -821,14 +858,14 @@ h4{
     visibility: hidden;
 }
 
-.container .galokatw:hover .contentBx .size {
+.container .deemooon:hover .contentBx .size {
     opacity: 1;
     visibility: visible;
     transition-delay: .5s;
 }
 
 
-.container .galokatw .contentBx .size h3 {
+.container .deemooon .contentBx .size h3 {
     color: white;
     font-weight: 210;
     font-size: 0.48vw;
@@ -837,11 +874,11 @@ h4{
     margin-right: 0.5vw;
 }
 
-.container .galokatw .contentBx .size img {
+.container .deemooon .contentBx .size img {
     padding-right: 0.25vw;
     cursor: pointer;
 }
-.container .galokatw .contentBx a {
+.container .deemooon .contentBx a {
     display: inline-block;
     padding: 0.35vw 0.7vw;
     background: #fff;
@@ -855,7 +892,7 @@ h4{
     transform: translateY(1.7vw);
     transition: .5s;
 }
-.container .galokatw:hover .contentBx a {
+.container .deemooon:hover .contentBx a {
     opacity: 1;
     transform: translateY(0vw);
     transition-delay: .7s;
