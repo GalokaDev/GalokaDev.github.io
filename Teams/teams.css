@@ -76,7 +76,7 @@ h4{
 
 
 
-                                                    /* Paddyrice */
+                                                    /* paddyrice */
 
 .container .paddyrice {
     position: relative;
@@ -156,7 +156,6 @@ h4{
     position: relative;
     font-weight: 420;
     letter-spacing: 0.05vw;
-    font-size: 1.4em;
     color: #fff;
 }
 
@@ -164,7 +163,7 @@ h4{
     display: flex;
     justify-content: center;
     align-items: center;
-    /*padding: 0.34vw 0.97vw;*/
+    padding: 0.34vw 0.97vw;
     transition: .5s;
     opacity: 0;
     visibility: hidden;
@@ -187,7 +186,7 @@ h4{
 }
 
 .container .paddyrice .contentBx .size img {
-    /*  padding-right: 0.25vw;*/
+    padding-right: 0.25vw;
     cursor: pointer;
 }
 .container .paddyrice .contentBx a {
@@ -209,7 +208,6 @@ h4{
     transform: translateY(0vw);
     transition-delay: .7s;
 }
-
 
 
 
