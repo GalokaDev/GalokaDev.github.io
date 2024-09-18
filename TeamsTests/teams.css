@@ -18,15 +18,15 @@ body {
 h4{
     font-size: 4em;
     color: white;
-    margin-top:2.9vw;
+    margin-top:4.2vh;
     border-bottom: 3px solid #295be3;
 }
 
 .Teamsline1{
     display: grid;
     grid-template-columns: auto auto auto auto;
-    gap: 2.44vw;
-    margin-top: 3.4vw;
+    gap: 3.5vh;
+    margin-top: 4.9vh;
 }
 
 
@@ -39,14 +39,13 @@ h4{
 
 
 
-                                                    /* Paddyrice */
-
+                                                    /* paddyrice */
 .container .paddyrice {
     position: relative;
-    width: 11.36vw;
-    height: 16vw;
+    width: 235px;
+    height: 330px;
     background: #232323;
-    border-radius: 0.7vw;
+    border-radius: 14px;
     overflow: hidden;
 }
 .container .paddyrice:before {
@@ -57,12 +56,12 @@ h4{
     width: 100%;
     height: 100%;
     background: #d86464;
-    clip-path: circle(5.1vw at 80% 20%);
+    clip-path: circle(105px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
 
 .container .paddyrice:hover:before {
-    clip-path: circle(10.2vw at 80% -20%);
+    clip-path: circle(210px at 80% -20%);
 }
 
 .container .paddyrice:after {
@@ -98,27 +97,27 @@ h4{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 10.2vw;
+    width: 210px;
 }
 
 .container .paddyrice .contentBx {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 3.41vw;
+    height: 70px;
     text-align: center;
     transition: 1s;
     z-index: 90;
 }
 
 .container .paddyrice:hover .contentBx {
-    height: 7.17vw;
+    height: 147px;
 }
 
 .container .paddyrice .contentBx h2 {
     position: relative;
     font-weight: 420;
-    letter-spacing: 0.05vw;
+    letter-spacing: 1px;
     color: #fff;
 }
 
@@ -126,7 +125,7 @@ h4{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.34vw 0.97vw;
+    padding: 8px 20px;
     transition: .5s;
     opacity: 0;
     visibility: hidden;
@@ -142,33 +141,33 @@ h4{
 .container .paddyrice .contentBx .size h3 {
     color: white;
     font-weight: 210;
-    font-size: 0.48vw;
+    font-size: 9.8px;
     text-transform: uppercase;
-    letter-spacing: 0.1vw;
-    margin-right: 0.5vw;
+    letter-spacing: 2px;
+    margin-right: 10px;
 }
 
 .container .paddyrice .contentBx .size img {
-    padding-right: 0.25vw;
+    padding-right: 5px;
     cursor: pointer;
 }
 .container .paddyrice .contentBx a {
     display: inline-block;
-    padding: 0.35vw 0.7vw;
+    padding: 7px 14px;
     background: #fff;
-    border-radius: 0.2vw;
-    margin-top: 0.35vw;
+    border-radius: 4px;
+    margin-top: 7px;
     text-decoration: none;
     font-weight: 420;
-    font-size: 0.75vw;
+    font-size: 16px;
     color: #111;
     opacity: 0;
-    transform: translateY(1.7vw);
+    transform: translateY(35px);
     transition: .5s;
 }
 .container .paddyrice:hover .contentBx a {
     opacity: 1;
-    transform: translateY(0vw);
+    transform: translateY(0px);
     transition-delay: .7s;
 }
 
@@ -177,13 +176,12 @@ h4{
 
 
                                                     /* LoveIVV */
-
 .container .loveivv {
     position: relative;
-    width: 11.36vw;
-    height: 16vw;
+    width: 235px;
+    height: 330px;
     background: #232323;
-    border-radius: 0.7vw;
+    border-radius: 14px;
     overflow: hidden;
 }
 .container .loveivv:before {
@@ -194,12 +192,12 @@ h4{
     width: 100%;
     height: 100%;
     background: #4de5b2;
-    clip-path: circle(5.1vw at 80% 20%);
+    clip-path: circle(105px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
 
 .container .loveivv:hover:before {
-    clip-path: circle(10.2vw at 80% -20%);
+    clip-path: circle(210px at 80% -20%);
 }
 
 .container .loveivv:after {
@@ -235,27 +233,27 @@ h4{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 10.2vw;
+    width: 210px;
 }
 
 .container .loveivv .contentBx {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 3.41vw;
+    height: 70px;
     text-align: center;
     transition: 1s;
     z-index: 90;
 }
 
 .container .loveivv:hover .contentBx {
-    height: 7.17vw;
+    height: 147px;
 }
 
 .container .loveivv .contentBx h2 {
     position: relative;
     font-weight: 420;
-    letter-spacing: 0.05vw;
+    letter-spacing: 1px;
     color: #fff;
 }
 
@@ -263,7 +261,7 @@ h4{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.34vw 0.97vw;
+    padding: 8px 20px;
     transition: .5s;
     opacity: 0;
     visibility: hidden;
@@ -279,35 +277,36 @@ h4{
 .container .loveivv .contentBx .size h3 {
     color: white;
     font-weight: 210;
-    font-size: 0.48vw;
+    font-size: 9.8px;
     text-transform: uppercase;
-    letter-spacing: 0.1vw;
-    margin-right: 0.5vw;
+    letter-spacing: 2px;
+    margin-right: 10px;
 }
 
 .container .loveivv .contentBx .size img {
-    padding-right: 0.25vw;
+    padding-right: 5px;
     cursor: pointer;
 }
 .container .loveivv .contentBx a {
     display: inline-block;
-    padding: 0.35vw 0.7vw;
+    padding: 7px 14px;
     background: #fff;
-    border-radius: 0.2vw;
-    margin-top: 0.35vw;
+    border-radius: 4px;
+    margin-top: 7px;
     text-decoration: none;
     font-weight: 420;
-    font-size: 0.75vw;
+    font-size: 16px;
     color: #111;
     opacity: 0;
-    transform: translateY(1.7vw);
+    transform: translateY(35px);
     transition: .5s;
 }
 .container .loveivv:hover .contentBx a {
     opacity: 1;
-    transform: translateY(0vw);
+    transform: translateY(0px);
     transition-delay: .7s;
 }
+
 
 
 
@@ -320,10 +319,10 @@ h4{
 
 .container .dragonchilde {
     position: relative;
-    width: 11.36vw;
-    height: 16vw;
+    width: 235px;
+    height: 330px;
     background: #232323;
-    border-radius: 0.7vw;
+    border-radius: 14px;
     overflow: hidden;
 }
 .container .dragonchilde:before {
@@ -334,12 +333,12 @@ h4{
     width: 100%;
     height: 100%;
     background: #62a0e7;
-    clip-path: circle(5.1vw at 80% 20%);
+    clip-path: circle(105px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
 
 .container .dragonchilde:hover:before {
-    clip-path: circle(10.2vw at 80% -20%);
+    clip-path: circle(210px at 80% -20%);
 }
 
 .container .dragonchilde:after {
@@ -375,27 +374,27 @@ h4{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 10.2vw;
+    width: 210px;
 }
 
 .container .dragonchilde .contentBx {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 3.41vw;
+    height: 70px;
     text-align: center;
     transition: 1s;
     z-index: 90;
 }
 
 .container .dragonchilde:hover .contentBx {
-    height: 7.17vw;
+    height: 147px;
 }
 
 .container .dragonchilde .contentBx h2 {
     position: relative;
     font-weight: 420;
-    letter-spacing: 0.05vw;
+    letter-spacing: 1px;
     color: #fff;
 }
 
@@ -403,7 +402,7 @@ h4{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.34vw 0.97vw;
+    padding: 8px 20px;
     transition: .5s;
     opacity: 0;
     visibility: hidden;
@@ -419,33 +418,33 @@ h4{
 .container .dragonchilde .contentBx .size h3 {
     color: white;
     font-weight: 210;
-    font-size: 0.48vw;
+    font-size: 9.8px;
     text-transform: uppercase;
-    letter-spacing: 0.1vw;
-    margin-right: 0.5vw;
+    letter-spacing: 2px;
+    margin-right: 10px;
 }
 
 .container .dragonchilde .contentBx .size img {
-    padding-right: 0.25vw;
+    padding-right: 5px;
     cursor: pointer;
 }
 .container .dragonchilde .contentBx a {
     display: inline-block;
-    padding: 0.35vw 0.7vw;
+    padding: 7px 14px;
     background: #fff;
-    border-radius: 0.2vw;
-    margin-top: 0.35vw;
+    border-radius: 4px;
+    margin-top: 7px;
     text-decoration: none;
     font-weight: 420;
-    font-size: 0.75vw;
+    font-size: 16px;
     color: #111;
     opacity: 0;
-    transform: translateY(1.7vw);
+    transform: translateY(35px);
     transition: .5s;
 }
 .container .dragonchilde:hover .contentBx a {
     opacity: 1;
-    transform: translateY(0vw);
+    transform: translateY(0px);
     transition-delay: .7s;
 }
 
@@ -458,10 +457,10 @@ h4{
 
 .container .iloveyoubro {
     position: relative;
-    width: 11.36vw;
-    height: 16vw;
+    width: 235px;
+    height: 330px;
     background: #232323;
-    border-radius: 0.7vw;
+    border-radius: 14px;
     overflow: hidden;
 }
 .container .iloveyoubro:before {
@@ -472,12 +471,12 @@ h4{
     width: 100%;
     height: 100%;
     background: #f49a34;
-    clip-path: circle(5.1vw at 80% 20%);
+    clip-path: circle(105px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
 
 .container .iloveyoubro:hover:before {
-    clip-path: circle(10.2vw at 80% -20%);
+    clip-path: circle(210px at 80% -20%);
 }
 
 .container .iloveyoubro:after {
@@ -513,27 +512,27 @@ h4{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 10.2vw;
+    width: 210px;
 }
 
 .container .iloveyoubro .contentBx {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 3.41vw;
+    height: 70px;
     text-align: center;
     transition: 1s;
     z-index: 90;
 }
 
 .container .iloveyoubro:hover .contentBx {
-    height: 7.17vw;
+    height: 147px;
 }
 
 .container .iloveyoubro .contentBx h2 {
     position: relative;
     font-weight: 420;
-    letter-spacing: 0.05vw;
+    letter-spacing: 1px;
     color: #fff;
 }
 
@@ -541,7 +540,7 @@ h4{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.34vw 0.97vw;
+    padding: 8px 20px;
     transition: .5s;
     opacity: 0;
     visibility: hidden;
@@ -557,33 +556,33 @@ h4{
 .container .iloveyoubro .contentBx .size h3 {
     color: white;
     font-weight: 210;
-    font-size: 0.48vw;
+    font-size: 9.8px;
     text-transform: uppercase;
-    letter-spacing: 0.1vw;
-    margin-right: 0.5vw;
+    letter-spacing: 2px;
+    margin-right: 10px;
 }
 
 .container .iloveyoubro .contentBx .size img {
-    padding-right: 0.25vw;
+    padding-right: 5px;
     cursor: pointer;
 }
 .container .iloveyoubro .contentBx a {
     display: inline-block;
-    padding: 0.35vw 0.7vw;
+    padding: 7px 14px;
     background: #fff;
-    border-radius: 0.2vw;
-    margin-top: 0.35vw;
+    border-radius: 4px;
+    margin-top: 7px;
     text-decoration: none;
     font-weight: 420;
-    font-size: 0.75vw;
+    font-size: 16px;
     color: #111;
     opacity: 0;
-    transform: translateY(1.7vw);
+    transform: translateY(35px);
     transition: .5s;
 }
 .container .iloveyoubro:hover .contentBx a {
     opacity: 1;
-    transform: translateY(0vw);
+    transform: translateY(0px);
     transition-delay: .7s;
 }
 
@@ -595,10 +594,10 @@ h4{
 
 .container .galokatw {
     position: relative;
-    width: 11.36vw;
-    height: 16vw;
+    width: 235px;
+    height: 330px;
     background: #232323;
-    border-radius: 0.7vw;
+    border-radius: 14px;
     overflow: hidden;
 }
 .container .galokatw:before {
@@ -609,12 +608,12 @@ h4{
     width: 100%;
     height: 100%;
     background: #713df6;
-    clip-path: circle(5.1vw at 80% 20%);
+    clip-path: circle(105px at 80% 20%);
     transition: 0.5s ease-in-out;
 }
 
 .container .galokatw:hover:before {
-    clip-path: circle(10.2vw at 80% -20%);
+    clip-path: circle(210px at 80% -20%);
 }
 
 .container .galokatw:after {
@@ -650,27 +649,27 @@ h4{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 10.2vw;
+    width: 210px;
 }
 
 .container .galokatw .contentBx {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 3.41vw;
+    height: 70px;
     text-align: center;
     transition: 1s;
     z-index: 90;
 }
 
 .container .galokatw:hover .contentBx {
-    height: 7.17vw;
+    height: 147px;
 }
 
 .container .galokatw .contentBx h2 {
     position: relative;
     font-weight: 420;
-    letter-spacing: 0.05vw;
+    letter-spacing: 1px;
     color: #fff;
 }
 
@@ -678,7 +677,7 @@ h4{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.34vw 0.97vw;
+    padding: 8px 20px;
     transition: .5s;
     opacity: 0;
     visibility: hidden;
@@ -694,32 +693,32 @@ h4{
 .container .galokatw .contentBx .size h3 {
     color: white;
     font-weight: 210;
-    font-size: 0.48vw;
+    font-size: 9.8px;
     text-transform: uppercase;
-    letter-spacing: 0.1vw;
-    margin-right: 0.5vw;
+    letter-spacing: 2px;
+    margin-right: 10px;
 }
 
 .container .galokatw .contentBx .size img {
-    padding-right: 0.25vw;
+    padding-right: 5px;
     cursor: pointer;
 }
 .container .galokatw .contentBx a {
     display: inline-block;
-    padding: 0.35vw 0.7vw;
+    padding: 7px 14px;
     background: #fff;
-    border-radius: 0.2vw;
-    margin-top: 0.35vw;
+    border-radius: 4px;
+    margin-top: 7px;
     text-decoration: none;
     font-weight: 420;
-    font-size: 0.75vw;
+    font-size: 16px;
     color: #111;
     opacity: 0;
-    transform: translateY(1.7vw);
+    transform: translateY(35px);
     transition: .5s;
 }
 .container .galokatw:hover .contentBx a {
     opacity: 1;
-    transform: translateY(0vw);
+    transform: translateY(0px);
     transition-delay: .7s;
 }
