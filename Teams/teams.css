@@ -9,6 +9,9 @@
     margin-top: auto;
     margin-right:20%;
     margin-left:25%;
+    width: 80vw;
+    height: 90vh;
+    position: absolute;
   }
 body {
     margin: auto;
