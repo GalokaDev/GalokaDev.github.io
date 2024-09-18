@@ -229,7 +229,7 @@ h4{
     left: 0;
     width: 100%;
     height: 100%;
-    background: #4de5b2;
+    background: #45ca9e;
     clip-path: circle(5.1vw at 80% 20%);
     transition: 0.5s ease-in-out;
 }
@@ -782,7 +782,7 @@ h4{
     left: 0;
     width: 100%;
     height: 100%;
-    background: #f9759d;
+    background: #af6845;
     clip-path: circle(5.1vw at 80% 20%);
     transition: 0.5s ease-in-out;
 }
