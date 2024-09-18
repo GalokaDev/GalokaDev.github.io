@@ -155,7 +155,7 @@ h4{
 .container .paddyrice .contentBx a {
     padding: 0px 0px 0px 0px;
 }
-.container .paddyrice:hover .contentBx a {
+.container .paddyrice .contentBx a:hover {
     opacity: .7;
 }
 .container .paddyrice .contentBx .imglink {
