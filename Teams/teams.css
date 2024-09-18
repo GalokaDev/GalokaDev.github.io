@@ -189,8 +189,6 @@ h4{
 .container .paddyrice .contentBx .size img {
     /*  padding-right: 0.25vw;*/
     cursor: pointer;
-    position: absolute;
-    z-index: 10000;
 }
 .container .paddyrice .contentBx a {
     display: inline-block;
