@@ -18,15 +18,15 @@ body {
 h4{
     font-size: 4em;
     color: white;
-    margin-top:4.2vh;
+    margin-top:2.9vw;
     border-bottom: 3px solid #295be3;
 }
 
 .Teamsline1{
     display: grid;
     grid-template-columns: auto auto auto auto;
-    gap: 3.5vh;
-    margin-top: 4.9vh;
+    gap: 2.44vw;
+    margin-top: 3.4vw;
 }
 
 
@@ -43,10 +43,10 @@ h4{
 
 .container .paddyrice {
     position: relative;
-    width: 9.1vw;
-    height: 22.9vh;
+    width: 11.36vw;
+    height: 16vw;
     background: #232323;
-    border-radius: 14px;
+    border-radius: 0.7vw;
     overflow: hidden;
 }
 .container .paddyrice:before {
@@ -57,12 +57,12 @@ h4{
     width: 100%;
     height: 100%;
     background: #d86464;
-    clip-path: circle(7.3vh at 80% 20%);
+    clip-path: circle(5.1vw at 80% 20%);
     transition: 0.5s ease-in-out;
 }
 
 .container .paddyrice:hover:before {
-    clip-path: circle(14.5vh at 80% -20%);
+    clip-path: circle(10.2vw at 80% -20%);
 }
 
 .container .paddyrice:after {
@@ -98,27 +98,27 @@ h4{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 14.5vh;
+    width: 10.2vw;
 }
 
 .container .paddyrice .contentBx {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 14.8vh;
+    height: 10.4vw;
     text-align: center;
     transition: 1s;
     z-index: 90;
 }
 
 .container .paddyrice:hover .contentBx {
-    height: 10.2vh;
+    height: 7.17vw;
 }
 
 .container .paddyrice .contentBx h2 {
     position: relative;
     font-weight: 420;
-    letter-spacing: 0.07vh;
+    letter-spacing: 0.05vw;
     color: #fff;
 }
 
@@ -126,7 +126,7 @@ h4{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5vh 0.8vw;
+    padding: 0.34vw 0.97vw;
     transition: .5s;
     opacity: 0;
     visibility: hidden;
@@ -142,28 +142,28 @@ h4{
 .container .paddyrice .contentBx .size h3 {
     color: white;
     font-weight: 210;
-    font-size: 0.68vh;
+    font-size: 0.48vw;
     text-transform: uppercase;
-    letter-spacing: 0.14vh;
-    margin-right: 0.7vh;
+    letter-spacing: 0.1vw;
+    margin-right: 0.5vw;
 }
 
 .container .paddyrice .contentBx .size img {
-    padding-right: 0.35vh;
+    padding-right: 0.25vw;
     cursor: pointer;
 }
 .container .paddyrice .contentBx a {
     display: inline-block;
-    padding: 0.5vh 1vh;
+    padding: 0.35vw 0.7vw;
     background: #fff;
-    border-radius: 4px;
-    margin-top: 0.5vh;
+    border-radius: 0.2vw;
+    margin-top: 0.35vw;
     text-decoration: none;
     font-weight: 420;
-    font-size: 1.1vh;
+    font-size: 0.75vw;
     color: #111;
     opacity: 0;
-    transform: translateY(2.4vh);
+    transform: translateY(1.7vw);
     transition: .5s;
 }
 .container .paddyrice:hover .contentBx a {
