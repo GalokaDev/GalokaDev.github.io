@@ -33,7 +33,6 @@ h4{
 .tooltip2 {
     position: relative;
     display: inline-block;
-    z-index: 1001;
   }
   
 .tooltip2 .tooltiptext2 {
@@ -169,7 +168,6 @@ h4{
     transition: .5s;
     opacity: 0;
     visibility: hidden;
-    z-index: 1001;
 }
 
 .container .paddyrice:hover .contentBx .size {
@@ -193,6 +191,7 @@ h4{
     cursor: pointer;
     z-index: 1001;
     margin-top:1vw;
+    position: absolute;
 }
 .container .paddyrice .contentBx a {
     display: inline-block;
