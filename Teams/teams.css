@@ -191,6 +191,7 @@ h4{
 .container .paddyrice .contentBx .size img {
     /*  padding-right: 0.25vw;*/
     cursor: pointer;
+    z-index: 1001;
     margin-top:1vw;
 }
 .container .paddyrice .contentBx a {
