@@ -152,6 +152,12 @@ h4{
     padding-right: 0.25vw;
     cursor: pointer;
 }
+.container .paddyrice .contentBx a {
+    padding: 0px 0px 0px 0px;
+}
+.container .paddyrice:hover .contentBx a {
+    opacity: .7;
+}
 .container .paddyrice .contentBx .imglink {
     display: inline-block;
     padding: 0.35vw 0.7vw;
