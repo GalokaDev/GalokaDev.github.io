@@ -126,7 +126,7 @@ h4{
 
 .container .paddyrice:hover .imgBx {
     top: 0%;
-    transform: translateY(-30%);
+    transform: translateY(-25%);
     /* bug  */
 }
 
@@ -134,7 +134,7 @@ h4{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -45%);
+    transform: translate(-50%, -50%);
     width: 10.2vw;
 }
 
