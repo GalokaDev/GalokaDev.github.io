@@ -38,8 +38,8 @@ h4{
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 80px;
-    background-color: rgb(39, 39, 39);
-    color: #ececec;
+    background-color:#ececec; 
+    color: rgb(39, 39, 39);
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
@@ -58,7 +58,7 @@ h4{
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: rgb(39, 39, 39) transparent transparent transparent;
+    border-color: #ececec transparent transparent transparent;
   }
   
 .tooltip:hover .tooltiptext {
