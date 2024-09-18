@@ -112,13 +112,13 @@ h4{
 }
 
 .container .paddyrice:hover .contentBx {
-    height: 147px;
+    height: 10.2vh;
 }
 
 .container .paddyrice .contentBx h2 {
     position: relative;
     font-weight: 420;
-    letter-spacing: 1px;
+    letter-spacing: 0.07vh;
     color: #fff;
 }
 
@@ -163,7 +163,7 @@ h4{
     font-size: 1.1vh;
     color: #111;
     opacity: 0;
-    transform: translateY(35px);
+    transform: translateY(2.4vh);
     transition: .5s;
 }
 .container .paddyrice:hover .contentBx a {
