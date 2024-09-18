@@ -56,7 +56,7 @@ h4{
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: black transparent transparent transparent;
+    border-color: rgb(39, 39, 39) transparent transparent transparent;
   }
   
 .tooltip:hover .tooltiptext {
