@@ -49,6 +49,7 @@ h4{
     bottom: 150%;
     left: 50%;
     margin-left: -35px;
+    opacity:1;
   }
   
 .tooltip2 .tooltiptext2::after {
@@ -60,6 +61,11 @@ h4{
     border-width: 5px;
     border-style: solid;
     border-color: #ececec transparent transparent transparent;
+    opacity:0;
+    transition: opacity .2s ease-out;
+    -moz-transition: opacity .2s ease-out;
+    -webkit-transition: opacity .2s ease-out;
+    -o-transition: opacity .2s ease-out;
   }
   
 .tooltip2:hover .tooltiptext2 {
