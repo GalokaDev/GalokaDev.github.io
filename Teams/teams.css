@@ -35,9 +35,9 @@ h4{
   
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
+    width: 60px;
+    background-color: rgb(39, 39, 39);
+    color: #ececec;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
