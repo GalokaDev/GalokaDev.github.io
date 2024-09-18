@@ -45,7 +45,7 @@ h4{
     z-index: 1;
     bottom: 150%;
     left: 50%;
-    margin-left: -60px;
+    margin-left: 0px;
   }
   
 .tooltip .tooltiptext::after {
