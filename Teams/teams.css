@@ -9,7 +9,6 @@
     margin-top: auto;
     margin-right:20%;
     margin-left:25%;
-    overflow-x: auto;
   }
 body {
     margin: auto;
@@ -19,15 +18,15 @@ body {
 h4{
     font-size: 4em;
     color: white;
-    margin-top:60px;
+    margin-top:4.2vh;
     border-bottom: 3px solid #295be3;
 }
 
 .Teamsline1{
     display: grid;
     grid-template-columns: auto auto auto auto;
-    gap: 50px;
-    margin-top: 70px;
+    gap: 3.5vh;
+    margin-top: 4.9vh;
 }
 
 
