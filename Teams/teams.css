@@ -45,7 +45,7 @@ h4{
     border-radius: 0.3vw;
     padding: 0.24vw 0;
     position: absolute;
-    z-index: 1;
+    z-index: 1000;
     bottom: 120%;
     left: 50%;
     margin-left: -2.15vw;
