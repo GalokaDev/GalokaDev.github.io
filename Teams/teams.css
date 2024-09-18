@@ -169,6 +169,7 @@ h4{
     transition: .5s;
     opacity: 0;
     visibility: hidden;
+    z-index: 1001;
 }
 
 .container .paddyrice:hover .contentBx .size {
