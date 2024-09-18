@@ -30,12 +30,12 @@ h4{
 }
 
 
-.tooltip {
+.tooltip2 {
     position: relative;
     display: inline-block;
   }
   
-.tooltip .tooltiptext {
+.tooltip2 .tooltiptext2 {
     visibility: hidden;
     width: 80px;
     background-color:#ececec; 
@@ -50,7 +50,7 @@ h4{
     margin-left: -40px;
   }
   
-.tooltip .tooltiptext::after {
+.tooltip2 .tooltiptext2::after {
     content: "";
     position: absolute;
     top: 100%;
@@ -61,7 +61,7 @@ h4{
     border-color: #ececec transparent transparent transparent;
   }
   
-.tooltip:hover .tooltiptext {
+.tooltip2:hover .tooltiptext2 {
     visibility: visible;
   }
 
