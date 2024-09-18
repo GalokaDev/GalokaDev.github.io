@@ -61,15 +61,15 @@ h4{
     border-width: 5px;
     border-style: solid;
     border-color: #ececec transparent transparent transparent;
+  }
+  
+.tooltip2:hover .tooltiptext2 {
+    visibility: visible;
     opacity:0;
     transition: opacity .2s ease-out;
     -moz-transition: opacity .2s ease-out;
     -webkit-transition: opacity .2s ease-out;
     -o-transition: opacity .2s ease-out;
-  }
-  
-.tooltip2:hover .tooltiptext2 {
-    visibility: visible;
   }
 
 
