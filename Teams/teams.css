@@ -36,6 +36,7 @@ h4{
   }
   
 .tooltip2 .tooltiptext2 {
+    font-size: 10px;
     visibility: hidden;
     width: 65px;
     background-color:#ececec; 
