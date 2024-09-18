@@ -155,6 +155,7 @@ h4{
 }
 .container .paddyrice .contentBx a:hover {
     opacity: .7;
+    cursor: pointer;
 }
 .container .paddyrice .contentBx .imglink {
     display: inline-block;
