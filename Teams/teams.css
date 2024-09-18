@@ -28,6 +28,7 @@ h4{
     grid-template-columns: auto auto auto auto;
     gap: 50px;
     margin-top: 70px;
+    overflow: auto;
 }
 
 
