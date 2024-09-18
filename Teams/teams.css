@@ -28,6 +28,8 @@ h4{
     gap: 2.44vw;
     margin-top: 3.4vw;
 }
+
+
 .tooltip {
     position: relative;
     display: inline-block;
@@ -35,7 +37,7 @@ h4{
   
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 60px;
+    width: 80px;
     background-color: rgb(39, 39, 39);
     color: #ececec;
     text-align: center;
@@ -45,7 +47,7 @@ h4{
     z-index: 1;
     bottom: 150%;
     left: 50%;
-    margin-left: 0px;
+    margin-left: -20px;
   }
   
 .tooltip .tooltiptext::after {
