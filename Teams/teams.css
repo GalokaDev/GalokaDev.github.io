@@ -31,6 +31,8 @@ h4{
 
 
 .tooltip2 {
+    position: relative;
+    display: inline-block;
   }
   
 .tooltip2 .tooltiptext2 {
@@ -188,6 +190,7 @@ h4{
 .container .paddyrice .contentBx .size img {
     /*  padding-right: 0.25vw;*/
     cursor: pointer;
+    margin-top:1vw;
 }
 .container .paddyrice .contentBx a {
     display: inline-block;
