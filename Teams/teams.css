@@ -164,7 +164,7 @@ h4{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.34vw;  /*padding: 0.34vw 0.97vw;*/
+    /*padding: 0.34vw 0.97vw;*/
     transition: .5s;
     opacity: 0;
     visibility: hidden;
