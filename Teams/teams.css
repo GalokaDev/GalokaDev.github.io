@@ -42,7 +42,7 @@ h4{
                                                     /* Paddyrice */
 
 .container .paddyrice {
-    position: relative;
+    position: absolute;
     width: 9.1vw;
     height: 22.9vh;
     background: #232323;
