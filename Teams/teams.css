@@ -36,19 +36,19 @@ h4{
   }
   
 .tooltip2 .tooltiptext2 {
-    font-size: 14px;
+    font-size: 0.7vw;
     visibility: hidden;
-    width: 65px;
+    width: 3.17vw;
     background-color:#ececec; 
     color: rgb(39, 39, 39);
     text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
+    border-radius: 0.3vw;
+    padding: 0.24vw 0;
     position: absolute;
     z-index: 1;
     bottom: 120%;
     left: 50%;
-    margin-left: -35px;
+    margin-left: -1.7vw;
   }
   
 .tooltip2 .tooltiptext2::after {
@@ -56,8 +56,8 @@ h4{
     position: absolute;
     top: 100%;
     left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
+    margin-left: -0.24vw;
+    border-width: 0.24vw;
     border-style: solid;
     border-color: #ececec transparent transparent transparent;
   }
