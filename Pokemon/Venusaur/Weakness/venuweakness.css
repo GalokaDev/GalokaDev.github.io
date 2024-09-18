@@ -12,24 +12,6 @@
 	margin-top: 4px;
 	cursor: pointer;
 }
-header{
-  background-color: #272727;
-  height: 40px;
-  font-size: 0.8em;
-  display: flex;
-  top: 0px;
-  border-bottom: 1px solid #eee;
-}
-header a{
-  margin:auto;
-  cursor: pointer;
-  text-decoration: none;
-  color: white;
-}
-header a:hover{
-  color: #d7d8da;
-  text-decoration: none; 
-}
 body{
   background: #16162e;
 }
