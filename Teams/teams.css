@@ -132,8 +132,8 @@ h4{
 
 .container .paddyrice .imgBx img {
     position: absolute;
-    /* bug  top: 50%;
-    left: 50%;*/
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     width: 10.2vw;
 }
