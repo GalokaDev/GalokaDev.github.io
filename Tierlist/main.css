@@ -13,6 +13,7 @@ body{
     margin-top: auto;
     margin-right:20%;
     margin-left:25%;
+	background-color: #282857;
   }
 .table-sortable {
 	border-collapse: collapse;
