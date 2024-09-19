@@ -50,6 +50,7 @@ body{
 
 .pagina .table-sortable tbody tr:nth-of-type(odd) {
 	background-color: #191937;
+	border-radius: 10px;
 	
 }
 .pagina .table-sortable tbody tr:last-of-type {
