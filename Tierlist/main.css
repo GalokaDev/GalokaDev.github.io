@@ -25,10 +25,12 @@ body{
 	min-width: 400px;
 	border-radius: 5px 5px 0 0;
 	overflow: hidden;
+	margin-top:2%;
 	margin-right:30%;
     margin-left:30%;
 }
 .table-sortable thead tr {
+	margin-top:2%;
 	color: #cdd1ed;
 	text-align: left;
 	font-weight: bold;
