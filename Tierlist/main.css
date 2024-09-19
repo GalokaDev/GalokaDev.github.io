@@ -60,12 +60,12 @@ body{
 }
 
 .pagina .table-sortable .th-sort-asc::after {
-	content: "\25b4";
+	/*content: "\25b4";*/
 	border-top: 2px solid #295be3;
 }
 
 .pagina .table-sortable .th-sort-desc::after {
-	content: "\25be";
+	/*content: "\25be";*/
 	border-bottom: 2px solid #295be3;
 }
 
