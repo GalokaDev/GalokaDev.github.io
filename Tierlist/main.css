@@ -90,9 +90,20 @@ body{
 	/*background: #1f1f435a;*/
 	border-bottom: 3px solid #295be3;
 }
-.selected{ 
+
+
+.selected {
+	position: relative; /* Necessario per posizionare l'elemento ::before */
+  }
+  
+  .selected::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	background-color: #404079;
 	opacity: 0.5;
-	z-index: -1;
-	font-weight: bold;
- }
+	z-index: -1; /* Assicura che l'elemento ::before sia dietro il testo */
+  }
