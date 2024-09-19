@@ -61,19 +61,20 @@ body{
 
 .pagina .table-sortable .th-sort-asc::after {
 	content: "\25b4";
+	border-top: 2px solid #295be3;
 }
 
 .pagina .table-sortable .th-sort-desc::after {
 	content: "\25be";
+	border-bottom: 2px solid #295be3;
 }
 
 .pagina .table-sortable .th-sort-asc::after,
 .pagina .table-sortable .th-sort-desc::after {
-	margin-left: 5px;
+	/*margin-left: 5px;*/
 }
 
 .pagina .table-sortable .th-sort-asc,
 .pagina .table-sortable .th-sort-desc {
 	/*background: #1f1f435a;*/
-	border-bottom: 2px solid #295be3;
 }
