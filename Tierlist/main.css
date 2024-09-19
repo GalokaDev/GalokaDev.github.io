@@ -8,6 +8,12 @@
 body{
 	background: #16162e;
   }
+.pagina {
+    max-width: 100%;
+    margin-top: auto;
+    margin-right:20%;
+    margin-left:25%;
+  }
 .table-sortable {
 	border-collapse: collapse;
 	margin: 25px 0;
