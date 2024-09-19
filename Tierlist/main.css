@@ -91,3 +91,4 @@ body{
 	/*background: #1f1f435a;*/
 	border-bottom: 3px solid #295be3;
 }
+.selected{ background-color: #ace; }

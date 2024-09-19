@@ -32,6 +32,15 @@ function sortTableByColumn(table, column, asc = true) {
 	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
 }
 
+$('td').on('click', function() {
+    var $currentTable = $(this).closest('table');
+    var index = $(this).index();
+    $currentTable.find('td').removeClass('selected');
+    $currentTable.find('tr').each(function() {
+        $(this).find('td').eq(index).addClass('selected');
+    });
+});
+
 document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 	headerCell.addEventListener("click", () => {
 		const tableElement = headerCell.parentElement.parentElement.parentElement;
