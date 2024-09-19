@@ -43,6 +43,7 @@ body{
 }
 
 .pagina .table-sortable tbody tr {
+	border-radius: 10px;
 }
 
 .pagina .table-sortable tbody tr:nth-of-type(odd) {
