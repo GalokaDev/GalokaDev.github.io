@@ -90,4 +90,7 @@ body{
 	/*background: #1f1f435a;*/
 	border-bottom: 3px solid #295be3;
 }
-.selected{ background-color: #ace; }
+.selected{ 
+	background-color: #ace;
+	opacity: 0.7;
+ }
