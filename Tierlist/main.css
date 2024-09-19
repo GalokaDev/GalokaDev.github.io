@@ -22,9 +22,6 @@ body{
 	background-color: #282857;
   }
 .table-sortable {
-	margin-top: auto;
-	margin-right:25%;
-    margin-left:25%;
 	border-collapse: collapse;
 	margin: 25px 0;
 	font-size: 0.9em;
@@ -32,6 +29,9 @@ body{
 	border-radius: 5px 5px 0 0;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	margin-top: auto;
+	margin-right:25%;
+    margin-left:25%;
 }
 .table-sortable thead tr {
 	background-color: #295be3;
