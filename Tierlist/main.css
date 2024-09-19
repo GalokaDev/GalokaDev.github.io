@@ -38,7 +38,6 @@ body{
 }
 
 .table-sortable tbody tr {
-	border-bottom: 1px solid #ddd;
 }
 
 .table-sortable tbody tr:nth-of-type(even) {
