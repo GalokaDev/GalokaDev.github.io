@@ -48,7 +48,7 @@ body{
 .pagina .table-sortable tbody tr:nth-of-type(odd) {
 	background-color: #191937;	
 }
-.pagina .table-sortable tbody td:nth-of-type(odd) {
+.pagina .table-sortable tbody td:nth-of-type(3n+3) {
 	background-color: #191937;	
 }
 .pagina .table-sortable tbody tr:last-of-type {
