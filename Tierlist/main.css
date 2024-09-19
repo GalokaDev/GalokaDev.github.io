@@ -42,7 +42,7 @@ body{
 	color: #efeeee
 }
 
-.table-sortable tbody tr {
+.pagina .table-sortable tbody tr {
 	border-radius: 3px;
 }
 
