@@ -31,7 +31,10 @@ function sortTableByColumn(table, column, asc = true) {
 	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
 	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
 	table.querySelector(`td:nth-child(${column + 1})`).classList.toggle("selected");
-	table.querySelector(`td:nth-child(${column + 2})`).classList.toggle("selected");
+	table.querySelector(`td:nth-child(${column + 4})`).classList.toggle("selected");
+	table.querySelector(`td:nth-child(${column + 8})`).classList.toggle("selected");
+	table.querySelector(`td:nth-child(${column + 12})`).classList.toggle("selected");
+	table.querySelector(`td:nth-child(${column + 16})`).classList.toggle("selected");
 }
 document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 	headerCell.addEventListener("click", () => {
