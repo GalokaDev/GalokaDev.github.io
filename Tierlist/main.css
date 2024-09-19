@@ -5,6 +5,9 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+body{
+	background: #16162e;
+  }
 .table-sortable {
 	border-collapse: collapse;
 	margin: 25px 0;
