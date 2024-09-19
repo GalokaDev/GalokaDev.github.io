@@ -30,7 +30,21 @@ function sortTableByColumn(table, column, asc = true) {
 	table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
 	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
 	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
+
+	// Remove the "selected" class from all previously selected columns
+	table.querySelectorAll("td").forEach(td => td.classList.remove("selected"));
+
+
+	// Highlight the selected column
+	rows.forEach(row => {
+		const cell = row.querySelector(`td:nth-child(${column + 1})`);
+		if (cell) {
+			cell.classList.add("selected");
+		}
+	});
+
 }
+
 document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 	headerCell.addEventListener("click", () => {
 		const tableElement = headerCell.parentElement.parentElement.parentElement;
