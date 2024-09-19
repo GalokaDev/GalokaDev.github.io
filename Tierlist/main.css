@@ -44,7 +44,7 @@ body{
 	background-color: #25254b;
 }
 .table-sortable tbody tr:nth-of-type(odd) {
-	background-color: #11112a;
+	background-color: #191937;
 }
 .table-sortable tbody tr:last-of-type {
 	border-bottom: 2px solid #295be3;
