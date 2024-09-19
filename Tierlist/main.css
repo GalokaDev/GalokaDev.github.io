@@ -28,7 +28,7 @@ body{
     margin-left:30%;
 }
 .table-sortable thead tr {
-	margin-top:2%;
+	margin-bottom: 1%;
 	color: #cdd1ed;
 	text-align: left;
 	font-size: 1.2em;
