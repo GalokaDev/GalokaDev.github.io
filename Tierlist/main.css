@@ -75,4 +75,5 @@ body{
 .pagina .table-sortable .th-sort-asc,
 .pagina .table-sortable .th-sort-desc {
 	background: #1f1f435a;
+	border-bottom: 2px solid #295be3;
 }
