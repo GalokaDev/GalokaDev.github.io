@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 *{
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
@@ -9,11 +10,13 @@ body{
   }
 .soprapagina{
 	margin-top: 25%;
+    margin-top: auto;
     margin-right:20%;
     margin-left:25%;
 }
 .pagina {
     max-width: 100%;
+    margin-top: auto;
     margin-right:20%;
     margin-left:25%;
 	background-color: #282857;
@@ -25,8 +28,8 @@ body{
 	border-radius: 5px 5px 0 0;
 	overflow: hidden;
 	margin-top: 10%;
-	margin-right:27.5%;
-    margin-left:27.5%;
+	margin-right:25%;
+    margin-left:25%;
 }
 .table-sortable thead tr {
 	color: #cdd1ed;
