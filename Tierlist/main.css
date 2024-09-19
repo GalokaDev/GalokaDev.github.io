@@ -23,7 +23,7 @@ body{
 .table-sortable {
 	border-collapse: collapse;
 	font-size: 0.9em;
-	min-width: 400px;
+	min-width: 19.5vw;
 	border-radius: 5px 5px 0 0;
 	overflow: hidden;
 	margin-right: auto;
