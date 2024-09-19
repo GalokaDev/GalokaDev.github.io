@@ -34,6 +34,7 @@ body{
 .table-sortable th,
 .table-sortable td {
 	padding: 12px 15px;
+	color: #efeeee
 }
 
 .table-sortable tbody tr {
