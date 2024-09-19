@@ -91,6 +91,6 @@ body{
 	border-bottom: 3px solid #295be3;
 }
 .selected{ 
-	background-color: #ace;
-	opacity: 0.7;
+	background-color: #404079;
+	opacity: 0.5;
  }
