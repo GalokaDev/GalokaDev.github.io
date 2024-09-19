@@ -30,6 +30,7 @@ function sortTableByColumn(table, column, asc = true) {
 	table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
 	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
 	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
+	
 	table.querySelector(`td:nth-child(${column + 1})`).classList.toggle("selected");
 	table.querySelector(`td:nth-child(${column + 4})`).classList.toggle("selected");
 	table.querySelector(`td:nth-child(${column + 8})`).classList.toggle("selected");
