@@ -47,6 +47,8 @@ body{
 
 .pagina .table-sortable tbody tr:nth-of-type(odd) {
 	background-color: #191937;
+	border-radius: 10px;
+	overflow: hidden;
 }
 .pagina .table-sortable tbody td:nth-of-type(4n+1) {
 }
