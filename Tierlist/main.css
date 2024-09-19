@@ -46,38 +46,38 @@ body{
 	border-radius: 3px;
 }
 
-.table-sortable tbody tr:nth-of-type(even) {
+.pagina .table-sortable tbody tr:nth-of-type(even) {
 	background-color: #282857;
 }
-.table-sortable tbody tr:nth-of-type(odd) {
+.pagina .table-sortable tbody tr:nth-of-type(odd) {
 	background-color: #191937;
 	
 }
-.table-sortable tbody tr:last-of-type {
+.pagina .table-sortable tbody tr:last-of-type {
 	border-bottom: 2px solid #295be3;
 }
-.table-sortable tbody tr.active-row {
+.pagina .table-sortable tbody tr.active-row {
 	font-weight: bold;
 	color:#009876;
 }
-.table-sortable th {
+.pagina .table-sortable th {
 	cursor: pointer;
 }
 
-.table-sortable .th-sort-asc::after {
+.pagina .table-sortable .th-sort-asc::after {
 	content: "\25b4";
 }
 
-.table-sortable .th-sort-desc::after {
+.pagina .table-sortable .th-sort-desc::after {
 	content: "\25be";
 }
 
-.table-sortable .th-sort-asc::after,
-.table-sortable .th-sort-desc::after {
+.pagina .table-sortable .th-sort-asc::after,
+.pagina .table-sortable .th-sort-desc::after {
 	margin-left: 5px;
 }
 
-.table-sortable .th-sort-asc,
-.table-sortable .th-sort-desc {
+.pagina .table-sortable .th-sort-asc,
+.pagina .table-sortable .th-sort-desc {
 	background: rgba(0, 0, 0, 0.1);
 }
