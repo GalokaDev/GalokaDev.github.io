@@ -59,11 +59,11 @@ body{
 }
 
 .pagina .table-sortable .th-sort-asc::after {
-	border-top: 2px solid #295be3;
+	content: "\25b4";
 }
 
 .pagina .table-sortable .th-sort-desc::after {
-	border-bottom: 2px solid #295be3;
+	content: "\25be";
 }
 
 .pagina .table-sortable .th-sort-asc::after,
