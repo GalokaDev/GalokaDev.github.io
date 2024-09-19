@@ -44,7 +44,7 @@ body{
 	background-color: #282857;
 }
 .table-sortable tbody tr:last-of-type {
-	border-bottom: 2px solid #009876;
+	border-bottom: 2px solid #295be3;
 }
 .table-sortable tbody tr.active-row {
 	font-weight: bold;
