@@ -5,6 +5,7 @@
     <title>Pokemmo Stats</title>
     <link rel="stylesheet" href="stylehome.css">
 	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta content="Search a pokemon and find out how to counter or use pokemon on pokemmo" name="description" /><link rel="canonical" href="https://www.instagram.com/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
@@ -13,23 +14,39 @@
 
 	<script src="js/nav.js"></script>
 
-	<div>
-		<img src="ico/pokestats.png" class="logo">
-	</div>
-	<div class="wrapper">
-		<div class="search-input">
-		<a href="" hidden></a>
-		<input type="text" placeholder="Search a pokemon..">
-		<div class="autocom-box">
-			<!-- here list are inserted from javascript -->
-		</div>
-		<div class="icon"><i class="fas fa-search"></i></div>
-		</div>
-	</div>
+	<table class="table-sortable">
+		<thead>
+			<tr>
+				<th>Tier</th>
+				<th>Pokemon</th>
+				<th>Role</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>S+</td>
+				<td>Mamoswine</td>
+				<td>Support</td>
+			</tr>
+			<tr>
+				<td>S</td>
+				<td>Chansey</td>
+				<td>Wall</td>
+			</tr>
+			<tr>
+				<td>S+</td>
+				<td>Gallade</td>
+				<td>Sweeper</td>
+			</tr>
+			<tr>
+				<td>B</td>
+				<td>Espeon</td>
+				<td>Support</td>
+			</tr>
+		</tbody>
+	</table>
 
-	<script src="js/suggestions.js"></script>
-	<script src="js/script.js"></script>
-	
-
-  </body>
+	<script src="./src/tablesort.js"></script>
+</body>
 </html>
+
