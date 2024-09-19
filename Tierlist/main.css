@@ -43,6 +43,9 @@ body{
 .table-sortable tbody tr:nth-of-type(even) {
 	background-color: #25254b;
 }
+.table-sortable tbody tr:nth-of-type(odd) {
+	background-color: #11112a;
+}
 .table-sortable tbody tr:last-of-type {
 	border-bottom: 2px solid #295be3;
 }
