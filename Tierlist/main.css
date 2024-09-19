@@ -19,6 +19,8 @@ body{
     margin-left:25%;
 	background-color: #282857;
 	padding-top:1%;
+	padding-bottom: 3%;
+	position: relative;
   }
 .table-sortable {
 	border-collapse: collapse;
