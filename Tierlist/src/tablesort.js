@@ -36,7 +36,7 @@ document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 	headerCell.addEventListener("click", () => {
 		const tableElement = headerCell.parentElement.parentElement.parentElement;
 		const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
-		const currentIsAscending = headerCell.classList.contains("th-sort-desc");
+		const currentIsAscending = headerCell.classList.contains("th-sort-asc");
 
 		sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
 	});
