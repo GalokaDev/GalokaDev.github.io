@@ -31,11 +31,11 @@ function sortTableByColumn(table, column, asc = true) {
 	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
 	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
 
-	table.querySelector(`td:nth-child(${column + 1})`).classList.toggle("selected");
-	table.querySelector(`td:nth-child(${column + 5})`).classList.toggle("selected");
-	table.querySelector(`td:nth-child(${column + 9})`).classList.toggle("selected");
-	table.querySelector(`td:nth-child(${column + 13})`).classList.toggle("selected");
-	table.querySelector(`td:nth-child(${column + 17})`).classList.toggle("selected");
+	table.querySelector(`td:nth-child(${column + 1})`).classList.add("selected");
+	table.querySelector(`td:nth-child(${column + 5})`).classList.add("selected");
+	table.querySelector(`td:nth-child(${column + 9})`).classList.add("selected");
+	table.querySelector(`td:nth-child(${column + 13})`).classList.add("selected");
+	table.querySelector(`td:nth-child(${column + 17})`).classList.add("selected");
 }
 document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 	headerCell.addEventListener("click", () => {
