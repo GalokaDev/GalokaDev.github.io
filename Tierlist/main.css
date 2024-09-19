@@ -10,13 +10,11 @@ body{
   }
 .soprapagina{
 	margin-top: 10%;
-    margin-top: auto;
     margin-right:20%;
     margin-left:25%;
 }
 .pagina {
     max-width: 100%;
-    margin-top: auto;
     margin-right:20%;
     margin-left:25%;
 	background-color: #282857;
