@@ -1,67 +1,85 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-	<head>
-		<meta charset="utf-8">
-		<title>Pokemmo Stats</title>
-		<link rel="stylesheet" href="main.css">
-		<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta content="Search a pokemon and find out how to counter or use pokemon on pokemmo" name="description" />
-		<link rel="canonical" href="https://pokemmostats.com/" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-	</head>
-	<body>
+  <head>
+    <meta charset="utf-8">
+    <title>Pokemmo Stats</title>
+    <link rel="stylesheet" href="main.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="Search a Pokémon and find out how to counter or use Pokémon on Pokemmo" name="description">
+    <link rel="canonical" href="https://pokemmostats.com/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  </head>
+  <body>
 
-		<script src="https://pokemmostats.com/js/nav.js"></script>
+    <script src="https://pokemmostats.com/js/nav.js"></script>
 
+    <div class="soprapagina">
+      <h1 style="color: white">OU Tier List - Work in progress</h1>
+      <p style="color: rgb(174, 174, 174)">Sept 2024</p>
+    </div>
 
-		<div class="soprapagina">
-			<h1 style="color: white">OU Tier List - Work in progress</h1><p style="color: rgb(174, 174, 174)">Sept 2024</p>
-		</div>
+    <div class="pagina">
+      <table class="table-sortable">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Pokemon</th>
+            <th>Role</th>
+            <th>Typing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color: orange;"><b>S+</b></td>
+            <td>
+              <div class="pokemon-container">
+                <img onclick="location.href='https://pokemmostats.com/Pokemon/Pelipper'" src="https://pokemmostats.com/ico/Pelipper.png" style='height: 1.8vw; width: 1.8vw; object-fit: contain;' alt="Pelipper">
+                <span>Pelipper</span>
+              </div>
+            </td>
+            <td>Support</td>
+            <td>Water/Flying</td>
+          </tr>
+          <tr>
+            <td style="color: orange;"><b>S+</b></td>
+            <td>
+              <div class="pokemon-container">
+                <img src="https://pokemmostats.com/ico/Chansey.png" style='height: 1.8vw; width: 1.8vw; object-fit: contain;' alt="Chansey">
+                <span>Chansey</span>
+              </div>
+            </td>
+            <td>Wall</td>
+            <td>Normal</td>
+          </tr>
+          <tr>
+            <td style="color: orange;"><b>S+</b></td>
+            <td>
+              <div class="pokemon-container">
+                <img src="https://pokemmostats.com/ico/Gallade.png" style='height: 1.8vw; width: 1.8vw; object-fit: contain;' alt="Gallade">
+                <span>Gallade</span>
+              </div>
+            </td>
+            <td>Sweeper</td>
+            <td>Fighting/Psychic</td>
+          </tr>
+          <tr>
+            <td style="color: orange;"><b>S+</b></td>
+            <td>
+              <div class="pokemon-container">
+                <img src="https://pokemmostats.com/ico/Espeon.png" style='height: 1.8vw; width: 1.8vw; object-fit: contain;' alt="Espeon">
+                <span>Espeon</span>
+              </div>
+            </td>
+            <td>Support</td>
+            <td>Psychic</td>
+          </tr>
+        </tbody>
+      </table>
+      <br><br>
+    </div>
 
-		<div class="pagina">
-			<table class="table-sortable">
-				<thead>
-					<tr>
-						<th>Tier</th>
-						<th>Pokemon</th>
-						<th>Role</th>
-						<th>Typing</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td style="color: orange;">&nbsp;<b>S+</b></td>
-						<td><img alt="Pelipper"   onclick="location.href='https://pokemmostats.com/Pokemon/Pelipper'" src="https://pokemmostats.com/ico/Pelipper.png" style='height: 1.8vw; width: 1.8vw; object-fit: contain;'>Pelipper</td>
-						<td>Support</td>
-						<td>Earth/Ice</td>
-					</tr>
-					<tr>
-						<td style="color: orange;">&nbsp;<b>S+</b></td>
-						<td>Chansey</td>
-						<td>Wall</td>
-						<td>Normal</td>
-					</tr>
-					<tr>
-						<td style="color: orange;">&nbsp;<b>S+</b></td>
-						<td>Gallade</td>
-						<td>Sweeper</td>
-						<td>Fighting/Psycho</td>
-					</tr>
-					<tr>
-						<td style="color: orange;">&nbsp;<b>S+</b></td>
-						<td>Espeon</td>
-						<td>Support</td>
-						<td>Psycho</td>
-					</tr>
-				</tbody>
-			</table>
-			<br><br>
-		</div>
-		
-		
-		<script src="./src/tablesort.js"></script>
-	</body>
+    <script src="./src/tablesort.js"></script>
+  </body>
 </html>
-

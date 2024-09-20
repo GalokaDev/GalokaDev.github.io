@@ -6,6 +6,13 @@
 body{
 	background: #16162e;
   }
+.pokemon-container {
+display: flex;
+align-items: center;
+}
+.pokemon-container img {
+margin-right: 10px; /* Distanza tra immagine e testo */
+}
 .soprapagina{
 	margin-top: 5%;
     margin-right:22%;
@@ -39,7 +46,7 @@ body{
 
 .table-sortable th,
 .table-sortable td {
-	padding: 12px 15px;
+	padding: 10px;
 	color: #efeeee
 }
 
