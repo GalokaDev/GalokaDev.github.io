@@ -5,7 +5,7 @@
  * @param {number} column The index of the column to sort
  * @param {boolean} asc Determines if the sorting will be in ascending
  */
-function sortTableByColumn(table, column, asc = true, isNumeric = false) {
+function sortTableByColumn(table, column, asc = true) {
 	const dirModifier = asc ? 1 : -1;
 	const tBody = table.tBodies[0];
 	const rows = Array.from(tBody.querySelectorAll("tr"));
@@ -15,15 +15,6 @@ function sortTableByColumn(table, column, asc = true, isNumeric = false) {
 		const aColText = a.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
 		const bColText = b.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
 
-		// Se è una colonna numerica, compara come numeri
-		if (isNumeric) {
-			const aColNum = parseFloat(aColText) || 0;
-			const bColNum = parseFloat(bColText) || 0;
-
-			return (aColNum - bColNum) * dirModifier;
-		}
-
-		// Altrimenti, compara come stringhe
 		return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
 	});
 
@@ -39,17 +30,32 @@ function sortTableByColumn(table, column, asc = true, isNumeric = false) {
 	table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
 	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
 	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
+
+	// Remove the "selected" class from all previously selected columns
+	table.querySelectorAll("td").forEach(td => td.classList.remove("selected"));
+
+
+	// Highlight the selected column
+	rows.forEach(row => {
+		const cell = row.querySelector(`td:nth-child(${column + 1})`);
+		if (cell) {
+			cell.classList.add("selected");
+		}
+	});
+
 }
 
 
 let isFirstClickOnTier = true;  // Variabile per tracciare il primo click su Tier
-// Indici delle colonne HP, ATK, DEF, SPATK, SPDEF, SPD (devi specificare gli indici corretti)
-const numericColumns = [1, 2, 3, 4, 5, 6];  // Cambia questi numeri secondo il tuo HTML
 
 document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 	headerCell.addEventListener("click", () => {
 		const tableElement = headerCell.parentElement.parentElement.parentElement;
 		const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
+		
+		// Controlla se è la colonna "Tier" (indice 0)
+		const isTierColumn = headerIndex === 0;
+		let currentIsAscending;
 
 		if (isTierColumn && isFirstClickOnTier) {
 			// Se è il primo click su Tier, imposta l'ordinamento decrescente
@@ -60,19 +66,7 @@ document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 			currentIsAscending = headerCell.classList.contains("th-sort-asc");
 		}
 
-		// Controlla se è una delle colonne numeriche
-		const isNumericColumn = numericColumns.includes(headerIndex);
-		let currentIsAscending;
-
-		if (isNumericColumn) {
-			// Se è la prima volta che clicchi, ordina per decrescente (dal più grande al più piccolo)
-			currentIsAscending = headerCell.classList.contains("th-sort-desc");
-		} else {
-			// Comportamento normale per le altre colonne
-			currentIsAscending = headerCell.classList.contains("th-sort-asc");
-		}
-
 		// Chiamata alla funzione di ordinamento
-		sortTableByColumn(tableElement, headerIndex, !currentIsAscending, isNumericColumn);
+		sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
 	});
 });
