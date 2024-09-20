@@ -45,6 +45,9 @@ function sortTableByColumn(table, column, asc = true) {
 
 }
 
+
+let isFirstClickOnTier = true;  // Variabile per tracciare il primo click su Tier
+
 document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 	headerCell.addEventListener("click", () => {
 		const tableElement = headerCell.parentElement.parentElement.parentElement;
@@ -52,10 +55,17 @@ document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 		
 		// Controlla se è la colonna "Tier" (indice 0)
 		const isTierColumn = headerIndex === 0;
-		
-		// Se è la colonna "Tier", ordina per default in modo decrescente
-		const currentIsAscending = isTierColumn ? headerCell.classList.contains("th-sort-desc") : headerCell.classList.contains("th-sort-asc");
-		
+		let currentIsAscending;
+
+		if (isTierColumn && isFirstClickOnTier) {
+			// Se è il primo click su Tier, imposta l'ordinamento decrescente
+			currentIsAscending = false;  // Decrescente
+			isFirstClickOnTier = false;  // Disattiva il comportamento speciale dopo il primo click
+		} else {
+			// Comportamento normale (toggles tra ascendente e discendente)
+			currentIsAscending = headerCell.classList.contains("th-sort-asc");
+		}
+
 		// Chiamata alla funzione di ordinamento
 		sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
 	});
