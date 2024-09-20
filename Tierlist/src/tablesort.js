@@ -43,15 +43,13 @@ function sortTableByColumn(table, column, asc = true, isNumeric = false) {
 
 
 let isFirstClickOnTier = true;  // Variabile per tracciare il primo click su Tier
+// Indici delle colonne HP, ATK, DEF, SPATK, SPDEF, SPD (devi specificare gli indici corretti)
+const numericColumns = [1, 2, 3, 4, 5, 6];  // Cambia questi numeri secondo il tuo HTML
 
 document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 	headerCell.addEventListener("click", () => {
 		const tableElement = headerCell.parentElement.parentElement.parentElement;
 		const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
-		
-		// Controlla se è la colonna "Tier" (indice 0)
-		const isTierColumn = headerIndex === 0;
-		let currentIsAscending;
 
 		if (isTierColumn && isFirstClickOnTier) {
 			// Se è il primo click su Tier, imposta l'ordinamento decrescente
@@ -62,25 +60,6 @@ document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 			currentIsAscending = headerCell.classList.contains("th-sort-asc");
 		}
 
-		// Chiamata alla funzione di ordinamento
-		sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
-	});
-});
-
-
-
-
-
-
-
-// Indici delle colonne HP, ATK, DEF, SPATK, SPDEF, SPD (devi specificare gli indici corretti)
-const numericColumns = [1, 2, 3, 4, 5, 6];  // Cambia questi numeri secondo il tuo HTML
-
-document.querySelectorAll(".table-sortable th").forEach(headerCell => {
-	headerCell.addEventListener("click", () => {
-		const tableElement = headerCell.parentElement.parentElement.parentElement;
-		const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
-		
 		// Controlla se è una delle colonne numeriche
 		const isNumericColumn = numericColumns.includes(headerIndex);
 		let currentIsAscending;
@@ -93,7 +72,7 @@ document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 			currentIsAscending = headerCell.classList.contains("th-sort-asc");
 		}
 
-		// Ordina la tabella (assicurati che sortTableByColumn sia modificata per ordinamento numerico)
+		// Chiamata alla funzione di ordinamento
 		sortTableByColumn(tableElement, headerIndex, !currentIsAscending, isNumericColumn);
 	});
 });
