@@ -5,7 +5,7 @@
  * @param {number} column The index of the column to sort
  * @param {boolean} asc Determines if the sorting will be in ascending
  */
-function sortTableByColumn(table, column, asc = true) {
+function sortTableByColumn(table, column, asc = true, isNumeric = false) {
 	const dirModifier = asc ? 1 : -1;
 	const tBody = table.tBodies[0];
 	const rows = Array.from(tBody.querySelectorAll("tr"));
@@ -15,6 +15,15 @@ function sortTableByColumn(table, column, asc = true) {
 		const aColText = a.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
 		const bColText = b.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
 
+		// Se è una colonna numerica, compara come numeri
+		if (isNumeric) {
+			const aColNum = parseFloat(aColText) || 0;
+			const bColNum = parseFloat(bColText) || 0;
+
+			return (aColNum - bColNum) * dirModifier;
+		}
+
+		// Altrimenti, compara come stringhe
 		return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
 	});
 
@@ -30,19 +39,6 @@ function sortTableByColumn(table, column, asc = true) {
 	table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
 	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
 	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
-
-	// Remove the "selected" class from all previously selected columns
-	table.querySelectorAll("td").forEach(td => td.classList.remove("selected"));
-
-
-	// Highlight the selected column
-	rows.forEach(row => {
-		const cell = row.querySelector(`td:nth-child(${column + 1})`);
-		if (cell) {
-			cell.classList.add("selected");
-		}
-	});
-
 }
 
 
