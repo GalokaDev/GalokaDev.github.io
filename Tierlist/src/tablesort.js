@@ -70,3 +70,34 @@ document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 		sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
 	});
 });
+
+
+
+
+
+
+
+// Indici delle colonne HP, ATK, DEF, SPATK, SPDEF, SPD (devi specificare gli indici corretti)
+const numericColumns = [1, 2, 3, 4, 5, 6];  // Cambia questi numeri secondo il tuo HTML
+
+document.querySelectorAll(".table-sortable th").forEach(headerCell => {
+	headerCell.addEventListener("click", () => {
+		const tableElement = headerCell.parentElement.parentElement.parentElement;
+		const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
+		
+		// Controlla se è una delle colonne numeriche
+		const isNumericColumn = numericColumns.includes(headerIndex);
+		let currentIsAscending;
+
+		if (isNumericColumn) {
+			// Se è la prima volta che clicchi, ordina per decrescente (dal più grande al più piccolo)
+			currentIsAscending = headerCell.classList.contains("th-sort-desc");
+		} else {
+			// Comportamento normale per le altre colonne
+			currentIsAscending = headerCell.classList.contains("th-sort-asc");
+		}
+
+		// Ordina la tabella (assicurati che sortTableByColumn sia modificata per ordinamento numerico)
+		sortTableByColumn(tableElement, headerIndex, !currentIsAscending, isNumericColumn);
+	});
+});
