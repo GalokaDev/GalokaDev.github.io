@@ -49,8 +49,14 @@ document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 	headerCell.addEventListener("click", () => {
 		const tableElement = headerCell.parentElement.parentElement.parentElement;
 		const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
-		const currentIsAscending = headerCell.classList.contains("th-sort-asc");
-
+		
+		// Controlla se è la colonna "Tier" (indice 0)
+		const isTierColumn = headerIndex === 0;
+		
+		// Se è la colonna "Tier", ordina per default in modo decrescente
+		const currentIsAscending = isTierColumn ? headerCell.classList.contains("th-sort-desc") : headerCell.classList.contains("th-sort-asc");
+		
+		// Chiamata alla funzione di ordinamento
 		sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
 	});
 });
