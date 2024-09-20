@@ -63,7 +63,7 @@ document.querySelectorAll(".table-sortable th").forEach(headerCell => {
 			isFirstClickOnTier = false;  // Disattiva il comportamento speciale dopo il primo click
 		} else {
 			// Comportamento normale (toggles tra ascendente e discendente)
-			currentIsAscending = headerCell.classList.contains("th-sort-asc");
+			currentIsAscending = headerCell.classList.contains("th-sort-desc");
 		}
 
 		// Chiamata alla funzione di ordinamento
