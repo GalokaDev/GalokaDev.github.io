@@ -12,8 +12,8 @@ function sortTableByColumn(table, column, asc = true) {
 
 	// Sort each row
 	const sortedRows = rows.sort((a, b) => {
-		const aColText = a.querySelector(td:nth-child(${column + 1})).textContent.trim();
-		const bColText = b.querySelector(td:nth-child(${column + 1})).textContent.trim();
+		const aColText = a.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+		const bColText = b.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
 
 		return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
 	});
@@ -28,8 +28,8 @@ function sortTableByColumn(table, column, asc = true) {
 
 	// Remember how the column is currently sorted
 	table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
-	table.querySelector(th:nth-child(${column + 1})).classList.toggle("th-sort-asc", asc);
-	table.querySelector(th:nth-child(${column + 1})).classList.toggle("th-sort-desc", !asc);
+	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
+	table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
 
 	// Remove the "selected" class from all previously selected columns
 	table.querySelectorAll("td").forEach(td => td.classList.remove("selected"));
@@ -37,7 +37,7 @@ function sortTableByColumn(table, column, asc = true) {
 
 	// Highlight the selected column
 	rows.forEach(row => {
-		const cell = row.querySelector(td:nth-child(${column + 1}));
+		const cell = row.querySelector(`td:nth-child(${column + 1})`);
 		if (cell) {
 			cell.classList.add("selected");
 		}
