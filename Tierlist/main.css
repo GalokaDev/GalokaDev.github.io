@@ -64,7 +64,10 @@ body{
     border-top-left-radius: 10px; /* Arrotonda l'angolo superiore sinistro della prima riga dispari */
     border-top-right-radius: 10px; /* Arrotonda l'angolo superiore destro della prima riga dispari */
 }
-
+.pagina .table-sortable td:nth-child(3) {
+    text-align: center; /* Allinea il testo al centro */
+    vertical-align: middle; /* Centra verticalmente il testo */
+}
 .table-sortable tbody tr:last-of-type:nth-of-type(odd) {
     border-bottom-left-radius: 10px; /* Arrotonda l'angolo inferiore sinistro dell'ultima riga dispari */
     border-bottom-right-radius: 10px; /* Arrotonda l'angolo inferiore destro dell'ultima riga dispari */
