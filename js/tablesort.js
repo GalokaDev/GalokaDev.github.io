@@ -1,3 +1,4 @@
+
 // Ordine di priorità per la colonna Tier
 const tierOrder = ["S+", "S", "A", "B", "C", "D"];
 
@@ -9,72 +10,79 @@ const numericColumns = ["HP", "ATK", "DEF", "SPATK", "SPDEF", "SPD"];
  *
  * @param {HTMLTableElement} table The table to sort
  * @param {number} column The index of the column to sort
- * @param {boolean} asc Determines if the sorting will be in ascending
+ * @param {boolean} asc Determines if the sorting will be in ascending order
  */
 function sortTableByColumn(table, column, asc = true) {
-    const dirModifier = asc ? 1 : -1;
-    const tBody = table.tBodies[0];
-    const rows = Array.from(tBody.querySelectorAll("tr"));
+const dirModifier = asc ? 1 : -1;
+const tBody = table.tBodies[0];
+const rows = Array.from(tBody.querySelectorAll("tr"));
 
-    // Sort each row
-    const sortedRows = rows.sort((a, b) => {
-        const aColText = a.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
-        const bColText = b.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+// Sort each row
+const sortedRows = rows.sort((a, b) => {
+    const aColText = a.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
+    const bColText = b.querySelector(`td:nth-child(${column + 1})`).textContent.trim();
 
-        // Verifica se si tratta della colonna Tier
-        if (tierOrder.includes(aColText) && tierOrder.includes(bColText)) {
-            // Ordina in base alla posizione nell'array tierOrder
-            return (tierOrder.indexOf(aColText) - tierOrder.indexOf(bColText)) * dirModifier;
-        }
-
-        // Controlla se i valori sono numerici per ordinamento numerico
-        const aColNum = parseFloat(aColText.replace(/[^0-9.-]/g, ""));
-        const bColNum = parseFloat(bColText.replace(/[^0-9.-]/g, ""));
-        if (!isNaN(aColNum) && !isNaN(bColNum)) {
-            return (aColNum - bColNum) * dirModifier;
-        }
-
-        // Ordinamento standard per testo
-        return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
-    });
-
-    // Rimuovi tutte le TR esistenti dalla tabella
-    while (tBody.firstChild) {
-        tBody.removeChild(tBody.firstChild);
+    // Verifica se si tratta della colonna Tier
+    if (tierOrder.includes(aColText) && tierOrder.includes(bColText)) {
+    // Ordina in base alla posizione nell'array tierOrder
+    return (tierOrder.indexOf(aColText) - tierOrder.indexOf(bColText)) * dirModifier;
     }
 
-    // Riaggiungi le righe ordinate
-    tBody.append(...sortedRows);
+    // Controlla se i valori sono numerici per ordinamento numerico
+    const aColNum = parseFloat(aColText.replace(/[^0-9.-]/g, ""));
+    const bColNum = parseFloat(bColText.replace(/[^0-9.-]/g, ""));
+    if (!isNaN(aColNum) && !isNaN(bColNum)) {
+    return (aColNum - bColNum) * dirModifier;
+    }
 
-    // Ricorda come la colonna è attualmente ordinata
-    table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
-    table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
-    table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
+    // Ordinamento standard per testo
+    return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
+});
 
-    // Rimuovi la classe "selected" da tutte le colonne precedentemente selezionate
-    table.querySelectorAll("td").forEach(td => td.classList.remove("selected"));
+// Rimuovi tutte le TR esistenti dalla tabella
+while (tBody.firstChild) {
+    tBody.removeChild(tBody.firstChild);
+}
 
-    // Evidenzia la colonna selezionata
-    rows.forEach(row => {
-        const cell = row.querySelector(`td:nth-child(${column + 1})`);
-        if (cell) {
-            cell.classList.add("selected");
-        }
-    });
+// Riaggiungi le righe ordinate
+tBody.append(...sortedRows);
+
+// Ricorda come la colonna è attualmente ordinata
+table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
+table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
+table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
+
+// Rimuovi la classe "selected" da tutte le colonne precedentemente selezionate
+table.querySelectorAll("td").forEach(td => td.classList.remove("selected"));
+
+// Evidenzia la colonna selezionata
+rows.forEach(row => {
+    const cell = row.querySelector(`td:nth-child(${column + 1})`);
+    if (cell) {
+    cell.classList.add("selected");
+    }
+});
 }
 
 document.querySelectorAll(".table-sortable th").forEach(headerCell => {
-    headerCell.addEventListener("click", () => {
-        const tableElement = headerCell.parentElement.parentElement.parentElement;
-        const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
-        const headerText = headerCell.textContent.trim().toUpperCase();
-        let currentIsAscending = headerCell.classList.contains("th-sort-asc");
+headerCell.addEventListener("click", () => {
+    const tableElement = headerCell.parentElement.parentElement.parentElement;
+    const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
+    const headerText = headerCell.textContent.trim().toUpperCase();
+    let currentIsAscending = headerCell.classList.contains("th-sort-asc");
 
-        // Controlla se è una colonna numerica e imposta l'ordine di default decrescente
-        if (numericColumns.includes(headerText)) {
-            currentIsAscending = !headerCell.classList.contains("th-sort-desc");
-        }
+    // Controlla se è una colonna numerica e imposta l'ordine di default decrescente
+    if (numericColumns.includes(headerText)) {
+    currentIsAscending = !headerCell.classList.contains("th-sort-desc");
+    }
 
-        sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
-    });
+    sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
 });
+});
+
+// Ordina automaticamente per la colonna Tier (colonna 3) al caricamento della pagina
+window.onload = function() {
+const table = document.querySelector(".table-sortable");
+const tierColumnIndex = 2; // L'indice della colonna "Tier" (0-based, quindi è la terza colonna)
+sortTableByColumn(table, tierColumnIndex, true); // Ordinamento crescente (true)
+};
