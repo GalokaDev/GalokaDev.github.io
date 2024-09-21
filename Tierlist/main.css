@@ -76,10 +76,6 @@ body{
 }
 .pagina .table-sortable tbody tr:last-of-type {
 }
-.pagina .table-sortable tbody tr.active-column {
-	font-weight: bold;
-	color:#009876;
-}
 .pagina .table-sortable th {
 	cursor: pointer;
 	-webkit-touch-callout: none; /* iOS Safari */
