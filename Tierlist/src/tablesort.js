@@ -79,23 +79,3 @@ document.querySelectorAll(".table-sortable th").forEach(headerCell => {
         sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
     });
 });
-
-
-
-// Funzione per selezionare la colonna "Tier"
-function selectTierColumn() {
-    // Seleziona tutte le celle della prima colonna (Tier)
-    const tierCells = document.querySelectorAll('.table-sortable tbody tr td:first-child');
-    tierCells.forEach(cell => {
-        cell.classList.add('selected');
-    });
-}
-
-// Mantieni il comportamento di selezione normale al clic su altre celle
-document.querySelectorAll('.table-sortable tbody tr').forEach(row => {
-    row.addEventListener('click', function() {
-
-        // Aggiunge la classe selected solo alla cella "Tier" della riga cliccata
-        this.querySelector('td:first-child').classList.add('selected');
-    });
-});
