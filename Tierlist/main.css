@@ -75,6 +75,7 @@ body{
 .pagina .table-sortable tbody td:nth-of-type(4n+1) {
 }
 .pagina .table-sortable tbody tr:last-of-type {
+	border-top: 3px solid #295be3;
 }
 .pagina .table-sortable th {
 	cursor: pointer;
