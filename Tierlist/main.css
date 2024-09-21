@@ -71,7 +71,6 @@ body{
 .table-sortable tbody tr:last-of-type:nth-of-type(odd) {
     border-bottom-left-radius: 10px; /* Arrotonda l'angolo inferiore sinistro dell'ultima riga dispari */
     border-bottom-right-radius: 10px; /* Arrotonda l'angolo inferiore destro dell'ultima riga dispari */
-	border-top: 3px solid #295be3
 }
 .pagina .table-sortable tbody td:nth-of-type(4n+1) {
 }
