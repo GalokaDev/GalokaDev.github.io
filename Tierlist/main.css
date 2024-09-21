@@ -24,11 +24,13 @@ body{
 .pagina {
 	border-radius: 3px;
     max-width: 50%;
-    margin-right:auto;
-    margin-left:auto;
+    margin-right: auto;
+    margin-left: auto;
 	background-color: #282857;
-	padding-top:1%;
-  }
+	padding-top: 1%;
+    padding-bottom: 1%; /* Aggiunge spazio sotto l'ultima riga della tabella */
+    overflow: hidden; /* Assicura che la pagina si adatti esattamente al contenuto */
+}
 .table-sortable {
 	border-collapse: collapse;
 	font-size: 0.9em;
