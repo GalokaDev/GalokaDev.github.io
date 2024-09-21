@@ -67,6 +67,7 @@ body{
 .pagina .table-sortable td:nth-child(3) {
     text-align: center; /* Allinea il testo al centro */
     vertical-align: middle; /* Centra verticalmente il testo */
+    padding: 5px 10px; /* Riduce il padding della cella */
 }
 .table-sortable tbody tr:last-of-type:nth-of-type(odd) {
     border-bottom-left-radius: 10px; /* Arrotonda l'angolo inferiore sinistro dell'ultima riga dispari */
