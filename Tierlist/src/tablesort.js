@@ -1,6 +1,9 @@
 // Ordine di priorità per la colonna Tier
 const tierOrder = ["S+", "S", "A", "B", "C", "D"];
 
+// Colonne che devono essere ordinate in modo decrescente per impostazione predefinita
+const numericColumns = ["HP", "ATK", "DEF", "SPATK", "SPDEF", "SPD"];
+
 /**
  * Sorts a HTML table.
  *
@@ -64,7 +67,13 @@ document.querySelectorAll(".table-sortable th").forEach(headerCell => {
     headerCell.addEventListener("click", () => {
         const tableElement = headerCell.parentElement.parentElement.parentElement;
         const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
-        const currentIsAscending = headerCell.classList.contains("th-sort-asc");
+        const headerText = headerCell.textContent.trim().toUpperCase();
+        let currentIsAscending = headerCell.classList.contains("th-sort-asc");
+
+        // Controlla se è una colonna numerica e imposta l'ordine di default decrescente
+        if (numericColumns.includes(headerText)) {
+            currentIsAscending = !headerCell.classList.contains("th-sort-desc");
+        }
 
         sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
     });
