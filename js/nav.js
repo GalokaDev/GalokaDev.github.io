@@ -6,7 +6,7 @@ document.write('<li> <i class=" bx bx-search" ></i> <input type="text" placehold
 document.write('<li><a href="https://pokemmostats.com/"><i class="bx bx-home" ></i><span class="links_name">Home</span></a><span class="tooltip">Home</span></li>');
 document.write('<li><a href="https://pokemmostats.com/Teams/"><i class="bx bx-list-ol"></i><span class="links_name">Meta Teams</span></a><span class="tooltip">Teams</span></li>');
 document.write('<li><a href="https://pokemmostats.com/Tierlist/"><i class="bx bxs-bar-chart-alt-2" ></i><span class="links_name">Tier list</span></a><span class="tooltip">Tier list</span></li>');
-document.write('<li><a href="https://pokemmostats.com/Chatbox"><i class="bx bxl-graphql"></i><span class="links_name">AI Teambuilder</span>	   </a>	   <span class="tooltip">AI Teambuilder</span>	 </li>');
+document.write('<li><a href="https://pokemmostats.com/AI-Teambuilder"><i class="bx bxl-graphql"></i><span class="links_name">AI Teambuilder</span>	   </a>	   <span class="tooltip">AI Teambuilder</span>	 </li>');
 //document.write('<li> <a href="#">		 <i class="bx bx-folder" ></i>		 <span class="links_name">File Manager</span>	   </a>	   <span class="tooltip">Files</span>	 </li>')
 //document.write('<li> <a href="#">		 <i class="bx bx-cart-alt" ></i>		 <span class="links_name">Order</span>	   </a>	   <span class="tooltip">Order</span>	 </li>')
 document.write('<li> <a href="https://www.paypal.com/donate/?hosted_button_id=HNNUVXH3VTBPY" target="_blank">		 <i class="bx bx-heart" ></i> <span class="links_name">Support</span>	   </a>	   <span class="tooltip">Support</span> </li>')
