@@ -39,16 +39,27 @@ inputBox.onkeyup = (e) => {
 // Listen for "Enter" key press and redirect to Pokémon page
 inputBox.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
-        let userData = inputBox.value;
-        if (userData) {
-            webLink = `Pokemon/${userData}/Weakness/index.html`;
+        // Check if there are any suggestions
+        let firstSuggestion = suggBox.querySelector("li");
+        if (firstSuggestion) {
+            // Get the text of the first suggestion
+            let selectData = firstSuggestion.textContent.trim();
+            // Redirect to the page of the first suggestion
+            webLink = `Pokemon/${selectData}/Weakness/index.html`;
             window.location.href = webLink; // Redirect directly
+        } else {
+            // If no suggestions, redirect based on inputBox value
+            let userData = inputBox.value;
+            if (userData) {
+                webLink = `Pokemon/${userData}/Weakness/index.html`;
+                window.location.href = webLink;
+            }
         }
     }
 });
 
 function select(element) {
-    let selectData = element.textContent;
+    let selectData = element.textContent.trim();
     inputBox.value = selectData;
     icon.onclick = () => {
         webLink = `Pokemon/${selectData}/Weakness/index.html`;
