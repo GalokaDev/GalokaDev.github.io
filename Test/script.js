@@ -1,5 +1,3 @@
-
-
 // getting all required elements
 const searchWrapper = document.querySelector(".search-input");
 const inputBox = searchWrapper.querySelector("input");
@@ -8,7 +6,7 @@ const icon = searchWrapper.querySelector(".icon");
 let linkTag = searchWrapper.querySelector("a");
 let webLink;
 
-// if user presses any key and releases
+// if user press any key and release
 inputBox.onkeyup = (e) => {
     let userData = e.target.value; // user entered data
     let emptyArray = [];
@@ -17,9 +15,9 @@ inputBox.onkeyup = (e) => {
             webLink = `Pokemon/${userData}/Weakness/index.html`;
             linkTag.setAttribute("href", webLink);
             linkTag.click();
-        };
+        }
         emptyArray = suggestions.filter((data) => {
-            // filtering array value and user characters to lowercase
+            // filtering array value and user characters to lowercase and return only those words which start with user entered chars
             return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
         });
         emptyArray = emptyArray.map((data) => {
@@ -30,21 +28,22 @@ inputBox.onkeyup = (e) => {
         showSuggestions(emptyArray);
         let allList = suggBox.querySelectorAll("li");
         for (let i = 0; i < allList.length; i++) {
-            // adding onclick attribute in all li tag
+            // adding onclick attribute to all li tag
             allList[i].setAttribute("onclick", "select(this)");
         }
     } else {
         searchWrapper.classList.remove("active"); // hide autocomplete box
     }
-};
+}
 
-// Handling enter key press to search
-inputBox.addEventListener("keypress", function (e) {
+// Listen for "Enter" key press and redirect to Pokémon page
+inputBox.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
-        let userData = inputBox.value; // user entered data
-        webLink = `Pokemon/${userData}/Weakness/index.html`;
-        linkTag.setAttribute("href", webLink);
-        linkTag.click();
+        let userData = inputBox.value;
+        if (userData) {
+            webLink = `Pokemon/${userData}/Weakness/index.html`;
+            window.location.href = webLink; // Redirect directly
+        }
     }
 });
 
@@ -55,7 +54,7 @@ function select(element) {
         webLink = `Pokemon/${selectData}/Weakness/index.html`;
         linkTag.setAttribute("href", webLink);
         linkTag.click();
-    };
+    }
     searchWrapper.classList.remove("active");
 }
 
@@ -66,29 +65,6 @@ function showSuggestions(list) {
         listData = `<li>${userValue}</li>`;
     } else {
         listData = list.join('');
-    }
-    suggBox.innerHTML = listData;
-}
-
-
-function select(element){
-    let selectData = element.textContent;
-    inputBox.value = selectData;
-    icon.onclick = ()=>{
-        webLink = `Pokemon/${selectData}/Weakness/index.html`;
-        linkTag.setAttribute("href", webLink);
-        linkTag.click();
-    }
-    searchWrapper.classList.remove("active");
-}
-
-function showSuggestions(list){
-    let listData;
-    if(!list.length){
-        userValue = inputBox.value;
-        listData = `<li>${userValue}</li>`;
-    }else{
-      listData = list.join('');
     }
     suggBox.innerHTML = listData;
 }
