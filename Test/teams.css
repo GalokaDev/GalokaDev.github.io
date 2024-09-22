@@ -20,11 +20,11 @@ h4{
     border-bottom: 3px solid #295be3;
 }
 
-.Teamsline1{
+.Teamsline1 {
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    gap: 2.44vw;
-    margin-top: 3.4vw;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Colonne adattabili */
+    gap: 20px; /* Margine tra gli elementi */
+    margin-top: 20px;
 }
 
 
@@ -77,12 +77,9 @@ h4{
                                                     /* paddyrice */
 
 .container .paddyrice {
-    position: relative;
-    width: 11.36vw;
-    height: 16vw;
-    background: #232323;
-    border-radius: 0.7vw;
-    overflow: hidden;
+    width: 90%; /* Rende la larghezza più flessibile */
+    max-width: 300px; /* Limite massimo */
+    height: auto; /* L'altezza si adatta al contenuto */
 }
 .container .paddyrice:before {
     content: "";
@@ -894,4 +891,35 @@ h4{
     opacity: 1;
     transform: translateY(0vw);
     transition-delay: .7s;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .Teamsline1 {
+        grid-template-columns: 1fr 1fr; /* Due colonne su tablet */
+    }
+
+    .pagina {
+        margin-left: 5%; /* Ridurre il margine laterale su schermi più piccoli */
+        margin-right: 5%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .Teamsline1 {
+        grid-template-columns: 1fr; /* Una colonna su telefoni */
+    }
+
+    h4 {
+        font-size: 2em; /* Ridurre la dimensione del testo su schermi piccoli */
+    }
+
+    .container {
+        width: 100%; /* Assicurarsi che i contenitori occupino tutta la larghezza */
+    }
+
+    .tooltip2 .tooltiptext2 {
+        font-size: 1em; /* Rende i tooltip leggibili */
+    }
 }
