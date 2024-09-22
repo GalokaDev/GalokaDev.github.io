@@ -895,3 +895,59 @@ h4{
     transform: translateY(0vw);
     transition-delay: .7s;
 }
+
+
+
+
+
+
+
+/* Meta tag viewport */
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+/* Utilizza unità di misura relative */
+.container {
+  width: 80%; /* larghezza relativa */
+  margin: 2em auto; /* margine relativo */
+}
+
+/* Utilizza flexbox */
+.Teamsline1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Media query per dispositivi con schermo fino a 768px (tablet) */
+@media (max-width: 768px) {
+  .container {
+    width: 90%; /* larghezza diversa per dispositivi con schermo fino a 768px */
+  }
+  .Teamsline1 {
+    flex-direction: column; /* cambia la direzione dei flexbox per dispositivi con schermo fino a 768px */
+  }
+}
+
+/* Media query per dispositivi con schermo fino a 480px (mobile) */
+@media (max-width: 480px) {
+  .container {
+    width: 95%; /* larghezza diversa per dispositivi con schermo fino a 480px */
+  }
+  .Teamsline1 {
+    flex-direction: column; /* cambia la direzione dei flexbox per dispositivi con schermo fino a 480px */
+  }
+  .paddyrice, .loveivv, .dragonchilde, .iloveyoubro, .galokatw, .deemooon {
+    width: 100%; /* larghezza diversa per dispositivi con schermo fino a 480px */
+  }
+}
+
+/* Utilizza max-width e max-height per limitare le dimensioni degli elementi */
+.paddyrice, .loveivv, .dragonchilde, .iloveyoubro, .galokatw, .deemooon {
+  max-width: 300px; /* larghezza massima */
+  max-height: 400px; /* altezza massima */
+}
+
+/* Utilizza overflow: hidden per prevenire che gli elementi si allarghino troppo */
+.paddyrice, .loveivv, .dragonchilde, .iloveyoubro, .galokatw, .deemooon {
+  overflow: hidden; /* nasconde il contenuto che si allarga troppo */
+}
