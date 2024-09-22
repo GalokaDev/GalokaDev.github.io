@@ -1,0 +1,897 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.pagina {
+    max-width: 100%;
+    margin-top: auto;
+    margin-right:20%;
+    margin-left:25%;
+  }
+body {
+    margin: auto;
+    background: #16162e;
+    min-height: 100%;
+}
+h4{
+    font-size: 4em;
+    color: white;
+    margin-top:2.9vw;
+    border-bottom: 3px solid #295be3;
+}
+
+.Teamsline1{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 2.44vw;
+    margin-top: 3.4vw;
+}
+
+
+.tooltip2 {
+    position: relative;
+    display: inline-block;
+  }
+  
+.tooltip2 .tooltiptext2 {
+    font-size: 0.7vw;
+    visibility: hidden;
+    width: 4vw;
+    background-color:#ececec; 
+    color: rgb(39, 39, 39);
+    text-align: center;
+    border-radius: 0.3vw;
+    padding: 0.24vw 0;
+    position: absolute;
+    z-index: 1000;
+    bottom: 120%;
+    left: 50%;
+    margin-left: -2.15vw;
+  }
+  
+.tooltip2 .tooltiptext2::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -0.24vw;
+    border-width: 0.24vw;
+    border-style: solid;
+    border-color: #ececec transparent transparent transparent;
+  }
+  
+.tooltip2:hover .tooltiptext2 {
+    visibility: visible;
+  }
+
+
+
+
+
+
+
+
+
+
+
+                                                    /* paddyrice */
+
+.container .paddyrice {
+    position: relative;
+    width: 11.36vw;
+    height: 16vw;
+    background: #232323;
+    border-radius: 0.7vw;
+    overflow: hidden;
+}
+.container .paddyrice:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #d86464;
+    clip-path: circle(5.1vw at 80% 20%);
+    transition: 0.5s ease-in-out;
+}
+
+.container .paddyrice:hover:before {
+    clip-path: circle(10.2vw at 80% -20%);
+}
+
+.container .paddyrice:after {
+    content: "85%WR";
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 1.2em;
+    font-weight: 600;
+    font-style: italic;
+    color: rgba(231, 228, 228, 0.556);
+
+}
+
+.container .paddyrice .imgBx {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    transition: .5s;
+}
+
+.container .paddyrice:hover .imgBx {
+    top: 0%;
+    transform: translateY(-25%);
+    /* bug  */
+}
+
+.container .paddyrice .imgBx img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10.2vw;
+}
+
+.container .paddyrice .contentBx {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3.41vw;
+    text-align: center;
+    transition: 1s;
+    z-index: 90;
+}
+
+.container .paddyrice:hover .contentBx {
+    height: 7.17vw;
+}
+
+.container .paddyrice .contentBx h2 {
+    position: relative;
+    font-weight: 420;
+    letter-spacing: 0.05vw;
+    color: #fff;
+}
+
+.container .paddyrice .contentBx .size{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.34vw 0.97vw;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.container .paddyrice:hover .contentBx .size {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: .5s;
+}
+
+
+.container .paddyrice .contentBx .size h3 {
+    color: white;
+    font-weight: 210;
+    font-size: 0.48vw;
+    text-transform: uppercase;
+    letter-spacing: 0.1vw;
+    margin-right: 0.5vw;
+}
+
+.container .paddyrice .contentBx .size img {
+    padding-right: 0.25vw;
+    cursor: pointer;
+}
+.container .paddyrice .contentBx a {
+    display: inline-block;
+    padding: 0.35vw 0.7vw;
+    background: #fff;
+    border-radius: 0.2vw;
+    margin-top: 0.35vw;
+    text-decoration: none;
+    font-weight: 420;
+    font-size: 0.75vw;
+    color: #111;
+    opacity: 0;
+    transform: translateY(1.7vw);
+    transition: .5s;
+}
+.container .paddyrice:hover .contentBx a {
+    opacity: 1;
+    transform: translateY(0vw);
+    transition-delay: .7s;
+}
+
+
+
+
+                                                    /* LoveIVV */
+
+.container .loveivv {
+    position: relative;
+    width: 11.36vw;
+    height: 16vw;
+    background: #232323;
+    border-radius: 0.7vw;
+    overflow: hidden;
+}
+.container .loveivv:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #45ca9e;
+    clip-path: circle(5.1vw at 80% 20%);
+    transition: 0.5s ease-in-out;
+}
+
+.container .loveivv:hover:before {
+    clip-path: circle(10.2vw at 80% -20%);
+}
+
+.container .loveivv:after {
+    content: "76%WR";
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 1.2em;
+    font-weight: 600;
+    font-style: italic;
+    color: rgba(231, 228, 228, 0.556);
+
+}
+
+.container .loveivv .imgBx {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    transition: .5s;
+}
+
+.container .loveivv:hover .imgBx {
+    top: 0%;
+    transform: translateY(-25%);
+    /* bug  */
+}
+
+.container .loveivv .imgBx img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10.2vw;
+}
+
+.container .loveivv .contentBx {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3.41vw;
+    text-align: center;
+    transition: 1s;
+    z-index: 90;
+}
+
+.container .loveivv:hover .contentBx {
+    height: 7.17vw;
+}
+
+.container .loveivv .contentBx h2 {
+    position: relative;
+    font-weight: 420;
+    letter-spacing: 0.05vw;
+    color: #fff;
+}
+
+.container .loveivv .contentBx .size{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.34vw 0.97vw;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.container .loveivv:hover .contentBx .size {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: .5s;
+}
+
+
+.container .loveivv .contentBx .size h3 {
+    color: white;
+    font-weight: 210;
+    font-size: 0.48vw;
+    text-transform: uppercase;
+    letter-spacing: 0.1vw;
+    margin-right: 0.5vw;
+}
+
+.container .loveivv .contentBx .size img {
+    padding-right: 0.25vw;
+    cursor: pointer;
+}
+.container .loveivv .contentBx a {
+    display: inline-block;
+    padding: 0.35vw 0.7vw;
+    background: #fff;
+    border-radius: 0.2vw;
+    margin-top: 0.35vw;
+    text-decoration: none;
+    font-weight: 420;
+    font-size: 0.75vw;
+    color: #111;
+    opacity: 0;
+    transform: translateY(1.7vw);
+    transition: .5s;
+}
+.container .loveivv:hover .contentBx a {
+    opacity: 1;
+    transform: translateY(0vw);
+    transition-delay: .7s;
+}
+
+
+
+
+
+
+
+
+                                                    /* Dragonchilde */
+
+.container .dragonchilde {
+    position: relative;
+    width: 11.36vw;
+    height: 16vw;
+    background: #232323;
+    border-radius: 0.7vw;
+    overflow: hidden;
+}
+.container .dragonchilde:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #62a0e7;
+    clip-path: circle(5.1vw at 80% 20%);
+    transition: 0.5s ease-in-out;
+}
+
+.container .dragonchilde:hover:before {
+    clip-path: circle(10.2vw at 80% -20%);
+}
+
+.container .dragonchilde:after {
+    content: "79%WR";
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 1.2em;
+    font-weight: 600;
+    font-style: italic;
+    color: rgba(231, 228, 228, 0.556);
+
+}
+
+.container .dragonchilde .imgBx {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    transition: .5s;
+}
+
+.container .dragonchilde:hover .imgBx {
+    top: 0%;
+    transform: translateY(-25%);
+    /* bug  */
+}
+
+.container .dragonchilde .imgBx img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10.2vw;
+}
+
+.container .dragonchilde .contentBx {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3.41vw;
+    text-align: center;
+    transition: 1s;
+    z-index: 90;
+}
+
+.container .dragonchilde:hover .contentBx {
+    height: 7.17vw;
+}
+
+.container .dragonchilde .contentBx h2 {
+    position: relative;
+    font-weight: 420;
+    letter-spacing: 0.05vw;
+    color: #fff;
+}
+
+.container .dragonchilde .contentBx .size{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.34vw 0.97vw;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.container .dragonchilde:hover .contentBx .size {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: .5s;
+}
+
+
+.container .dragonchilde .contentBx .size h3 {
+    color: white;
+    font-weight: 210;
+    font-size: 0.48vw;
+    text-transform: uppercase;
+    letter-spacing: 0.1vw;
+    margin-right: 0.5vw;
+}
+
+.container .dragonchilde .contentBx .size img {
+    padding-right: 0.25vw;
+    cursor: pointer;
+}
+.container .dragonchilde .contentBx a {
+    display: inline-block;
+    padding: 0.35vw 0.7vw;
+    background: #fff;
+    border-radius: 0.2vw;
+    margin-top: 0.35vw;
+    text-decoration: none;
+    font-weight: 420;
+    font-size: 0.75vw;
+    color: #111;
+    opacity: 0;
+    transform: translateY(1.7vw);
+    transition: .5s;
+}
+.container .dragonchilde:hover .contentBx a {
+    opacity: 1;
+    transform: translateY(0vw);
+    transition-delay: .7s;
+}
+
+
+
+
+
+
+                                                    /* iloveyoubro */
+
+.container .iloveyoubro {
+    position: relative;
+    width: 11.36vw;
+    height: 16vw;
+    background: #232323;
+    border-radius: 0.7vw;
+    overflow: hidden;
+}
+.container .iloveyoubro:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f49a34;
+    clip-path: circle(5.1vw at 80% 20%);
+    transition: 0.5s ease-in-out;
+}
+
+.container .iloveyoubro:hover:before {
+    clip-path: circle(10.2vw at 80% -20%);
+}
+
+.container .iloveyoubro:after {
+    content: "81%WR";
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 1.2em;
+    font-weight: 600;
+    font-style: italic;
+    color: rgba(231, 228, 228, 0.556);
+
+}
+
+.container .iloveyoubro .imgBx {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    transition: .5s;
+}
+
+.container .iloveyoubro:hover .imgBx {
+    top: 0%;
+    transform: translateY(-25%);
+    /* bug  */
+}
+
+.container .iloveyoubro .imgBx img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10.2vw;
+}
+
+.container .iloveyoubro .contentBx {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3.41vw;
+    text-align: center;
+    transition: 1s;
+    z-index: 90;
+}
+
+.container .iloveyoubro:hover .contentBx {
+    height: 7.17vw;
+}
+
+.container .iloveyoubro .contentBx h2 {
+    position: relative;
+    font-weight: 420;
+    letter-spacing: 0.05vw;
+    color: #fff;
+}
+
+.container .iloveyoubro .contentBx .size{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.34vw 0.97vw;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.container .iloveyoubro:hover .contentBx .size {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: .5s;
+}
+
+
+.container .iloveyoubro .contentBx .size h3 {
+    color: white;
+    font-weight: 210;
+    font-size: 0.48vw;
+    text-transform: uppercase;
+    letter-spacing: 0.1vw;
+    margin-right: 0.5vw;
+}
+
+.container .iloveyoubro .contentBx .size img {
+    padding-right: 0.25vw;
+    cursor: pointer;
+}
+.container .iloveyoubro .contentBx a {
+    display: inline-block;
+    padding: 0.35vw 0.7vw;
+    background: #fff;
+    border-radius: 0.2vw;
+    margin-top: 0.35vw;
+    text-decoration: none;
+    font-weight: 420;
+    font-size: 0.75vw;
+    color: #111;
+    opacity: 0;
+    transform: translateY(1.7vw);
+    transition: .5s;
+}
+.container .iloveyoubro:hover .contentBx a {
+    opacity: 1;
+    transform: translateY(0vw);
+    transition-delay: .7s;
+}
+
+
+
+
+
+                                                    /* GalokaTw */
+
+.container .galokatw {
+    position: relative;
+    width: 11.36vw;
+    height: 16vw;
+    background: #232323;
+    border-radius: 0.7vw;
+    overflow: hidden;
+}
+.container .galokatw:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #713df6;
+    clip-path: circle(5.1vw at 80% 20%);
+    transition: 0.5s ease-in-out;
+}
+
+.container .galokatw:hover:before {
+    clip-path: circle(10.2vw at 80% -20%);
+}
+
+.container .galokatw:after {
+    content: "75%WR";
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 1.2em;
+    font-weight: 600;
+    font-style: italic;
+    color: rgba(231, 228, 228, 0.556);
+
+}
+
+.container .galokatw .imgBx {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    transition: .5s;
+}
+
+.container .galokatw:hover .imgBx {
+    top: 0%;
+    transform: translateY(-25%);
+    /* bug  */
+}
+
+.container .galokatw .imgBx img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10.2vw;
+}
+
+.container .galokatw .contentBx {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3.41vw;
+    text-align: center;
+    transition: 1s;
+    z-index: 90;
+}
+
+.container .galokatw:hover .contentBx {
+    height: 7.17vw;
+}
+
+.container .galokatw .contentBx h2 {
+    position: relative;
+    font-weight: 420;
+    letter-spacing: 0.05vw;
+    color: #fff;
+}
+
+.container .galokatw .contentBx .size{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.34vw 0.97vw;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.container .galokatw:hover .contentBx .size {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: .5s;
+}
+
+
+.container .galokatw .contentBx .size h3 {
+    color: white;
+    font-weight: 210;
+    font-size: 0.48vw;
+    text-transform: uppercase;
+    letter-spacing: 0.1vw;
+    margin-right: 0.5vw;
+}
+
+.container .galokatw .contentBx .size img {
+    padding-right: 0.25vw;
+    cursor: pointer;
+}
+.container .galokatw .contentBx a {
+    display: inline-block;
+    padding: 0.35vw 0.7vw;
+    background: #fff;
+    border-radius: 0.2vw;
+    margin-top: 0.35vw;
+    text-decoration: none;
+    font-weight: 420;
+    font-size: 0.75vw;
+    color: #111;
+    opacity: 0;
+    transform: translateY(1.7vw);
+    transition: .5s;
+}
+.container .galokatw:hover .contentBx a {
+    opacity: 1;
+    transform: translateY(0vw);
+    transition-delay: .7s;
+}
+
+
+
+
+
+
+                                                    /* DEeMooOn */
+
+.container .deemooon {
+    position: relative;
+    width: 11.36vw;
+    height: 16vw;
+    background: #232323;
+    border-radius: 0.7vw;
+    overflow: hidden;
+}
+.container .deemooon:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #af6845;
+    clip-path: circle(5.1vw at 80% 20%);
+    transition: 0.5s ease-in-out;
+}
+
+.container .deemooon:hover:before {
+    clip-path: circle(10.2vw at 80% -20%);
+}
+
+.container .deemooon:after {
+    content: "69%WR";
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 1.2em;
+    font-weight: 600;
+    font-style: italic;
+    color: rgba(231, 228, 228, 0.556);
+
+}
+
+.container .deemooon .imgBx {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    transition: .5s;
+}
+
+.container .deemooon:hover .imgBx {
+    top: 0%;
+    transform: translateY(-25%);
+    /* bug  */
+}
+
+.container .deemooon .imgBx img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10.2vw;
+}
+
+.container .deemooon .contentBx {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3.41vw;
+    text-align: center;
+    transition: 1s;
+    z-index: 90;
+}
+
+.container .deemooon:hover .contentBx {
+    height: 7.17vw;
+}
+
+.container .deemooon .contentBx h2 {
+    position: relative;
+    font-weight: 420;
+    letter-spacing: 0.05vw;
+    color: #fff;
+}
+
+.container .deemooon .contentBx .size{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.34vw 0.97vw;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.container .deemooon:hover .contentBx .size {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: .5s;
+}
+
+
+.container .deemooon .contentBx .size h3 {
+    color: white;
+    font-weight: 210;
+    font-size: 0.48vw;
+    text-transform: uppercase;
+    letter-spacing: 0.1vw;
+    margin-right: 0.5vw;
+}
+
+.container .deemooon .contentBx .size img {
+    padding-right: 0.25vw;
+    cursor: pointer;
+}
+.container .deemooon .contentBx a {
+    display: inline-block;
+    padding: 0.35vw 0.7vw;
+    background: #fff;
+    border-radius: 0.2vw;
+    margin-top: 0.35vw;
+    text-decoration: none;
+    font-weight: 420;
+    font-size: 0.75vw;
+    color: #111;
+    opacity: 0;
+    transform: translateY(1.7vw);
+    transition: .5s;
+}
+.container .deemooon:hover .contentBx a {
+    opacity: 1;
+    transform: translateY(0vw);
+    transition-delay: .7s;
+}
