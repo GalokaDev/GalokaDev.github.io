@@ -949,3 +949,168 @@ h4{
 .paddyrice, .loveivv, .dragonchilde, .iloveyoubro, .galokatw, .deemooon {
   overflow: hidden; /* nasconde il contenuto che si allarga troppo */
 }
+
+
+:root {
+    --team-width: 11.36vw;
+    --team-height: 16vw;
+  }
+  
+  .team-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.44vw;
+    margin-top: 3.4vw;
+  }
+  
+  .team {
+    position: relative;
+    width: var(--team-width);
+    height: var(--team-height);
+    background: #232323;
+    border-radius: 0.7vw;
+    overflow: hidden;
+  }
+  
+  .team:hover:before {
+    clip-path: circle(10.2vw at 80% -20%);
+  }
+  
+  .team:after {
+    content: "85%WR";
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 1.2em;
+    font-weight: 600;
+    font-style: italic;
+    color: rgba(231, 228, 228, 0.556);
+  }
+  
+  .team .imgBx {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    transition: .5s;
+  }
+  
+  .team:hover .imgBx {
+    top: 0%;
+    transform: translateY(-25%);
+  }
+  
+  .team .contentBx {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3.41vw;
+    text-align: center;
+    transition: 1s;
+    z-index: 90;
+  }
+  
+  .team:hover .contentBx {
+    height: 7.17vw;
+  }
+  
+  .team .contentBx h2 {
+    position: relative;
+    font-weight: 420;
+    letter-spacing: 0.05vw;
+    color: #fff;
+  }
+  
+  .team .contentBx .size {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.34vw 0.97vw;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .team:hover .contentBx .size {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: .5s;
+  }
+  
+  /* ... */
+
+
+  /* Aggiungi le seguenti righe di codice per definire le dimensioni dei contenitori in base alla larghezza dello schermo */
+
+@media (max-width: 1200px) {
+    .Teamsline1 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .Teamsline1 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .Teamsline1 {
+      grid-template-columns: 1fr;
+    }
+    .team {
+      width: 100%;
+      height: auto;
+    }
+  }
+  
+  /* Aggiungi le seguenti righe di codice per definire le dimensioni delle immagini in base alla larghezza dello schermo */
+  
+  @media (max-width: 1200px) {
+    .team .imgBx img {
+      width: 80%;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .team .imgBx img {
+      width: 70%;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .team .imgBx img {
+      width: 100%;
+    }
+  }
+  
+  /* Aggiungi le seguenti righe di codice per definire le dimensioni dei testi in base alla larghezza dello schermo */
+  
+  @media (max-width: 1200px) {
+    .team .contentBx h2 {
+      font-size: 1.5em;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .team .contentBx h2 {
+      font-size: 1.2em;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .team .contentBx h2 {
+      font-size: 1em;
+    }
+  }
+
+  .team {
+    overflow: hidden;
+    padding: 20px;
+  }
+  
+  .team .contentBx {
+    padding: 20px;
+  }
