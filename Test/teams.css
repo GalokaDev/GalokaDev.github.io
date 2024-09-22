@@ -20,11 +20,11 @@ h4{
     border-bottom: 3px solid #295be3;
 }
 
-.Teamsline1 {
+.Teamsline1{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Colonne adattabili */
-    gap: 20px; /* Margine tra gli elementi */
-    margin-top: 20px;
+    grid-template-columns: auto auto auto auto;
+    gap: 2.44vw;
+    margin-top: 3.4vw;
 }
 
 
@@ -77,9 +77,12 @@ h4{
                                                     /* paddyrice */
 
 .container .paddyrice {
-    width: 90%; /* Rende la larghezza più flessibile */
-    max-width: 300px; /* Limite massimo */
-    height: auto; /* L'altezza si adatta al contenuto */
+    position: relative;
+    width: 11.36vw;
+    height: 16vw;
+    background: #232323;
+    border-radius: 0.7vw;
+    overflow: hidden;
 }
 .container .paddyrice:before {
     content: "";
@@ -895,31 +898,207 @@ h4{
 
 
 
-@media screen and (max-width: 768px) {
-    .Teamsline1 {
-        grid-template-columns: 1fr 1fr; /* Due colonne su tablet */
-    }
+@media (max-width: 768px) {
 
     .pagina {
-        margin-left: 5%; /* Ridurre il margine laterale su schermi più piccoli */
-        margin-right: 5%;
+  
+      max-width: 90%;
+  
+      margin-right: auto;
+  
+      margin-left: auto;
+  
     }
-}
-
-@media screen and (max-width: 480px) {
-    .Teamsline1 {
-        grid-template-columns: 1fr; /* Una colonna su telefoni */
+  
+    .table-sortable {
+  
+      font-size: 0.8em;
+  
     }
-
-    h4 {
-        font-size: 2em; /* Ridurre la dimensione del testo su schermi piccoli */
+  
+    .pokemon-container {
+  
+      flex-direction: column;
+  
+      align-items: center;
+  
     }
-
-    .container {
-        width: 100%; /* Assicurarsi che i contenitori occupino tutta la larghezza */
+  
+    .pokemon {
+  
+      margin-bottom: 20px;
+  
     }
-
-    .tooltip2 .tooltiptext2 {
-        font-size: 1em; /* Rende i tooltip leggibili */
+  
+    .pokemon img {
+  
+      width: 50%;
+  
+      height: 50%;
+  
     }
-}
+  
+  }
+  
+  
+  /* Media query per dispositivi tablet */
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+  
+    .pagina {
+  
+      max-width: 80%;
+  
+      margin-right: auto;
+  
+      margin-left: auto;
+  
+    }
+  
+    .table-sortable {
+  
+      font-size: 0.9em;
+  
+    }
+  
+    .pokemon-container {
+  
+      flex-direction: row;
+  
+      flex-wrap: wrap;
+  
+      justify-content: center;
+  
+    }
+  
+    .pokemon {
+  
+      margin-right: 20px;
+  
+      margin-bottom: 20px;
+  
+    }
+  
+    .pokemon img {
+  
+      width: 30%;
+  
+      height: 30%;
+  
+    }
+  
+  }
+  
+  
+  /* Media query per dispositivi desktop */
+  
+  @media (min-width: 1025px) {
+  
+    .pagina {
+  
+      max-width: 70%;
+  
+      margin-right: auto;
+  
+      margin-left: auto;
+  
+    }
+  
+    .table-sortable {
+  
+      font-size: 1em;
+  
+    }
+  
+    .pokemon-container {
+  
+      flex-direction: row;
+  
+      flex-wrap: wrap;
+  
+      justify-content: center;
+  
+    }
+  
+    .pokemon {
+  
+      margin-right: 20px;
+  
+      margin-bottom: 20px;
+  
+    }
+  
+    .pokemon img {
+  
+      width: 20%;
+  
+      height: 20%;
+  
+    }
+  
+  }
+  
+  
+  /* Stili generali */
+  
+  .pagina {
+  
+    border-radius: 3px;
+  
+    background-color: #282857;
+  
+    padding-top: 1%;
+  
+    padding-bottom: 1%;
+  
+    overflow: hidden;
+  
+  }
+  
+  
+  .table-sortable {
+  
+    border-collapse: collapse;
+  
+    font-size: 0.9em;
+  
+    min-width: 100%;
+  
+    border-radius: 5px 5px 0 0;
+  
+    overflow: hidden;
+  
+    margin-right: auto;
+  
+    margin-left: auto;
+  
+  }
+  
+  
+  .pokemon-container {
+  
+    display: flex;
+  
+    flex-wrap: wrap;
+  
+    justify-content: center;
+  
+  }
+  
+  
+  .pokemon {
+  
+    display: flex;
+  
+    flex-direction: column;
+  
+    align-items: center;
+  
+  }
+  
+  
+  .pokemon img {
+  
+    border-radius: 50%;
+  
+  }
