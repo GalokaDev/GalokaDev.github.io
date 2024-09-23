@@ -27,10 +27,29 @@ document.addEventListener('DOMContentLoaded', function () {
         chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
+    // Funzione per rispondere a domande su PokéMMO
+    function handlePokemmoQuery(message) {
+        const pokemmoTips = `
+            To build a strong team in PokéMMO, consider these tips:
+            1. Balance Types: Include various types like Water, Electric, and Dragon to cover weaknesses.
+            2. Speed and Power: Use fast sweepers like Gengar or Starmie to hit quickly and hard.
+            3. Defensive Tanks: Pokemon like Blissey or Skarmory can tank hits and support the team.
+            4. Status Moves: Moves like Thunder Wave or Toxic can cripple the opponent's team.
+            5. Synergy: Ensure your Pokémon cover each other’s weaknesses.
+        `;
+        addMessage('AI', pokemmoTips);
+    }
+
     // Funzione per inviare messaggi all'AI e ricevere una risposta
     async function sendMessageToAI(message) {
         addMessage('You', message);
         input.value = '';
+
+        // Se il messaggio riguarda PokéMMO, rispondi con consigli specifici
+        if (message.toLowerCase().includes('pokemmo')) {
+            handlePokemmoQuery(message);
+            return;
+        }
 
         try {
             const response = await fetch('https://api.tuo-backend.com/chat', { // Cambia con il tuo backend AI
