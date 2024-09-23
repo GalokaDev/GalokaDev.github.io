@@ -1,66 +1,92 @@
-// Inizializza la rete neurale di Brain.js
+// Inizializza la rete neurale
 const net = new brain.NeuralNetwork();
 
-// Funzione per addestrare il modello con esempi personalizzati
-function trainBot(trainingData) {
-    net.train(trainingData, {
-        log: true,          // Mostra log durante l'allenamento
-        logPeriod: 100,     // Mostra log ogni 100 iterazioni
-        iterations: 2000,   // Numero di iterazioni
-        errorThresh: 0.005  // Soglia di errore
-    });
-}
-
-// Dati di allenamento di esempio (puoi modificarli)
+// Dati di allenamento iniziali
+// Puoi aggiungere qui altri esempi di input e output
 const trainingData = [
-    { input: { hi: 1 }, output: { greeting: 1 } },
-    { input: { hello: 1 }, output: { greeting: 1 } },
-    { input: { how: 1, are: 1, you: 1 }, output: { status: 1 } },
-    { input: { what: 1, is: 1, your: 1, name: 1 }, output: { name: 1 } },
-    { input: { bye: 1 }, output: { farewell: 1 } },
-    { input: { goodbye: 1 }, output: { farewell: 1 } }
+  { input: { hello: 1 }, output: { hi: 1 } },
+  { input: { "how are you": 1 }, output: { "I'm fine": 1 } },
+  { input: { "what's your name": 1 }, output: { "I'm a bot": 1 } },
 ];
 
-// Addestra il modello
-trainBot(trainingData);
+// Allena la rete neurale
+net.train(trainingData, {
+  iterations: 2000, // numero di iterazioni di training
+  errorThresh: 0.005, // soglia di errore accettabile
+  log: true, // abilita log durante il training
+  logPeriod: 100, // ogni quante iterazioni fare il log
+  learningRate: 0.3 // tasso di apprendimento
+});
 
-// Funzione per ricevere una risposta dal bot
-function getBotResponse(userMessage) {
-    const words = userMessage.toLowerCase().split(' ');
-    let input = {};
-
-    // Prepara l'input per la rete neurale
-    words.forEach(word => input[word] = 1);
-
-    const result = net.run(input);
-
-    // Analizza il risultato e restituisce una risposta
-    if (result.greeting) {
-        return "Hello! How can I assist you?";
-    } else if (result.status) {
-        return "I'm doing well, thanks for asking!";
-    } else if (result.name) {
-        return "I am Galoka, your friendly assistant.";
-    } else {
-        return "I'm not sure how to respond to that.";
-    }
+// Funzione per ottenere la risposta del chatbot
+function getChatbotResponse(input) {
+  const formattedInput = formatInput(input);
+  const result = net.run(formattedInput);
+  const response = getHighestConfidenceOutput(result);
+  return response;
 }
 
-// Funzione per gestire l'invio del messaggio
-document.getElementById('sendMessage').addEventListener('click', function () {
-    const userInput = document.getElementById('userInput').value;
-    const botResponse = getBotResponse(userInput);
+// Formatta l'input trasformandolo in oggetto
+function formatInput(input) {
+  const formattedInput = {};
+  const words = input.toLowerCase().split(" ");
+  words.forEach(word => {
+    formattedInput[word] = 1;
+  });
+  return formattedInput;
+}
 
-    // Aggiungi il messaggio dell'utente e la risposta del bot nella chat
-    const chatMessages = document.getElementById('chatMessages');
-    const userMessageHtml = `<div class="flex gap-3 my-4 text-gray-600 text-sm flex-1">
-                                <p class="leading-relaxed"><span class="block font-bold text-gray-700">You: </span>${userInput}</p>
-                             </div>`;
-    const botMessageHtml = `<div class="flex gap-3 my-4 text-gray-600 text-sm flex-1">
-                                <p class="leading-relaxed"><span class="block font-bold text-gray-700">AI: </span>${botResponse}</p>
-                            </div>`;
-    chatMessages.innerHTML += userMessageHtml + botMessageHtml;
+// Estrae il risultato con maggiore confidenza
+function getHighestConfidenceOutput(output) {
+  let highest = 0;
+  let response = "";
+  for (let key in output) {
+    if (output[key] > highest) {
+      highest = output[key];
+      response = key;
+    }
+  }
+  return response;
+}
 
-    // Pulisci l'input dell'utente
-    document.getElementById('userInput').value = '';
+// Gestione invio messaggio
+document.querySelector("form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const inputField = document.querySelector("input");
+  const userMessage = inputField.value;
+
+  if (userMessage.trim() === "") return;
+
+  // Aggiunge il messaggio dell'utente nella chat
+  addMessageToChat("User", userMessage);
+
+  // Ottiene la risposta del chatbot
+  const botResponse = getChatbotResponse(userMessage);
+
+  // Aggiunge la risposta del chatbot nella chat
+  setTimeout(() => {
+    addMessageToChat("AI", botResponse);
+  }, 500);
+
+  inputField.value = "";
 });
+
+// Funzione per aggiungere un messaggio alla chat
+function addMessageToChat(sender, message) {
+  const chatContainer = document.querySelector(".pr-4");
+  const newMessage = document.createElement("div");
+  newMessage.classList.add("flex", "gap-3", "my-4", "text-gray-600", "text-sm", "flex-1");
+  newMessage.innerHTML = `
+    <span class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8">
+      <div class="rounded-full bg-gray-100 border p-1">
+        <svg stroke="none" fill="black" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true" height="20" width="20">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"></path>
+        </svg>
+      </div>
+    </span>
+    <p class="leading-relaxed"><span class="block font-bold text-gray-700">${sender}</span>${message}</p>
+  `;
+  chatContainer.appendChild(newMessage);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+}
