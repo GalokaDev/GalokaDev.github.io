@@ -14,17 +14,16 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/brain.js"></script>
     <script src="https://pokemmostats.com/js/nav.js"></script>
-
     <!-- Chatbox -->
     <div style="box-shadow: 0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgb(0 0 0 / 0.05);" class="fixed bottom-[calc(4rem+1.5rem)] right-0 mr-4 bg-white p-6 rounded-lg border border-[#e5e7eb] w-[440px] h-[634px]">
         <!-- Chatbox header -->
         <div class="flex flex-col space-y-1.5 pb-6">
             <h2 class="font-semibold text-lg tracking-tight">Chatbot</h2>
-            <p class="text-sm text-[#6b7280] leading-3">Powered by Galoka</p>
+            <p class="text-sm text-[#6b7280] leading-3">Powered by Mendable and Vercel</p>
         </div>
 
         <!-- Chat messages -->
-        <div id="chatMessages" class="pr-4 h-[474px]" style="min-width: 100%; display: table;">
+        <div class="pr-4 h-[474px]" style="min-width: 100%; display: table;">
             <div class="flex gap-3 my-4 text-gray-600 text-sm flex-1">
                 <span class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8">
                     <div class="rounded-full bg-gray-100 border p-1">
@@ -39,15 +38,11 @@
 
         <!-- Chat input -->
         <div class="flex items-center pt-0">
-            <!-- Modifica il tag <input> per aggiungere un id -->
-            <input id="userInput" class="flex h-10 w-full rounded-md border border-[#e5e7eb] px-3 py-2 text-sm placeholder-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#9ca3af] text-[#030712]" placeholder="Type your message">
-            
-            <!-- Modifica il button per aggiungere un id -->
-            <button id="sendMessage" class="inline-flex items-center justify-center rounded-md text-sm font-medium text-[#f9fafb] bg-black hover:bg-[#111827E6] h-10 px-4 py-2">Send</button>
+            <form class="flex items-center justify-center w-full space-x-2">
+                <input class="flex h-10 w-full rounded-md border border-[#e5e7eb] px-3 py-2 text-sm placeholder-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#9ca3af] text-[#030712]" placeholder="Type your message">
+                <button class="inline-flex items-center justify-center rounded-md text-sm font-medium text-[#f9fafb] bg-black hover:bg-[#111827E6] h-10 px-4 py-2">Send</button>
+            </form>
         </div>
     </div>
-
-    <!-- Script per gestire la logica della chat -->
-    <script src="https://pokemmostats.com/js/AI-Teambuilder.js"></script>
 </body>
 </html>
