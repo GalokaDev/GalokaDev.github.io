@@ -2,7 +2,6 @@
 const net = new brain.NeuralNetwork();
 
 // Dati di allenamento iniziali
-// Puoi aggiungere qui altri esempi di input e output
 const trainingData = [
   { input: { hello: 1 }, output: { hi: 1 } },
   { input: { "how are you": 1 }, output: { "I'm fine": 1 } },
@@ -11,11 +10,11 @@ const trainingData = [
 
 // Allena la rete neurale
 net.train(trainingData, {
-  iterations: 2000, // numero di iterazioni di training
-  errorThresh: 0.005, // soglia di errore accettabile
-  log: true, // abilita log durante il training
-  logPeriod: 100, // ogni quante iterazioni fare il log
-  learningRate: 0.3 // tasso di apprendimento
+  iterations: 2000,
+  errorThresh: 0.005,
+  log: true,
+  logPeriod: 100,
+  learningRate: 0.3
 });
 
 // Funzione per ottenere la risposta del chatbot
@@ -51,12 +50,12 @@ function getHighestConfidenceOutput(output) {
 
 // Gestione invio messaggio
 document.querySelector("form").addEventListener("submit", function (e) {
-  e.preventDefault();
+  e.preventDefault(); // Previene l'invio del modulo
 
   const inputField = document.querySelector("input");
-  const userMessage = inputField.value;
+  const userMessage = inputField.value.trim(); // Rimuove gli spazi vuoti
 
-  if (userMessage.trim() === "") return;
+  if (userMessage === "") return;
 
   // Aggiunge il messaggio dell'utente nella chat
   addMessageToChat("User", userMessage);
@@ -69,7 +68,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
     addMessageToChat("AI", botResponse);
   }, 500);
 
-  inputField.value = "";
+  inputField.value = ""; // Resetta il campo di input
 });
 
 // Funzione per aggiungere un messaggio alla chat
