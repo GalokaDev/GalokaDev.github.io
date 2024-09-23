@@ -1,6 +1,6 @@
 // Inizializza la rete neurale
 const net = new brain.NeuralNetwork({
-    hiddenLayers: [3] // Configurazione della rete neurale
+    hiddenLayers: [3]
   });
   
   // Dati di allenamento aggiornati
@@ -14,19 +14,24 @@ const net = new brain.NeuralNetwork({
   
   // Allena la rete neurale con i dati di training
   net.train(trainingData, {
-    iterations: 1000,   // Ridotto il numero di iterazioni per migliorare le performance iniziali
-    errorThresh: 0.005, // Soglia di errore
-    log: true,          // Abilita log per vedere l'allenamento
-    logPeriod: 10,      // Log dopo ogni 10 iterazioni
-    learningRate: 0.3   // Tasso di apprendimento
+    iterations: 1000,
+    errorThresh: 0.005,
+    log: true,
+    logPeriod: 10,
+    learningRate: 0.3
   });
   
   // Funzione per ottenere la risposta del chatbot
   function getChatbotResponse(input) {
-    const formattedInput = formatInput(input); // Formatta l'input
-    const result = net.run(formattedInput);    // Esegue la rete neurale
-    const response = getHighestConfidenceOutput(result); // Ottiene la risposta
-    return response;
+    const formattedInput = formatInput(input);
+    const result = net.run(formattedInput);
+    const response = getHighestConfidenceOutput(result);
+  
+    // Controllo sulla confidenza della risposta
+    if (result[response] < 0.5) { // Imposta la soglia di confidenza (0.5)
+      return "Sorry, I don't understand."; // Risposta predefinita
+    }
+    return response; // Restituisce la risposta del bot se la confidenza è sufficiente
   }
   
   // Formatta l'input trasformandolo in oggetto con le parole chiave
@@ -34,7 +39,7 @@ const net = new brain.NeuralNetwork({
     const formattedInput = {};
     const words = input.toLowerCase().split(" ");
     words.forEach(word => {
-      formattedInput[word] = 1; // Assegna valore 1 per ogni parola
+      formattedInput[word] = 1;
     });
     return formattedInput;
   }
@@ -57,9 +62,9 @@ const net = new brain.NeuralNetwork({
     e.preventDefault(); // Previene l'invio del form
   
     const inputField = document.querySelector("input");
-    const userMessage = inputField.value.trim(); // Rimuove gli spazi vuoti
+    const userMessage = inputField.value.trim();
   
-    if (userMessage === "") return; // Se vuoto, non fa nulla
+    if (userMessage === "") return;
   
     // Aggiunge il messaggio dell'utente nella chat
     addMessageToChat("User", userMessage);
@@ -67,16 +72,10 @@ const net = new brain.NeuralNetwork({
     // Ottiene la risposta del chatbot
     const botResponse = getChatbotResponse(userMessage);
   
-    // Se la risposta esiste, la mostra nella chat
-    if (botResponse) {
-      setTimeout(() => {
-        addMessageToChat("AI", botResponse);
-      }, 500);
-    } else {
-      setTimeout(() => {
-        addMessageToChat("AI", "Sorry, I don't understand.");
-      }, 500);
-    }
+    // Aggiunge la risposta del chatbot nella chat
+    setTimeout(() => {
+      addMessageToChat("AI", botResponse);
+    }, 500);
   
     inputField.value = ""; // Resetta il campo di input
   });
