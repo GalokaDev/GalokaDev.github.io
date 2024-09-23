@@ -16,7 +16,9 @@ const trainingData = [
     { input: { hi: 1 }, output: { greeting: 1 } },
     { input: { hello: 1 }, output: { greeting: 1 } },
     { input: { how: 1, are: 1, you: 1 }, output: { status: 1 } },
-    { input: { what: 1, is: 1, your: 1, name: 1 }, output: { name: 1 } }
+    { input: { what: 1, is: 1, your: 1, name: 1 }, output: { name: 1 } },
+    { input: { bye: 1 }, output: { farewell: 1 } },
+    { input: { goodbye: 1 }, output: { farewell: 1 } }
 ];
 
 // Addestra il modello
