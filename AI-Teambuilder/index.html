@@ -10,87 +10,129 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="main.css">
     <title>Pokemmo Stats</title>
+    <style>
+        /* Aggiungo padding per evitare la sovrapposizione con la barra laterale */
+        body {
+            padding-left: 5%; /* Compensa la larghezza della barra laterale */
+        }
+        /* Gestisco la responsività dei box */
+        #team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* I box si adattano in base allo spazio disponibile */
+            gap: 1.5rem;
+            padding: 1.5rem;
+            width: 95%; /* Occupa lo spazio a destra della barra laterale */
+            margin: 0 auto; /* Centrato orizzontalmente */
+        }
+        /* Mantengo i box scalabili */
+        .pokemon-box {
+            background-color: #2d3748; /* Colore scuro */
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        /* Per evitare overflow in schermi piccoli */
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.375rem;
+            background-color: #4a5568;
+            color: white;
+            border: none;
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-white">
     <script src="https://pokemmostats.com/js/nav.js"></script>
 
     <!-- Contenitore per i form dei Pokémon -->
-    <div class="flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="flex flex-col items-center justify-center min-h-screen">
         <h1 class="text-3xl font-bold mb-6">Inserisci la tua squadra Pokémon</h1>
         
         <!-- Box per inserire i Pokémon -->
-        <div id="team-container" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div id="team-container">
             <!-- Box 1 -->
-            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div class="pokemon-box">
                 <h2 class="text-xl font-semibold mb-4">Pokémon 1</h2>
-                <input type="text" placeholder="Nome Pokémon" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Nome Pokémon">
                 <h3 class="text-lg mb-2">Mosse</h3>
-                <input type="text" placeholder="Mossa 1" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 2" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 3" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 4" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Mossa 1">
+                <input type="text" placeholder="Mossa 2">
+                <input type="text" placeholder="Mossa 3">
+                <input type="text" placeholder="Mossa 4">
             </div>
 
             <!-- Box 2 -->
-            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div class="pokemon-box">
                 <h2 class="text-xl font-semibold mb-4">Pokémon 2</h2>
-                <input type="text" placeholder="Nome Pokémon" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Nome Pokémon">
                 <h3 class="text-lg mb-2">Mosse</h3>
-                <input type="text" placeholder="Mossa 1" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 2" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 3" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 4" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Mossa 1">
+                <input type="text" placeholder="Mossa 2">
+                <input type="text" placeholder="Mossa 3">
+                <input type="text" placeholder="Mossa 4">
             </div>
+
             <!-- Box 3 -->
-            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div class="pokemon-box">
                 <h2 class="text-xl font-semibold mb-4">Pokémon 3</h2>
-                <input type="text" placeholder="Nome Pokémon" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Nome Pokémon">
                 <h3 class="text-lg mb-2">Mosse</h3>
-                <input type="text" placeholder="Mossa 1" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 2" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 3" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 4" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Mossa 1">
+                <input type="text" placeholder="Mossa 2">
+                <input type="text" placeholder="Mossa 3">
+                <input type="text" placeholder="Mossa 4">
             </div>
+
             <!-- Box 4 -->
-            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div class="pokemon-box">
                 <h2 class="text-xl font-semibold mb-4">Pokémon 4</h2>
-                <input type="text" placeholder="Nome Pokémon" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Nome Pokémon">
                 <h3 class="text-lg mb-2">Mosse</h3>
-                <input type="text" placeholder="Mossa 1" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 2" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 3" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 4" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Mossa 1">
+                <input type="text" placeholder="Mossa 2">
+                <input type="text" placeholder="Mossa 3">
+                <input type="text" placeholder="Mossa 4">
             </div>
+
             <!-- Box 5 -->
-            <div class="bg-gray-800 p-6 rounded-lg shadow-lg"></div>
+            <div class="pokemon-box">
                 <h2 class="text-xl font-semibold mb-4">Pokémon 5</h2>
-                <input type="text" placeholder="Nome Pokémon" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Nome Pokémon">
                 <h3 class="text-lg mb-2">Mosse</h3>
-                <input type="text" placeholder="Mossa 1" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 2" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 3" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 4" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Mossa 1">
+                <input type="text" placeholder="Mossa 2">
+                <input type="text" placeholder="Mossa 3">
+                <input type="text" placeholder="Mossa 4">
             </div>
+
             <!-- Box 6 -->
-            <div class="bg-gray-800 p-6 rounded-lg shadow-lg"></div>
+            <div class="pokemon-box">
                 <h2 class="text-xl font-semibold mb-4">Pokémon 6</h2>
-                <input type="text" placeholder="Nome Pokémon" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Nome Pokémon">
                 <h3 class="text-lg mb-2">Mosse</h3>
-                <input type="text" placeholder="Mossa 1" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 2" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 3" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
-                <input type="text" placeholder="Mossa 4" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Mossa 1">
+                <input type="text" placeholder="Mossa 2">
+                <input type="text" placeholder="Mossa 3">
+                <input type="text" placeholder="Mossa 4">
             </div>
-    
-            <!-- Dopo l'ultimo Pokémon aggiungi il bottone per il calcolo -->
         </div>
 
         <!-- Bottone per eseguire il calcolo -->
-        <button id="calculate" class="mt-6 bg-green-600 p-3 rounded-lg font-semibold">Calculate</button>
+        <button id="calculate" class="mt-6 bg-green-600 p-3 rounded-lg font-semibold">Calcola Squadra</button>
 
         <!-- Risultato del calcolo -->
         <div id="result" class="mt-6 text-xl font-bold"></div>
     </div>
 
+    <script>
+        // Funzione per calcolare la squadra (simulata per esempio)
+        document.getElementById('calculate').addEventListener('click', function() {
+            // Esegui qui il calcolo basato sui valori inseriti dall'utente
+            let result = "La tua squadra è ben bilanciata!";
+            document.getElementById('result').innerText = result;
+        });
+    </script>
 </body>
 </html>
