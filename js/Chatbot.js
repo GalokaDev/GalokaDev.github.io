@@ -3,13 +3,14 @@ document.addEventListener('DOMContentLoaded', function () {
         hiddenLayers: [3]
     });
 
+    // Dati di addestramento
     const trainingData = [
         { input: { hello: 1 }, output: { hi: 1 } },
         { input: { "how are you": 1 }, output: { "I'm fine": 1 } },
         { input: { "what's your name": 1 }, output: { "I'm a bot": 1 } },
         { input: { bye: 1 }, output: { goodbye: 1 } },
         { input: { thanks: 1 }, output: { "you're welcome": 1 } },
-        { input: { team: 1 }, output: { "team_redirect": 1 } }, // Nuova regola per il team
+        { input: { team: 1 }, output: { "team_redirect": 1 } },
     ];
 
     net.train(trainingData, {
@@ -20,6 +21,47 @@ document.addEventListener('DOMContentLoaded', function () {
         learningRate: 0.3
     });
 
+    // Risposte multilingua
+    const responses = {
+        en: {
+            "hi": "Hi there!",
+            "I'm fine": "I'm fine, thank you!",
+            "I'm a bot": "I'm a bot.",
+            "goodbye": "Goodbye!",
+            "you're welcome": "You're welcome!",
+            "team_redirect": "Sure, I will redirect you to the teams page shortly."
+        },
+        it: {
+            "hi": "Ciao!",
+            "I'm fine": "Sto bene, grazie!",
+            "I'm a bot": "Sono un bot.",
+            "goodbye": "Arrivederci!",
+            "you're welcome": "Prego!",
+            "team_redirect": "Certo, ti reindirizzo subito sulla pagina dei team."
+        },
+        fr: {
+            "hi": "Bonjour!",
+            "I'm fine": "Je vais bien, merci!",
+            "I'm a bot": "Je suis un bot.",
+            "goodbye": "Au revoir!",
+            "you're welcome": "De rien!",
+            "team_redirect": "Bien sûr, je vais vous rediriger vers la page des équipes."
+        }
+    };
+
+    // Funzione per rilevare la lingua dell'input
+    function detectLanguage(input) {
+        const lowerInput = input.toLowerCase();
+        if (lowerInput.includes("ciao") || lowerInput.includes("come stai")) {
+            return 'it';
+        } else if (lowerInput.includes("bonjour") || lowerInput.includes("comment ça va")) {
+            return 'fr';
+        } else {
+            return 'en'; // Inglese di default
+        }
+    }
+
+    // Funzione per ottenere la risposta
     function getChatbotResponse(input) {
         const formattedInput = formatInput(input);
         const result = net.run(formattedInput);
@@ -28,18 +70,20 @@ document.addEventListener('DOMContentLoaded', function () {
         if (result[response] < 0.5) {
             return "Sorry, I don't understand.";
         }
-        return response;
+
+        const language = detectLanguage(input); // Rileva la lingua dell'input
+        return responses[language][response] || "Sorry, I don't understand.";
     }
 
+    // Funzione per formattare l'input
     function formatInput(input) {
         const formattedInput = {};
-        const words = input.toLowerCase().split(" ");
-        words.forEach(word => {
-            formattedInput[word] = 1;
-        });
+        const words = input.toLowerCase();
+        formattedInput[words] = 1; // Prendi l'intera frase come input
         return formattedInput;
     }
 
+    // Funzione per ottenere la risposta con maggiore confidenza
     function getHighestConfidenceOutput(output) {
         let highest = 0;
         let response = "";
@@ -56,12 +100,12 @@ document.addEventListener('DOMContentLoaded', function () {
     function startCountdown() {
         let countdown = 5;
         const countdownInterval = setInterval(() => {
-            addMessageToChat("AI", countdown); // Mostra il conto alla rovescia
+            addMessageToChat("AI", countdown);
             countdown--;
 
             if (countdown < 0) {
                 clearInterval(countdownInterval);
-                window.location.href = "https://pokemmostats.com/Teams/"; // Redirect alla pagina Teams
+                window.location.href = "https://pokemmostats.com/Teams/";
             }
         }, 1000);
     }
@@ -85,9 +129,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const botResponse = getChatbotResponse(userMessage);
 
-        if (botResponse === "team_redirect") {
-            addMessageToChat("AI", "Certo.. Ti reindirizzo subito sulla pagina dei team!");
-            startCountdown(); // Avvia il countdown
+        if (botResponse.includes("redirect")) {
+            addMessageToChat("AI", botResponse);
+            startCountdown();
         } else {
             setTimeout(() => {
                 addMessageToChat("AI", botResponse);
@@ -97,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
         inputField.value = "";
     });
 
+    // Funzione per aggiungere messaggi alla chat
     function addMessageToChat(sender, message) {
         const chatContainer = document.querySelector(".chat-messages");
         const newMessage = document.createElement("div");
