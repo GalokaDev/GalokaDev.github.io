@@ -3,14 +3,13 @@ document.addEventListener('DOMContentLoaded', function () {
         hiddenLayers: [3]
     });
 
-    // Dati di addestramento per il chatbot
     const trainingData = [
         { input: { hello: 1 }, output: { hi: 1 } },
         { input: { "how are you": 1 }, output: { "I'm fine": 1 } },
         { input: { "what's your name": 1 }, output: { "I'm a bot": 1 } },
         { input: { bye: 1 }, output: { goodbye: 1 } },
         { input: { thanks: 1 }, output: { "you're welcome": 1 } },
-        { input: { team: 1 }, output: { "team_redirect": 1 } }, // Regola per il team
+        { input: { team: 1 }, output: { "team_redirect": 1 } }, // Nuova regola per il team
     ];
 
     net.train(trainingData, {
@@ -21,38 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
         learningRate: 0.3
     });
 
-    // Risposte multilingua
-    const responses = {
-        en: {
-            "hello": "Hi there!",
-            "how are you": "I'm fine, thank you!",
-            "team_redirect": "Sure, I will redirect you to the teams page shortly."
-        },
-        it: {
-            "hello": "Ciao!",
-            "how are you": "Sto bene, grazie!",
-            "team_redirect": "Certo, ti reindirizzo subito sulla pagina dei team."
-        },
-        fr: {
-            "hello": "Bonjour!",
-            "how are you": "Je vais bien, merci!",
-            "team_redirect": "Bien sûr, je vais vous rediriger vers la page des équipes."
-        }
-    };
-
-    // Funzione per rilevare la lingua
-    function detectLanguage(input) {
-        const lowerInput = input.toLowerCase();
-        if (lowerInput.includes("ciao") || lowerInput.includes("come stai")) {
-            return 'it'; // Italiano
-        } else if (lowerInput.includes("bonjour") || lowerInput.includes("comment ça va")) {
-            return 'fr'; // Francese
-        } else {
-            return 'en'; // Inglese di default
-        }
-    }
-
-    // Funzione per ottenere la risposta dal chatbot
     function getChatbotResponse(input) {
         const formattedInput = formatInput(input);
         const result = net.run(formattedInput);
@@ -61,12 +28,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (result[response] < 0.5) {
             return "Sorry, I don't understand.";
         }
-
-        const language = detectLanguage(input); // Rileva la lingua dell'input
-        return responses[language][response] || "Sorry, I don't understand.";
+        return response;
     }
 
-    // Funzione per formattare l'input
     function formatInput(input) {
         const formattedInput = {};
         const words = input.toLowerCase().split(" ");
@@ -76,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return formattedInput;
     }
 
-    // Funzione per ottenere la risposta con la maggiore confidenza
     function getHighestConfidenceOutput(output) {
         let highest = 0;
         let response = "";
@@ -109,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
         addMessageToChat("AI", initialMessage);
     }
 
-    // Gestione del form e invio dei messaggi
     const form = document.querySelector("form");
     form.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -123,19 +85,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const botResponse = getChatbotResponse(userMessage);
 
-        if (botResponse.includes("redirect")) {
-            addMessageToChat("AI", botResponse);
-            startCountdown(); // Avvia il countdown per il reindirizzamento
+        if (botResponse === "team_redirect") {
+            addMessageToChat("AI", "Certo.. Ti reindirizzo subito sulla pagina dei team!");
+            startCountdown(); // Avvia il countdown
         } else {
             setTimeout(() => {
                 addMessageToChat("AI", botResponse);
             }, 500);
         }
 
-        inputField.value = ""; // Resetta il campo di input
+        inputField.value = "";
     });
 
-    // Funzione per aggiungere messaggi alla chat
     function addMessageToChat(sender, message) {
         const chatContainer = document.querySelector(".chat-messages");
         const newMessage = document.createElement("div");
@@ -169,6 +130,5 @@ document.addEventListener('DOMContentLoaded', function () {
         chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
-    // Invia il messaggio iniziale
     sendInitialMessage();
 });
