@@ -57,18 +57,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Gestione invio messaggio
     document.querySelector("form").addEventListener("submit", function (e) {
-        e.preventDefault();
+        e.preventDefault(); // Previene l'invio del form
 
         const inputField = document.querySelector("input");
         const userMessage = inputField.value.trim();
 
-        if (userMessage === "") return;
+        if (userMessage === "") return; // Non inviare messaggi vuoti
 
-        addMessageToChat("User", userMessage);
-        const botResponse = getChatbotResponse(userMessage);
+        addMessageToChat("User", userMessage); // Aggiunge il messaggio dell'utente nella chat
+
+        const botResponse = getChatbotResponse(userMessage); // Ottiene la risposta del chatbot
 
         setTimeout(() => {
-            addMessageToChat("AI", botResponse);
+            addMessageToChat("AI", botResponse); // Aggiunge la risposta del chatbot nella chat
         }, 500);
 
         inputField.value = ""; // Resetta il campo di input
