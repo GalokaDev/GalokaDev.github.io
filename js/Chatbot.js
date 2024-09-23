@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (countdown < 0) {
                 clearInterval(countdownInterval);
-                window.location.href = "/teams"; // Redirect alla pagina Teams
+                window.location.href = "https://pokemmostats.com/Teams/"; // Redirect alla pagina Teams
             }
         }, 1000);
     }
