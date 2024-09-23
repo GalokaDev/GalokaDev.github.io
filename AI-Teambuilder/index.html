@@ -11,9 +11,57 @@
     <link rel="stylesheet" href="main.css">
     <title>Pokemmo Stats</title>
 </head>
-<body>
-    <div class="absolute inset-0 flex items-center justify-center">
-        <p class="text-3xl font-semibold text-white/80 opacity-0 animate-fadeIn">Here will be displayed<br>some instructions on how to use it.</p>
+<body class="bg-gray-900 text-white">
+
+    <!-- Contenitore per i form dei Pokémon -->
+    <div class="flex flex-col items-center justify-center min-h-screen p-4">
+        <h1 class="text-3xl font-bold mb-6">Inserisci la tua squadra Pokémon</h1>
+        
+        <!-- Box per inserire i Pokémon -->
+        <div id="team-container" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Box 1 -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-semibold mb-4">Pokémon 1</h2>
+                <input type="text" placeholder="Nome Pokémon" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <h3 class="text-lg mb-2">Mosse</h3>
+                <!-- Sottobox per le mosse -->
+                <input type="text" placeholder="Mossa 1" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Mossa 2" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Mossa 3" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Mossa 4" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+            </div>
+
+            <!-- Copia il box per i Pokémon successivi -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-semibold mb-4">Pokémon 2</h2>
+                <input type="text" placeholder="Nome Pokémon" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <h3 class="text-lg mb-2">Mosse</h3>
+                <input type="text" placeholder="Mossa 1" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Mossa 2" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Mossa 3" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+                <input type="text" placeholder="Mossa 4" class="w-full mb-2 p-2 rounded-lg bg-gray-700 text-white">
+            </div>
+
+            <!-- Ripeti per Pokémon 3, 4, 5, 6 -->
+
+            <!-- Dopo l'ultimo Pokémon aggiungi il bottone per il calcolo -->
+        </div>
+
+        <!-- Bottone per eseguire il calcolo -->
+        <button id="calculate" class="mt-6 bg-green-600 p-3 rounded-lg font-semibold">Calcola Squadra</button>
+
+        <!-- Risultato del calcolo -->
+        <div id="result" class="mt-6 text-xl font-bold"></div>
     </div>
-    <script src="https://pokemmostats.com/js/nav.js"></script>
+
+    <script>
+        // Funzione per calcolare la squadra (simulata per esempio)
+        document.getElementById('calculate').addEventListener('click', function() {
+            // Esegui qui il calcolo basato sui valori inseriti dall'utente
+            let result = "La tua squadra è ben bilanciata!";
+            document.getElementById('result').innerText = result;
+        });
+    </script>
+
+</body>
 </html>
