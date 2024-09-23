@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { input: { ciao: 1 }, output: { hi: 1 } }, // Italiano: "ciao" -> "hi"
         { input: { "come stai": 1 }, output: { "I'm fine": 1 } }, // Italiano: "come stai" -> "I'm fine"
         { input: { grazie: 1 }, output: { "you're welcome": 1 } }, // Italiano: "grazie" -> "you're welcome"
+        { input: { team: 1 }, output: { "team_redirect": 1 } }, // Nuova regola per il team
     ];
 
     net.train(trainingData, {
