@@ -64,16 +64,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Funzione per ottenere la risposta
     function getChatbotResponse(input) {
-        const language = detectLanguage(input); // Rileva prima la lingua dell'input
+        const language = detectLanguage(input); // Rileva la lingua dell'input
         const formattedInput = formatInput(input); // Poi formatta l'input
         const result = net.run(formattedInput); // Usa il modello per ottenere il risultato
-        const response = getHighestConfidenceOutput(result);
+        const response = getHighestConfidenceOutput(result); // Ottieni la risposta con maggiore confidenza
     
         if (result[response] < 0.5) {
             return "Sorry, I don't understand.";
         }
     
-        // Ritorna la risposta nella lingua corretta
+        // Ritorna la risposta tradotta nella lingua rilevata
         return responses[language][response] || "Sorry, I don't understand.";
     }
 
