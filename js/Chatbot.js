@@ -51,6 +51,12 @@ document.addEventListener('DOMContentLoaded', function () {
         return response;
     }
 
+    // Funzione per inviare il messaggio iniziale
+    function sendInitialMessage() {
+        const initialMessage = "Hi, how can I help you today?"; // Messaggio iniziale
+        addMessageToChat("AI", initialMessage); // Aggiunge il messaggio nella chat come risposta dell'AI
+    }
+
     // Gestione invio messaggio
     const form = document.querySelector("form");
     form.addEventListener("submit", function (e) {
@@ -87,8 +93,9 @@ document.addEventListener('DOMContentLoaded', function () {
             <p class="leading-relaxed"><span class="block font-bold text-gray-700">${sender}</span>${message}</p>
         `;
         chatContainer.appendChild(newMessage);
-
-        // Scrolla verso il basso dopo aver aggiunto il nuovo messaggio
         chatContainer.scrollTop = chatContainer.scrollHeight;
     }
+
+    // Chiamata alla funzione per inviare il messaggio iniziale quando la chat è pronta
+    sendInitialMessage();
 });
