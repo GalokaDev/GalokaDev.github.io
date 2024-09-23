@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function addMessageToChat(sender, message) {
-        const chatContainer = document.querySelector(".pr-4");
+        const chatContainer = document.querySelector(".chat-messages"); // Modifica il selettore per usare la classe corretta
         const newMessage = document.createElement("div");
         newMessage.classList.add("flex", "gap-3", "my-4", "text-gray-600", "text-sm", "flex-1");
         newMessage.innerHTML = `
@@ -87,6 +87,8 @@ document.addEventListener('DOMContentLoaded', function () {
             <p class="leading-relaxed"><span class="block font-bold text-gray-700">${sender}</span>${message}</p>
         `;
         chatContainer.appendChild(newMessage);
+
+        // Scrolla verso il basso dopo aver aggiunto il nuovo messaggio
         chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 });
