@@ -18,7 +18,23 @@ body{
 
 
 
+/* Limita l'altezza dell'area dei messaggi e abilita lo scroll */
+.pr-4 {
+  height: calc(100% - 120px); /* Riduci l'altezza per tener conto della barra di input */
+  overflow-y: auto; /* Aggiunge lo scroll verticale */
+  padding-right: 1rem; /* Mantieni un po' di padding per la leggibilità */
+  box-sizing: border-box; /* Assicura che il padding sia incluso nelle dimensioni */
+}
 
+/* Assicura che la barra di input resti fissata in fondo */
+form {
+  position: relative; /* Posizione fissa per la barra di input */
+  bottom: 0;
+  width: 100%; /* Mantiene la barra di input a tutta larghezza */
+  background-color: white; /* Sfondo per visibilità */
+  padding-top: 10px; /* Spazio per separare un po' la chat dall'input */
+  z-index: 10; /* Assicura che resti sopra i messaggi */
+}
 
 
 
