@@ -1,7 +1,3 @@
-// Importa Google Translate Client
-const {Translate} = require('@google-cloud/translate').v2;
-const translate = new Translate();
-
 document.addEventListener('DOMContentLoaded', function () {
     const net = new brain.NeuralNetwork({
         hiddenLayers: [3]
@@ -24,20 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
         learningRate: 0.3
     });
 
-    async function translateInput(input, targetLanguage) {
-        try {
-            const [translatedText] = await translate.translate(input, targetLanguage);
-            return translatedText;
-        } catch (error) {
-            console.error('Errore nella traduzione:', error);
-            return input; // In caso di errore nella traduzione, ritorna l'input originale
-        }
-    }
-
-    async function getChatbotResponse(input) {
-        // Traduzione dell'input in inglese (o la lingua che preferisci)
-        const translatedInput = await translateInput(input, 'en');
-        const formattedInput = formatInput(translatedInput);
+    function getChatbotResponse(input) {
+        const formattedInput = formatInput(input);
         const result = net.run(formattedInput);
         const response = getHighestConfidenceOutput(result);
 
@@ -68,26 +52,28 @@ document.addEventListener('DOMContentLoaded', function () {
         return response;
     }
 
+    // Funzione per il countdown e il redirect
     function startCountdown() {
         let countdown = 5;
         const countdownInterval = setInterval(() => {
-            addMessageToChat("AI", countdown);
+            addMessageToChat("AI", countdown); // Mostra il conto alla rovescia
             countdown--;
 
             if (countdown < 0) {
                 clearInterval(countdownInterval);
-                window.location.href = "/teams";
+                window.location.href = "https://pokemmostats.com/Teams/"; // Redirect alla pagina Teams
             }
         }, 1000);
     }
 
+    // Funzione per inviare il messaggio iniziale
     function sendInitialMessage() {
         const initialMessage = "Hi, how can I help you today?";
         addMessageToChat("AI", initialMessage);
     }
 
     const form = document.querySelector("form");
-    form.addEventListener("submit", async function (e) {
+    form.addEventListener("submit", function (e) {
         e.preventDefault();
 
         const inputField = form.querySelector("input");
@@ -97,11 +83,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         addMessageToChat("User", userMessage);
 
-        const botResponse = await getChatbotResponse(userMessage);
+        const botResponse = getChatbotResponse(userMessage);
 
         if (botResponse === "team_redirect") {
             addMessageToChat("AI", "Certo.. Ti reindirizzo subito sulla pagina dei team!");
-            startCountdown();
+            startCountdown(); // Avvia il countdown
         } else {
             setTimeout(() => {
                 addMessageToChat("AI", botResponse);
