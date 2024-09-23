@@ -1,10 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Inizializza la rete neurale
     const net = new brain.NeuralNetwork({
         hiddenLayers: [3]
     });
 
-    // Dati di allenamento
     const trainingData = [
         { input: { hello: 1 }, output: { hi: 1 } },
         { input: { "how are you": 1 }, output: { "I'm fine": 1 } },
@@ -13,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
         { input: { thanks: 1 }, output: { "you're welcome": 1 } },
     ];
 
-    // Allena la rete neurale
     net.train(trainingData, {
         iterations: 1000,
         errorThresh: 0.005,
@@ -22,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
         learningRate: 0.3
     });
 
-    // Funzione per ottenere la risposta del chatbot
     function getChatbotResponse(input) {
         const formattedInput = formatInput(input);
         const result = net.run(formattedInput);
@@ -56,10 +52,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Gestione invio messaggio
-    document.querySelector("form").addEventListener("submit", function (e) {
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function (e) {
         e.preventDefault(); // Previene l'invio del form
 
-        const inputField = document.querySelector("input");
+        const inputField = form.querySelector("input");
         const userMessage = inputField.value.trim();
 
         if (userMessage === "") return; // Non inviare messaggi vuoti
@@ -75,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
         inputField.value = ""; // Resetta il campo di input
     });
 
-    // Funzione per aggiungere un messaggio alla chat
     function addMessageToChat(sender, message) {
         const chatContainer = document.querySelector(".pr-4");
         const newMessage = document.createElement("div");
