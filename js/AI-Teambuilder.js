@@ -1,44 +1,64 @@
-const chatContainer = document.querySelector('.messages');
-        const form = document.querySelector('form');
-        const input = form.querySelector('input');
+// Inizializza la rete neurale di Brain.js
+const net = new brain.NeuralNetwork();
 
-        // Funzione per aggiungere messaggi nella chat
-        function addMessage(author, text) {
-            const messageDiv = document.createElement('div');
-            messageDiv.innerHTML = `<strong>${author}:</strong> ${text}`;
-            chatContainer.appendChild(messageDiv);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
+// Funzione per addestrare il modello con esempi personalizzati
+function trainBot(trainingData) {
+    net.train(trainingData, {
+        log: true,          // Mostra log durante l'allenamento
+        logPeriod: 100,     // Mostra log ogni 100 iterazioni
+        iterations: 2000,   // Numero di iterazioni
+        errorThresh: 0.005  // Soglia di errore
+    });
+}
 
-        // Creiamo un'istanza di una rete neurale di Brain.js
-        const net = new brain.NeuralNetwork();
+// Dati di allenamento di esempio (puoi modificarli)
+const trainingData = [
+    { input: { hi: 1 }, output: { greeting: 1 } },
+    { input: { hello: 1 }, output: { greeting: 1 } },
+    { input: { how: 1, are: 1, you: 1 }, output: { status: 1 } },
+    { input: { what: 1, is: 1, your: 1, name: 1 }, output: { name: 1 } }
+];
 
-        // Addestriamo la rete neurale con semplici esempi
-        net.train([
-            { input: { domanda: "miglior team pokemon" }, output: { risposta: "Il miglior team dipende dal tuo stile di gioco!" } },
-            { input: { domanda: "tipo più forte" }, output: { risposta: "Il tipo Drago è considerato tra i più forti!" } },
-            { input: { domanda: "vantaggi di fuoco" }, output: { risposta: "I Pokémon di tipo Fuoco sono forti contro Erba, Coleottero, e Ghiaccio." } },
-            { input: { domanda: "svantaggi di acqua" }, output: { risposta: "I Pokémon di tipo Acqua sono deboli contro Elettro e Erba." } },
-            { input: { domanda: "consigli per battaglie competitive" }, output: { risposta: "Bilancia il tuo team e fai attenzione ai tipi avversari!" } },
-        ]);
+// Addestra il modello
+trainBot(trainingData);
 
-        // Funzione per ottenere una risposta dall'IA
-        function getResponse(question) {
-            const output = net.run({ domanda: question.toLowerCase() });
-            return output.risposta ? output.risposta : "Mi dispiace, non ho una risposta a questa domanda.";
-        }
+// Funzione per ricevere una risposta dal bot
+function getBotResponse(userMessage) {
+    const words = userMessage.toLowerCase().split(' ');
+    let input = {};
 
-        // Gestione dell'invio del messaggio
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const message = input.value.trim();
-            if (message) {
-                addMessage('You', message);
+    // Prepara l'input per la rete neurale
+    words.forEach(word => input[word] = 1);
 
-                // Ottenere una risposta dall'IA
-                const aiResponse = getResponse(message);
-                addMessage('AI', aiResponse);
+    const result = net.run(input);
 
-                input.value = '';
-            }
-        });
+    // Analizza il risultato e restituisce una risposta
+    if (result.greeting) {
+        return "Hello! How can I assist you?";
+    } else if (result.status) {
+        return "I'm doing well, thanks for asking!";
+    } else if (result.name) {
+        return "I am Galoka, your friendly assistant.";
+    } else {
+        return "I'm not sure how to respond to that.";
+    }
+}
+
+// Funzione per gestire l'invio del messaggio
+document.getElementById('sendMessage').addEventListener('click', function () {
+    const userInput = document.getElementById('userInput').value;
+    const botResponse = getBotResponse(userInput);
+
+    // Aggiungi il messaggio dell'utente e la risposta del bot nella chat
+    const chatMessages = document.getElementById('chatMessages');
+    const userMessageHtml = `<div class="flex gap-3 my-4 text-gray-600 text-sm flex-1">
+                                <p class="leading-relaxed"><span class="block font-bold text-gray-700">You: </span>${userInput}</p>
+                             </div>`;
+    const botMessageHtml = `<div class="flex gap-3 my-4 text-gray-600 text-sm flex-1">
+                                <p class="leading-relaxed"><span class="block font-bold text-gray-700">AI: </span>${botResponse}</p>
+                            </div>`;
+    chatMessages.innerHTML += userMessageHtml + botMessageHtml;
+
+    // Pulisci l'input dell'utente
+    document.getElementById('userInput').value = '';
+});
