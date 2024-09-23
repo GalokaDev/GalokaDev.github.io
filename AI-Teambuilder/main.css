@@ -10,6 +10,11 @@ body{
   background: #16162e;
 }
 
+/* Aggiungiamo lo stile per la scrollbar */
+.chat-messages {
+  overflow-y: auto;
+  scroll-behavior: smooth; /* Per un effetto di scorrimento fluido */
+}
 
 
 
