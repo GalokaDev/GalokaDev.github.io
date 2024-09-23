@@ -85,12 +85,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Icona per l'utente
         let userIcon = `
-            <div class="rounded-full bg-blue-100 border p-1">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-blue-500">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 18.364l-1.415-1.415a2 2 0 010-2.828l8.485-8.485a2 2 0 012.828 0l1.414 1.414a2 2 0 010 2.828l-8.485 8.485a2 2 0 01-2.828 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11h.01" />
+            <div class="rounded-full bg-gray-100 border p-1">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12c2.131 0 4-1.869 4-4s-1.869-4-4-4-4 1.869-4 4 1.869 4 4 4zm0 2c-2.67 0-8 1.336-8 4v2h16v-2c0-2.664-5.33-4-8-4z"></path>
                 </svg>
             </div>
+
         `;
 
         // Icona per l'AI (rimane invariata)
