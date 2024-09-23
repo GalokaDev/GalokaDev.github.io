@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
         hiddenLayers: [3]
     });
 
-    // Dati di addestramento multilingua (italiano, francese, inglese)
+    // Dati di addestramento
     const trainingData = [
         { input: { hello: 1 }, output: { hi: 1 } },
         { input: { "how are you": 1 }, output: { "I'm fine": 1 } },
@@ -11,20 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
         { input: { bye: 1 }, output: { goodbye: 1 } },
         { input: { thanks: 1 }, output: { "you're welcome": 1 } },
         { input: { team: 1 }, output: { "team_redirect": 1 } },
-        // Italiano
-        { input: { ciao: 1 }, output: { hi: 1 } },
-        { input: { "come stai": 1 }, output: { "I'm fine": 1 } },
-        { input: { "qual è il tuo nome": 1 }, output: { "I'm a bot": 1 } },
-        { input: { arrivederci: 1 }, output: { goodbye: 1 } },
-        { input: { grazie: 1 }, output: { "you're welcome": 1 } },
-        { input: { squadra: 1 }, output: { "team_redirect": 1 } },
-        // Francese
-        { input: { bonjour: 1 }, output: { hi: 1 } },
-        { input: { "comment ça va": 1 }, output: { "I'm fine": 1 } },
-        { input: { "quel est ton nom": 1 }, output: { "I'm a bot": 1 } },
-        { input: { au revoir: 1 }, output: { goodbye: 1 } },
-        { input: { merci: 1 }, output: { "you're welcome": 1 } },
-        { input: { équipe: 1 }, output: { "team_redirect": 1 } },
     ];
 
     net.train(trainingData, {
@@ -168,7 +154,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 </svg>
             </div>
         `;
-
 
         let aiIcon = `
             <div class="rounded-full bg-gray-100 border p-1">
