@@ -39,14 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
             "goodbye": "Arrivederci!",
             "you're welcome": "Prego!",
             "team_redirect": "Certo, ti reindirizzo subito sulla pagina dei team."
-        },
-        fr: {
-            "hi": "Bonjour!",
-            "I'm fine": "Je vais bien, merci!",
-            "I'm a bot": "Je suis un bot.",
-            "goodbye": "Au revoir!",
-            "you're welcome": "De rien!",
-            "team_redirect": "Bien sûr, je vais vous rediriger vers la page des équipes."
         }
     };
 
@@ -55,8 +47,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const lowerInput = input.toLowerCase();
         if (lowerInput.includes("ciao") || lowerInput.includes("come stai")) {
             return 'it';
-        } else if (lowerInput.includes("bonjour") || lowerInput.includes("comment ça va")) {
-            return 'fr';
         } else {
             return 'en'; // Inglese di default
         }
