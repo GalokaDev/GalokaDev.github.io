@@ -3,14 +3,15 @@ document.addEventListener('DOMContentLoaded', function () {
         hiddenLayers: [3]
     });
 
-    // Dati di addestramento
     const trainingData = [
         { input: { hello: 1 }, output: { hi: 1 } },
         { input: { "how are you": 1 }, output: { "I'm fine": 1 } },
         { input: { "what's your name": 1 }, output: { "I'm a bot": 1 } },
         { input: { bye: 1 }, output: { goodbye: 1 } },
         { input: { thanks: 1 }, output: { "you're welcome": 1 } },
-        { input: { team: 1 }, output: { "team_redirect": 1 } },
+        { input: { ciao: 1 }, output: { hi: 1 } }, // Italiano: "ciao" -> "hi"
+        { input: { "come stai": 1 }, output: { "I'm fine": 1 } }, // Italiano: "come stai" -> "I'm fine"
+        { input: { grazie: 1 }, output: { "you're welcome": 1 } }, // Italiano: "grazie" -> "you're welcome"
     ];
 
     net.train(trainingData, {
@@ -63,23 +64,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Funzione per ottenere la risposta
     function getChatbotResponse(input) {
-        const formattedInput = formatInput(input);
-        const result = net.run(formattedInput);
+        const language = detectLanguage(input); // Rileva prima la lingua dell'input
+        const formattedInput = formatInput(input); // Poi formatta l'input
+        const result = net.run(formattedInput); // Usa il modello per ottenere il risultato
         const response = getHighestConfidenceOutput(result);
-
+    
         if (result[response] < 0.5) {
             return "Sorry, I don't understand.";
         }
-
-        const language = detectLanguage(input); // Rileva la lingua dell'input
+    
+        // Ritorna la risposta nella lingua corretta
         return responses[language][response] || "Sorry, I don't understand.";
     }
 
     // Funzione per formattare l'input
     function formatInput(input) {
         const formattedInput = {};
-        const words = input.toLowerCase();
-        formattedInput[words] = 1; // Prendi l'intera frase come input
+        const words = input.toLowerCase().split(" "); // Separiamo l'input in singole parole
+        words.forEach(word => {
+            if (word) {
+                formattedInput[word] = 1; // Ogni parola individuale è considerata come una caratteristica
+            }
+        });
         return formattedInput;
     }
 
