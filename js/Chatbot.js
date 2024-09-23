@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
             "team_redirect": "Sure, I will redirect you to the teams page shortly."
         },
         it: {
-            "hi": "Ciao!",
+            "hi": "Ciao diocane!",
             "I'm fine": "Sto bene, grazie!",
             "I'm a bot": "Sono un bot.",
             "goodbye": "Arrivederci!",
