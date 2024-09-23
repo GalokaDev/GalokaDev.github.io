@@ -23,7 +23,7 @@ body{
   height: calc(100% - 120px); /* Spazio per la barra di input */
   overflow-y: auto; /* Aggiunge lo scroll verticale */
   padding-right: 1rem; /* Mantieni il padding per la leggibilità */
-  padding-bottom: 80px; /* Spazio sufficiente per evitare la sovrapposizione */
+  padding-bottom: 5px; /* Spazio sufficiente per evitare la sovrapposizione */
   box-sizing: border-box; /* Assicura che il padding sia incluso nelle dimensioni */
 }
 
@@ -35,8 +35,8 @@ form {
   background-color: white; /* Sfondo per visibilità */
   z-index: 10; /* Assicura che rimanga sopra i messaggi */
   border-top: 1px solid #e5e7eb; /* Aggiungi un bordo superiore per separazione visiva */
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 
