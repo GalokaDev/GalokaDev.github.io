@@ -35,8 +35,8 @@ form {
   background-color: white; /* Sfondo per visibilità */
   z-index: 10; /* Assicura che rimanga sopra i messaggi */
   border-top: 1px solid #e5e7eb; /* Aggiungi un bordo superiore per separazione visiva */
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
 
 
