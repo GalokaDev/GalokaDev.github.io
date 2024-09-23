@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { input: { "what's your name": 1 }, output: { "I'm a bot": 1 } },
         { input: { bye: 1 }, output: { goodbye: 1 } },
         { input: { thanks: 1 }, output: { "you're welcome": 1 } },
+        { input: { team: 1 }, output: { "team_redirect": 1 } }, // Nuova regola per il team
     ];
 
     net.train(trainingData, {
@@ -51,49 +52,64 @@ document.addEventListener('DOMContentLoaded', function () {
         return response;
     }
 
-    // Funzione per inviare il messaggio iniziale
-    function sendInitialMessage() {
-        const initialMessage = "Hi, how can I help you today?"; // Messaggio iniziale
-        addMessageToChat("AI", initialMessage); // Aggiunge il messaggio nella chat come risposta dell'AI
+    // Funzione per il countdown e il redirect
+    function startCountdown() {
+        let countdown = 5;
+        const countdownInterval = setInterval(() => {
+            addMessageToChat("AI", countdown); // Mostra il conto alla rovescia
+            countdown--;
+
+            if (countdown < 0) {
+                clearInterval(countdownInterval);
+                window.location.href = "/teams"; // Redirect alla pagina Teams
+            }
+        }, 1000);
     }
 
-    // Gestione invio messaggio
+    // Funzione per inviare il messaggio iniziale
+    function sendInitialMessage() {
+        const initialMessage = "Hi, how can I help you today?";
+        addMessageToChat("AI", initialMessage);
+    }
+
     const form = document.querySelector("form");
     form.addEventListener("submit", function (e) {
-        e.preventDefault(); // Previene l'invio del form
+        e.preventDefault();
 
         const inputField = form.querySelector("input");
         const userMessage = inputField.value.trim();
 
-        if (userMessage === "") return; // Non inviare messaggi vuoti
+        if (userMessage === "") return;
 
-        addMessageToChat("User", userMessage); // Aggiunge il messaggio dell'utente nella chat
+        addMessageToChat("User", userMessage);
 
-        const botResponse = getChatbotResponse(userMessage); // Ottiene la risposta del chatbot
+        const botResponse = getChatbotResponse(userMessage);
 
-        setTimeout(() => {
-            addMessageToChat("AI", botResponse); // Aggiunge la risposta del chatbot nella chat
-        }, 500);
+        if (botResponse === "team_redirect") {
+            addMessageToChat("AI", "Certo.. Ti reindirizzo subito sulla pagina dei team!");
+            startCountdown(); // Avvia il countdown
+        } else {
+            setTimeout(() => {
+                addMessageToChat("AI", botResponse);
+            }, 500);
+        }
 
-        inputField.value = ""; // Resetta il campo di input
+        inputField.value = "";
     });
 
     function addMessageToChat(sender, message) {
-        const chatContainer = document.querySelector(".chat-messages"); // Modifica il selettore per usare la classe corretta
+        const chatContainer = document.querySelector(".chat-messages");
         const newMessage = document.createElement("div");
         newMessage.classList.add("flex", "gap-3", "my-4", "text-gray-600", "text-sm", "flex-1");
 
-        // Icona per l'utente
         let userIcon = `
             <div class="rounded-full bg-gray-100 border p-1">
                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 12c2.131 0 4-1.869 4-4s-1.869-4-4-4-4 1.869-4 4 1.869 4 4 4zm0 2c-2.67 0-8 1.336-8 4v2h16v-2c0-2.664-5.33-4-8-4z"></path>
                 </svg>
             </div>
-
         `;
 
-        // Icona per l'AI (rimane invariata)
         let aiIcon = `
             <div class="rounded-full bg-gray-100 border p-1">
                 <svg stroke="none" fill="black" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true" height="20" width="20">
@@ -102,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         `;
 
-        let icon = sender === "User" ? userIcon : aiIcon; // Determina quale icona mostrare
+        let icon = sender === "User" ? userIcon : aiIcon;
 
         newMessage.innerHTML = `
             <span class="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8">
@@ -114,6 +130,5 @@ document.addEventListener('DOMContentLoaded', function () {
         chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
-    // Chiamata alla funzione per inviare il messaggio iniziale quando la chat è pronta
     sendInitialMessage();
 });
