@@ -1,242 +1,133 @@
-// Mappa delle debolezze e resistenze dei Pokémon rispetto ai vari tipi
-const typeChart = {
-    "Scizor": { "superweak": ["fire"], "weaknesses": [], "resistances": ["normal", "grass", "ice", "bug", "steel", "psychic", "dragon"], "immunities": [] },
-    "Garchomp": { "superweak": ["ice"], "weaknesses": ["dragon"], "resistances": ["fire", "poison", "rock"], "immunities": ["electric"] },
-    "Gallade": { "superweak": [], "weaknesses": ["flying", "ghost"], "resistances": ["fighting", "rock"], "immunities": [] },
-    "Zapdos": { "superweak": [], "weaknesses": ["rock", "ice"], "resistances": ["fighting", "flying", "bug", "steel", "grass"], "immunities": ["ground"] },
-    "Serperior": { "superweak": [], "weaknesses": ["fire", "ice", "flying", "bug"], "resistances": ["water", "grass", "electric", "ground"], "immunities": [] },
-    "Jellicent": { "superweak": [], "weaknesses": ["ghost", "dark", "grass", "electric"], "resistances": ["water", "ice", "fire", "poison", "steel", "bug"], "immunities": ["normal", "fighting"] },
-    "Weezing": { "superweak": [], "weaknesses": ["psychic", "ground"], "resistances": ["fighting", "poison", "bug", "grass"], "immunities": [] },
-    "Mamoswine": { "superweak": [], "weaknesses": ["fire", "fighting", "water", "grass", "steel"], "resistances": ["poison"], "immunities": ["electric"] },
-    "Dragonite": { "superweak": ["ice"], "weaknesses": ["dragon", "rock"], "resistances": ["fire", "water", "grass", "fighting", "bug"], "immunities": ["ground"] },
-    "Tyranitar": { "superweak": [], "weaknesses": ["fighting", "ground", "bug", "steel", "water", "grass"], "resistances": ["normal", "flying", "poison", "ghost", "fire", "dark"], "immunities": ["psychic"] },
-    "Rotom-Wash": { "superweak": [], "weaknesses": ["grass"], "resistances": ["flying", "steel", "fire", "water", "ice"], "immunities": ["ground"] },
-    "Gliscor": { "superweak": ["ice"], "weaknesses": ["water"], "resistances": ["fighting", "poison", "bug"], "immunities": ["electric", "ground"] },
-    "Starmie": { "superweak": [], "weaknesses": ["electric", "grass", "bug", "ghost", "dark"], "resistances": ["fire", "water", "ice", "steel"], "immunities": [] },
-    "Hydreigon": { "superweak": [], "weaknesses": ["bug", "fighting", "ice", "dragon"], "resistances": ["fire", "water", "grass", "electric", "psychic", "ghost", "dark"], "immunities": ["ground"] },
-    "Excadrill": { "superweak": [], "weaknesses": ["fire", "water", "fighting", "ground"], "resistances": ["normal", "flying", "rock", "bug", "steel", "psychic", "poison"], "immunities": ["electric"] },
-    "Chansey": { "superweak": [], "weaknesses": ["fighting"], "resistances": [], "immunities": ["ghost"] },
-    "Volcarona": { "superweak": ["rock"], "weaknesses": ["water", "flying"], "resistances": ["fighting", "bug", "steel", "grass", "ice"], "immunities": [] },
-    "Breloom": { "superweak": [], "weaknesses": ["fire", "ice", "flying", "psychic"], "resistances": ["water", "grass", "electric", "ground", "rock"], "immunities": [] },
-    "Skarmory": { "super weak": [], "weaknesses": ["fire", "electric"], "resistances": ["normal", "flying", "bug", "steel", "grass", "psychic", "dragon", "rock"], "immunities": ["poison", "ground"] },
-    "Reuniclus": { "superweak": [], "weaknesses": ["bug", "ghost", "dark"], "resistances": ["fighting", "psychic"], "immunities": [] },
-    "Pelipper": { "superweak": [], "weaknesses": ["electric", "rock"], "resistances": ["fighting", "bug", "steel", "fire", "water", "ice"], "immunities": ["ground"] },
-    "Conkeldurr": { "superweak": [], "weaknesses": ["flying", "psychic"], "resistances": ["bug", "rock", "dark"], "immunities": [] },
-    "Crawdaunt": { "superweak": [], "weaknesses": ["electric", "fighting", "grass", "bug"], "resistances": ["ghost", "steel", "water", "ice", "dark"], "immunities": ["psychic"] },
-    "Metagross": { "superweak": [], "weaknesses": ["fire", "ground", "ghost", "dark"], "resistances": ["normal", "flying", "rock", "steel", "psychic", "ice", "grass", "dragon"], "immunities": ["poison"] },
-    "Gengar": { "superweak": [], "weaknesses": ["ghost", "psychic", "dark"], "resistances": ["grass", "bug", "poison"], "immunities": ["normal", "fighting"] },
-    "Amoonguss": { "superweak": [], "weaknesses": ["fire", "ice", "flying", "bug", "psychic"], "resistances": ["water", "electric", "grass", "ground"], "immunities": [] },
-    "Mienshao": { "superweak": [], "weaknesses": ["flying", "psychic"], "resistances": ["rock", "dark", "bug"], "immunities": [] },
-    "Infernape": { "superweak": [], "weaknesses": ["water", "ground", "flying", "psychic"], "resistances": ["bug", "steel", "fire", "grass", "ice", "dark"], "immunities": [] },
-    "Suicune": { "superweak": [], "weaknesses": ["electric", "grass"], "resistances": ["fire", "water", "ice", "steel"], "immunities": [] },
-    "Chandelure": { "superweak": [], "weaknesses": ["water", "rock", "ghost", "dark"], "resistances": ["fire", "grass", "ice", "bug", "steel", "poison"], "immunities": ["fighting", "normal"] },
-    "Magnezone": { "superweak": [], "weaknesses": ["fire", "fighting", "ground"], "resistances": ["normal", "flying", "rock", "bug", "steel", "psychic", "ice", "dragon", "grass", "electric"], "immunities": ["poison"] },
-    "Bronzong": { "superweak": [], "weaknesses": ["fire", "ghost", "dark"], "resistances": ["normal", "flying", "rock", "bug", "steel", "psychic", "grass", "ice"], "immunities": ["poison"], "conditional_immunities": { "ground": "if Levitate" } },
-    "Darmanitan": { "superweak": [], "weaknesses": ["water", "ground", "rock"], "resistances": ["bug", "steel", "fire", "grass", "ice"], "immunities": [] },
-    "Empoleon": { "superweak": [], "weaknesses": ["electric", "ground", "fighting"], "resistances": ["normal", "flying", "poison", "bug", "steel", "ice", "dragon", "water"], "immunities": [] },
-    "Tentacruel": { "superweak": [], "weaknesses": ["electric", "psychic", "ground"], "resistances": ["water", "ice", "fire", "fighting", "bug", "steel", "poison"], "immunities": [] },
-    "Weavile": { "superweak": ["fighting"], "weaknesses": ["fire", "bug", "steel", " rock"], "resistances": ["ghost", "ice", "dark"], "immunities": ["psychic"] },
-    "Ferrothorn": { "superweak": ["fire"], "weaknesses": ["fighting"], "resistances": ["normal", "water", "grass", "electric", "rock", "steel", "psychic", "dragon"], "immunities": ["poison"] },
-    "Kingdra": { "superweak": [], "weaknesses": ["dragon"], "resistances": ["water", "fire", "steel"], "immunities": [] },
-    "Porygon2": { "superweak": [], "weaknesses": ["fighting"], "resistances": [], "immunities": ["ghost"] },
-    "Gyarados": { "superweak": ["electric"], "weaknesses": ["rock"], "resistances": ["bug", "fire", "water", "steel", "fighting"], "immunities": ["ground"] },
-    "Gastrodon": { "superweak": ["grass"], "weaknesses": [], "resistances": ["water", "ice", "steel", "poison"], "immunities": ["electric"] },
-    "Espeon": { "superweak": [], "weaknesses": ["bug", "dark"], "resistances": ["fighting", "psychic"], "immunities": [] },
-    "Torkoal": { "superweak": [], "weaknesses": ["water", "rock"], "resistances": ["normal", "fire", "poison", "bug", "steel"], "immunities": [] },
-    "Porygon-z": { "superweak": [], "weaknesses": ["fighting", "bug"], "resistances": ["normal", "grass", "ice", "electric", "psychic"], "immunities": ["ghost"] },
-    "Lucario": { "superweak": [], "weaknesses": ["fighting", "flying"], "resistances": ["bug", "steel", "psychic"], "immunities": [] },
-    "Sableye": { "superweak": [], "weaknesses": [], "resistances": ["normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dark", "steel", "dragon"], "immunities": [] },
-    "Kabutops": { "superweak": [], "weaknesses": ["electric", "rock"], "resistances": ["normal", "water", "ice", "poison", "bug"], "immunities": [] },
-    "Cofagrigus": { "superweak": [], "weaknesses": ["ghost", "dark"], "resistances": ["normal", "grass", "poison", "bug"], "immunities": ["fighting", "ground"] },
-    "Cloyster": { "superweak": [], "weaknesses": ["electric", "rock"], "resistances": ["normal", "water", "ice", "poison", "bug"], "immunities": [] },
-    "Blissey": { "superweak": [], "weaknesses": ["fighting"], "resistances": ["normal", "grass", "ice"], "immunities": ["ghost"] },
-    "Venusaur": { "superweak": [], "weaknesses": ["fire", "flying", "psychic", "ice"], "resistances": ["water", "electric", "grass", "ground"], "immunities": [] },
-    "Ditto": { "superweak": [], "weaknesses": [], "resistances": [], "immunities": [] },
-    "Raikou": { "superweak": [], "weaknesses": ["ground"], "resistances": ["normal", "flying", "bug", "steel", "electric"], "immunities": [] },
-    "Entei": { "superweak": [], "weaknesses": ["water", "rock"], "resistances": ["normal", "fire", "poison", "bug", "steel"], "immunities": [] },
-    "Staraptor": { "superweak": [], "weaknesses": ["electric", "rock"], "resistances": ["normal", "flying", "bug", "steel"], "immunities": [] },
-    "Poliwrath": { "superweak": [], "weaknesses": ["electric", "flying"], "resistances": ["normal", "water", "ice", "poison", "bug"], "immunities": [] },
-    "Feraligatr": { "superweak ": [], "weaknesses": ["electric"], "resistances": ["normal", "water", "ice", "poison", "bug"], "immunities": [] },
-    "Togekiss": { "superweak": [], "weaknesses": ["electric", "poison"], "resistances": ["normal", "flying", "bug", "steel"], "immunities": [] },
-    "Salamence": { "superweak": [], "weaknesses": ["ice", "rock"], "resistances": ["normal", "fire", "poison", "bug", "steel", "dragon"], "immunities": [] },
-    "Mandibuzz": { "superweak": [], "weaknesses": ["electric", "rock"], "resistances": ["normal", "flying", "bug", "steel", "dark"], "immunities": [] },
-    "Jolteon": { "superweak": [], "weaknesses": ["ground"], "resistances": ["normal", "flying", "bug", "steel", "electric"], "immunities": [] },
-    "Milotic": { "superweak": [], "weaknesses": ["electric"], "resistances": ["normal", "water", "ice", "poison", "bug"], "immunities": [] }
-};
-const types = ["normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel"];
-const hazardRemovalMoves = ["defog", "rapid spin"];
-const switchMoves = ["volt switch", "u-turn", "teleport", "baton pass"];
-
-document.getElementById('calculate').addEventListener('click', function() {
+document.getElementById('calculate').addEventListener('click', () => {
     const team = [];
-    
-    for (let i = 1; i <= 6; i++) {
-        let pokemon = document.getElementById(`pokemon-${i}`).value;
-        let moves = [];
+    const teamSize = 6;
+
+    // Funzione per ottenere i dati del Pokémon e delle sue mosse
+    for (let i = 1; i <= teamSize; i++) {
+        const pokemon = document.getElementById(`pokemon-${i}`).value;
+        const moves = [
+            document.getElementById(`move-${i}-1`).value,
+            document.getElementById(`move-${i}-2`).value,
+            document.getElementById(`move-${i}-3`).value,
+            document.getElementById(`move-${i}-4`).value
+        ];
         
-        for (let j = 1; j <= 4; j++) {
-            let move = document.getElementById(`move-${i}-${j}`).value;
-            if (move) {
-                moves.push(move);
-            }
-        }
-        
-        // Se il nome del Pokémon non è vuoto, aggiungi al team
         if (pokemon) {
-            team.push({ name: pokemon, moves: moves });
+            team.push({ name: pokemon, moves, tags: [] });
         }
     }
 
-    // Identifica il tipo di team creato dall'utente
-    let teamType = identifyTeamType(team);
+    // Mappa delle debolezze/resistenze per ogni tipo
+    const typeChart = {
+        normal: { weakTo: ['fighting'], resistantTo: [] },
+        fire: { weakTo: ['water', 'ground', 'rock'], resistantTo: ['fire', 'grass', 'ice', 'bug', 'steel', 'fairy'] },
+        water: { weakTo: ['electric', 'grass'], resistantTo: ['fire', 'water', 'ice', 'steel'] },
+        electric: { weakTo: ['ground'], resistantTo: ['electric', 'flying', 'steel'] },
+        grass: { weakTo: ['fire', 'ice', 'poison', 'flying', 'bug'], resistantTo: ['water', 'electric', 'grass', 'ground'] },
+        ice: { weakTo: ['fire', 'fighting', 'rock', 'steel'], resistantTo: ['ice'] },
+        fighting: { weakTo: ['flying', 'psychic', 'fairy'], resistantTo: ['bug', 'rock', 'dark'] },
+        poison: { weakTo: ['ground', 'psychic'], resistantTo: ['grass', 'fighting', 'poison', 'bug', 'fairy'] },
+        ground: { weakTo: ['water', 'ice', 'grass'], resistantTo: ['poison', 'rock'], immuneTo: ['electric'] },
+        flying: { weakTo: ['electric', 'ice', 'rock'], resistantTo: ['grass', 'fighting', 'bug'], immuneTo: ['ground'] },
+        psychic: { weakTo: ['bug', 'ghost', 'dark'], resistantTo: ['fighting', 'psychic'] },
+        bug: { weakTo: ['fire', 'flying', 'rock'], resistantTo: ['grass', 'fighting', 'ground'] },
+        rock: { weakTo: ['water', 'grass', 'fighting', 'ground', 'steel'], resistantTo: ['normal', 'fire', 'poison', 'flying'] },
+        ghost: { weakTo: ['ghost', 'dark'], resistantTo: ['poison', 'bug'], immuneTo: ['normal', 'fighting'] },
+        dragon: { weakTo: ['ice', 'dragon', 'fairy'], resistantTo: ['fire', 'water', 'electric', 'grass'] },
+        dark: { weakTo: ['fighting', 'bug', 'fairy'], resistantTo: ['ghost', 'dark'], immuneTo: ['psychic'] },
+        steel: { weakTo: ['fire', 'fighting', 'ground'], resistantTo: ['normal', 'grass', 'ice', 'flying', 'psychic', 'bug', 'rock', 'dragon', 'steel', 'fairy'], immuneTo: ['poison'] },
+        fairy: { weakTo: ['poison', 'steel'], resistantTo: ['fighting', 'bug', 'dark'], immuneTo: ['dragon'] }
+    };
 
-    // Calcola i suggerimenti e le richieste specifiche per il team
-    let result = calculateTeamResult(team, teamType);
+    // Funzione per assegnare i tag in base alle mosse
+    function assignTags(pokemon) {
+        const hazardMoves = ['stealthrock', 'spikes', 'toxicspikes'];
+        const hazardRemovalMoves = ['rapidspin', 'defog'];
+        const trickOrTauntMoves = ['trick', 'taunt'];
 
-    // Mostra il risultato nel div #result
-    document.getElementById('result').innerText = result;
-});
+        // Aggiungere tag in base alle mosse
+        if (pokemon.moves.some(move => hazardMoves.includes(move.toLowerCase()))) {
+            pokemon.tags.push('HazardSetter');
+        }
+        if (pokemon.moves.some(move => hazardRemovalMoves.includes(move.toLowerCase()))) {
+            pokemon.tags.push('HazardRemoval');
+        }
+        if (pokemon.moves.some(move => trickOrTauntMoves.includes(move.toLowerCase()))) {
+            pokemon.tags.push('TrickOrTaunt');
+        }
+    }
 
-// Funzione per identificare il tipo di team in base ai Pokémon inseriti
-function identifyTeamType(team) {
-    let sweeperCount = 0;
-    let wallbreakerCount = 0;
-    let stallbreakerCount = 0;
-    let wallCount = 0;
-    let pivotCount = 0;
-    let hazardRemovalCount = 0;
-    let hazardSetupCount = 0;
+    // Funzione per calcolare debolezze e resistenze del team
+    function calculateWeaknessesResistances(team) {
+        const weaknesses = {
+            normal: 0, fire: 0, water: 0, electric: 0, grass: 0, ice: 0, fighting: 0, poison: 0,
+            ground: 0, flying: 0, psychic: 0, bug: 0, rock: 0, ghost: 0, dragon: 0, dark: 0, steel: 0, fairy: 0
+        };
 
-    team.forEach(pokemon => {
-        pokemon.moves.forEach(move => {
-            // Conta le mosse chiave
-            if (['Stealth Rock', 'Spikes', 'Toxic Spikes'].includes(move)) {
-                hazardSetupCount++;
-            }
-            if (['Rapid Spin', 'Defog'].includes(move)) {
-                hazardRemovalCount++;
-            }
-            if (['Trick', 'Taunt'].includes(move)) {
-                stallbreakerCount++;
+        // Per ogni Pokémon del team, incrementa o decrementa i punteggi per ogni tipo
+        team.forEach(pokemon => {
+            // Ottieni le debolezze/resistenze del Pokémon
+            const weaknessesOfPokemon = typeChart[pokemon.name.toLowerCase()]; // Supponiamo che il nome corrisponda esattamente al tipo (modificabile con un database)
+            if (weaknessesOfPokemon) {
+                weaknessesOfPokemon.weakTo.forEach(type => weaknesses[type]++);
+                weaknessesOfPokemon.resistantTo.forEach(type => weaknesses[type]--);
+                if (weaknessesOfPokemon.immuneTo) {
+                    weaknessesOfPokemon.immuneTo.forEach(type => weaknesses[type]--);
+                }
             }
         });
 
-        // Aggiungi logica per classificare i ruoli dei Pokémon basata su un dataset (ipotizzato)
-        if (isSweeper(pokemon.name)) sweeperCount++;
-        if (isWallbreaker(pokemon.name)) wallbreakerCount++;
-        if (isPivotOrWall(pokemon.name)) wallCount++;
+        return weaknesses;
+    }
+
+    // Funzione per identificare il tipo di team
+    function evaluateTeam(team) {
+        let model = null;
+        const evaluation = {
+            hazards: false,
+            hazardRemoval: false,
+            trickOrTaunt: false,
+            rockWeak: false
+        };
+
+        // Assegnare tag ai Pokémon
+        team.forEach(pokemon => assignTags(pokemon));
+
+        // Calcolare debolezze e resistenze
+        const weaknesses = calculateWeaknessesResistances(team);
+
+        // Valutare bilanciamento delle debolezze
+        const weakTypes = Object.keys(weaknesses).filter(type => weaknesses[type] > 0);
+        const strongTypes = Object.keys(weaknesses).filter(type => weaknesses[type] < 0);
+
+        // Aggiungi logica per verificare se il team segue i modelli (come nella versione precedente)
+
+        return { model, weaknesses, strongTypes };
+    }
+
+    // Valutazione del team inserito
+    const { model, weaknesses, strongTypes } = evaluateTeam(team);
+
+    let resultText = "";
+
+    if (!model) {
+        resultText = "Il team inserito non corrisponde a nessun modello.\n";
+    } else {
+        resultText = `Il team corrisponde al modello: ${model}\n`;
+    }
+
+    // Mostra le debolezze principali del team
+    resultText += "Debolezze principali del team:\n";
+    Object.keys(weaknesses).forEach(type => {
+        if (weaknesses[type] > 0) {
+            resultText += `Il team ha ${weaknesses[type]} debolezza/e al tipo ${type}.\n`;
+        }
     });
 
-    // Logica per identificare il tipo di team
-    if (sweeperCount >= 2 && wallbreakerCount >= 1) {
-        if (team.some(p => isRockWeak(p.name))) {
-            return 'Hyper Offense (Rock Weak)';
-        }
-        return 'Hyper Offense';
-    } else if (wallCount >= 5) {
-        return 'Stall';
-    } else if (wallCount >= 4 && stallbreakerCount >= 1) {
-        return 'Semi-Stall';
-    } else if (sweeperCount <= 1 && wallbreakerCount >= 2) {
-        return 'Bulky Offense';
-    } else if (sweeperCount <= 1 && wallbreakerCount <= 2 && stallbreakerCount >= 1 && wallCount >= 2) {
-        return 'Balanced';
-    } else {
-        return 'Unidentified';
-    }
-}
-
-// Funzione che calcola suggerimenti o richieste basate sul tipo di team
-function calculateTeamResult(team, teamType) {
-    let result = `Team identified as: ${teamType}\n`;
-
-    switch (teamType) {
-        case 'Balanced':
-            if (!team.some(pokemon => hasHazardSetup(pokemon))) {
-                result += "Suggest: Add a Pokémon with Stealth Rock, Spikes, or Toxic Spikes.\n";
-            }
-            if (!team.some(pokemon => hasHazardRemoval(pokemon))) {
-                result += "Suggest: Add a Pokémon with Hazard Removal moves (e.g., Rapid Spin, Defog).\n";
-            }
-            break;
-
-        case 'Hyper Offense':
-            if (!team.some(pokemon => hasTrickOrTaunt(pokemon))) {
-                result += "Suggest: Add a Pokémon with Trick or Taunt.\n";
-            }
-            if (!team.some(pokemon => hasHazardSetup(pokemon))) {
-                result += "Suggest: Add a Pokémon with Stealth Rock, Spikes, or Toxic Spikes.\n";
-            }
-            if (teamType === 'Hyper Offense (Rock Weak)' && !team.some(pokemon => hasHazardRemoval(pokemon))) {
-                result += "Suggest: Add a Pokémon with Hazard Removal due to Rock Weakness.\n";
-            }
-            break;
-
-        case 'Bulky Offense':
-            if (!team.some(pokemon => hasHazardSetup(pokemon))) {
-                result += "Suggest: Add a Pokémon with Stealth Rock, Spikes, or Toxic Spikes.\n";
-            }
-            if (team.filter(p => hasHazardRemoval(p)).length > 1) {
-                result += "Note: Bulky Offense teams usually only need 0-1 Pokémon with Hazard Removal.\n";
-            }
-            break;
-
-        case 'Stall':
-            if (!team.some(pokemon => hasHazardSetup(pokemon))) {
-                result += "Suggest: Add a Pokémon with Stealth Rock, Spikes, or Toxic Spikes.\n";
-            }
-            if (team.filter(p => hasHazardRemoval(p)).length < 1) {
-                result += "Suggest: Add 1-2 Pokémon with Hazard Removal moves.\n";
-            }
-            break;
-
-        case 'Semi-Stall':
-            if (!team.some(pokemon => hasHazardSetup(pokemon))) {
-                result += "Suggest: Add a Pokémon with Stealth Rock, Spikes, or Toxic Spikes.\n";
-            }
-            break;
-
-        default:
-            result += "Team type not identified. Please check your Pokémon selection.\n";
-            break;
+    // Se il team è incompleto, suggerire di aggiungere più Pokémon
+    if (team.length < teamSize) {
+        resultText += `Mancano ${teamSize - team.length} Pokémon per completare il team.\n`;
     }
 
-    return result;
-}
-
-// Funzioni di supporto per identificare i ruoli dei Pokémon e le loro mosse
-
-function isSweeper(pokemonName) {
-    // Logica ipotetica per identificare un Sweeper
-    return ['Garchomp', 'Lucario', 'Dragonite'].includes(pokemonName);
-}
-
-function isWallbreaker(pokemonName) {
-    // Logica ipotetica per identificare un Wallbreaker
-    return ['Conkeldurr', 'Machamp', 'Mamoswine'].includes(pokemonName);
-}
-
-function isPivotOrWall(pokemonName) {
-    // Logica ipotetica per identificare un Pivot o Wall
-    return ['Blissey', 'Skarmory', 'Rotom-Wash'].includes(pokemonName);
-}
-
-function isRockWeak(pokemonName) {
-    // Logica ipotetica per identificare se un Pokémon è debole alle rocce
-    return ['Charizard', 'Talonflame', 'Volcarona'].includes(pokemonName);
-}
-
-function hasHazardSetup(pokemon) {
-    // Controlla se un Pokémon ha mosse per impostare le trappole
-    return pokemon.moves.some(move => ['Stealth Rock', 'Spikes', 'Toxic Spikes'].includes(move));
-}
-
-function hasHazardRemoval(pokemon) {
-    // Controlla se un Pokémon ha mosse per rimuovere le trappole
-    return pokemon.moves.some(move => ['Rapid Spin', 'Defog'].includes(move));
-}
-
-function hasTrickOrTaunt(pokemon) {
-    // Controlla se un Pokémon ha Trick o Taunt
-    return pokemon.moves.some(move => ['Trick', 'Taunt'].includes(move));
-}
+    document.getElementById('result').innerText = resultText;
+});
