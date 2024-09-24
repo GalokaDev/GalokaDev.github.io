@@ -1,4 +1,15 @@
-const pokemonList = ["Scizor", "Magnezone", "Zapdos", "Gyarados", "Suicune", "Garchomp", "Gengar", "Rotom-Wash", "Jolteon", "Dragonite"];
+const pokemonList = [
+    "Scizor", "Garchomp", "Gallade", "Zapdos", "Serperior", "Jellicent", "Weezing", 
+    "Mamoswine", "Dragonite", "Tyranitar", "Rotom-Wash", "Gliscor", "Starmie", 
+    "Hydreigon", "Excadrill", "Chansey", "Volcarona", "Breloom", "Skarmory", 
+    "Reuniclus", "Pelipper", "Conkeldurr", "Crawdaunt", "Metagross", "Gengar", 
+    "Amoonguss", "Mienshao", "Infernape", "Suicune", "Chandelure", "Magnezone", 
+    "Bronzong", "Darmanitan", "Empoleon", "Tentacruel", "Weavile", "Ferrothorn", 
+    "Kingdra", "Porygon2", "Gyarados", "Gastrodon", "Espeon", "Torkoal", "Porygon-z", 
+    "Lucario", "Sableye", "Kabutops", "Cofagrigus", "Cloyster", "Blissey", "Venusaur", 
+    "Ditto", "Raikou", "Entei", "Staraptor", "Poliwrath", "Feraligatr", "Togekiss", 
+    "Salamance", "Mandibuzz", "Jolteon", "Milotic"
+];
 
 const pokemonDataList = document.createElement('datalist');
 pokemonDataList.id = 'pokemon-suggestions';

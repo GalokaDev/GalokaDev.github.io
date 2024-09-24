@@ -29,7 +29,7 @@ const typeChart = {
     "Mienshao": { "superweak": [], "weaknesses": ["flying", "psychic"], "resistances": ["rock", "dark", "bug"], "immunities": [] },
     "Infernape": { "superweak": [], "weaknesses": ["water", "ground", "flying", "psychic"], "resistances": ["bug", "steel", "fire", "grass", "ice", "dark"], "immunities": [] },
     "Suicune": { "superweak": [], "weaknesses": ["electric", "grass"], "resistances": ["fire", "water", "ice", "steel"], "immunities": [] },
-    "Chandelure": { "superweak": [], "weaknesses": ["water", "rock", "ghost", "dark"], "resistances": ["normal", "fire", "grass", "ice", "bug", "steel", "poison"], "immunities": ["fighting"] },
+    "Chandelure": { "superweak": [], "weaknesses": ["water", "rock", "ghost", "dark"], "resistances": ["fire", "grass", "ice", "bug", "steel", "poison"], "immunities": ["fighting", "normal"] },
     "Magnezone": { "superweak": [], "weaknesses": ["fire", "fighting", "ground"], "resistances": ["normal", "flying", "rock", "bug", "steel", "psychic", "ice", "dragon", "grass", "electric"], "immunities": ["poison"] },
     "Bronzong": { "superweak": [], "weaknesses": ["fire", "ghost", "dark"], "resistances": ["normal", "flying", "rock", "bug", "steel", "psychic", "grass", "ice"], "immunities": ["poison"], "conditional_immunities": { "ground": "if Levitate" } },
     "Darmanitan": { "superweak": [], "weaknesses": ["water", "ground", "rock"], "resistances": ["bug", "steel", "fire", "grass", "ice"], "immunities": [] },
