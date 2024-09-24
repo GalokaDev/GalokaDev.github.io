@@ -2,7 +2,7 @@ document.getElementById('calculate').addEventListener('click', () => {
     const team = [];
     const teamSize = 6;
 
-    // Funzione per ottenere i dati del Pokémon e delle sue mosse
+    // Ottieni i Pokémon e le mosse inserite
     for (let i = 1; i <= teamSize; i++) {
         const pokemon = document.getElementById(`pokemon-${i}`).value;
         const moves = [
@@ -13,10 +13,31 @@ document.getElementById('calculate').addEventListener('click', () => {
         ];
         
         if (pokemon) {
-            team.push({ name: pokemon, moves, tags: [] });
+            team.push({ name: pokemon, moves });
         }
     }
 
+    // Funzione per calcolare debolezze e resistenze del team
+    const weaknesses = calculateWeaknessesResistances(team);
+
+    // Valutazione del team basata sulle debolezze calcolate
+    let resultText = "Debolezze principali del team:\n";
+    Object.keys(weaknesses).forEach(type => {
+        if (weaknesses[type] > 0) {
+            resultText += `Il team ha ${weaknesses[type]} debolezza/e al tipo ${type}.\n`;
+        }
+    });
+
+    document.getElementById('result').innerText = resultText;
+});
+    const pokemonTypes = {
+        bulbasaur: ['grass', 'poison'],
+        charizard: ['fire', 'flying'],
+        pikachu: ['electric'],
+        gyarados: ['water', 'flying'],
+        // Continua con altri Pokémon...
+    };
+    
     // Mappa delle debolezze/resistenze per ogni tipo
     const typeChart = {
         normal: { weakTo: ['fighting'], resistantTo: [] },
@@ -63,20 +84,24 @@ document.getElementById('calculate').addEventListener('click', () => {
             normal: 0, fire: 0, water: 0, electric: 0, grass: 0, ice: 0, fighting: 0, poison: 0,
             ground: 0, flying: 0, psychic: 0, bug: 0, rock: 0, ghost: 0, dragon: 0, dark: 0, steel: 0, fairy: 0
         };
-
-        // Per ogni Pokémon del team, incrementa o decrementa i punteggi per ogni tipo
+    
         team.forEach(pokemon => {
-            // Ottieni le debolezze/resistenze del Pokémon
-            const weaknessesOfPokemon = typeChart[pokemon.name.toLowerCase()]; // Supponiamo che il nome corrisponda esattamente al tipo (modificabile con un database)
-            if (weaknessesOfPokemon) {
-                weaknessesOfPokemon.weakTo.forEach(type => weaknesses[type]++);
-                weaknessesOfPokemon.resistantTo.forEach(type => weaknesses[type]--);
-                if (weaknessesOfPokemon.immuneTo) {
-                    weaknessesOfPokemon.immuneTo.forEach(type => weaknesses[type]--);
-                }
+            const types = pokemonTypes[pokemon.name.toLowerCase()];
+            
+            if (types) {
+                types.forEach(type => {
+                    // Aggiorna le debolezze per i tipi a cui questo Pokémon è debole
+                    typeChart[type].weakTo.forEach(weakType => weaknesses[weakType]++);
+                    // Aggiorna le resistenze per i tipi a cui questo Pokémon è resistente
+                    typeChart[type].resistantTo.forEach(resistType => weaknesses[resistType]--);
+                    // Aggiorna le immunità (trattate come resistenze forti)
+                    if (typeChart[type].immuneTo) {
+                        typeChart[type].immuneTo.forEach(immuneType => weaknesses[immuneType]--);
+                    }
+                });
             }
         });
-
+    
         return weaknesses;
     }
 
