@@ -101,6 +101,12 @@ document.getElementById('calculate').addEventListener('click', function() {
         }
     }
 
+    // Se nessun Pokémon è stato inserito, mostra i messaggi di default
+    if (!pokemonInserted) {
+        document.getElementById('result').innerText = "Non hai inserito nessun Pokémon.\nNon hai abbastanza mosse per togliere hazard.\nNon hai abbastanza mosse per switchare.";
+        return;
+    }
+
     // Verifica dei tipi con punteggi superiori a 2
     let weaknesses = [];
     for (let type in typeScores) {
@@ -118,11 +124,6 @@ document.getElementById('calculate').addEventListener('click', function() {
     }
     if (switchMoveCount === 0) {
         result += "\nNon hai abbastanza mosse per switchare.";
-    }
-
-    // Se nessun Pokémon è stato inserito, mostra i messaggi di default
-    if (!pokemonInserted) {
-        result = "Non hai inserito nessun Pokémon.\nNon hai abbastanza mosse per togliere hazard.\nNon hai abbastanza mosse per switchare.";
     }
 
     document.getElementById('result').innerText = result;
