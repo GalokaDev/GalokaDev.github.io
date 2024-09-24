@@ -1,4 +1,4 @@
-const pokemonList = ["Pikachu", "Charmander", "Bulbasaur", "Squirtle", "Jigglypuff", "Meowth", "Gengar", "Eevee", "Snorlax", "Dragonite"];
+const pokemonList = ["Scizor", "Magnezone", "Zapdos", "Gyarados", "Suicune", "Garchomp", "Gengar", "Rotom-Wash", "Jolteon", "Dragonite"];
 
 const pokemonDataList = document.createElement('datalist');
 pokemonDataList.id = 'pokemon-suggestions';
