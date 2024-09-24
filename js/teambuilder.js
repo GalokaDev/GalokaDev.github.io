@@ -59,6 +59,9 @@ document.getElementById('calculate').addEventListener('click', function() {
     let hazardRemovalCount = 0;
     let switchMoveCount = 0;
 
+    // Flag per verificare se è stato inserito almeno un Pokémon
+    let pokemonInserted = false;
+
     // Funzione per aggiornare i punteggi dei tipi
     function updateTypeScores(pokemonName) {
         let pokemon = typeChart[pokemonName];
@@ -85,6 +88,7 @@ document.getElementById('calculate').addEventListener('click', function() {
     for (let i = 1; i <= 6; i++) {
         let pokemonName = document.getElementById(`pokemon-${i}`).value;
         if (pokemonName) {
+            pokemonInserted = true; // Almeno un Pokémon è stato inserito
             updateTypeScores(pokemonName);
 
             // Verifica le mosse per il Pokémon corrente
@@ -114,6 +118,11 @@ document.getElementById('calculate').addEventListener('click', function() {
     }
     if (switchMoveCount === 0) {
         result += "\nNon hai abbastanza mosse per switchare.";
+    }
+
+    // Se nessun Pokémon è stato inserito, mostra i messaggi di default
+    if (!pokemonInserted) {
+        result = "Non hai inserito nessun Pokémon.\nNon hai abbastanza mosse per togliere hazard.\nNon hai abbastanza mosse per switchare.";
     }
 
     document.getElementById('result').innerText = result;
