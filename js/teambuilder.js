@@ -1,7 +1,7 @@
 // Mappa delle debolezze e resistenze dei Pokémon rispetto ai vari tipi
 const typeChart = {
-    "Scizor": { "weaknesses": ["fire"], "resistances": ["normal", "grass", "ice", "bug", "steel", "psychic", "dragon"], "immunities": [] },
-    "Garchomp": { "weaknesses": ["ice", "dragon"], "resistances": ["fire", "poison", "rock"], "immunities": ["electric"] },
+    "Scizor": { "superweak": ["fire"], "resistances": ["normal", "grass", "ice", "bug", "steel", "psychic", "dragon"], "immunities": [] },
+    "Garchomp": { "superweak": ["ice"],"weaknesses": ["dragon"], "resistances": ["fire", "poison", "rock"], "immunities": ["electric"] },
     "Gallade": { "weaknesses": ["flying", "ghost"], "resistances": ["fighting", "rock"], "immunities": [] },
     "Zapdos": { "weaknesses": ["rock", "ice"], "resistances": ["fighting", "flying", "bug", "steel", "grass"], "immunities": ["ground"] },
     "Serperior": { "weaknesses": ["fire", "ice", "flying", "bug"], "resistances": ["water", "grass", "electric", "ground"], "immunities": [] },
@@ -16,7 +16,7 @@ const typeChart = {
     "Hydreigon": { "weaknesses": ["bug", "fighting", "ice", "dragon"], "resistances": ["fire", "water", "grass", "electric", "psychic", "ghost", "dark"], "immunities": ["ground"] },
     "Excadrill": { "weaknesses": ["fire", "water", "fighting", "ground"], "resistances": ["normal", "flying", "rock", "bug", "steel", "psychic", "poison"], "immunities": ["electric"] },
     "Chansey": { "weaknesses": ["fighting"], "resistances": [], "immunities": ["ghost"] },
-    "Volcarona": { "weaknesses": ["water", "rock", "flying"], "resistances": ["fighting", "bug", "steel", "grass", "ice"], "immunities": [] },
+    "Volcarona": { "superweak": ["rock"], "weaknesses": ["water", "flying"], "resistances": ["fighting", "bug", "steel", "grass", "ice"], "immunities": [] },
     "Breloom": { "weaknesses": ["fire", "ice", "flying", "psychic"], "resistances": ["water", "grass", "electric", "ground", "rock"], "immunities": [] },
     "Skarmory": { "weaknesses": ["fire", "electric"], "resistances": ["normal", "flying", "bug", "steel", "grass", "psychic", "dragon", "rock"], "immunities": ["poison", "ground"] },
     "Reuniclus": { "weaknesses": ["bug", "ghost", "dark"], "resistances": ["fighting", "psychic"], "immunities": [] },
@@ -58,7 +58,11 @@ document.getElementById('calculate').addEventListener('click', function() {
         let pokemon = typeChart[pokemonName];
         if (pokemon) {
             pokemon.weaknesses.forEach(type => typeScores[type] += 1);
+            pokemon.superweak.forEach(type => typeScores[type] += 2);
+
             pokemon.resistances.forEach(type => typeScores[type] -= 1);
+            pokemon.superres.forEach(type => typeScores[type] -= 2);
+            
         }
     }
 
