@@ -58,23 +58,27 @@ document.getElementById('calculate').addEventListener('click', function() {
     function removeWarningIcons() {
         for (let i = 1; i <= 6; i++) {
             let pokemonBox = document.getElementById(`pokemon-${i}`);
-            let warningIcon = pokemonBox.nextElementSibling;
-            if (warningIcon && warningIcon.classList.contains('warning-icon')) {
+            // Rimuove qualsiasi icona di pericolo già presente
+            let warningIcon = pokemonBox.parentElement.querySelector('.warning-icon');
+            if (warningIcon) {
                 warningIcon.remove();
             }
+            // Rimuove anche la classe di errore (se applicata)
+            pokemonBox.classList.remove('error-box');
         }
     }
 
-    // Funzione per aggiungere icona di pericolo
+    // Funzione per aggiungere icona di pericolo vicino al box
     function addWarningIcon(pokemonBox) {
         let warningIcon = document.createElement('span');
         warningIcon.classList.add('warning-icon');
         warningIcon.innerHTML = '⚠️'; // Icona di pericolo rossa
-        warningIcon.style.color = 'red';
-        warningIcon.style.fontSize = '16px';
-        warningIcon.style.marginLeft = '5px';
         warningIcon.title = 'Not found'; // Testo al passaggio del mouse
 
+        // Aggiungi la classe per indicare errore
+        pokemonBox.classList.add('error-box');
+
+        // Posiziona l'icona accanto al box
         pokemonBox.parentElement.appendChild(warningIcon);
     }
 
