@@ -41,25 +41,16 @@ const typeChart = {
     "Porygon2": { "weaknesses": ["fighting"], "resistances": [], "immunities": ["ghost"] },
     "Gyarados": { "weaknesses": ["electric", "rock"], "resistances": ["bug", "fire", "water", "steel", "fighting"], "immunities": ["ground"] },
 };
-// Lista dei tipi di Pokémon
 const types = ["normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel"];
-
-// Lista delle mosse per rimuovere hazard
 const hazardRemovalMoves = ["defog", "rapid spin"];
-
-// Lista delle mosse per cambiare Pokémon
 const switchMoves = ["volt switch", "u-turn", "teleport", "baton pass"];
 
 document.getElementById('calculate').addEventListener('click', function() {
-    // Inizializzazione delle variabili per ogni tipo
     let typeScores = {};
     types.forEach(type => typeScores[type] = 0);
 
-    // Variabili per contare le mosse speciali
     let hazardRemovalCount = 0;
     let switchMoveCount = 0;
-
-    // Flag per verificare se è stato inserito almeno un Pokémon
     let pokemonInserted = false;
 
     // Funzione per aggiornare i punteggi dei tipi
@@ -73,12 +64,9 @@ document.getElementById('calculate').addEventListener('click', function() {
 
     // Funzione per contare le mosse speciali (rimozione hazard e switch)
     function countSpecialMoves(move) {
-        // Controlla se la mossa è per rimuovere le hazard
         if (hazardRemovalMoves.includes(move.toLowerCase())) {
             hazardRemovalCount++;
         }
-
-        // Controlla se la mossa è per cambiare Pokémon
         if (switchMoves.includes(move.toLowerCase())) {
             switchMoveCount++;
         }
@@ -93,7 +81,7 @@ document.getElementById('calculate').addEventListener('click', function() {
 
             // Verifica le mosse per il Pokémon corrente
             for (let j = 1; j <= 4; j++) {
-                let move = document.querySelector(`#pokemon-${i} ~ input:nth-of-type(${j + 1})`).value.trim();
+                let move = document.getElementById(`pokemon-${i}-move-${j}`).value.trim();
                 if (move) {
                     countSpecialMoves(move);
                 }
@@ -101,7 +89,7 @@ document.getElementById('calculate').addEventListener('click', function() {
         }
     }
 
-    // Se nessun Pokémon è stato inserito, mostra i messaggi di default e interrompe l'esecuzione
+    // Se nessun Pokémon è stato inserito
     if (!pokemonInserted) {
         document.getElementById('result').innerText = "Non hai inserito nessun Pokémon.\nNon hai abbastanza mosse per togliere hazard.\nNon hai abbastanza mosse per switchare.";
         return;
@@ -118,7 +106,7 @@ document.getElementById('calculate').addEventListener('click', function() {
     // Mostra il risultato delle debolezze
     let result = weaknesses.length > 0 ? `Soffri troppo questi tipi: ${weaknesses.join(', ')}` : "La tua squadra è ben bilanciata!";
 
-    // Aggiunta del controllo per le mosse di rimozione hazard e switch
+    // Controllo per le mosse di rimozione hazard e switch
     if (hazardRemovalCount === 0) {
         result += "\nNon hai abbastanza mosse per togliere hazard.";
     }
