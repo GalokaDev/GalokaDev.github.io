@@ -63,3 +63,6 @@ h2 {
 h3 {
   font-size: 1rem; /* Riduce la dimensione del sottotitolo */
 }
+#result {
+  color: rgba(255, 255, 255, 0.9); /* Bianco con opacità del 90% */
+}
