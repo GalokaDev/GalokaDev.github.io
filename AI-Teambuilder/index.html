@@ -10,42 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="main.css">
     <title>Pokemmo Stats</title>
-    <style>
-        /* Aggiungo padding per evitare la sovrapposizione con la barra laterale */
-        body {
-            padding-left: 5%; /* Compensa la larghezza della barra laterale */
-        }
-        /* Gestisco la responsività dei box */
-        #team-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* I box si adattano in base allo spazio disponibile */
-            gap: 1.5rem;
-            padding: 1.5rem;
-            width: 95%; /* Occupa lo spazio a destra della barra laterale */
-            margin: 0 auto; /* Centrato orizzontalmente */
-        }
-        /* Mantengo i box scalabili */
-        .pokemon-box {
-            background-color: #2d3748; /* Colore scuro */
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        /* Per evitare overflow in schermi piccoli */
-        input {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 0.75rem; /* Aggiungo margine per maggiore spazio tra i box */
-            border-radius: 0.375rem;
-            background-color: #4a5568;
-            color: white;
-            border: none;
-        }
-        /* Aggiungo più spazio tra i box per le mosse */
-        .pokemon-box input[type="text"] {
-            margin-bottom: 1rem; /* Più spazio per chiarezza tra i campi */
-        }
-    </style>
 </head>
 <body class="bg-gray-900 text-white">
     <script src="https://pokemmostats.com/js/nav.js"></script>
