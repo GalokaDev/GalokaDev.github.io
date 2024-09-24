@@ -57,12 +57,17 @@ document.getElementById('calculate').addEventListener('click', function() {
     function updateTypeScores(pokemonName) {
         let pokemon = typeChart[pokemonName];
         if (pokemon) {
-            pokemon.superweak.forEach(type => typeScores[type] += 2);
             pokemon.weaknesses.forEach(type => typeScores[type] += 1);
+            pokemon.superweak.forEach(type => typeScores[type] += 2);
 
             pokemon.resistances.forEach(type => typeScores[type] -= 1);
             pokemon.immunities.forEach(type => typeScores[type] -= 2);
         }
+    }
+
+    // Funzione per formattare il nome del Pokémon (prima lettera maiuscola, resto minuscolo)
+    function formatPokemonName(name) {
+        return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
     }
 
     // Funzione per contare le mosse speciali (rimozione hazard e switch)
@@ -80,11 +85,12 @@ document.getElementById('calculate').addEventListener('click', function() {
         let pokemonName = document.getElementById(`pokemon-${i}`).value.trim();
         if (pokemonName) {
             pokemonInserted = true; // Almeno un Pokémon è stato inserito
+            pokemonName = formatPokemonName(pokemonName); // Formatta il nome del Pokémon
             updateTypeScores(pokemonName);
 
             // Verifica le mosse per il Pokémon corrente
             for (let j = 1; j <= 4; j++) {
-                let move = document.getElementById(`move-${i}-${j}`).value.trim(); // Corretto ID
+                let move = document.getElementById(`move-${i}-${j}`).value.trim();
                 if (move) {
                     countSpecialMoves(move);
                 }
@@ -101,7 +107,7 @@ document.getElementById('calculate').addEventListener('click', function() {
     // Verifica dei tipi con punteggi superiori a 2
     let weaknesses = [];
     for (let type in typeScores) {
-        if (typeScores[type] > 1) {
+        if (typeScores[type] > 2) {
             weaknesses.push(type);
         }
     }
