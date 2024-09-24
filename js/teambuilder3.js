@@ -211,6 +211,3 @@ document.getElementById('calculate').addEventListener('click', () => {
     if (team.length < teamSize) {
         resultText += `Mancano ${teamSize - team.length} Pokémon per completare il team.\n`;
     }
-
-    document.getElementById('result').innerText = resultText;
-});
