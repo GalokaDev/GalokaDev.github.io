@@ -101,7 +101,7 @@ document.getElementById('calculate').addEventListener('click', function() {
     // Verifica dei tipi con punteggi superiori a 2
     let weaknesses = [];
     for (let type in typeScores) {
-        if (typeScores[type] > 0) {
+        if (typeScores[type] > 1) {
             weaknesses.push(type);
         }
     }
