@@ -60,7 +60,6 @@ document.getElementById('calculate').addEventListener('click', function() {
             pokemon.superweak.forEach(type => typeScores[type] += 2);
             pokemon.weaknesses.forEach(type => typeScores[type] += 1);
             pokemon.resistances.forEach(type => typeScores[type] -= 1);
-            //pokemon.superres.forEach(type => typeScores[type] -= 2);
             
         }
     }
