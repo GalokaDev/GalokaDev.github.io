@@ -86,14 +86,14 @@ document.getElementById('calculate').addEventListener('click', function() {
 
     // Raccolta dei nomi dei Pokémon inseriti e delle loro mosse
     for (let i = 1; i <= 6; i++) {
-        let pokemonName = document.getElementById(`pokemon-${i}`).value;
+        let pokemonName = document.getElementById(`pokemon-${i}`).value.trim();
         if (pokemonName) {
             pokemonInserted = true; // Almeno un Pokémon è stato inserito
             updateTypeScores(pokemonName);
 
             // Verifica le mosse per il Pokémon corrente
             for (let j = 1; j <= 4; j++) {
-                let move = document.querySelector(`#pokemon-${i} ~ input:nth-of-type(${j + 1})`).value;
+                let move = document.querySelector(`#pokemon-${i} ~ input:nth-of-type(${j + 1})`).value.trim();
                 if (move) {
                     countSpecialMoves(move);
                 }
@@ -101,7 +101,7 @@ document.getElementById('calculate').addEventListener('click', function() {
         }
     }
 
-    // Se nessun Pokémon è stato inserito, mostra i messaggi di default
+    // Se nessun Pokémon è stato inserito, mostra i messaggi di default e interrompe l'esecuzione
     if (!pokemonInserted) {
         document.getElementById('result').innerText = "Non hai inserito nessun Pokémon.\nNon hai abbastanza mosse per togliere hazard.\nNon hai abbastanza mosse per switchare.";
         return;
