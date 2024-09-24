@@ -45,6 +45,7 @@ const types = ["normal", "fire", "water", "electric", "grass", "ice", "fighting"
 const hazardRemovalMoves = ["defog", "rapid spin"];
 const switchMoves = ["volt switch", "u-turn", "teleport", "baton pass"];
 
+
 document.getElementById('calculate').addEventListener('click', function() {
     let typeScores = {};
     types.forEach(type => typeScores[type] = 0);
@@ -52,6 +53,30 @@ document.getElementById('calculate').addEventListener('click', function() {
     let hazardRemovalCount = 0;
     let switchMoveCount = 0;
     let pokemonInserted = false;
+
+    // Rimuovi tutte le icone di pericolo esistenti prima del controllo
+    function removeWarningIcons() {
+        for (let i = 1; i <= 6; i++) {
+            let pokemonBox = document.getElementById(`pokemon-${i}`);
+            let warningIcon = pokemonBox.nextElementSibling;
+            if (warningIcon && warningIcon.classList.contains('warning-icon')) {
+                warningIcon.remove();
+            }
+        }
+    }
+
+    // Funzione per aggiungere icona di pericolo
+    function addWarningIcon(pokemonBox) {
+        let warningIcon = document.createElement('span');
+        warningIcon.classList.add('warning-icon');
+        warningIcon.innerHTML = '⚠️'; // Icona di pericolo rossa
+        warningIcon.style.color = 'red';
+        warningIcon.style.fontSize = '16px';
+        warningIcon.style.marginLeft = '5px';
+        warningIcon.title = 'Not found'; // Testo al passaggio del mouse
+
+        pokemonBox.parentElement.appendChild(warningIcon);
+    }
 
     // Funzione per aggiornare i punteggi dei tipi
     function updateTypeScores(pokemonName) {
@@ -80,13 +105,22 @@ document.getElementById('calculate').addEventListener('click', function() {
         }
     }
 
+    // Rimuovi le icone precedenti
+    removeWarningIcons();
+
     // Raccolta dei nomi dei Pokémon inseriti e delle loro mosse
     for (let i = 1; i <= 6; i++) {
         let pokemonName = document.getElementById(`pokemon-${i}`).value.trim();
+        let pokemonBox = document.getElementById(`pokemon-${i}`);
+        
         if (pokemonName) {
             pokemonInserted = true; // Almeno un Pokémon è stato inserito
             pokemonName = formatPokemonName(pokemonName); // Formatta il nome del Pokémon
-            updateTypeScores(pokemonName);
+            if (!typeChart[pokemonName]) {
+                addWarningIcon(pokemonBox); // Aggiungi l'icona se il nome non è trovato nel typeChart
+            } else {
+                updateTypeScores(pokemonName);
+            }
 
             // Verifica le mosse per il Pokémon corrente
             for (let j = 1; j <= 4; j++) {
@@ -95,6 +129,9 @@ document.getElementById('calculate').addEventListener('click', function() {
                     countSpecialMoves(move);
                 }
             }
+        } else {
+            // Aggiungi icona di pericolo se il campo è vuoto
+            addWarningIcon(pokemonBox);
         }
     }
 
