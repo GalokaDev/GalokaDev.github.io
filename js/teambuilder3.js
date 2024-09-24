@@ -303,3 +303,43 @@ function evaluateTeam(team) {
 
     return { weaknesses, suggestedPokemon, model };
 }
+
+
+
+document.getElementById('start').addEventListener('click', () => {
+    const team = [];
+    const teamSize = 6;
+
+    // Ottieni i Pokémon e le mosse inserite
+    for (let i = 1; i <= teamSize; i++) {
+        const pokemon = document.getElementById(`pokemon-${i}`)?.value || '';
+        const moves = [
+            document.getElementById(`move-${i}-1`)?.value || '',
+            document.getElementById(`move-${i}-2`)?.value || '',
+            document.getElementById(`move-${i}-3`)?.value || '',
+            document.getElementById(`move-${i}-4`)?.value || ''
+        ];
+
+        if (pokemon) {
+            team.push({ name: pokemon, moves, tags: [] });
+        }
+    }
+
+    // Verifica se è stato inserito almeno un Pokémon
+    if (team.length === 0) {
+        document.getElementById('result').innerText = "Inserisci almeno un Pokémon.";
+        return;
+    }
+
+    // Calcola le debolezze del team
+    const weaknesses = calculateWeaknessesResistances(team);
+
+    // Suggerisce Pokémon che coprono le debolezze
+    const suggestedPokemon = suggestPokemonByResistances(weaknesses);
+
+    // Visualizza i risultati
+    document.getElementById('result').innerHTML = `
+        Debolezze del Team: ${JSON.stringify(weaknesses)}<br>
+        Pokémon Suggeriti: ${suggestedPokemon.length > 0 ? suggestedPokemon.join(', ') : "Nessun Pokémon suggerito"}
+    `;
+});
