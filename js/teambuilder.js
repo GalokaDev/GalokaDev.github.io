@@ -81,7 +81,7 @@ document.getElementById('calculate').addEventListener('click', function() {
 
             // Verifica le mosse per il Pokémon corrente
             for (let j = 1; j <= 4; j++) {
-                let move = document.getElementById(`pokemon-${i}-move-${j}`).value.trim();
+                let move = document.getElementById(`move-${i}-${j}`).value.trim(); // Corretto ID
                 if (move) {
                     countSpecialMoves(move);
                 }
