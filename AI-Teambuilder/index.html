@@ -10,22 +10,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="main.css">
     <title>Pokemmo Stats</title>
-    </style>
 </head>
 <body>
     <script src="https://pokemmostats.com/js/nav.js"></script>
+    <script src="https://pokemmostats.com/js/teambuilder.js"></script>
 
     <!-- Contenitore per i form dei Pokémon -->
     <div class="flex flex-col items-center justify-center min-h-screen">
-        <h1 class="text-3xl font-bold mb-6">Inserisci la tua squadra Pokémon</h1>
+        <h1 class="text-3xl font-bold mb-6 team-text">Inserisci la tua squadra Pokémon</h1>
         
         <!-- Box per inserire i Pokémon -->
         <div id="team-container">
             <!-- Box 1 -->
             <div class="pokemon-box">
-                <h2 class="text-xl font-semibold mb-4">Pokémon 1</h2>
+                <h2 class="text-xl font-semibold mb-4 team-text">Pokémon 1</h2>
                 <input list="pokemon-suggestions" id="pokemon-1" type="text" placeholder="Nome Pokémon">
-                <h3 class="text-lg mb-2">Mosse</h3>
+                <h3 class="text-lg mb-2 team-text">Mosse</h3>
                 <input list="move-suggestions" id="move-1-1" type="text" placeholder="Mossa 1">
                 <input list="move-suggestions" id="move-1-2" type="text" placeholder="Mossa 2">
                 <input list="move-suggestions" id="move-1-3" type="text" placeholder="Mossa 3">
@@ -34,9 +34,9 @@
 
             <!-- Box 2 -->
             <div class="pokemon-box">
-                <h2 class="text-xl font-semibold mb-4">Pokémon 2</h2>
+                <h2 class="text-xl font-semibold mb-4 team-text">Pokémon 2</h2>
                 <input list="pokemon-suggestions" id="pokemon-2" type="text" placeholder="Nome Pokémon">
-                <h3 class="text-lg mb-2">Mosse</h3>
+                <h3 class="text-lg mb-2 team-text">Mosse</h3>
                 <input list="move-suggestions" id="move-2-1" type="text" placeholder="Mossa 1">
                 <input list="move-suggestions" id="move-2-2" type="text" placeholder="Mossa 2">
                 <input list="move-suggestions" id="move-2-3" type="text" placeholder="Mossa 3">
@@ -45,9 +45,9 @@
 
             <!-- Box 3 -->
             <div class="pokemon-box">
-                <h2 class="text-xl font-semibold mb-4">Pokémon 3</h2>
+                <h2 class="text-xl font-semibold mb-4 team-text">Pokémon 3</h2>
                 <input list="pokemon-suggestions" id="pokemon-3" type="text" placeholder="Nome Pokémon">
-                <h3 class="text-lg mb-2">Mosse</h3>
+                <h3 class="text-lg mb-2 team-text">Mosse</h3>
                 <input list="move-suggestions" id="move-3-1" type="text" placeholder="Mossa 1">
                 <input list="move-suggestions" id="move-3-2" type="text" placeholder="Mossa 2">
                 <input list="move-suggestions" id="move-3-3" type="text" placeholder="Mossa 3">
@@ -56,9 +56,9 @@
 
             <!-- Box 4 -->
             <div class="pokemon-box">
-                <h2 class="text-xl font-semibold mb-4">Pokémon 4</h2>
+                <h2 class="text-xl font-semibold mb-4 team-text">Pokémon 4</h2>
                 <input list="pokemon-suggestions" id="pokemon-4" type="text" placeholder="Nome Pokémon">
-                <h3 class="text-lg mb-2">Mosse</h3>
+                <h3 class="text-lg mb-2 team-text">Mosse</h3>
                 <input list="move-suggestions" id="move-4-1" type="text" placeholder="Mossa 1">
                 <input list="move-suggestions" id="move-4-2" type="text" placeholder="Mossa 2">
                 <input list="move-suggestions" id="move-4-3" type="text" placeholder="Mossa 3">
@@ -67,9 +67,9 @@
 
             <!-- Box 5 -->
             <div class="pokemon-box">
-                <h2 class="text-xl font-semibold mb-4">Pokémon 5</h2>
+                <h2 class="text-xl font-semibold mb-4 team-text">Pokémon 5</h2>
                 <input list="pokemon-suggestions" id="pokemon-5" type="text" placeholder="Nome Pokémon">
-                <h3 class="text-lg mb-2">Mosse</h3>
+                <h3 class="text-lg mb-2 team-text">Mosse</h3>
                 <input list="move-suggestions" id="move-5-1" type="text" placeholder="Mossa 1">
                 <input list="move-suggestions" id="move-5-2" type="text" placeholder="Mossa 2">
                 <input list="move-suggestions" id="move-5-3" type="text" placeholder="Mossa 3">
@@ -78,9 +78,9 @@
 
             <!-- Box 6 -->
             <div class="pokemon-box">
-                <h2 class="text-xl font-semibold mb-4">Pokémon 6</h2>
+                <h2 class="text-xl font-semibold mb-4 team-text">Pokémon 6</h2>
                 <input list="pokemon-suggestions" id="pokemon-6" type="text" placeholder="Nome Pokémon">
-                <h3 class="text-lg mb-2">Mosse</h3>
+                <h3 class="text-lg mb-2 team-text">Mosse</h3>
                 <input list="move-suggestions" id="move-6-1" type="text" placeholder="Mossa 1">
                 <input list="move-suggestions" id="move-6-2" type="text" placeholder="Mossa 2">
                 <input list="move-suggestions" id="move-6-3" type="text" placeholder="Mossa 3">
@@ -89,15 +89,14 @@
         </div>
 
         <!-- Bottone per eseguire il calcolo -->
-        <button id="calculate" class="mt-6 bg-green-600 p-3 rounded-lg font-semibold">Calcola Squadra</button>
+        <button id="calculate" class="mt-6 bg-green-600 p-3 rounded-lg font-semibold team-text">Calcola Squadra</button>
 
         <!-- Risultato del calcolo -->
-        <div id="result" class="mt-6 text-xl font-bold"></div>
+        <div id="result" class="mt-6 text-xl font-bold team-text"></div>
     </div>
 
     <!-- Import dei suggerimenti da file esterni -->
     <script src="pokemon-suggestions.js"></script>
     <script src="move-suggestions.js"></script>
-    <script src="https://pokemmostats.com/js/teambuilder.js"></script>
 </body>
 </html>
