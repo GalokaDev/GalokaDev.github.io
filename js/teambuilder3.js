@@ -306,7 +306,7 @@ function evaluateTeam(team) {
 
 
 
-document.getElementById('start').addEventListener('click', () => {
+document.getElementById('calculate').addEventListener('click', () => {
     const team = [];
     const teamSize = 6;
 
