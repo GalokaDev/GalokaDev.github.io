@@ -9,6 +9,7 @@
 body{
   padding-left: 5%; /* Compensa la larghezza della barra laterale */
   background: #16162e;
+  color: white;
 }
 
 @keyframes fadeIn {
