@@ -185,6 +185,7 @@ function calculateWeaknessesResistances(team) {
 
     team.forEach(pokemon => {
         const types = pokemonTypes[pokemon.name.toLowerCase()];
+        console.log(`Analizzando ${pokemon.name} con tipi: ${types}`);
         if (types) {
             // Inizializzare un nuovo oggetto per le debolezze temporanee
             const tempWeaknesses = { ...weaknesses };
@@ -222,7 +223,7 @@ function calculateWeaknessesResistances(team) {
             });
         }
     });
-
+    console.log(`Debolezze finali del team: ${JSON.stringify(weaknesses)}`);
     // Trova le peggiori debolezze, cioè quelle che hanno un valore pari o superiore a 2
     const worstWeaknesses = Object.keys(weaknesses).filter(type => weaknesses[type] >= 2);
 
