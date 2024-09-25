@@ -251,7 +251,6 @@ document.getElementById('calculate').addEventListener('click', () => {
 
     // Visualizza i risultati
     document.getElementById('result').innerHTML = `
-        Debolezze del Team: ${JSON.stringify(result.weaknesses)}<br>
         Debolezze da coprire: ${result.worstWeaknesses.length > 0 ? result.worstWeaknesses.join(', ') : "Nessuna debolezza critica"}<br>
         Pokémon Suggeriti: ${result.suggestedPokemon.length > 0 ? result.suggestedPokemon.join(', ') : "Nessun Pokémon suggerito"}<br>
         Modello del Team: ${result.model}
