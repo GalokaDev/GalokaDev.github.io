@@ -265,7 +265,6 @@ function suggestPokemonByResistances(weaknesses, requiredTags) {
 
 // Funzione per valutare il modello del team in base ai tag assegnati
 function evaluateTeamModel(team) {
-    console.log(counts); // Aggiungi questo per controllare il conteggio
     const counts = {
         sweeper: 0,
         wallbreaker: 0,
@@ -286,6 +285,8 @@ function evaluateTeamModel(team) {
         if (pokemon.tags.includes('HazardSetter')) counts.hazardSetter++;
         if (pokemon.tags.includes('HazardRemoval')) counts.hazardRemoval++;
     });
+
+    console.log('Final Counts', counts);
 
 
     // Controllare se il team corrisponde ai vari modelli
