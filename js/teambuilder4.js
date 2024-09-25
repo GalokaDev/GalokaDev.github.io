@@ -178,6 +178,7 @@ function assignTags(pokemon) {
 
 // Funzione per calcolare debolezze e resistenze del team, gestendo correttamente le immunità
 function calculateWeaknessesResistances(team) {
+    // Inizializza un oggetto per tenere traccia delle debolezze totali
     const weaknesses = {
         normal: 0, fire: 0, water: 0, electric: 0, grass: 0, ice: 0, fighting: 0, poison: 0,
         ground: 0, flying: 0, psychic: 0, bug: 0, rock: 0, ghost: 0, dragon: 0, dark: 0, steel: 0
@@ -185,56 +186,54 @@ function calculateWeaknessesResistances(team) {
 
     team.forEach(pokemon => {
         const types = pokemonTypes[pokemon.name.toLowerCase()];
-        console.log(`Analizzando ${pokemon.name} con tipi: ${types}`);
+
         if (types) {
-            // Inizializzare un nuovo oggetto per le debolezze temporanee
+            let immuneFound = false;
             const tempWeaknesses = { ...weaknesses };
 
+            // Controlla se c'è un tipo immune e segna i debolezze/resistenze relative
             types.forEach(type => {
-                // Controlla se il tipo ha immunità e aggiornare le debolezze temporanee
-                if (typeChart[type].immuneTo) {
+                if (typeChart[type].immuneTo && !immuneFound) {
                     typeChart[type].immuneTo.forEach(immuneType => {
-                        // Imposta direttamente a -2 per i tipi a cui è immune
-                        tempWeaknesses[immuneType] = -2;
+                        tempWeaknesses[immuneType] = -2; // Imposta l'immunità
+                        immuneFound = true; // Ignora il secondo tipo se c'è un'immunità
+                        console.log(`${pokemon.name} è immune a ${immuneType}`);
                     });
                 }
-
-                // Aggiungere alle debolezze se non è immune
-                typeChart[type].weakTo.forEach(weakType => {
-                    if (tempWeaknesses[weakType] !== -2) {
-                        tempWeaknesses[weakType]++;
-                    }
-                });
-
-                // Sottrarre dalle resistenze se non è immune
-                typeChart[type].resistantTo.forEach(resistType => {
-                    if (tempWeaknesses[resistType] !== -2) {
-                        tempWeaknesses[resistType]--;
-                    }
-                });
             });
 
-            // Aggiornare il conteggio delle debolezze/resistenze globali
+            // Se non è stata trovata nessuna immunità, calcola debolezze e resistenze
+            if (!immuneFound) {
+                types.forEach(type => {
+                    // Aggiungi debolezze
+                    typeChart[type].weakTo.forEach(weakType => {
+                        tempWeaknesses[weakType]++;
+                        console.log(`${pokemon.name} è debole a ${weakType}, debolezza corrente: ${tempWeaknesses[weakType]}`);
+                    });
+
+                    // Sottrai resistenze
+                    typeChart[type].resistantTo.forEach(resistType => {
+                        tempWeaknesses[resistType]--;
+                        console.log(`${pokemon.name} è resistente a ${resistType}, resistenza corrente: ${tempWeaknesses[resistType]}`);
+                    });
+                });
+            }
+
+            // Aggiorna le debolezze globali con i valori temporanei calcolati
             Object.keys(weaknesses).forEach(type => {
-                // Aggiorna solo se non è immune
-                if (tempWeaknesses[type] !== -2) {
+                if (tempWeaknesses[type] !== -2) { // -2 indica un'immunità
                     weaknesses[type] += tempWeaknesses[type];
+                } else {
+                    weaknesses[type] = tempWeaknesses[type]; // Mantieni l'immunità
                 }
             });
         }
     });
-    console.log(`Debolezze finali del team: ${JSON.stringify(weaknesses)}`);
-    // Trova le peggiori debolezze, cioè quelle che hanno un valore pari o superiore a 2
-    const worstWeaknesses = Object.keys(weaknesses).filter(type => weaknesses[type] >= 2);
 
+    console.log(`Debolezze finali del team: ${JSON.stringify(weaknesses)}`);
+    const worstWeaknesses = Object.keys(weaknesses).filter(type => weaknesses[type] >= 2);
     return { weaknesses, worstWeaknesses };
 }
-
-
-
-
-
-
 
 
 
