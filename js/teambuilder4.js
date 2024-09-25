@@ -127,7 +127,7 @@ const pokemonRoles = {
     "kingdra": ["sweeper"],
     "porygon2": ["wall"],
     "gyarados": ["sweeper", "pivot", "rockWeak"],
-    "gastrodon": ["wall", "pivot"],
+    "gastrodon": ["wall", "hazardSetter"],
     "espeon": ["sweeper"],
     "torkoal": ["hazardSetter", "hazardRemover", "wall"],
     "porygonz": ["sweeper", "wallbreaker"],
