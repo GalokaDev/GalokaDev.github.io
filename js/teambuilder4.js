@@ -132,7 +132,7 @@ const pokemonRoles = {
     "torkoal": ["hazardSetter", "hazardRemover", "wall"],
     "porygon-z": ["sweeper"],
     "lucario": ["sweeper", "wallbreaker"],
-    "sableye": ["stallbreaker"],
+    "sableye": ["stallbreaker", "wall"],
     "kabutops": ["sweeper"],
     "cofagrigus": ["wall"],
     "cloyster": ["sweeper"],
