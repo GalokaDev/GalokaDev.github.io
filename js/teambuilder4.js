@@ -236,6 +236,7 @@ function calculateWeaknessesResistances(team) {
 
 
 
+
 // Funzione per suggerire Pokémon che coprono le debolezze del team basata su resistenze
 function suggestPokemonByResistances(weaknesses, requiredTags) {
     const pokemonSuggestions = [];
