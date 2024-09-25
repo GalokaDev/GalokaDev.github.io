@@ -411,42 +411,46 @@ function evaluatePokemonImportance(pokemon, team) {
     return importance;
 }
 
-document.getElementById('calculate').addEventListener('click', () => {
-    const team = [];
-    const teamSize = 6;
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calculate').addEventListener('click', () => {
+        const team = [];
+        const teamSize = 6;
 
-    // Ottieni i Pokémon e le mosse inserite
-    for (let i = 1; i <= teamSize; i++) {
-        const pokemon = document.getElementById(`pokemon-${i}`)?.value || '';
-        const moves = [
-            document.getElementById (`move-1-${i}`)?.value || '',
-            document.getElementById(`move-2-${i}`)?.value || '',
-            document.getElementById(`move-3-${i}`)?.value || '',
-            document.getElementById(`move-4-${i}`)?.value || ''
-        ];
+        // Ottieni i Pokémon e le mosse inserite
+        for (let i = 1; i <= teamSize; i++) {
+            const pokemon = document.getElementById(`pokemon-${i}`)?.value || '';
+            const moves = [
+                document.getElementById(`move-${i}-1`)?.value || '',
+                document.getElementById(`move-${i}-2`)?.value || '',
+                document.getElementById(`move-${i}-3`)?.value || '',
+                document.getElementById(`move-${i}-4`)?.value || ''
+            ];
 
-        if (pokemon) {
-            team.push({ name: pokemon, moves });
+            if (pokemon) {
+                team.push({ name: pokemon, moves });
+            }
         }
-    }
 
-    // Valuta l'intero team e suggerisci miglioramenti
-    const result = evaluateTeam(team);
+        // Valuta l'intero team e suggerisci miglioramenti
+        const result = evaluateTeam(team);
 
-    // Mostra i risultati
-    const output = document.getElementById('output');
-    output.innerHTML = `Debolezze: ${Object.keys(result.weaknesses).join(', ')}\n`;
-    output.innerHTML += `Peggior debolezza: ${result.worstWeaknesses.join(', ')}\n`;
-    if (result.model) {
-        output.innerHTML += `Modello di team: ${result.model}\n`;
-    }
-    if (result.suggestedPokemon) {
-        output.innerHTML += `Suggerimento: Aggiungi ${result.suggestedPokemon} per coprire le debolezze\n`;
-    }
-    if (result.improvementSuggestions) {
-        output.innerHTML += `Suggerimenti di miglioramento:\n`;
-        result.improvementSuggestions.forEach(suggestion => {
-            output.innerHTML += `Rimuovi ${suggestion.remove} e aggiungi ${suggestion.add}\n`;
-        });
-    }
+        // Mostra i risultati
+        const output = document.getElementById('result');
+        if (output) {
+            output.innerHTML = `Debolezze: ${Object.keys(result.weaknesses).join(', ')}<br>`;
+            output.innerHTML += `Peggior debolezza: ${result.worstWeaknesses.join(', ')}<br>`;
+            if (result.model) {
+                output.innerHTML += `Modello di team: ${result.model}<br>`;
+            }
+            if (result.suggestedPokemon) {
+                output.innerHTML += `Suggerimento: Aggiungi ${result.suggestedPokemon.join(', ')} per coprire le debolezze<br>`;
+            }
+            if (result.improvementSuggestions) {
+                output.innerHTML += `Suggerimenti di miglioramento:<br>`;
+                result.improvementSuggestions.forEach(suggestion => {
+                    output.innerHTML += `Rimuovi ${suggestion.remove} e aggiungi ${suggestion.add.join(', ')}<br>`;
+                });
+            }
+        }
+    });
 });
