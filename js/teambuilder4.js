@@ -57,7 +57,7 @@ const pokemonTypes = {
     staraptor: ['normal', 'flying'],
     poliwrath: ['water', 'fighting'],
     feraligatr: ['water'],
-    togekiss: ['fairy', 'flying'],
+    togekiss: ['flying'],
     salamence: ['dragon', 'flying'],
     mandibuzz: ['dark', 'flying'],
     jolteon: ['electric'],
