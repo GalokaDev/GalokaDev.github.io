@@ -75,7 +75,7 @@ const typeChart = {
     fighting: { weakTo: ['flying', 'psychic'], resistantTo: ['bug', 'rock', 'dark'] },
     poison: { weakTo: ['ground', 'psychic'], resistantTo: ['grass', 'fighting', 'poison', 'bug'] },
     ground: { weakTo: ['water', 'grass', 'ice'], resistantTo: ['poison', 'rock'], immuneTo: ['electric'] },
-    flying: { weakTo: ['electric', 'ice', 'rock'], resistantTo: ['grass', 'fighting', 'bug'], immuneTo: ['ground'] },
+    flying: { weak To: ['electric', 'ice', 'rock'], resistantTo: ['grass', 'fighting', 'bug'], immuneTo: ['ground'] },
     psychic: { weakTo: ['bug', 'ghost', 'dark'], resistantTo: ['fighting', 'psychic'] },
     bug: { weakTo: ['fire', 'flying', 'rock'], resistantTo: ['grass', 'fighting', 'ground'] },
     rock: { weakTo: ['water', 'grass', 'fighting', 'ground', 'steel'], resistantTo: ['normal', 'fire', 'poison', 'flying'] },
@@ -133,7 +133,7 @@ const pokemonRoles = {
     "porygonz": ["sweeper", "wallbreaker"],
     "lucario": ["sweeper", "wallbreaker"],
     "sableye": ["hazardSetter", "wall", "stallbreaker"],
-    "kabutops": ["sweeper", "hazardRemover"],
+    "kabutops": ["sweeper", "hazardRem over"],
     "cofagrigus": ["wall", "hazardSetter"],
     "cloyster": ["sweeper", "hazardSetter"],
     "blissey": ["wall"],
@@ -152,6 +152,7 @@ const pokemonRoles = {
 };
 // Funzione per assegnare i tag ai Pokémon
 function assignTags(pokemon) {
+    pokemon.tags = []; // Inizializza l'array tags per ogni Pokémon
     const hazardMoves = ['stealth rock', 'spikes', 'toxic spikes'];
     const hazardRemovalMoves = ['rapid spin', 'defog'];
 
@@ -172,8 +173,6 @@ function assignTags(pokemon) {
         pokemon.tags.push('HazardRemoval');
     }
 }
-
-
 
 // Funzione per calcolare debolezze e resistenze del team, gestendo correttamente le immunità
 function calculateWeaknessesResistances(team) {
