@@ -234,7 +234,7 @@ function calculateWeaknessesResistances(team) {
 // Funzione per suggerire Pokémon che coprono le debolezze del team basata su resistenze
 function suggestPokemonByResistances(weaknesses, requiredTags) {
     const pokemonSuggestions = [];
-    
+
     // Scorri ogni Pokémon disponibile
     Object.keys(pokemonTypes).forEach(pokemonName => {
         const types = pokemonTypes[pokemonName.toLowerCase()];
@@ -312,6 +312,7 @@ function evaluateTeamModel(team) {
 
     const isStallTeam =
         (counts.wall >= 5) &&
+        (counts.sweeper === 0) &&
         (counts.stallbreaker === 1) &&
         (counts.hazardSetter >= 1) &&
         (counts.hazardRemoval >= 1 && counts.hazardRemoval <= 2);
@@ -333,6 +334,10 @@ function evaluateTeamModel(team) {
     return null; // Nessun modello specifico rilevato
     
 }
+
+
+
+
 // Funzione per valutare l'intero team e suggerire miglioramenti
 function evaluateTeam(team) {
     console.log("Team:", team);
@@ -353,33 +358,44 @@ function evaluateTeam(team) {
     }
 }
 
+
+
 // Funzione per suggerire miglioramenti al team
 function suggestImprovements(team, weaknesses) {
     const improvementSuggestions = [];
     const teamSize = 6;
 
+    // Prova a rimuovere ogni Pokémon uno alla volta
     for (let i = 0; i < teamSize; i++) {
         const currentTeam = [...team];
         currentTeam.splice(i, 1); // Rimuovi un Pokémon dal team
 
+        // Valuta il team senza il Pokémon rimosso
         const { weaknesses: newWeaknesses } = calculateWeaknessesResistances(currentTeam);
         const teamModel = evaluateTeamModel(currentTeam);
 
         if (teamModel) {
+            // Suggerisci Pokémon che coprono le debolezze basate su resistenze e che soddisfano i tag del modello
             const suggestedPokemon = suggestPokemonByResistances(newWeaknesses, teamModel.requiredTags);
-            const removedPokemonImportance = evaluatePokemonImportance(team[i], team);
 
             improvementSuggestions.push({
                 remove: team[i].name,
-                add: suggestedPokemon,
-                importance: removedPokemonImportance
+                add: suggestedPokemon
             });
         }
     }
 
+    // Se nessun miglioramento è stato trovato, suggerisci Pokémon per coprire le debolezze
+    if (improvementSuggestions.length === 0) {
+        const suggestedPokemon = suggestPokemonByResistances(weaknesses, []);
+        improvementSuggestions.push({
+            remove: null,
+            add: suggestedPokemon
+        });
+    }
+
     return improvementSuggestions;
 }
-
 
 // Funzione per valutare l'importanza di un Pokémon nel team
 function evaluatePokemonImportance(pokemon, team) {
@@ -405,40 +421,34 @@ document.getElementById('calculate').addEventListener('click', () => {
     for (let i = 1; i <= teamSize; i++) {
         const pokemon = document.getElementById(`pokemon-${i}`)?.value || '';
         const moves = [
-            document.getElementById(`move-${i}-1`)?.value || '',
-            document.getElementById(`move-${i}-2`)?.value || '',
-            document.getElementById(`move-${i}-3`)?.value || '',
-            document.getElementById(`move-${i}-4`)?.value || ''
+            document.getElementById (`move-1-${i}`)?.value || '',
+            document.getElementById(`move-2-${i}`)?.value || '',
+            document.getElementById(`move-3-${i}`)?.value || '',
+            document.getElementById(`move-4-${i}`)?.value || ''
         ];
 
         if (pokemon) {
-            team.push({ name: pokemon, moves, tags: [] });
+            team.push({ name: pokemon, moves });
         }
     }
 
-    // Verifica se è stato inserito almeno un Pokémon
-    if (team.length === 0) {
-        document.getElementById('result').innerText = "Inserisci almeno un Pokémon.";
-        return;
-    }
-
-    // Valuta il team
+    // Valuta l'intero team e suggerisci miglioramenti
     const result = evaluateTeam(team);
 
-    // Visualizza i risultati
-    if (result.model === "Nessun modello specifico rilevato") {
-        document.getElementById('result').innerHTML = `
-            Debolezze del Team: ${JSON.stringify(result.weaknesses)}<br>
-            Debolezze da coprire: ${result.worstWeaknesses.length > 0 ? result.worstWeaknesses.join(', ') : "Nessuna debolezza critica"}<br>
-            Suggerimenti per migliorare il team:<br>
-            ${result.improvementSuggestions.map(suggestion => `Rimuovi ${suggestion.remove} e aggiungi ${suggestion.add.join(', ')}`).join('<br>')}
-        `;
-    } else {
-        document.getElementById('result').innerHTML = `
-            Debolezze del Team: ${JSON.stringify(result.weaknesses)}<br>
-            Debolezze da coprire: ${result.worstWeaknesses.length > 0 ? result.worstWeaknesses.join(', ') : "Nessuna debolezza critica"}<br>
-            Pokémon Suggeriti: ${result.suggestedPokemon.length > 0 ? result.suggestedPokemon.join(', ') : "Nessun Pokémon suggerito"}<br>
-            Modello del Team: ${result.model}
-        `;
+    // Mostra i risultati
+    const output = document.getElementById('output');
+    output.innerHTML = `Debolezze: ${Object.keys(result.weaknesses).join(', ')}\n`;
+    output.innerHTML += `Peggior debolezza: ${result.worstWeaknesses.join(', ')}\n`;
+    if (result.model) {
+        output.innerHTML += `Modello di team: ${result.model}\n`;
+    }
+    if (result.suggestedPokemon) {
+        output.innerHTML += `Suggerimento: Aggiungi ${result.suggestedPokemon} per coprire le debolezze\n`;
+    }
+    if (result.improvementSuggestions) {
+        output.innerHTML += `Suggerimenti di miglioramento:\n`;
+        result.improvementSuggestions.forEach(suggestion => {
+            output.innerHTML += `Rimuovi ${suggestion.remove} e aggiungi ${suggestion.add}\n`;
+        });
     }
 });
