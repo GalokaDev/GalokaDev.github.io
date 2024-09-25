@@ -171,7 +171,7 @@ function assignTags(pokemon) {
     }
 }
 
-// Funzione per calcolare debolezze e resistenze del team
+
 // Funzione per calcolare debolezze e resistenze del team, gestendo correttamente le immunità
 function calculateWeaknessesResistances(team) {
     const weaknesses = {
@@ -185,11 +185,13 @@ function calculateWeaknessesResistances(team) {
             const tempWeaknesses = { ...weaknesses };
 
             types.forEach(type => {
-                // Controllo immunità prima
-                typeChart[type].immuneTo.forEach(immuneType => {
-                    // Se c'è un'immunità, impostiamo direttamente a -2 per quell'elemento
-                    tempWeaknesses[immuneType] = -2;
-                });
+                // Prima controlla se c'è un'immunità
+                if (typeChart[type].immuneTo) {
+                    typeChart[type].immuneTo.forEach(immuneType => {
+                        // Imposta direttamente a -2 per i tipi a cui è immune
+                        tempWeaknesses[immuneType] = -2;
+                    });
+                }
 
                 // Aggiungi alle debolezze se non è immune
                 typeChart[type].weakTo.forEach(weakType => {
@@ -208,7 +210,10 @@ function calculateWeaknessesResistances(team) {
 
             // Aggiorna il conteggio delle debolezze/resistenze globali
             Object.keys(weaknesses).forEach(type => {
-                weaknesses[type] += tempWeaknesses[type];
+                // Aggiorna solo se non è immune
+                if (tempWeaknesses[type] !== -2) {
+                    weaknesses[type] += tempWeaknesses[type];
+                }
             });
         }
     });
@@ -218,6 +223,11 @@ function calculateWeaknessesResistances(team) {
 
     return { weaknesses, worstWeaknesses };
 }
+
+
+
+
+
 
 
 // Funzione per suggerire Pokémon che coprono le debolezze del team basata su resistenze
