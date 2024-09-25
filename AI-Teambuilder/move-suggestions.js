@@ -16,7 +16,7 @@ const moveList = [
     "Pain Split", "Payback", "Perish Song", "Petal Dance", "Poison Jab", "Power Gem",
     "Power Whip", "Psychic", "Psycho Cut", "Psyshock", "Quick Attack",
     "Rain Dance", "Rapid Spin", "Reflect", "Rest", "Roar", "Rock Blast",
-    "Rock Slide", "Rock Tomb", "Roost", "Sacred Fire", "Screech", "Seed Bomb",
+    "Rock Slide", "Rock Tomb", "Sacred Fire", "Screech", "Seed Bomb",
     "Seismic Toss", "Shadow Ball", "Shadow Claw", "Shadow Sneak", "Signal Beam",
     "Sky Attack", "Sludge Bomb", "Soft-Boiled", "Solar Beam", "Spikes", "Stealth Rock",
     "Stone Edge", "Strength", "Stun Spore", "Substitute", "Sucker Punch",
@@ -101,7 +101,7 @@ const moveList = [
     "Triple Kick", "Trump Card", "Twister", "U-turn", "Uproar", "Vacuum Wave",
     "Vise Grip", "Volt Switch", "Volt Tackle", "Wake-Up Slap", "Water Gun",
     "Water Pulse", "Water Sport", "Water Spout", "Waterfall",
-    "Weather Ball", "Whirlpool", "Whirlwind", "Wide Guard", "Will-O-Wisp",
+    "Weather Ball", "Whirlpool", "Wide Guard", "Will-O-Wisp",
     "Wish", "Wood Hammer", "Worry Seed", "Wrap", "X-Scissor", "Yawn", "Zen Headbutt"
 ];
 const moveDataList = document.createElement('datalist');
