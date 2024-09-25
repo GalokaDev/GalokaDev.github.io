@@ -229,7 +229,7 @@ function calculateWeaknessesResistances(team) {
 
 
 
-// Funzione per suggerire Pokémon che coprono le debolezze del team basata su resistenze
+// Funzione per suggerire Pokémon che coprono le debolezze del team basata su resistenze e ruoli richiesti
 function suggestPokemonByResistances(weaknesses, requiredTags) {
     const pokemonSuggestions = [];
 
@@ -394,7 +394,6 @@ function suggestImprovements(team, weaknesses) {
 
     return improvementSuggestions;
 }
-
 // Funzione per valutare l'importanza di un Pokémon nel team
 function evaluatePokemonImportance(pokemon, team) {
     const importance = 0;
@@ -420,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const team = [];
         const teamSize = 6;
 
-        // Ottieni i Pokémon e le mosse inserite
+        // Ottieni i Pokémon e le mos se inserite
         for (let i = 1; i <= teamSize; i++) {
             const pokemon = document.getElementById(`pokemon-${i}`)?.value || '';
             const moves = [
