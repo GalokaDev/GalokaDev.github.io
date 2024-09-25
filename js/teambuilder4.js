@@ -152,7 +152,6 @@ const pokemonRoles = {
 };
 // Funzione per assegnare i tag ai Pokémon
 function assignTags(pokemon) {
-    console.log(pokemon.name, pokemon.tags);
     const hazardMoves = ['stealth rock', 'spikes', 'toxic spikes'];
     const hazardRemovalMoves = ['rapid spin', 'defog'];
 
