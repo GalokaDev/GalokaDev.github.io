@@ -412,6 +412,80 @@ function evaluatePokemonImportance(pokemon, team) {
 
 
 
+function calculateModelSimilarity(team) {
+    const modelScores = {
+        'Stall': 0,
+        'Semi-Stall': 0,
+        'Hyper Offense': 0,
+        'Bulky Offense': 0,
+        'Balance': 0
+    };
+
+    const counts = countRoles(team);
+
+    // Calcola il punteggio per ogni modello
+    if (counts.wall >= 5 && counts.sweeper === 0 && counts.stallbreaker === 1) {
+        modelScores['Stall'] += 5;
+    }
+    if (counts.wall >= 4 && counts.wall <= 5 && counts.stallbreaker === 1 && counts.sweeper <= 1) {
+        modelScores['Semi-Stall'] += 5;
+    }
+    if (counts.sweeper >= 2 && counts.sweeper <= 4 && counts.wallbreaker >= 1 && counts.wallbreaker <= 3) {
+        modelScores['Hyper Offense'] += 5;
+    }
+    if (counts.sweeper === 1 && counts.wallbreaker >= 2 && counts.wallbreaker <= 3 && counts.stallbreaker === 1) {
+        modelScores['Bulky Offense'] += 5;
+    }
+    if (counts.sweeper <= 1 && counts.wallbreaker >= 1 && counts.wallbreaker <= 2 && counts.stallbreaker === 1 && counts.pivot >= 2) {
+        modelScores['Balance'] += 5;
+    }
+
+    // Aggiungi punti aggiuntivi per caratteristiche specifiche
+    modelScores['Stall'] += counts.wall;
+    modelScores['Semi-Stall'] += counts.wall * 0.5;
+    modelScores['Hyper Offense'] += counts.sweeper + counts.wallbreaker;
+    modelScores['Bulky Offense'] += counts.wallbreaker + counts.wall * 0.5;
+    modelScores['Balance'] += counts.pivot + counts.wall * 0.5 + counts.sweeper * 0.5;
+
+    return modelScores;
+}
+
+
+// Funzione per suggerire il miglior Pokémon per avvicinarsi al modello ideale
+function suggestBestPokemon(team, modelScores, weaknesses) {
+    const bestModel = Object.keys(modelScores).reduce((a, b) => modelScores[a] > modelScores[b] ? a : b);
+    let bestPokemon = null;
+    let bestScore = -Infinity;
+
+    Object.keys(pokemonRoles).forEach(pokemonName => {
+        if (!team.some(p => p.name.toLowerCase() === pokemonName.toLowerCase())) {
+            const pokemonTypes = pokemonTypes[pokemonName.toLowerCase()];
+            const pokemonResistances = getResistances(pokemonTypes);
+            const coverageScore = calculateCoverageScore(weaknesses, pokemonResistances);
+            const roleScore = calculateRoleScore(pokemonRoles[pokemonName], bestModel);
+            const totalScore = coverageScore + roleScore;
+
+            if (totalScore > bestScore) {
+                bestScore = totalScore;
+                bestPokemon = pokemonName;
+            }
+        }
+    });
+
+    return bestPokemon;
+}
+
+
+// Funzione ausiliaria per calcolare il punteggio di copertura delle debolezze
+function calculateCoverageScore(weaknesses, resistances) {
+    return Object.keys(weaknesses).reduce((score, type) => {
+        if (weaknesses[type] > 0 && resistances.includes(type)) {
+            score += weaknesses[type];
+        }
+        return score;
+    }, 0);
+}
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -419,7 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const team = [];
         const teamSize = 6;
 
-        // Ottieni i Pokémon e le mos se inserite
+        // Ottieni i Pokémon e le mosse inserite
         for (let i = 1; i <= teamSize; i++) {
             const pokemon = document.getElementById(`pokemon-${i}`)?.value || '';
             const moves = [
@@ -437,6 +511,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Valuta l'intero team e suggerisci miglioramenti
         const result = evaluateTeam(team);
 
+        // Calcola la somiglianza con ciascun modello di team
+        const modelScores = calculateModelSimilarity(team);
+
+        // Suggerisci il miglior Pokémon per avvicinarsi al modello ideale
+        const bestPokemon = suggestBestPokemon(team, modelScores, result.weaknesses);
+
         // Mostra i risultati
         const output = document.getElementById('result');
         if (output) {
@@ -446,17 +526,20 @@ document.addEventListener('DOMContentLoaded', () => {
             // Aggiungi il nuovo risultato
             output.innerHTML = `Debolezze: ${Object.keys(result.weaknesses).join(', ')}<br>`;
             output.innerHTML += `Peggior debolezza: ${result.worstWeaknesses.join(', ')}<br>`;
-            if (result.model) {
-                output.innerHTML += `Modello di team: ${result.model}<br>`;
+
+            // Mostra il tipo di modello
+            const bestModel = Object.keys(modelScores).reduce((a, b) => modelScores[a] > modelScores[b] ? a : b);
+            if (modelScores[bestModel] > 0) {
+                output.innerHTML += `Modello di team: ${bestModel}<br>`;
+            } else {
+                output.innerHTML += `Nessun modello di team trovato<br>`;
             }
-            if (result.suggestedPokemon) {
-                output.innerHTML += `Suggerimento: Aggiungi ${result.suggestedPokemon.join(', ')} per coprire le debolezze<br>`;
-            }
-            if (result.improvementSuggestions) {
-                output.innerHTML += `Suggerimenti di miglioramento:<br>`;
-                result.improvementSuggestions.forEach(suggestion => {
-                    output.innerHTML += `Rimuovi ${suggestion.remove} e aggiungi ${suggestion.add.join(', ')}<br>`;
-                });
+
+            // Mostra il Pokémon suggerito
+            if (bestPokemon) {
+                output.innerHTML += `Suggerimento: Aggiungi ${bestPokemon} per avvicinarsi al modello ideale<br>`;
+            } else {
+                output.innerHTML += `Nessun suggerimento trovato<br>`;
             }
         }
     });
