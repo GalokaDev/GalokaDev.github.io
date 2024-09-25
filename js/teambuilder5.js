@@ -150,7 +150,7 @@ function suggestBestPokemon(team, model) {
 }
 
 // Funzione principale da eseguire al click del bottone
-document.getElementById('result').addEventListener('click', function() {
+document.getElementById('calculate').addEventListener('click', function() {
     let team = getTeamData();
 
     // Identifica il modello di team più vicino
@@ -164,6 +164,10 @@ document.getElementById('result').addEventListener('click', function() {
         }
     }
 
+    // Calcola la debolezza più frequente
+    let weaknesses = calculateWeaknesses(team);
+    let mainWeakness = weaknesses.length > 0 ? weaknesses[0][0] : "None";
+
     // Stampa il modello più vicino e suggerimenti di Pokémon
     if (bestModel) {
         let suggestions = suggestBestPokemon(team, teamModels[bestModel]);
@@ -173,6 +177,7 @@ document.getElementById('result').addEventListener('click', function() {
         }, { score: Infinity });
 
         let resultText = `Team Model: ${bestModel}\n`;
+        resultText += `Main Weakness: ${mainWeakness}\n`;
         resultText += `Worst Pokémon: ${worstPokemon.name}\n`;
         suggestions.forEach(suggestion => {
             resultText += `Suggested Pokémon: ${suggestion.name} (Score: ${suggestion.score})\n`;
