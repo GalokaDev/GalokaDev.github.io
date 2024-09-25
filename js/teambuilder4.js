@@ -87,68 +87,68 @@ const typeChart = {
 
 // Definizione dei ruoli Pokémon predefiniti
 const pokemonRoles = {
-    "Scizor": ["wallbreaker", "pivot"],
-    "Garchomp": ["sweeper", "hazardSetter"],
-    "Gallade": ["sweeper", "wallbreaker"],
-    "Zapdos": ["wall", "hazardRemover", "pivot", "rockWeak"],
-    "Serperior": ["sweeper"],
-    "Jellicent": ["wall"],
-    "Weezing": ["wall"],
-    "Mamoswine": ["wallbreaker", "hazardSetter", "rockWeak"],
-    "Dragonite": ["sweeper", "rockWeak"],
-    "Tyranitar": ["wallbreaker", "hazardSetter"],
-    "Rotom-Wash": ["hazardRemover", "pivot", "wall"],
-    "Gliscor": ["wall", "hazardSetter", "pivot"],
-    "Starmie": ["hazardRemover", "sweeper", "pivot"],
-    "Hydreigon": ["wallbreaker", "hazardSetter"],
-    "Excadrill": ["hazardSetter", "hazardRemover", "wallbreaker"],
-    "Chansey": ["wall", "hazardSetter"],
-    "Volcarona": ["sweeper", "rockWeak"],
-    "Breloom": ["sweeper", "wallbreaker", "stallbreaker"],
-    "Skarmory": ["wall", "hazardSetter", "hazardRemover"],
-    "Reuniclus": ["stallbreaker"],
-    "Pelipper": ["hazardRemover", "pivot"],
-    "Conkeldurr": ["wallbreaker", "stallbreaker"],
-    "Crawdaunt": ["wallbreaker"],
-    "Metagross": ["hazardSetter", "wall"],
-    "Gengar": ["stallbreaker", "sweeper", "trickOrTaunt"],
-    "Amoonguss": ["wall", "pivot"],
-    "Mienshao": ["wallbreaker", "pivot"],
-    "Infernape": ["sweeper", "wallbreaker"],
-    "Suicune": ["wall", "sweeper"],
-    "Chandelure": ["wallbreaker"],
-    "Magnezone": ["wallbreaker", "pivot"],
-    "Bronzong": ["hazardSetter", "wall"],
-    "Darmanitan": ["wallbreaker"],
-    "Empoleon": ["hazardRemover", "hazardSetter", "wall"],
-    "Tentacruel": ["hazardRemover", "wall", "hazardSetter"],
-    "Weavile": ["sweeper", "wallbreaker", "trickOrTaunt", "rockWeak"],
-    "Ferrothorn": ["wall", "hazardSetter", "pivot"],
-    "Kingdra": ["sweeper"],
-    "Porygon2": ["wall"],
-    "Gyarados": ["sweeper", "pivot", "rockWeak"],
-    "Gastrodon": ["wall", "hazardSetter"],
-    "Espeon": ["sweeper", "hazardRemover", "pivot"],
-    "Torkoal": ["hazardSetter", "hazardRemover", "wall"],
-    "Porygon-Z": ["sweeper"],
-    "Lucario": ["sweeper", "wallbreaker"],
-    "Sableye": ["stallbreaker"],
-    "Kabutops": ["sweeper"],
-    "Cofagrigus": ["wall"],
-    "Cloyster": ["sweeper"],
-    "Blissey": ["wall"],
-    "Venusaur": ["sweeper", "wall"],
-    "Ditto": ["revengeKiller"],
-    "Raikou": ["sweeper"],
-    "Entei": ["sweeper"],
-    "Staraptor": ["wallbreaker", "pivot"],
-    "Poliwrath": ["sweeper"],
-    "Feraligatr": ["sweeper", "wallbreaker"],
-    "Togekiss": ["sweeper", "stallbreaker"],
-    "Salamence": ["sweeper"],
-    "Mandibuzz": ["wall", "hazardRemover", "pivot"],
-    "Jolteon": ["pivot", "sweeper"],
-    "Milotic": ["wall"]
+    "scizor": ["wallbreaker", "pivot"],
+    "garchomp": ["sweeper", "hazardSetter"],
+    "gallade": ["sweeper", "wallbreaker"],
+    "zapdos": ["wall", "hazardRemover", "pivot", "rockWeak"],
+    "serperior": ["sweeper"],
+    "jellicent": ["wall"],
+    "weezing": ["wall"],
+    "mamoswine": ["wallbreaker", "hazardSetter", "rockWeak"],
+    "dragonite": ["sweeper", "rockWeak"],
+    "tyranitar": ["wallbreaker", "hazardSetter"],
+    "rotom-wash": ["hazardRemover", "pivot", "wall"],
+    "gliscor": ["wall", "hazardSetter", "pivot"],
+    "starmie": ["hazardRemover", "sweeper", "pivot"],
+    "hydreigon": ["wallbreaker", "hazardSetter"],
+    "excadrill": ["hazardSetter", "hazardRemover", "wallbreaker"],
+    "chansey": ["wall", "hazardSetter"],
+    "volcarona": ["sweeper", "rockWeak"],
+    "breloom": ["sweeper", "wallbreaker", "stallbreaker"],
+    "skarmory": ["wall", "hazardSetter", "hazardRemover"],
+    "reuniclus": ["stallbreaker"],
+    "pelipper": ["hazardRemover", "pivot"],
+    "conkeldurr": ["wallbreaker", "stallbreaker"],
+    "crawdaunt": ["wallbreaker"],
+    "metagross": ["hazardSetter", "wall"],
+    "gengar": ["stallbreaker", "sweeper", "trickOrTaunt"],
+    "amoonguss": ["wall", "pivot"],
+    "mienshao": ["wallbreaker", "pivot"],
+    "infernape": ["sweeper", "wallbreaker"],
+    "suicune": ["wall", "sweeper"],
+    "chandelure": ["wallbreaker"],
+    "magnezone": ["wallbreaker", "pivot"],
+    "bronzong": ["hazardSetter", "wall"],
+    "darmanitan": ["wallbreaker"],
+    "empoleon": ["hazardRemover", "hazardSetter", "wall"],
+    "tentacruel": ["hazardRemover", "wall", "hazardSetter"],
+    "weavile": ["sweeper", "wallbreaker", "trickOrTaunt", "rockWeak"],
+    "ferrothorn": ["wall", "hazardSetter", "pivot"],
+    "kingdra": ["sweeper"],
+    "porygon2": ["wall"],
+    "gyarados": ["sweeper", "pivot", "rockWeak"],
+    "gastrodon": ["wall", "hazardSetter"],
+    "espeon": ["sweeper", "hazardRemover", "pivot"],
+    "torkoal": ["hazardSetter", "hazardRemover", "wall"],
+    "porygon-z": ["sweeper"],
+    "lucario": ["sweeper", "wallbreaker"],
+    "sableye": ["stallbreaker"],
+    "kabutops": ["sweeper"],
+    "cofagrigus": ["wall"],
+    "cloyster": ["sweeper"],
+    "blissey": ["wall"],
+    "venusaur": ["sweeper", "wall"],
+    "ditto": ["revengeKiller"],
+    "raikou": ["sweeper"],
+    "entei": ["sweeper"],
+    "staraptor": ["wallbreaker", "pivot"],
+    "poliwrath": ["sweeper"],
+    "feraligatr": ["sweeper", "wallbreaker"],
+    "togekiss": ["sweeper", "stallbreaker"],
+    "salamence": ["sweeper"],
+    "mandibuzz": ["wall", "hazardRemover", "pivot"],
+    "jolteon": ["pivot", "sweeper"],
+    "milotic": ["wall"]
 };
 
 // Funzione per assegnare i tag ai Pokémon
@@ -157,8 +157,11 @@ function assignTags(pokemon) {
     const hazardMoves = ['stealthrock', 'spikes', 'toxicspikes'];
     const hazardRemovalMoves = ['rapidspin', 'defog'];
 
-    // Assegna i ruoli predefiniti al Pokémon basandosi sul nome
-    const pokemonRole = pokemonRoles[pokemon.name.toLowerCase()];
+    // Converti il nome del Pokémon in minuscolo per la ricerca
+    const pokemonNameLower = pokemon.name.toLowerCase();
+
+    // Assegna i ruoli predefiniti al Pokémon basandosi sul nome (in minuscolo)
+    const pokemonRole = pokemonRoles[pokemonNameLower];
     if (pokemonRole) {
         pokemon.tags.push(...pokemonRole);
     }
@@ -170,8 +173,8 @@ function assignTags(pokemon) {
     if (pokemon.moves.some(move => hazardRemovalMoves.includes(move.toLowerCase()))) {
         pokemon.tags.push('HazardRemoval');
     }
-    
 }
+
 
 
 // Funzione per calcolare debolezze e resistenze del team, gestendo correttamente le immunità
