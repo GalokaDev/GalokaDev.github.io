@@ -5,63 +5,6 @@ const pokemonTypes = {
     gallade: ['psychic', 'fighting'],
     zapdos: ['electric', 'flying'],
     serperior: ['grass'],
-    jellicent: ['water', 'ghost'],
-    weezing: ['poison'],
-    mamoswine: ['ice', 'ground'],
-    dragonite: ['dragon', 'flying'],
-    tyranitar: ['rock', 'dark'],
-    rotomWash: ['electric', 'water'],
-    gliscor: ['ground', 'flying'],
-    starmie: ['water', 'psychic'],
-    hydreigon: ['dark', 'dragon'],
-    excadrill: ['ground', 'steel'],
-    chansey: ['normal'],
-    volcarona: ['bug', 'fire'],
-    breloom: ['grass', 'fighting'],
-    skarmory: ['steel', 'flying'],
-    reuniclus: ['psychic'],
-    pelipper: ['water', 'flying'],
-    conkeldurr: ['fighting'],
-    crawdaunt: ['water', 'dark'],
-    metagross: ['steel', 'psychic'],
-    gengar: ['ghost', 'poison'],
-    amoonguss: ['grass', 'poison'],
-    mienshao: ['fighting'],
-    infernape: ['fire', 'fighting'],
-    suicune: ['water'],
-    chandelure: ['ghost', 'fire'],
-    magnezone: ['electric', 'steel'],
-    bronzong: ['steel', 'psychic'],
-    darmanitan: ['fire'],
-    empoleon: ['water', 'steel'],
-    tentacruel: ['water', 'poison'],
-    weavile: ['dark', 'ice'],
-    ferrothorn: ['grass', 'steel'],
-    kingdra: ['water', 'dragon'],
-    porygon2: ['normal'],
-    gyarados: ['water', 'flying'],
-    gastrodon: ['water', 'ground'],
-    espeon: ['psychic'],
-    torkoal: ['fire'],
-    porygonZ: ['normal'],
-    lucario: ['fighting', 'steel'],
-    sableye: ['dark', 'ghost'],
-    kabutops: ['rock', 'water'],
-    cofagrigus: ['ghost'],
-    cloyster: ['water', 'ice'],
-    blissey: ['normal'],
-    venusaur: ['grass', 'poison'],
-    ditto: ['normal'],
-    raikou: ['electric'],
-    entei: ['fire'],
-    staraptor: ['normal', 'flying'],
-    poliwrath: ['water', 'fighting'],
-    feraligatr: ['water'],
-    togekiss: ['fairy', 'flying'],
-    salamence: ['dragon', 'flying'],
-    mandibuzz: ['dark', 'flying'],
-    jolteon: ['electric'],
-    milotic: ['water']
 };
 
 // Mappa delle debolezze e resistenze per ogni tipo
@@ -92,63 +35,6 @@ const pokemonRoles = {
     "Gallade": ["sweeper", "wallbreaker"],
     "Zapdos": ["wall", "hazardRemover", "pivot", "rockWeak"],
     "Serperior": ["sweeper"],
-    "Jellicent": ["wall"],
-    "Weezing": ["wall"],
-    "Mamoswine": ["wallbreaker", "hazardSetter"],
-    "Dragonite": ["sweeper", "rockWeak"],
-    "Tyranitar": ["wallbreaker", "hazardSetter"],
-    "Rotom-Wash": ["hazardRemover", "pivot", "wall"],
-    "Gliscor": ["wall", "hazardSetter", "pivot"],
-    "Starmie": ["hazardRemover", "sweeper", "pivot"],
-    "Hydreigon": ["wallbreaker", "rockWeak", "hazardSetter"],
-    "Excadrill": ["hazardSetter", "hazardRemover", "wallbreaker"],
-    "Chansey": ["wall", "hazardSetter"],
-    "Volcarona": ["sweeper", "rockWeak"],
-    "Breloom": ["sweeper", "wallbreaker", "stallbreaker"],
-    "Skarmory": ["wall", "hazardSetter", "hazardRemover", "rockWeak"],
-    "Reuniclus": ["stallbreaker"],
-    "Pelipper": ["hazardSetter", "pivot"],
-    "Conkeldurr": ["wallbreaker", "stallbreaker"],
-    "Crawdaunt": ["wallbreaker"],
-    "Metagross": ["hazardSetter", "wall", "hazardRemover"],
-    "Gengar": ["stallbreaker", "sweeper", "trickOrTaunt"],
-    "Amoonguss": ["wall", "pivot"],
-    "Mienshao": ["wallbreaker", "pivot"],
-    "Infernape": ["sweeper", "wallbreaker"],
-    "Suicune": ["wall", "hazardRemover", "sweeper"],
-    "Chandelure": ["wallbreaker"],
-    "Magnezone": ["wallbreaker", "pivot"],
-    "Bronzong": ["hazardSetter", "wall"],
-    "Darmanitan": ["wallbreaker"],
-    "Empoleon": ["hazardRemover", "hazardSetter", "wall"],
-    "Tentacruel": ["hazardRemover", "wall", "hazardSetter"],
-    "Weavile": ["sweeper", "wallbreaker", "trickOrTaunt"],
-    "Ferrothorn": ["wall", "hazardSetter", "pivot"],
-    "Kingdra": ["sweeper", "pivot", "hazardRemover"],
-    "Porygon2": ["wall"],
-    "Gyarados": ["sweeper", "pivot", "rockWeak"],
-    "Gastrodon": ["wall", "hazardSetter"],
-    "Espeon": ["sweeper", "hazardRemover", "pivot"],
-    "Torkoal": ["hazardSetter", "h azardRemover", "wall"],
-    "Porygon-Z": ["sweeper"],
-    "Lucario": ["sweeper", "wallbreaker"],
-    "Sableye": ["stallbreaker"],
-    "Kabutops": ["sweeper", "hazardRemover"],
-    "Cofagrigus": ["hazardRemover", "wall"],
-    "Cloyster": ["sweeper", "rockWeak"],
-    "Blissey": ["wall"],
-    "Venusaur": ["sweeper", "wall", "hazardRemover"],
-    "Ditto": ["revengeKiller"],
-    "Raikou": ["pivot", "hazardRemover"],
-    "Entei": ["sweeper", "hazardRemover"],
-    "Staraptor": ["wallbreaker", "pivot", "rockWeak"],
-    "Poliwrath": ["wall", "hazardSetter", "sweeper"],
-    "Feraligatr": ["sweeper", "wallbreaker"],
-    "Togekiss": ["sweeper", "hazardRemover", "stallbreaker", "rockWeak"],
-    "Salamence": ["sweeper", "rockWeak"],
-    "Mandibuzz": ["wall", "hazardRemover", "pivot"],
-    "Jolteon": ["pivot", "sweeper"],
-    "Milotic": ["wall"]
 };
 
 // Funzione per assegnare i tag ai Pokémon
@@ -182,15 +68,18 @@ function calculateWeaknessesResistances(team) {
         const types = pokemonTypes[pokemon.name.toLowerCase()];
         if (types) {
             types.forEach(type => {
-                // Aggiorna le debolezze per i tipi a cui questo Pokémon è debole
+                // Aggiungi alle debolezze
                 typeChart[type].weakTo.forEach(weakType => weaknesses[weakType]++);
-                // Aggiorna le resistenze per i tipi a cui questo Pokémon è resistente
+                // Sottrai dalle resistenze
                 typeChart[type].resistantTo.forEach(resistType => weaknesses[resistType]--);
             });
         }
     });
 
-    return weaknesses;
+    // Trova le peggiori debolezze, cioè quelle che hanno un valore pari o superiore a 2
+    const worstWeaknesses = Object.keys(weaknesses).filter(type => weaknesses[type] >= 2);
+
+    return { weaknesses, worstWeaknesses };
 }
 
 // Funzione per suggerire Pokémon che coprono le debolezze del team basata su resistenze
@@ -238,14 +127,15 @@ function evaluateTeamModel(team) {
 
     // Contare i ruoli basati sui tag assegnati
     team.forEach(pokemon => {
-        if (pokemon.tags.includes('Sweeper')) counts.sweeper++;
-        if (pokemon.tags.includes('WallBreaker')) counts.wallbreaker++;
-        if (pokemon.tags.includes('StallBreaker')) counts.stallbreaker++;
-        if (pokemon.tags.includes('Pivot')) counts.pivot++;
-        if (pokemon.tags.includes('Wall')) counts.wall++;
+        if (pokemon.tags.includes('sweeper')) counts.sweeper++;
+        if (pokemon.tags.includes('wallbreaker')) counts.wallbreaker++;
+        if (pokemon.tags.includes('stallbreaker')) counts.stallbreaker++;
+        if (pokemon.tags.includes('pivot')) counts.pivot++;
+        if (pokemon.tags.includes('wall')) counts.wall++;
         if (pokemon.tags.includes('HazardSetter')) counts.hazardSetter++;
         if (pokemon.tags.includes('HazardRemoval')) counts.hazardRemoval++;
     });
+
 
     // Controllare se il team corrisponde ai vari modelli
     const isBalanceTeam =
@@ -260,7 +150,7 @@ function evaluateTeamModel(team) {
         (counts.sweeper >= 2 && counts.sweeper <= 4) &&
         (counts.wallbreaker >= 1 && counts.wallbreaker <= 3) &&
         (counts.hazardSetter >= 1) &&
-        (counts.hazardRemoval >= 1 && team.some(pokemon => pokemon.tags.includes('RockWeak')));
+        (counts.hazardRemoval >= 1 && team.some(pokemon => pokemon.tags.includes('rockWeak')));
 
     const isBulkyOffenseTeam =
         (counts.sweeper === 1) &&
@@ -283,32 +173,30 @@ function evaluateTeamModel(team) {
         (counts.hazardSetter >= 1);
 
     // Restituisci il modello e i tag richiesti per suggerimenti Pokémon
-    if (isBalanceTeam) return { model: 'Balance Team', requiredTags: ['Pivot', 'HazardSetter', 'HazardRemoval'] };
-    if (isHyperOffenseTeam) return { model: 'Hyper Offense Team', requiredTags: ['Sweeper', 'WallBreaker', 'HazardSetter'] };
-    if (isBulkyOffenseTeam) return { model: 'Bulky Offense Team', requiredTags: ['WallBreaker', 'StallBreaker', 'HazardSetter'] };
-    if (isStallTeam) return { model: 'Stall Team', requiredTags: ['Wall', 'HazardSetter', 'HazardRemoval'] };
-    if (isSemiStallTeam) return { model: 'Semi-Stall Team', requiredTags: ['Wall', 'StallBreaker', 'HazardSetter'] };
+    if (isBalanceTeam) return { model: 'Balance Team', requiredTags: ['pivot', 'HazardSetter', 'HazardRemoval'] };
+    if (isHyperOffenseTeam) return { model: 'Hyper Offense Team', requiredTags: ['sweeper', 'wallbreaker', 'HazardSetter'] };
+    if (isBulkyOffenseTeam) return { model: 'Bulky Offense Team', requiredTags: ['wallbreaker', 'stallbreaker', 'HazardSetter'] };
+    if (isStallTeam) return { model: 'Stall Team', requiredTags: ['wall', 'HazardSetter', 'HazardRemoval'] };
+    if (isSemiStallTeam) return { model: 'Semi-Stall Team', requiredTags: ['wall', 'stallbreaker', 'HazardSetter'] };
 
     return null; // Nessun modello specifico rilevato
 }
-
 // Funzione per valutare l'intero team
 function evaluateTeam(team) {
     team.forEach(pokemon => assignTags(pokemon)); // Assegna i tag ai Pokémon
-    const weaknesses = calculateWeaknessesResistances(team); // Calcola le debolezze
+    const { weaknesses, worstWeaknesses } = calculateWeaknessesResistances(team); // Calcola le debolezze
     const teamModel = evaluateTeamModel(team); // Valuta il modello del team
 
     if (teamModel) {
         // Suggerisci Pokémon che coprono le debolezze basate su resistenze e che soddisfano i tag del modello
         const suggestedPokemon = suggestPokemonByResistances(weaknesses, teamModel.requiredTags);
 
-        return { weaknesses, suggestedPokemon, model: teamModel.model };
+        return { weaknesses, worstWeaknesses, suggestedPokemon, model: teamModel.model };
     } else {
-        return { weaknesses, suggestedPokemon: [], model: "Nessun modello specifico rilevato" };
+        return { weaknesses, worstWeaknesses, suggestedPokemon: [], model: "Nessun modello specifico rilevato" };
     }
 }
 
-// Aggiungi evento di click al bottone "Calcola"
 document.getElementById('calculate').addEventListener('click', () => {
     const team = [];
     const teamSize = 6;
@@ -340,6 +228,7 @@ document.getElementById('calculate').addEventListener('click', () => {
     // Visualizza i risultati
     document.getElementById('result').innerHTML = `
         Debolezze del Team: ${JSON.stringify(result.weaknesses)}<br>
+        Debolezze da coprire: ${result.worstWeaknesses.length > 0 ? result.worstWeaknesses.join(', ') : "Nessuna debolezza critica"}<br>
         Pokémon Suggeriti: ${result.suggestedPokemon.length > 0 ? result.suggestedPokemon.join(', ') : "Nessun Pokémon suggerito"}<br>
         Modello del Team: ${result.model}
     `;
