@@ -394,18 +394,42 @@ function suggestImprovements(team, weaknesses) {
 
     return improvementSuggestions;
 }
-// Funzione per valutare l'importanza di un Pokémon nel team
-function evaluatePokemonImportance(pokemon, team) {
-    const importance = 0;
+// Aggiungi questa funzione per valutare l'importanza di ogni Pokémon nel team
+function evaluatePokemonImportance(pokemon, team, modelScores) {
+    let importance = 0;
+    const bestModel = Object.keys(modelScores).reduce((a, b) => modelScores[a] > modelScores[b] ? a : b);
+    const pokemonRoles = pokemonRoles[pokemon.name.toLowerCase()] || [];
 
-    // Valuta l'importanza del Pokémon in base ai suoi ruoli nel team
-    if (pokemon.tags.includes('sweeper')) importance += 2;
-    if (pokemon.tags.includes('wallbreaker')) importance += 2;
-    if (pokemon.tags.includes('stallbreaker')) importance += 1;
-    if (pokemon.tags.includes('pivot')) importance += 1;
-    if (pokemon.tags.includes('wall')) importance += 1;
-    if (pokemon.tags.includes('HazardSetter')) importance += 1;
-    if (pokemon.tags.includes('HazardRemoval')) importance += 1;
+    // Valuta l'importanza in base ai ruoli del Pokémon e al modello del team
+    pokemonRoles.forEach(role => {
+        switch(bestModel) {
+            case 'Stall':
+                if (role === 'wall') importance += 3;
+                if (role === 'stallbreaker') importance += 2;
+                break;
+            case 'Semi-Stall':
+                if (role === 'wall') importance += 2;
+                if (role === 'stallbreaker') importance += 2;
+                if (role === 'sweeper') importance += 1;
+                break;
+            case 'Hyper Offense':
+                if (role === 'sweeper') importance += 3;
+                if (role === 'wallbreaker') importance += 2;
+                break;
+            case 'Bulky Offense':
+                if (role === 'wallbreaker') importance += 2;
+                if (role === 'wall') importance += 1;
+                if (role === 'sweeper') importance += 1;
+                break;
+            case 'Balance':
+                importance += 1; // Tutti i ruoli sono importanti in un team bilanciato
+                break;
+        }
+    });
+
+    // Aggiungi importanza per hazard setter e remover
+    if (pokemonRoles.includes('HazardSetter')) importance += 1;
+    if (pokemonRoles.includes('HazardRemoval')) importance += 1;
 
     return importance;
 }
@@ -517,6 +541,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Suggerisci il miglior Pokémon per avvicinarsi al modello ideale
         const bestPokemon = suggestBestPokemon(team, modelScores, result.weaknesses);
 
+        // Trova il Pokémon meno importante nel team
+        const worstPokemon = team.reduce((worst, current) => {
+            const worstImportance = evaluatePokemonImportance(worst, team, modelScores);
+            const currentImportance = evaluatePokemonImportance(current, team, modelScores);
+            return currentImportance < worstImportance ? current : worst;
+        });
+
+        // Trova la peggiore debolezza del team
+        const worstWeakness = Object.keys(result.weaknesses).reduce((a, b) => result.weaknesses[a] > result.weaknesses[b] ? a : b);
+
         // Mostra i risultati
         const output = document.getElementById('result');
         if (output) {
@@ -525,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Aggiungi il nuovo risultato
             output.innerHTML = `Debolezze: ${Object.keys(result.weaknesses).join(', ')}<br>`;
-            output.innerHTML += `Peggior debolezza: ${result.worstWeaknesses.join(', ')}<br>`;
+            output.innerHTML += `Peggior debolezza: ${worstWeakness} (valore: ${result.weaknesses[worstWeakness]})<br>`;
 
             // Mostra il tipo di modello
             const bestModel = Object.keys(modelScores).reduce((a, b) => modelScores[a] > modelScores[b] ? a : b);
@@ -535,11 +569,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 output.innerHTML += `Nessun modello di team trovato<br>`;
             }
 
-            // Mostra il Pokémon suggerito
-            if (bestPokemon) {
-                output.innerHTML += `Suggerimento: Aggiungi ${bestPokemon} per avvicinarsi al modello ideale<br>`;
+            // Mostra il Pokémon suggerito e quello da sostituire
+            if (bestPokemon && worstPokemon) {
+                output.innerHTML += `Suggerimento: Sostituisci ${worstPokemon.name} con ${bestPokemon} per avvicinarsi al modello ideale e coprire la debolezza a ${worstWeakness}<br>`;
             } else {
-                output.innerHTML += `Nessun suggerimento trovato<br>`;
+                output.innerHTML += `Nessun suggerimento di sostituzione trovato<br>`;
             }
         }
     });
