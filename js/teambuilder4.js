@@ -17,7 +17,7 @@ const typeChart = {
     ice: { weakTo: ['fire', 'fighting', 'rock', 'steel'], resistantTo: ['ice'] },
     fighting: { weakTo: ['flying', 'psychic'], resistantTo: ['bug', 'rock', 'dark'] },
     poison: { weakTo: ['ground', 'psychic'], resistantTo: ['grass', 'fighting', 'poison', 'bug'] },
- ground: { weakTo: ['water', 'grass', 'ice'], resistantTo: ['poison', 'rock'], immuneTo: ['electric'] },
+    ground: { weakTo: ['water', 'grass', 'ice'], resistantTo: ['poison', 'rock'], immuneTo: ['electric'] },
     flying: { weakTo: ['electric', 'ice', 'rock'], resistantTo: ['grass', 'fighting', 'bug'], immuneTo: ['ground'] },
     psychic: { weakTo: ['bug', 'ghost', 'dark'], resistantTo: ['fighting', 'psychic'] },
     bug: { weakTo: ['fire', 'flying', 'rock'], resistantTo: ['grass', 'fighting', 'ground'] },
@@ -58,6 +58,7 @@ function assignTags(pokemon) {
 }
 
 // Funzione per calcolare debolezze e resistenze del team
+// Funzione per calcolare debolezze e resistenze del team, gestendo correttamente le immunità
 function calculateWeaknessesResistances(team) {
     const weaknesses = {
         normal: 0, fire: 0, water: 0, electric: 0, grass: 0, ice: 0, fighting: 0, poison: 0,
@@ -67,11 +68,33 @@ function calculateWeaknessesResistances(team) {
     team.forEach(pokemon => {
         const types = pokemonTypes[pokemon.name.toLowerCase()];
         if (types) {
+            const tempWeaknesses = { ...weaknesses };
+
             types.forEach(type => {
-                // Aggiungi alle debolezze
-                typeChart[type].weakTo.forEach(weakType => weaknesses[weakType]++);
-                // Sottrai dalle resistenze
-                typeChart[type].resistantTo.forEach(resistType => weaknesses[resistType]--);
+                // Controllo immunità prima
+                typeChart[type].immuneTo.forEach(immuneType => {
+                    // Se c'è un'immunità, impostiamo direttamente a -2 per quell'elemento
+                    tempWeaknesses[immuneType] = -2;
+                });
+
+                // Aggiungi alle debolezze se non è immune
+                typeChart[type].weakTo.forEach(weakType => {
+                    if (tempWeaknesses[weakType] !== -2) {
+                        tempWeaknesses[weakType]++;
+                    }
+                });
+
+                // Sottrai dalle resistenze se non è immune
+                typeChart[type].resistantTo.forEach(resistType => {
+                    if (tempWeaknesses[resistType] !== -2) {
+                        tempWeaknesses[resistType]--;
+                    }
+                });
+            });
+
+            // Aggiorna il conteggio delle debolezze/resistenze globali
+            Object.keys(weaknesses).forEach(type => {
+                weaknesses[type] += tempWeaknesses[type];
             });
         }
     });
@@ -81,6 +104,7 @@ function calculateWeaknessesResistances(team) {
 
     return { weaknesses, worstWeaknesses };
 }
+
 
 // Funzione per suggerire Pokémon che coprono le debolezze del team basata su resistenze
 function suggestPokemonByResistances(weaknesses, requiredTags) {
