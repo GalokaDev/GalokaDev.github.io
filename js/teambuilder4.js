@@ -411,6 +411,10 @@ function evaluatePokemonImportance(pokemon, team) {
     return importance;
 }
 
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('calculate').addEventListener('click', () => {
         const team = [];
@@ -437,6 +441,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Mostra i risultati
         const output = document.getElementById('result');
         if (output) {
+            // Svuota il contenuto precedente
+            output.innerHTML = '';
+
+            // Aggiungi il nuovo risultato
+            output.innerHTML = `Debolezze: ${Object.keys(result.weaknesses).join(', ')}<br>`;
             output.innerHTML += `Peggior debolezza: ${result.worstWeaknesses.join(', ')}<br>`;
             if (result.model) {
                 output.innerHTML += `Modello di team: ${result.model}<br>`;
