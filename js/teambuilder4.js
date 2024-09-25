@@ -188,45 +188,38 @@ function calculateWeaknessesResistances(team) {
         const types = pokemonTypes[pokemon.name.toLowerCase()];
 
         if (types) {
-            let immuneFound = false;
-            const tempWeaknesses = { ...weaknesses };
+            let immuneTypeFound = null;
 
             // Controlla se c'è un tipo immune e segna i debolezze/resistenze relative
             types.forEach(type => {
-                if (typeChart[type].immuneTo && !immuneFound) {
+                if (typeChart[type].immuneTo) {
                     typeChart[type].immuneTo.forEach(immuneType => {
-                        tempWeaknesses[immuneType] = -2; // Imposta l'immunità
-                        immuneFound = true; // Ignora il secondo tipo se c'è un'immunità
+                        // Se troviamo un tipo immune, segnalo e lo impostiamo a -2
+                        immuneTypeFound = immuneType;
                         console.log(`${pokemon.name} è immune a ${immuneType}`);
                     });
                 }
             });
 
-            // Se non è stata trovata nessuna immunità, calcola debolezze e resistenze
-            if (!immuneFound) {
-                types.forEach(type => {
-                    // Aggiungi debolezze
-                    typeChart[type].weakTo.forEach(weakType => {
-                        tempWeaknesses[weakType]++;
-                        console.log(`${pokemon.name} è debole a ${weakType}, debolezza corrente: ${tempWeaknesses[weakType]}`);
-                    });
-
-                    // Sottrai resistenze
-                    typeChart[type].resistantTo.forEach(resistType => {
-                        tempWeaknesses[resistType]--;
-                        console.log(`${pokemon.name} è resistente a ${resistType}, resistenza corrente: ${tempWeaknesses[resistType]}`);
-                    });
+            // Calcola debolezze e resistenze
+            types.forEach(type => {
+                // Aggiungi debolezze
+                typeChart[type].weakTo.forEach(weakType => {
+                    weaknesses[weakType]++;
+                    console.log(`${pokemon.name} è debole a ${weakType}, debolezza corrente: ${weaknesses[weakType]}`);
                 });
-            }
 
-            // Aggiorna le debolezze globali con i valori temporanei calcolati
-            Object.keys(weaknesses).forEach(type => {
-                if (tempWeaknesses[type] !== -2) { // -2 indica un'immunità
-                    weaknesses[type] += tempWeaknesses[type];
-                } else {
-                    weaknesses[type] = tempWeaknesses[type]; // Mantieni l'immunità
-                }
+                // Sottrai resistenze
+                typeChart[type].resistantTo.forEach(resistType => {
+                    weaknesses[resistType]--;
+                    console.log(`${pokemon.name} è resistente a ${resistType}, resistenza corrente: ${weaknesses[resistType]}`);
+                });
             });
+
+            // Se è stato trovato un tipo immune, imposta solo quel tipo a -2
+            if (immuneTypeFound) {
+                weaknesses[immuneTypeFound] = -2;
+            }
         }
     });
 
@@ -234,6 +227,7 @@ function calculateWeaknessesResistances(team) {
     const worstWeaknesses = Object.keys(weaknesses).filter(type => weaknesses[type] >= 2);
     return { weaknesses, worstWeaknesses };
 }
+
 
 
 
