@@ -437,7 +437,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Mostra i risultati
         const output = document.getElementById('result');
         if (output) {
-            output.innerHTML = `Debolezze: ${Object.keys(result.weaknesses).join(', ')}<br>`;
             output.innerHTML += `Peggior debolezza: ${result.worstWeaknesses.join(', ')}<br>`;
             if (result.model) {
                 output.innerHTML += `Modello di team: ${result.model}<br>`;
