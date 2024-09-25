@@ -74,7 +74,7 @@ const typeChart = {
     ice: { weakTo: ['fire', 'fighting', 'rock', 'steel'], resistantTo: ['ice'] },
     fighting: { weakTo: ['flying', 'psychic'], resistantTo: ['bug', 'rock', 'dark'] },
     poison: { weakTo: ['ground', 'psychic'], resistantTo: ['grass', 'fighting', 'poison', 'bug'] },
-    ground: { weakTo: ['water', 'grass', 'ice'], resistantTo: ['poison', 'rock'], immuneTo: ['electric'] },
+ ground: { weakTo: ['water', 'grass', 'ice'], resistantTo: ['poison', 'rock'], immuneTo: ['electric'] },
     flying: { weakTo: ['electric', 'ice', 'rock'], resistantTo: ['grass', 'fighting', 'bug'], immuneTo: ['ground'] },
     psychic: { weakTo: ['bug', 'ghost', 'dark'], resistantTo: ['fighting', 'psychic'] },
     bug: { weakTo: ['fire', 'flying', 'rock'], resistantTo: ['grass', 'fighting', 'ground'] },
@@ -129,7 +129,7 @@ const pokemonRoles = {
     "Gyarados": ["sweeper", "pivot", "rockWeak"],
     "Gastrodon": ["wall", "hazardSetter"],
     "Espeon": ["sweeper", "hazardRemover", "pivot"],
-    "Torkoal": ["hazardSetter", "hazardRemover", "wall"],
+    "Torkoal": ["hazardSetter", "h azardRemover", "wall"],
     "Porygon-Z": ["sweeper"],
     "Lucario": ["sweeper", "wallbreaker"],
     "Sableye": ["stallbreaker"],
@@ -238,7 +238,7 @@ function evaluateTeamModel(team) {
 
     // Contare i ruoli basati sui tag assegnati
     team.forEach(pokemon => {
-        if (pokemon.tags.includes(' Sweeper')) counts.sweeper++;
+        if (pokemon.tags.includes('Sweeper')) counts.sweeper++;
         if (pokemon.tags.includes('WallBreaker')) counts.wallbreaker++;
         if (pokemon.tags.includes('StallBreaker')) counts.stallbreaker++;
         if (pokemon.tags.includes('Pivot')) counts.pivot++;
@@ -296,12 +296,16 @@ function evaluateTeamModel(team) {
 function evaluateTeam(team) {
     team.forEach(pokemon => assignTags(pokemon)); // Assegna i tag ai Pokémon
     const weaknesses = calculateWeaknessesResistances(team); // Calcola le debolezze
-    const { model, requiredTags } = evaluateTeamModel(team); // Valuta il modello del team
+    const teamModel = evaluateTeamModel(team); // Valuta il modello del team
 
-    // Suggerisci Pokémon che coprono le debolezze basate su resistenze e che soddisfano i tag del modello
-    const suggestedPokemon = suggestPokemonByResistances(weaknesses, requiredTags);
+    if (teamModel) {
+        // Suggerisci Pokémon che coprono le debolezze basate su resistenze e che soddisfano i tag del modello
+        const suggestedPokemon = suggestPokemonByResistances(weaknesses, teamModel.requiredTags);
 
-    return { weaknesses, suggestedPokemon, model };
+        return { weaknesses, suggestedPokemon, model: teamModel.model };
+    } else {
+        return { weaknesses, suggestedPokemon: [], model: "Nessun modello specifico rilevato" };
+    }
 }
 
 // Aggiungi evento di click al bottone "Calcola"
@@ -337,6 +341,6 @@ document.getElementById('calculate').addEventListener('click', () => {
     document.getElementById('result').innerHTML = `
         Debolezze del Team: ${JSON.stringify(result.weaknesses)}<br>
         Pokémon Suggeriti: ${result.suggestedPokemon.length > 0 ? result.suggestedPokemon.join(', ') : "Nessun Pokémon suggerito"}<br>
-        Modello del Team: ${result.model ? result.model.model : "Nessun modello specifico rilevato"}
+        Modello del Team: ${result.model}
     `;
 });
