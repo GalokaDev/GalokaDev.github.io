@@ -445,7 +445,24 @@ function calculateModelSimilarity(team) {
         'Balance': 0
     };
 
-    const counts = countRoles(team);
+    const counts = {
+        sweeper: 0,
+        wallbreaker: 0,
+        stallbreaker: 0,
+        pivot: 0,
+        wall: 0,
+        hazardSetter: 0,
+        hazardRemoval: 0
+    };
+    team.forEach(pokemon => {
+        if (pokemon.tags.includes('sweeper')) counts.sweeper++;
+        if (pokemon.tags.includes('wallbreaker')) counts.wallbreaker++;
+        if (pokemon.tags.includes('stallbreaker')) counts.stallbreaker++;
+        if (pokemon.tags.includes('pivot')) counts.pivot++;
+        if (pokemon.tags.includes('wall')) counts.wall++;
+        if (pokemon.tags.includes('HazardSetter')) counts.hazardSetter++;
+        if (pokemon.tags.includes('HazardRemoval')) counts.hazardRemoval++;
+    });
 
     // Calcola il punteggio per ogni modello
     if (counts.wall >= 5 && counts.sweeper === 0 && counts.stallbreaker === 1) {
@@ -473,6 +490,8 @@ function calculateModelSimilarity(team) {
 
     return modelScores;
 }
+
+
 
 
 // Funzione per suggerire il miglior Pokémon per avvicinarsi al modello ideale
