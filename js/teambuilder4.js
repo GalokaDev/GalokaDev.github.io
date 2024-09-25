@@ -153,6 +153,7 @@ const pokemonRoles = {
 
 // Funzione per assegnare i tag ai Pokémon
 function assignTags(pokemon) {
+    console.log(pokemon.name, pokemon.tags);
     const hazardMoves = ['stealthrock', 'spikes', 'toxicspikes'];
     const hazardRemovalMoves = ['rapidspin', 'defog'];
 
@@ -169,6 +170,7 @@ function assignTags(pokemon) {
     if (pokemon.moves.some(move => hazardRemovalMoves.includes(move.toLowerCase()))) {
         pokemon.tags.push('HazardRemoval');
     }
+    
 }
 
 
@@ -263,6 +265,7 @@ function suggestPokemonByResistances(weaknesses, requiredTags) {
 
 // Funzione per valutare il modello del team in base ai tag assegnati
 function evaluateTeamModel(team) {
+    console.log(counts); // Aggiungi questo per controllare il conteggio
     const counts = {
         sweeper: 0,
         wallbreaker: 0,
@@ -328,9 +331,11 @@ function evaluateTeamModel(team) {
     if (isSemiStallTeam) return { model: 'Semi-Stall Team', requiredTags: ['wall', 'stallbreaker', 'HazardSetter'] };
 
     return null; // Nessun modello specifico rilevato
+    
 }
 // Funzione per valutare l'intero team
 function evaluateTeam(team) {
+    console.log("Team:", team);
     team.forEach(pokemon => assignTags(pokemon)); // Assegna i tag ai Pokémon
     const { weaknesses, worstWeaknesses } = calculateWeaknessesResistances(team); // Calcola le debolezze
     const teamModel = evaluateTeamModel(team); // Valuta il modello del team
