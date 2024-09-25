@@ -4,6 +4,7 @@ const pokemonRoles = {
     ferrothorn: { roles: ['wall'], types: ['grass', 'steel'] },
     garchomp: { roles: ['sweeper'], types: ['dragon', 'ground'] },
     blissey: { roles: ['wall'], types: ['normal'] },
+    chansey: { roles: ['wall'], types: ['normal'] },
     scizor: { roles: ['pivot'], types: ['bug', 'steel'] },
     skarmory: { roles: ['wall', 'hazardremoval'], types: ['steel', 'flying'] },
     // Aggiungi altri Pokémon qui
