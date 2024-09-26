@@ -247,8 +247,8 @@ function suggestBestPokemon(team, model) {
     // Conta i ruoli nel team
     team.forEach(pokemon => {
         if (pokemonRoles[pokemon.name]) {
-            pokemonRoles[pokemon.name].roles.forEach(role => {
-                roles[role]++; // Incrementa il ruolo corrispondente
+            pokemonRoles[pokemon.name].teamModels[model].teamModels[model].roles.forEach(role => {
+                teamModels[model].roles[role]++; // Incrementa il ruolo corrispondente
             });
         }
     });
@@ -262,12 +262,12 @@ function suggestBestPokemon(team, model) {
             let skip = false; // Variabile per determinare se saltare questo Pokémon
 
             // Verifica i ruoli che sono stati dichiarati nel modello
-            for (let role in model.roles) {
-                const roleReq = model.roles[role];
+            for (let role in model.teamModels[model].roles) {
+                const roleReq = model.teamModels[model].roles[role];
 
                 // Se il ruolo è già oltre il limite, salta questo Pokémon
                 if (Array.isArray(roleReq)) {
-                    if (pokemonRoles[pokemon].roles.includes(role) && roles[role] >= roleReq[1]) {
+                    if (pokemonRoles[pokemon].teamModels[model].roles.includes(role) && teamModels[model].roles[role] >= roleReq[1]) {
                         skip = true;
                         break; // Interrompi il ciclo se uno dei ruoli è già pieno
                     }
@@ -288,24 +288,24 @@ function suggestBestPokemon(team, model) {
             });
 
             // Aumenta il punteggio solo per i ruoli dichiarati nel modello
-            for (let role in model.roles) {
-                const roleReq = model.roles[role];
+            for (let role in model.teamModels[model].roles) {
+                const roleReq = model.teamModels[model].roles[role];
                 const roleWeight = weight[role] || 1; // Ottieni il peso del ruolo o predefinito a 1
 
                 if (Array.isArray(roleReq)) {
-                    if (pokemonRoles[pokemon].roles.includes(role) && roles[role] < roleReq[1]) {
+                    if (pokemonRoles[pokemon].teamModels[model].roles.includes(role) && teamModels[model].roles[role] < roleReq[1]) {
                         score += 10 * roleWeight; // Aumenta il punteggio in base al peso
                     }
                 } else {
-                    if (pokemonRoles[pokemon].roles.includes(role)) {
+                    if (pokemonRoles[pokemon].teamModels[model].roles.includes(role)) {
                         score += 10 * roleWeight; // Aumenta il punteggio in base al peso
                     }
                 }
             }
 
             // Non applichiamo alcun limite ai ruoli non dichiarati nel modello
-            pokemonRoles[pokemon].roles.forEach(role => {
-                if (!(role in model.roles)) {
+            pokemonRoles[pokemon].teamModels[model].roles.forEach(role => {
+                if (!(role in model.teamModels[model].roles)) {
                     // Il ruolo non è presente nel modello, quindi non aggiunge né sottrae punti
                 }
             });
