@@ -91,7 +91,7 @@ const roleWeights = {
     },
     rain: {
         rainSetter: 5, // Il rain setter è cruciale
-        rainAbuser: 2,
+        rainAbuser: 3,
         rainUseful: 2
     }
 };
@@ -106,34 +106,34 @@ const pivotmoves = ['u-turn', 'volt switch', 'teleport','baton pass'];
 const teamModels = {
     balance: {
         roles: { sweeper: [0, 1], wallbreaker: [1, 2], wall: [2, 3] },
-        hazardsRequired: true,
-        hazardRemovalRequired: true
+        hazardsRequired: false,
+        hazardRemovalRequired: false
     },
     hyperOffense: {
         roles: { sweeper: [4, 6], wallbreaker: [1, 3] },
-        hazardsRequired: true,
-        trickOrTauntRequired: true,
-        hazardRemovalRequiredIfRockWeak: true
+        hazardsRequired: false,
+        trickOrTauntRequired: false,
+        hazardRemovalRequiredIfRockWeak: false
     },
     bulkyOffense: {
         roles: { sweeper: 1, wallbreaker: [2, 4] },
-        hazardsRequired: true,
-        hazardRemovalOptional: true
+        hazardsRequired: false,
+        hazardRemovalOptional: false
     },
     stall: {
         roles: { wall: [5, 6], wallbreaker: [0, 1] },
-        hazardsRequired: true,
-        hazardRemovalRequired: true
+        hazardsRequired: false,
+        hazardRemovalRequired: false
     },
     semiStall: {
         roles: { wall: [4, 5], wallbreaker: 1, sweeper: [0, 1], wallbreaker: [0, 1] },
-        hazardsRequired: true,
-        hazardRemovalOptional: true
+        hazardsRequired: false,
+        hazardRemovalOptional: false
     },
     rain: {
         roles: { rainSetter: 1, rainAbuser: [1, 2], rainUseful: [1, 2] },
         hazardsRequired: false,
-        hazardRemovalRequired: true
+        hazardRemovalRequired: false
     }
 };
 
