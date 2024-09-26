@@ -316,7 +316,7 @@ function suggestBestPokemon(team, model) {
 
 // Funzione aggiornata per valutare il team rispetto a un modello, considerando debolezze
 function evaluateTeamAgainstModel(team, model) {
-    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, stallbreaker: 0, wall: 0, rockweak: 0 };
+    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0 };
     let score = 0; // Il punteggio parte da 0
     let hasHazards = false;
     let hasHazardRemoval = false;
