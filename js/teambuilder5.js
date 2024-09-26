@@ -71,7 +71,7 @@ function calculateWeaknesses(team) {
         grass: { weakTo: ['fire', 'ice', 'poison', 'flying', 'bug'], resists: ['water', 'grass', 'electric', 'ground'], immuneTo: [] },
         electric: { weakTo: ['ground'], resists: ['electric', 'flying', 'steel'], immuneTo: [] },
         ice: { weakTo: ['fire', 'fighting', 'rock', 'steel'], resists: ['ice'], immuneTo: [] },
-        fighting: { weakTo: ['flying', 'psychic', 'fairy'], resists: ['bug', 'rock', 'dark'], immuneTo: [] },
+        fighting: { weakTo: ['flying', 'psychic'], resists: ['bug', 'rock', 'dark'], immuneTo: [] },
         poison: { weakTo: ['ground', 'psychic'], resists: ['grass', 'fighting', 'poison', 'bug'], immuneTo: [] },
         ground: { weakTo: ['water', 'ice', 'grass'], resists: ['poison', 'rock'], immuneTo: ['electric'] },
         flying: { weakTo: ['electric', 'ice', 'rock'], resists: ['grass', 'fighting', 'bug'], immuneTo: [] },
@@ -79,23 +79,30 @@ function calculateWeaknesses(team) {
         bug: { weakTo: ['fire', 'flying', 'rock', 'ghost', 'poison'], resists: ['grass', 'fighting', 'ground'], immuneTo: [] },
         rock: { weakTo: ['water', 'grass', 'fighting', 'ground', 'steel'], resists: ['normal', 'flying', 'poison', 'fire'], immuneTo: [] },
         ghost: { weakTo: ['ghost', 'dark'], resists: ['poison', 'bug'], immuneTo: ['normal', 'fighting'] },
-        dragon: { weakTo: ['ice', 'fairy', 'dragon'], resists: ['fire', 'water', 'electric', 'grass'], immuneTo: [] },
-        dark: { weakTo: ['fighting', 'bug', 'fairy'], resists: ['ghost', 'dark'], immuneTo: ['psychic'] },
+        dragon: { weakTo: ['ice', 'dragon'], resists: ['fire', 'water', 'electric', 'grass'], immuneTo: [] },
+        dark: { weakTo: ['fighting', 'bug'], resists: ['ghost', 'dark'], immuneTo: ['psychic'] },
         steel: { weakTo: ['fire', 'fighting', 'ground'], resists: ['normal', 'flying', 'rock', 'bug', 'steel', 'grass', 'ice', 'psychic', 'dragon'], immuneTo: ['poison'] },
     };
 
     const typeWeaknessChart = {
+        normal: 0,
         fighting: 0,
-        water: 0,
-        fire: 0,
+        flying: 0,
+        poison: 0,
         ground: 0,
         rock: 0,
-        steel: 0,
-        ice: 0,
-        flying: 0,
         bug: 0,
-        // Aggiungi gli altri tipi qui
+        ghost: 0,
+        steel: 0,
+        fire: 0,
+        water: 0,
+        grass: 0,
+        electric: 0,
+        ice: 0,
+        dragon: 0,
+        dark: 0,
     };
+    
 
     team.forEach(pokemon => {
         if (pokemonRoles[pokemon.name]) {
