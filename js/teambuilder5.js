@@ -23,7 +23,7 @@ const pokemonRoles = {
     reuniclus: { roles: ['wallbreaker', 'wall'], types: ['psychic'] },
     pelipper: { roles: ['rainSetter', 'wall'], types: ['water', 'flying'] },
     conkeldurr: { roles: ['sweeper', 'wallbreaker'], types: ['fighting'] },
-    crawdaunt: { roles: ['rainAbuser', 'sweeper', 'wallbreaker'], types: ['water', 'dark'] },
+    crawdaunt: { roles: ['rainAbuser', 'wallbreaker'], types: ['water', 'dark'] },
     metagross: { roles: ['sweeper', 'wall'], types: ['steel', 'psychic'] },
     gengar: { roles: ['sweeper', 'wallbreaker'], types: ['ghost', 'poison'] },
     amoonguss: { roles: ['wall'], types: ['grass', 'poison'] },
