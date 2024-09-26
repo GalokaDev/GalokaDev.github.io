@@ -251,7 +251,7 @@ function suggestBestPokemon(team, model) {
     // Conta i ruoli nel team
     team.forEach(pokemon => {
         if (pokemonRoles[pokemon.name]) {
-            pokemonRoles[pokemon.name].teamModels[model].roles.forEach(role => {
+            pokemonRoles[pokemon.name].roles.forEach(role => {
                 roles[role]++; // Incrementa il ruolo corrispondente
             });
         }
@@ -307,6 +307,9 @@ function suggestBestPokemon(team, model) {
                     }
                 }
             }
+
+            console.log(`Pokemon: ${pokemon}, Score: ${score}, Weight: ${JSON.stringify(weight)}`);
+            console.log(`Model: ${model}, Role Weights: ${JSON.stringify(weight)}`);
 
             // Non applichiamo alcun limite ai ruoli non dichiarati nel modello
             pokemonRoles[pokemon].roles.forEach(role => {
