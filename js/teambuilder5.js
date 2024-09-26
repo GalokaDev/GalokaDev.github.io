@@ -23,7 +23,7 @@ const teamModels = {
         hazardRemovalRequired: true
     },
     hyperOffense: {
-        roles: { sweeper: [2, 4], wallbreaker: [1, 3] },
+        roles: { sweeper: [4, 6], wallbreaker: [1, 3] },
         hazardsRequired: true,
         trickOrTauntRequired: true,
         hazardRemovalRequiredIfRockWeak: true
