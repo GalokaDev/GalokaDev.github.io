@@ -202,7 +202,7 @@ function calculateWeaknesses(team) {
     });
 
     // Ritorna solo le debolezze con valore maggiore di 2
-    return Object.entries(typeWeaknessChart).filter(([type, count]) => count > 2);
+    return Object.entries(typeWeaknessChart).filter(([type, count]) => count > 1);
 }
 
 // Funzione per suggerire i migliori Pokémon da aggiungere con integrazione debolezze
