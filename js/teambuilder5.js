@@ -7,7 +7,7 @@ const pokemonRoles = {
     scizor: { roles: ['rainUseful', 'sweeper'], types: ['bug', 'steel'] },
     skarmory: { roles: ['wall'], types: ['steel', 'flying'] },
     gallade: { roles: ['sweeper', 'wallbreaker'], types: ['psychic', 'fighting'] },
-    zapdos: { roles: ['rainUseful', 'sweeper'], types: ['electric', 'flying'] },
+    zapdos: { roles: ['rainUseful', 'wall'], types: ['electric', 'flying'] },
     serperior: { roles: ['rainUseful', 'sweeper'], types: ['grass'] },
     jellicent: { roles: ['wall'], types: ['water', 'ghost'] },
     weezing: { roles: ['wall'], types: ['poison'] },
