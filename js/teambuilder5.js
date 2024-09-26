@@ -344,6 +344,9 @@ function evaluateTeamAgainstModel(team, model) {
         });
     });
 
+    console.log('Ruoli nel team:', roles);
+    console.log('Movimenti nel team:', team.map(p => p.moves));
+
     // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello, ponderando con i pesi
     for (let role in model.roles) {
         const required = model.roles[role];
@@ -360,6 +363,8 @@ function evaluateTeamAgainstModel(team, model) {
         }
     }
 
+    console.log('Punteggio dopo i ruoli:', score);
+
     // Aumenta il punteggio se ci sono coperture di debolezze
     let teamWeaknesses = calculateWeaknesses(team);
     teamWeaknesses.forEach(([type]) => {
@@ -368,10 +373,14 @@ function evaluateTeamAgainstModel(team, model) {
         }
     });
 
+    console.log('Punteggio dopo le debolezze:', score);
+
     // Penalizza il punteggio se mancano hazard, hazard removal, trick o taunt se richiesti
     if (model.hazardsRequired && !hasHazards) score -= 20;
     if (model.hazardRemovalRequired && !hasHazardRemoval) score -= 20;
     if (model.trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
+
+    console.log('Punteggio finale:', score);
 
     return score;
 }
@@ -419,8 +428,7 @@ document.getElementById('calculate').addEventListener('click', function() {
 
         document.getElementById('result').innerText = resultText;
     }
-    console.log(`Ruoli: `, roles);
-    console.log(`Punteggio attuale: `, score);
+
 });
 
 
