@@ -331,7 +331,7 @@ function suggestBestPokemon(team, modelName) {
 
 
 // Funzione aggiornata per valutare il team rispetto a un modello, considerando debolezze
-function evaluateTeamAgainstModel(team, model) {
+function evaluateTeamAgainstModel(team, bestModel) {
     let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0 };
     let score = 0; // Il punteggio parte da 0
     let hasHazards = false;
@@ -353,8 +353,8 @@ function evaluateTeamAgainstModel(team, model) {
     });
 
     // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello
-    for (let role in model.roles) {
-        const required = model.roles[role];
+    for (let role in bestModel.roles) {
+        const required = bestModel.roles[role];
 
         if (Array.isArray(required)) {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
@@ -370,9 +370,9 @@ function evaluateTeamAgainstModel(team, model) {
     console.log('Punteggio dopo i ruoli:', score);
 
     // Penalizza il punteggio se mancano hazard, hazard removal, trick o taunt se richiesti
-    if (model.hazardsRequired && !hasHazards) score -= 20;
-    if (model.hazardRemovalRequired && !hasHazardRemoval) score -= 20;
-    if (model.trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
+    if (bestModel.hazardsRequired && !hasHazards) score -= 20;
+    if (bestModel.hazardRemovalRequired && !hasHazardRemoval) score -= 20;
+    if (bestModel.trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
     return score;
     
