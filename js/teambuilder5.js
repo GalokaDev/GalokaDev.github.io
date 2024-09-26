@@ -306,9 +306,15 @@ document.getElementById('calculate').addEventListener('click', function() {
 
         let resultText = `Team Model: ${bestModel}\n`;
         resultText += `Main Weakness: ${mainWeakness}\n`;
-        weaknesses.forEach(([type]) => {
-            resultText += `Weakness: ${type}\n`;
-        });
+        
+        // Stampa le debolezze sulla stessa riga
+        if (weaknesses.length > 0) {
+            const weaknessTypes = weaknesses.map(([type]) => type).join(', ');
+            resultText += `Weaknesses: ${weaknessTypes}\n`;
+        } else {
+            resultText += `Weaknesses: None\n`;
+        }
+
         resultText += `Worst Pokémon: ${worstPokemon.name}\n`;
         suggestions.forEach(suggestion => {
             resultText += `Suggested Pokémon: ${suggestion.name} (Score: ${suggestion.score})\n`;
@@ -317,3 +323,5 @@ document.getElementById('calculate').addEventListener('click', function() {
         document.getElementById('result').innerText = resultText;
     }
 });
+
+
