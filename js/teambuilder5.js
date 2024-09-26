@@ -364,7 +364,7 @@ function evaluateTeamAgainstModel(team, model) {
     }
 
     console.log('Punteggio dopo i ruoli:', score);
-    console.log('Punteggio dopo le debolezze:', score);
+
 
     // Penalizza il punteggio se mancano hazard, hazard removal, trick o taunt se richiesti
     if (model.hazardsRequired && !hasHazards) score -= 20;
