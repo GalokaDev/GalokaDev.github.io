@@ -131,7 +131,7 @@ const teamModels = {
         hazardRemovalOptional: true
     },
     rain: {
-        roles: { rainSetter: 1, rainAbuser: [1, 3], rainUseful: [1, 2] },
+        roles: { rainSetter: 1, rainAbuser: [1, 2], rainUseful: [1, 2] },
         hazardsRequired: false,
         hazardRemovalRequired: true
     }
@@ -236,7 +236,7 @@ function calculateWeaknesses(team) {
     return Object.entries(typeWeaknessChart).filter(([type, count]) => count > 1);
 }
 
-// Funzione aggiornata per suggerire i migliori Pokémon
+// Funzione aggiornata per suggerire i migliori Pokémon, considerando i limiti di ruolo
 function suggestBestPokemon(team, model) {
     let suggestions = [];
     let teamWeaknesses = calculateWeaknesses(team); // Calcola le debolezze attuali del team
@@ -258,6 +258,23 @@ function suggestBestPokemon(team, model) {
         if (!team.some(p => p.name === pokemon)) {
             let score = 0; // Il punteggio parte da 0
             const weight = roleWeights[model] || {}; // Ottieni i pesi per il modello
+
+            let skip = false; // Variabile per determinare se saltare questo Pokémon
+
+            // Verifica se il ruolo del Pokémon supera i limiti del modello
+            for (let role in model.roles) {
+                const roleReq = model.roles[role];
+
+                // Se il ruolo è già oltre il limite, salta questo Pokémon
+                if (Array.isArray(roleReq)) {
+                    if (pokemonRoles[pokemon].roles.includes(role) && roles[role] >= roleReq[1]) {
+                        skip = true;
+                        break; // Interrompi il ciclo se uno dei ruoli è già pieno
+                    }
+                }
+            }
+
+            if (skip) continue; // Se il Pokémon non è valido, passa al successivo
 
             // Aumenta il punteggio se il Pokémon copre le debolezze del team
             teamWeaknesses.forEach(([weakType]) => {
@@ -293,6 +310,7 @@ function suggestBestPokemon(team, model) {
     // Ordina i Pokémon con il punteggio più alto
     return suggestions.sort((a, b) => b.score - a.score).slice(0, 3);
 }
+
 
 
 
