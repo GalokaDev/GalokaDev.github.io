@@ -100,7 +100,7 @@ const roleWeights = {
         rainSetter: 0.25
     },
     rain: {
-        rainSetter: 5, // Il rain setter è cruciale
+        rainSetter: 10, // Il rain setter è cruciale
         rainAbuser: 3,
         rainUseful: 2
     }
