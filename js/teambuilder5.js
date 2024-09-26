@@ -90,7 +90,7 @@ const teamModels = {
         hazardRemovalOptional: true
     },
     stall: {
-        roles: { wall: [5, 6], stallbreaker: 1 },
+        roles: { wall: [5, 6], stallbreaker: [0, 1] },
         hazardsRequired: true,
         hazardRemovalRequired: true
     },
