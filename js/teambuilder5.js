@@ -240,9 +240,10 @@ function calculateWeaknesses(team) {
 function suggestBestPokemon(team, model) {
     console.log("Team:", team);
     console.log("Model:", model);
-    
+
     let suggestions  = [];
     let teamWeaknesses = calculateWeaknesses(team); // Calcola le debolezze attuali del team
+    console.log("Team Weaknesses", teamWeaknesses);
 
     // Inizializzi un oggetto roles per contare quanti Pokémon nel team hanno ciascun ruolo
     let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0 };
