@@ -131,7 +131,7 @@ const teamModels = {
         hazardRemovalOptional: false
     },
     rain: {
-        roles: { rainSetter: 1, rainAbuser: [1, 2], rainUseful: [1, 4] },
+        roles: { rainSetter: 1, rainAbuser: [1, 2], rainUseful: [1, 4], wall: [0, 3], sweeper: [0, 3],},
         hazardsRequired: false,
         hazardRemovalRequired: false
     }
@@ -261,7 +261,7 @@ function suggestBestPokemon(team, model) {
 
             let skip = false; // Variabile per determinare se saltare questo Pokémon
 
-            // Verifica se il ruolo del Pokémon supera i limiti del modello
+            // Verifica i ruoli che sono stati dichiarati nel modello
             for (let role in model.roles) {
                 const roleReq = model.roles[role];
 
@@ -287,7 +287,7 @@ function suggestBestPokemon(team, model) {
                 });
             });
 
-            // Aumenta il punteggio se il Pokémon corrisponde ai ruoli richiesti dal modello
+            // Aumenta il punteggio solo per i ruoli dichiarati nel modello
             for (let role in model.roles) {
                 const roleReq = model.roles[role];
                 const roleWeight = weight[role] ? weight[role] : 1; // Ottieni il peso del ruolo
@@ -303,6 +303,13 @@ function suggestBestPokemon(team, model) {
                 }
             }
 
+            // Non applichiamo alcun limite ai ruoli non dichiarati nel modello
+            pokemonRoles[pokemon].roles.forEach(role => {
+                if (!(role in model.roles)) {
+                    // Il ruolo non è presente nel modello, quindi non aggiunge né sottrae punti
+                }
+            });
+
             suggestions.push({ name: pokemon, score });
         }
     }
@@ -310,6 +317,7 @@ function suggestBestPokemon(team, model) {
     // Ordina i Pokémon con il punteggio più alto
     return suggestions.sort((a, b) => b.score - a.score).slice(0, 3);
 }
+
 
 
 
