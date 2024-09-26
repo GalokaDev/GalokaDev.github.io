@@ -364,15 +364,6 @@ function evaluateTeamAgainstModel(team, model) {
     }
 
     console.log('Punteggio dopo i ruoli:', score);
-
-    // Aumenta il punteggio se ci sono coperture di debolezze
-    let teamWeaknesses = calculateWeaknesses(team);
-    teamWeaknesses.forEach(([type]) => {
-        if (team.some(pokemon => pokemonRoles[pokemon.name].types.includes(type))) {
-            score += 9; // Aggiungi 5 punti se almeno un Pokémon copre le debolezze
-        }
-    });
-
     console.log('Punteggio dopo le debolezze:', score);
 
     // Penalizza il punteggio se mancano hazard, hazard removal, trick o taunt se richiesti
