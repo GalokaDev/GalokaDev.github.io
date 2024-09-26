@@ -105,7 +105,7 @@ const pivotmoves = ['u-turn', 'volt switch', 'teleport','baton pass'];
 // Modelli di team con i requisiti di ruolo
 const teamModels = {
     balance: {
-        roles: { sweeper: [0, 2], wallbreaker: [1, 2], wall: [2, 3] },
+        roles: { sweeper: [0, 4], wallbreaker: [1, 2], wall: [2, 3] },
         hazardsRequired: false,
         hazardRemovalRequired: false
     },
