@@ -236,55 +236,48 @@ function calculateWeaknesses(team) {
     return Object.entries(typeWeaknessChart).filter(([type, count]) => count > 1);
 }
 
-// Funzione aggiornata per suggerire i migliori Pokémon, considerando i limiti di ruolo
-function suggestBestPokemon(team, model) {
+function suggestBestPokemon(team, modelName) {
     console.log("Team:", team);
-    console.log("Model:", model);
+    console.log("Model:", modelName);
 
-    let suggestions  = [];
-    let teamWeaknesses = calculateWeaknesses(team); // Calcola le debolezze attuali del team
+    let suggestions = [];
+    let teamWeaknesses = calculateWeaknesses(team);
     console.log("Team Weaknesses", teamWeaknesses);
 
-    // Inizializzi un oggetto roles per contare quanti Pokémon nel team hanno ciascun ruolo
     let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0 };
 
-    // Conta i ruoli nel team
     team.forEach(pokemon => {
         if (pokemonRoles[pokemon.name]) {
             pokemonRoles[pokemon.name].roles.forEach(role => {
-                roles[role]++; // Incrementa il ruolo corrispondente
+                roles[role]++;
             });
         }
     });
 
-    // Analizza ciascun Pokémon della lista dei ruoli e calcola il suo punteggio
+    const model = teamModels[modelName];
+    const weight = roleWeights[modelName] || {};
+
     for (let pokemon in pokemonRoles) {
         if (!team.some(p => p.name === pokemon)) {
-            let score = 0; // Il punteggio parte da 0
-            const weight = roleWeights[model] || {}; // Ottieni i pesi per il modello
-            console.log("Evaluating pokemon:", pokemon, "Weight:", weight );
+            let score = 0;
+            console.log("Evaluating pokemon:", pokemon, "Weight:", weight);
 
-            let skip = false; // Variabile per determinare se saltare questo Pokémon
+            let skip = false;
 
-            // Verifica i ruoli che sono stati dichiarati nel modello
             for (let role in model.roles) {
                 const roleReq = model.roles[role];
-
-                // Se il ruolo è già oltre il limite, salta questo Pokémon
                 if (Array.isArray(roleReq)) {
                     if (pokemonRoles[pokemon].roles.includes(role) && roles[role] >= roleReq[1]) {
                         skip = true;
-                        break; // Interrompi il ciclo se uno dei ruoli è già pieno
+                        break;
                     }
                 }
             }
 
-            if (skip) continue; // Se il Pokémon non è valido, passa al successivo
+            if (skip) continue;
 
-            // Aumenta il punteggio se il Pokémon copre le debolezze del team
             teamWeaknesses.forEach(([weakType]) => {
                 pokemonRoles[pokemon].types.forEach(type => {
-                    // Se il Pokémon ha una resistenza a una debolezza del team, guadagna punti
                     const resists = typeEffectiveness[type].resists || [];
                     if (resists.includes(weakType)) {
                         score += 9;
@@ -292,26 +285,24 @@ function suggestBestPokemon(team, model) {
                 });
             });
 
-            // Aumenta il punteggio solo per i ruoli dichiarati nel modello
             for (let role in model.roles) {
                 const roleReq = model.roles[role];
-                const roleWeight = weight[role] || 1; // Ottieni il peso del ruolo o predefinito a 1
+                const roleWeight = weight[role] || 1;
 
                 if (Array.isArray(roleReq)) {
                     if (pokemonRoles[pokemon].roles.includes(role) && roles[role] < roleReq[1]) {
-                        score += 10 * roleWeight; // Aumenta il punteggio in base al peso
+                        score += 10 * roleWeight;
                     }
                 } else {
                     if (pokemonRoles[pokemon].roles.includes(role)) {
-                        score += 10 * roleWeight; // Aumenta il punteggio in base al peso
+                        score += 10 * roleWeight;
                     }
                 }
             }
 
             console.log(`Pokemon: ${pokemon}, Score: ${score}, Weight: ${JSON.stringify(weight)}`);
-            console.log(`Model: ${model}, Role Weights: ${JSON.stringify(weight)}`);
+            console.log(`Model: ${modelName}, Role Weights: ${JSON.stringify(weight)}`);
 
-            // Non applichiamo alcun limite ai ruoli non dichiarati nel modello
             pokemonRoles[pokemon].roles.forEach(role => {
                 if (!(role in model.roles)) {
                     // Il ruolo non è presente nel modello, quindi non aggiunge né sottrae punti
@@ -322,7 +313,6 @@ function suggestBestPokemon(team, model) {
         }
     }
 
-    // Ordina i Pokémon con il punteggio più alto
     return suggestions.sort((a, b) => b.score - a.score).slice(0, 3);
 }
 
