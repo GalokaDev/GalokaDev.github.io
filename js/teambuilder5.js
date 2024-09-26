@@ -385,7 +385,6 @@ document.getElementById('calculate').addEventListener('click', function() {
 
     // Calcola la debolezza più frequente
     let weaknesses = calculateWeaknesses(team);
-    let mainWeakness = weaknesses.length > 0 ? weaknesses[0][0] : "None";
 
     // Stampa il modello più vicino e suggerimenti di Pokémon
     if (bestModel) {
@@ -396,7 +395,6 @@ document.getElementById('calculate').addEventListener('click', function() {
         }, { score: Infinity });
 
         let resultText = `Team Model: ${bestModel}\n`;
-        resultText += `Main Weakness: ${mainWeakness}\n`;
         
         // Stampa le debolezze con il numero accanto tra parentesi
         if (weaknesses.length > 0) {
