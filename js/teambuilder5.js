@@ -262,6 +262,7 @@ function suggestBestPokemon(team, model) {
         if (!team.some(p => p.name === pokemon)) {
             let score = 0; // Il punteggio parte da 0
             const weight = roleWeights[model] || {}; // Ottieni i pesi per il modello
+            console.log("Evaluating pokemon:", pokemon, "Weight:", weight );
 
             let skip = false; // Variabile per determinare se saltare questo Pokémon
 
