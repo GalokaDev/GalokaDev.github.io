@@ -116,7 +116,7 @@ const teamModels = {
         hazardRemovalRequiredIfRockWeak: false
     },
     bulkyOffense: {
-        roles: { sweeper: 1, wallbreaker: [2, 4] },
+        roles: { wallbreaker: [2, 4] },
         hazardsRequired: false,
         hazardRemovalOptional: false
     },
@@ -131,7 +131,7 @@ const teamModels = {
         hazardRemovalOptional: false
     },
     rain: {
-        roles: { rainSetter: 1, rainAbuser: [1, 2], rainUseful: [0, 4]},
+        roles: { rainSetter: [1, 1], rainAbuser: [1, 2], rainUseful: [0, 4]},
         hazardsRequired: false,
         hazardRemovalRequired: false
     }
@@ -345,7 +345,6 @@ function evaluateTeamAgainstModel(team, model) {
     });
 
     console.log('Ruoli nel team:', roles);
-    console.log('Movimenti nel team:', team.map(p => p.moves));
 
     // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello
     for (let role in model.roles) {
