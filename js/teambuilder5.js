@@ -388,7 +388,7 @@ document.getElementById('calculate').addEventListener('click', function() {
             bestModel = modelName;
         }
     }
-
+    console.log('Ruoli nel team:', roles);
     // Calcola la debolezza più frequente
     let weaknesses = calculateWeaknesses(team);
 
