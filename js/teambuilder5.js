@@ -363,7 +363,7 @@ function evaluateTeamAgainstModel(team, bestModel) {
     for (let role in bestModel.roles) {
         const required = bestModel.roles[role];
 
-        if (Array.isArray(required)) {
+        if (Array.isArray(required) && typeof roles[role] === 'number') {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
                 if (role === 'rainSetter') {
                     score += 30;
