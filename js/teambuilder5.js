@@ -70,34 +70,34 @@ const roleWeights = {
         sweeper: 2,
         wallbreaker: 2,
         wall: 2,
-        rainAbuser: -3,
-        rainUseful: -2
+        rainAbuser: 0.5,
+        rainUseful: 0.25
     },
     hyperOffense: {
         sweeper: 3, // Gli sweeper sono molto importanti
         wallbreaker: 2,
-        rainAbuser: -3,
-        rainUseful: -2
+        rainAbuser: 0.5,
+        rainSetter: 0.25
     },
     bulkyOffense: {
         sweeper: 2,
         wallbreaker: 3, // Wallbreaker sono fondamentali
         wall: 1,
-        rainAbuser: -3,
-        rainUseful: -2
+        rainAbuser: 0.5,
+        rainSetter: 0.25
     },
     stall: {
         wall: 4, // Le difese sono le più importanti
         wallbreaker: 2,
-        rainAbuser: -3,
-        rainUseful: -2
+        rainAbuser: 0.5,
+        rainSetter: 0.25
     },
     semiStall: {
         wall: 3,
         sweeper: 2,
         wallbreaker: 2,
-        rainAbuser: -3,
-        rainUseful: -2
+        rainAbuser: 0.5,
+        rainSetter: 0.25
     },
     rain: {
         rainSetter: 5, // Il rain setter è cruciale
@@ -141,7 +141,7 @@ const teamModels = {
         hazardRemovalOptional: false
     },
     rain: {
-        roles: { rainSetter: 1, rainAbuser: [1, 2], rainUseful: [1, 2] },
+        roles: { rainSetter: 1, rainAbuser: [1, 2], rainUseful: [1, 4] },
         hazardsRequired: false,
         hazardRemovalRequired: false
     }
