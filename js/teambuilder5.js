@@ -365,7 +365,12 @@ function evaluateTeamAgainstModel(team, bestModel) {
 
         if (Array.isArray(required)) {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
-                score += 10; // Aggiungi 10 punti ponderati se il numero di ruoli corrisponde
+                if (role === 'rainSetter') {
+                    score += 30;
+                } else{
+                    score += 10; // Aggiungi 10 punti ponderati se il numero di ruoli corrisponde
+                }
+                
             }
         }
     }
