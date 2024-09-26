@@ -419,6 +419,8 @@ document.getElementById('calculate').addEventListener('click', function() {
 
         document.getElementById('result').innerText = resultText;
     }
+    console.log(`Ruoli: `, roles);
+    console.log(`Punteggio attuale: `, score);
 });
 
 
