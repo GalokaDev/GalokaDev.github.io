@@ -90,12 +90,12 @@ const teamModels = {
         hazardRemovalOptional: true
     },
     stall: {
-        roles: { wall: [5, 6], stallbreaker: [0, 1] },
+        roles: { wall: [5, 6], wallbreaker: [0, 1] },
         hazardsRequired: true,
         hazardRemovalRequired: true
     },
     semiStall: {
-        roles: { wall: [4, 5], stallbreaker: 1, sweeper: [0, 1], wallbreaker: [0, 1] },
+        roles: { wall: [4, 5], wallbreaker: 1, sweeper: [0, 1], wallbreaker: [0, 1] },
         hazardsRequired: true,
         hazardRemovalOptional: true
     }
