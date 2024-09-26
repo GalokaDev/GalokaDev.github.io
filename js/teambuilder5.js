@@ -316,7 +316,6 @@ function evaluateTeamAgainstModel(team, model) {
 }
 
 
-// Funzione principale da eseguire al click del bottone
 document.getElementById('calculate').addEventListener('click', function() {
     let team = getTeamData();
 
@@ -346,9 +345,9 @@ document.getElementById('calculate').addEventListener('click', function() {
         let resultText = `Team Model: ${bestModel}\n`;
         resultText += `Main Weakness: ${mainWeakness}\n`;
         
-        // Stampa le debolezze sulla stessa riga
+        // Stampa le debolezze con il numero accanto tra parentesi
         if (weaknesses.length > 0) {
-            const weaknessTypes = weaknesses.map(([type]) => type).join(', ');
+            const weaknessTypes = weaknesses.map(([type, count]) => `${type}(${count})`).join(', ');
             resultText += `Weaknesses: ${weaknessTypes}\n`;
         } else {
             resultText += `Weaknesses: None\n`;
@@ -362,5 +361,6 @@ document.getElementById('calculate').addEventListener('click', function() {
         document.getElementById('result').innerText = resultText;
     }
 });
+
 
 
