@@ -322,7 +322,7 @@ function suggestBestPokemon(team, modelName) {
 
             // Aggiungi il Pokémon alla lista delle suggerimenti se il punteggio è sufficiente
             if (score > 0) {
-                suggestions.push({ pokemon, score });
+                suggestions.push({ name: pokemon, score });
             }
         }
     }
@@ -404,7 +404,7 @@ document.getElementById('calculate').addEventListener('click', function() {
 
     // Stampa il modello più vicino e suggerimenti di Pokémon
     if (bestModel) {
-        let suggestions = suggestBestPokemon(team, teamModels[bestModel]);
+        let suggestions = suggestBestPokemon(team, bestModel);
         let worstPokemon = team.reduce((worst, pokemon, index) => {
             let score = evaluateTeamAgainstModel(team.filter((_, i) => i !== index), teamModels[bestModel]);
             return score < worst.score ? { name: pokemon.name, score } : worst;
