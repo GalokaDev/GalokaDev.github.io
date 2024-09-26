@@ -131,7 +131,7 @@ const teamModels = {
         hazardRemovalOptional: false
     },
     rain: {
-        roles: { rainSetter: [0, 1], rainAbuser: [1, 2], rainUseful: [0, 4]},
+        roles: { rainSetter: 1, rainAbuser: [1, 2], rainUseful: [0, 4]},
         hazardsRequired: false,
         hazardRemovalRequired: false
     }
@@ -367,7 +367,7 @@ function evaluateTeamAgainstModel(team, bestModel) {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
                 // Aggiungi un punteggio ponderato per il rainSetter
                 if (role === 'rainSetter' || role === 'rainAbuser') {
-                    score += 20 * rainSetterWeight;
+                    score += 20;
                 } else {
                     score += 10; // Aggiungi 10 punti per gli altri ruoli
                 }
