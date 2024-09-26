@@ -63,22 +63,51 @@ function getTeamData() {
     return team;
 }
 
-// Funzione per calcolare le debolezze e resistenze di un team
+// Funzione aggiornata per calcolare le debolezze e resistenze di un team
 function calculateWeaknesses(team) {
-    const typeWeaknessChart = {
-        grass: 0, water: 0, fire: 0, ground: 0, rock: 0, steel: 0, ice: 0, flying: 0, bug: 0, // etc.
+    // Tabella delle debolezze di tipo (esempio semplificato)
+    const typeEffectiveness = {
+        normal: { weakTo: ['fighting'], resists: [], immuneTo: ['ghost'] },
+        fire: { weakTo: ['water', 'rock', 'ground'], resists: ['fire', 'grass', 'ice', 'bug', 'steel', 'fairy'], immuneTo: [] },
+        water: { weakTo: ['electric', 'grass'], resists: ['fire', 'water', 'ice', 'steel'], immuneTo: [] },
+        grass: { weakTo: ['fire', 'ice', 'poison', 'flying', 'bug'], resists: ['water', 'grass', 'electric', 'ground'], immuneTo: [] },
+        // Continua per tutti gli altri tipi
     };
 
+    let typeWeaknessChart = {
+        normal: 0, fire: 0, water: 0, electric: 0, grass: 0, ice: 0, fighting: 0, poison: 0,
+        ground: 0, flying: 0, psychic: 0, bug: 0, rock: 0, ghost: 0, dragon: 0, dark: 0, steel: 0, fairy: 0
+    };
+
+    // Analizza i tipi di ciascun Pokémon nel team
     team.forEach(pokemon => {
         if (pokemonRoles[pokemon.name]) {
             const types = pokemonRoles[pokemon.name].types;
-            // Calcola debolezze e resistenze per ogni tipo
-            types.forEach(type => {
-                // Esempio di gestione delle debolezze (in realtà è più complessa)
-                if (type === 'fire') typeWeaknessChart.water++;
-                if (type === 'water') typeWeaknessChart.electric++;
-                // Continua per altri tipi
-            });
+            const [type1, type2] = types;
+
+            // Per il primo tipo
+            if (typeEffectiveness[type1]) {
+                typeEffectiveness[type1].weakTo.forEach(t => typeWeaknessChart[t]++);
+                typeEffectiveness[type1].resists.forEach(t => typeWeaknessChart[t]--);
+                typeEffectiveness[type1].immuneTo.forEach(t => typeWeaknessChart[t] -= 2);
+            }
+
+            // Per il secondo tipo, ignora se c'è un'immunità
+            if (type2 && typeEffectiveness[type2]) {
+                typeEffectiveness[type2].weakTo.forEach(t => {
+                    if (!typeEffectiveness[type1].immuneTo.includes(t)) {
+                        typeWeaknessChart[t]++;
+                    }
+                });
+                typeEffectiveness[type2].resists.forEach(t => {
+                    if (!typeEffectiveness[type1].immuneTo.includes(t)) {
+                        typeWeaknessChart[t]--;
+                    }
+                });
+                typeEffectiveness[type2].immuneTo.forEach(t => {
+                    typeWeaknessChart[t] -= 2;
+                });
+            }
         }
     });
 
@@ -86,13 +115,39 @@ function calculateWeaknesses(team) {
     return Object.entries(typeWeaknessChart).filter(([type, count]) => count > 2);
 }
 
-// Funzione per valutare il team rispetto a un modello
+// Funzione per suggerire i migliori Pokémon da aggiungere con integrazione debolezze
+function suggestBestPokemon(team, model) {
+    let suggestions = [];
+    let teamWeaknesses = calculateWeaknesses(team);
+
+    // Analizza ciascun Pokémon della lista dei ruoli e calcola il suo punteggio
+    for (let pokemon in pokemonRoles) {
+        if (!team.some(p => p.name === pokemon)) {
+            let testTeam = [...team, { name: pokemon, moves: [] }];
+            let score = evaluateTeamAgainstModel(testTeam, model);
+
+            // Aumenta il punteggio se il Pokémon copre le debolezze del team
+            teamWeaknesses.forEach(([type]) => {
+                if (pokemonRoles[pokemon].types.includes(type)) {
+                    score += 10; // Migliora score se copre debolezza
+                }
+            });
+
+            suggestions.push({ name: pokemon, score });
+        }
+    }
+
+    // Ordina le migliori tre soluzioni
+    return suggestions.sort((a, b) => b.score - a.score).slice(0, 3);
+}
+
+// Funzione aggiornata per valutare il team rispetto a un modello, considerando debolezze
 function evaluateTeamAgainstModel(team, model) {
     let roles = { sweeper: 0, wallbreaker: 0, stallbreaker: 0, pivot: 0, wall: 0, rockweak: 0 };
     let hasHazards = false;
     let hasHazardRemoval = false;
     let hasTrickOrTaunt = false;
-    
+
     team.forEach(pokemon => {
         if (pokemonRoles[pokemon.name]) {
             pokemonRoles[pokemon.name].roles.forEach(role => {
@@ -126,28 +181,15 @@ function evaluateTeamAgainstModel(team, model) {
     if (model.hazardRemovalRequired && !hasHazardRemoval) score -= 20;
     if (model.trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
-    return score;
-}
-
-// Funzione per suggerire i migliori Pokémon da aggiungere
-function suggestBestPokemon(team, model) {
-    let suggestions = [];
-
-    // Analizza ciascun Pokémon della lista dei ruoli e calcola il suo punteggio
-    for (let pokemon in pokemonRoles) {
-        if (!team.some(p => p.name === pokemon)) {
-            let testTeam = [...team, { name: pokemon, moves: [] }];
-            let score = evaluateTeamAgainstModel(testTeam, model);
-            let weaknesses = calculateWeaknesses(testTeam);
-            weaknesses.forEach(([type]) => {
-                if (pokemonRoles[pokemon].types.includes(type)) score += 10; // Migliora score se copre debolezza
-            });
-            suggestions.push({ name: pokemon, score });
+    // Aumenta il punteggio se ci sono coperture di debolezze
+    let teamWeaknesses = calculateWeaknesses(team);
+    teamWeaknesses.forEach(([type]) => {
+        if (team.some(pokemon => pokemonRoles[pokemon.name].types.includes(type))) {
+            score += 5; // Migliora se almeno un Pokémon copre le debolezze
         }
-    }
+    });
 
-    // Ordina le migliori tre soluzioni
-    return suggestions.sort((a, b) => b.score - a.score).slice(0, 3);
+    return score;
 }
 
 // Funzione principale da eseguire al click del bottone
@@ -179,6 +221,9 @@ document.getElementById('calculate').addEventListener('click', function() {
 
         let resultText = `Team Model: ${bestModel}\n`;
         resultText += `Main Weakness: ${mainWeakness}\n`;
+        weaknesses.forEach(([type]) => {
+            resultText += `Weakness: ${type}\n`;
+        });
         resultText += `Worst Pokémon: ${worstPokemon.name}\n`;
         suggestions.forEach(suggestion => {
             resultText += `Suggested Pokémon: ${suggestion.name} (Score: ${suggestion.score})\n`;
