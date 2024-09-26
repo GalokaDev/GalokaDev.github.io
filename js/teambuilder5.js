@@ -365,11 +365,21 @@ function evaluateTeamAgainstModel(team, bestModel) {
 
         if (Array.isArray(required)) {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
-                score += 10; // Aggiungi 10 punti ponderati se il numero di ruoli corrisponde
+                // Aggiungi un punteggio ponderato per il rainSetter
+                if (role === 'rainSetter') {
+                    score += 10 * rainSetterWeight;
+                } else {
+                    score += 10; // Aggiungi 10 punti per gli altri ruoli
+                }
             }
         } else {
             if (roles[role] === required) {
-                score += 10; // Aggiungi 10 punti ponderati se il ruolo corrisponde esattamente
+                // Aggiungi un punteggio ponderato per il rainSetter
+                if (role === 'rainSetter') {
+                    score += 10 * rainSetterWeight;
+                } else {
+                    score += 10; // Aggiungi 10 punti per gli altri ruoli
+                }
             }
         }
     }
