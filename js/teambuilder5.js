@@ -238,7 +238,7 @@ function calculateWeaknesses(team) {
 
 // Funzione aggiornata per suggerire i migliori Pokémon, considerando i limiti di ruolo
 function suggestBestPokemon(team, model) {
-    let suggestions = [];
+    let suggestions  = [];
     let teamWeaknesses = calculateWeaknesses(team); // Calcola le debolezze attuali del team
 
     // Inizializzi un oggetto roles per contare quanti Pokémon nel team hanno ciascun ruolo
