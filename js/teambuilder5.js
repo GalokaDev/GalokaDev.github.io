@@ -18,7 +18,7 @@ const utilityMoves = ['trick', 'taunt'];
 // Modelli di team con i requisiti di ruolo
 const teamModels = {
     balance: {
-        roles: { sweeper: [0, 1], wallbreaker: [1, 2], stallbreaker: 1, pivot_or_wall: [2, 3] },
+        roles: { sweeper: [0, 1], wallbreaker: [1, 2], stallbreaker: 1, wall: [2, 3] },
         hazardsRequired: true,
         hazardRemovalRequired: true
     },
