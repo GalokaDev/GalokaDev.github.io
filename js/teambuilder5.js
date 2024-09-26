@@ -290,7 +290,7 @@ function suggestBestPokemon(team, model) {
             // Aumenta il punteggio solo per i ruoli dichiarati nel modello
             for (let role in model.roles) {
                 const roleReq = model.roles[role];
-                const roleWeight = weight[role] ? weight[role] : 1; // Ottieni il peso del ruolo
+                const roleWeight = weight[role] || 1; // Ottieni il peso del ruolo o predefinito a 1
 
                 if (Array.isArray(roleReq)) {
                     if (pokemonRoles[pokemon].roles.includes(role) && roles[role] < roleReq[1]) {
@@ -302,6 +302,9 @@ function suggestBestPokemon(team, model) {
                     }
                 }
             }
+
+            // Debug per verificare i valori di peso e punteggio
+            console.log(`Pokemon: ${pokemon}, Score: ${score}, Weight: ${JSON.stringify(weight)}`);
 
             // Non applichiamo alcun limite ai ruoli non dichiarati nel modello
             pokemonRoles[pokemon].roles.forEach(role => {
