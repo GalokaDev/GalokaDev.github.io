@@ -1,24 +1,80 @@
-// Lista di Pokémon con ruoli
 const pokemonRoles = {
     volcarona: { roles: ['sweeper', 'rockweak'], types: ['bug', 'fire'] },
     ferrothorn: { roles: ['wall'], types: ['grass', 'steel'] },
     garchomp: { roles: ['sweeper'], types: ['dragon', 'ground'] },
     blissey: { roles: ['wall'], types: ['normal'] },
     chansey: { roles: ['wall'], types: ['normal'] },
-    scizor: { roles: ['pivot', "sweeper"], types: ['bug', 'steel'] },
-    skarmory: { roles: ['wall', 'hazardremoval'], types: ['steel', 'flying'] },
-    // Aggiungi altri Pokémon qui
+    scizor: { roles: ['sweeper'], types: ['bug', 'steel'] },
+    skarmory: { roles: ['wall'], types: ['steel', 'flying'] },
+    gallade: { roles: ['sweeper', 'wallbreaker'], types: ['psychic', 'fighting'] },
+    zapdos: { roles: ['sweeper'], types: ['electric', 'flying'] },
+    serperior: { roles: ['sweeper'], types: ['grass'] },
+    jellicent: { roles: ['wall'], types: ['water', 'ghost'] },
+    weezing: { roles: ['wall'], types: ['poison'] },
+    mamoswine: { roles: ['sweeper', 'wallbreaker', 'rockweak'], types: ['ice', 'ground'] },
+    dragonite: { roles: ['sweeper', 'rockweak'], types: ['dragon', 'flying'] },
+    tyranitar: { roles: ['wall','sweeper'], types: ['rock', 'dark'] },
+    rotomwash: { roles: ['wall'], types: ['electric', 'water'] },
+    gliscor: { roles: ['wall'], types: ['ground', 'flying'] },
+    starmie: { roles: ['sweeper'], types: ['water', 'psychic'] },
+    hydreigon: { roles: ['sweeper', 'wallbreaker'], types: ['dark', 'dragon'] },
+    excadrill: { roles: ['sweeper'], types: ['ground', 'steel'] },
+    breloom: { roles: ['sweeper', 'wallbreaker'], types: ['grass', 'fighting'] },
+    reuniclus: { roles: ['wallbreaker', 'wall'], types: ['psychic'] },
+    pelipper: { roles: ['wall'], types: ['water', 'flying'] },
+    conkeldurr: { roles: ['sweeper', 'wallbreaker'], types: ['fighting'] },
+    crawdaunt: { roles: ['sweeper', 'wallbreaker'], types: ['water', 'dark'] },
+    metagross: { roles: ['sweeper', 'wall'], types: ['steel', 'psychic'] },
+    gengar: { roles: ['sweeper', 'wallbreaker'], types: ['ghost', 'poison'] },
+    amoonguss: { roles: ['wall'], types: ['grass', 'poison'] },
+    mienshao: { roles: ['sweeper', 'wallbreaker'], types: ['fighting'] },
+    infernape: { roles: ['sweeper', 'wallbreaker'], types: ['fire', 'fighting'] },
+    suicune: { roles: ['wallbreaker','wall'], types: ['water'] },
+    chandelure: { roles: ['sweeper', 'wallbreaker'], types: ['ghost', 'fire'] },
+    magnezone: { roles: ['sweeper'], types: ['electric', 'steel'] },
+    bronzong: { roles: ['wall'], types: ['steel', 'psychic'] },
+    darmanitan: { roles: ['sweeper', 'wallbreaker'], types: ['fire'] },
+    empoleon: { roles: ['wall'], types: ['water', 'steel'] },
+    tentacruel: { roles: ['wall'], types: ['water', 'poison'] },
+    weavile: { roles: ['sweeper', 'rockweak'], types: ['dark', 'ice'] },
+    kingdra: { roles: ['sweeper'], types: ['water', 'dragon'] },
+    porygon2: { roles: ['wall'], types: ['normal'] },
+    gyarados: { roles: ['sweeper', 'pivot'], types: ['water', 'flying'] },
+    gastrodon: { roles: ['wall'], types: ['water', 'ground'] },
+    espeon: { roles: ['sweeper'], types: ['psychic'] },
+    torkoal: { roles: ['wall'], types: ['fire'] },
+    porygon_z: { roles: ['sweeper'], types: ['normal'] },
+    lucario: { roles: ['sweeper', 'wallbreaker'], types: ['fighting', 'steel'] },
+    sableye: { roles: ['wall', 'utility'], types: ['dark', 'ghost'] },
+    kabutops: { roles: ['sweeper'], types: ['rock', 'water'] },
+    cofagrigus: { roles: ['wall'], types: ['ghost'] },
+    cloyster: { roles: ['sweeper'], types: ['water', 'ice'] },
+    venusaur: { roles: ['sweeper'], types: ['grass', 'poison'] },
+    ditto: { roles: ['utility'], types: ['normal'] },
+    raikou: { roles: ['sweeper'], types: ['electric'] },
+    entei: { roles: ['sweeper'], types: ['fire'] },
+    staraptor: { roles: ['sweeper'], types: ['normal', 'flying'] },
+    poliwrath: { roles: ['sweeper'], types: ['water', 'fighting'] },
+    feraligatr: { roles: ['sweeper', 'wallbreaker'], types: ['water'] },
+    togekiss: { roles: ['sweeper'], types: ['fairy', 'flying'] },
+    salamence: { roles: ['sweeper'], types: ['dragon', 'flying'] },
+    mandibuzz: { roles: ['wall'], types: ['dark', 'flying'] },
+    jolteon: { roles: ['sweeper'], types: ['electric'] },
+    milotic: { roles: ['wall'], types: ['water'] }
+    // Aggiungi altri Pokémon qui se necessario
 };
+
 
 // Lista di mosse hazard e hazard removal
 const hazardMoves = ['stealthrock', 'spikes', 'toxicspikes'];
 const hazardRemovalMoves = ['defog', 'rapid spin'];
 const utilityMoves = ['trick', 'taunt'];
+const pivotmoves = ['u-turn', 'volt switch', 'teleport','baton pass'];
 
 // Modelli di team con i requisiti di ruolo
 const teamModels = {
     balance: {
-        roles: { sweeper: [0, 1], wallbreaker: [1, 2], stallbreaker: 1, wall: [2, 3] },
+        roles: { sweeper: [0, 1], wallbreaker: [1, 2], pivot: [0, 2], wall: [2, 3] },
         hazardsRequired: true,
         hazardRemovalRequired: true
     },
@@ -29,7 +85,7 @@ const teamModels = {
         hazardRemovalRequiredIfRockWeak: true
     },
     bulkyOffense: {
-        roles: { sweeper: 1, wallbreaker: [2, 3], stallbreaker: 1 },
+        roles: { sweeper: 1, wallbreaker: [2, 4] },
         hazardsRequired: true,
         hazardRemovalOptional: true
     },
