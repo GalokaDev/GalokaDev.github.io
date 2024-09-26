@@ -253,10 +253,12 @@ function suggestBestPokemon(team, model) {
 // Funzione aggiornata per valutare il team rispetto a un modello, considerando debolezze
 function evaluateTeamAgainstModel(team, model) {
     let roles = { sweeper: 0, wallbreaker: 0, stallbreaker: 0, pivot: 0, wall: 0, rockweak: 0 };
+    let score = 0; // Il punteggio parte da 0
     let hasHazards = false;
     let hasHazardRemoval = false;
     let hasTrickOrTaunt = false;
 
+    // Conta i ruoli nel team e identifica hazard, hazard removal, trick o taunt
     team.forEach(pokemon => {
         if (pokemonRoles[pokemon.name]) {
             pokemonRoles[pokemon.name].roles.forEach(role => {
@@ -270,36 +272,36 @@ function evaluateTeamAgainstModel(team, model) {
         });
     });
 
-    // Controlla se il team soddisfa i requisiti del modello
-    let score = 100;
+    // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello
     for (let role in model.roles) {
-        let required = model.roles[role];
+        const required = model.roles[role];
         if (Array.isArray(required)) {
-            if (roles[role] < required[0] || roles[role] > required[1]) {
-                score -= 20;
+            if (roles[role] >= required[0] && roles[role] <= required[1]) {
+                score += 10; // Aggiungi 10 punti se il numero di ruoli corrisponde
             }
         } else {
-            if (roles[role] !== required) {
-                score -= 20;
+            if (roles[role] === required) {
+                score += 10; // Aggiungi 10 punti se il ruolo corrisponde esattamente
             }
         }
     }
-
-    // Controlla se il team ha gli hazard e hazard removal richiesti
-    if (model.hazardsRequired && !hasHazards) score -= 20;
-    if (model.hazardRemovalRequired && !hasHazardRemoval) score -= 20;
-    if (model.trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
     // Aumenta il punteggio se ci sono coperture di debolezze
     let teamWeaknesses = calculateWeaknesses(team);
     teamWeaknesses.forEach(([type]) => {
         if (team.some(pokemon => pokemonRoles[pokemon.name].types.includes(type))) {
-            score += 5; // Migliora se almeno un Pokémon copre le debolezze
+            score += 5; // Aggiungi 5 punti se almeno un Pokémon copre le debolezze
         }
     });
 
+    // Penalizza il punteggio se mancano hazard, hazard removal, trick o taunt se richiesti
+    if (model.hazardsRequired && !hasHazards) score -= 20;
+    if (model.hazardRemovalRequired && !hasHazardRemoval) score -= 20;
+    if (model.trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
+
     return score;
 }
+
 
 // Funzione principale da eseguire al click del bottone
 document.getElementById('calculate').addEventListener('click', function() {
