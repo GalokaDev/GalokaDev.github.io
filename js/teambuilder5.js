@@ -171,6 +171,8 @@ function calculateWeaknesses(team) {
                 typeEffectiveness[type1].weakTo.forEach(t => typeWeaknessChart[t]++);
                 typeEffectiveness[type1].resists.forEach(t => typeWeaknessChart[t]--);
                 typeEffectiveness[type1].immuneTo.forEach(t => typeWeaknessChart[t] -= 2);
+            } else{
+                console.log(`Pokémon: ${pokemon.name}, Tipo 1: ${type1}, Tipo 2: ${type2}`);
             }
 
             // Gestione del secondo tipo
