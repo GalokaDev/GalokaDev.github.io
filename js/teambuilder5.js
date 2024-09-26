@@ -39,7 +39,7 @@ const pokemonRoles = {
     weavile: { roles: ['sweeper', 'rockweak'], types: ['dark', 'ice'] },
     kingdra: { roles: ['rainAbuser'], types: ['water', 'dragon'] },
     porygon2: { roles: ['wall'], types: ['normal'] },
-    gyarados: { roles: ['sweeper', 'pivot'], types: ['water', 'flying'] },
+    gyarados: { roles: ['sweeper'], types: ['water', 'flying'] },
     gastrodon: { roles: ['wall'], types: ['water', 'ground'] },
     espeon: { roles: ['sweeper'], types: ['psychic'] },
     torkoal: { roles: ['wall'], types: ['fire'] },
@@ -242,7 +242,7 @@ function suggestBestPokemon(team, model) {
     let teamWeaknesses = calculateWeaknesses(team); // Calcola le debolezze attuali del team
 
     // Inizializzi un oggetto roles per contare quanti Pokémon nel team hanno ciascun ruolo
-    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, stallbreaker: 0, pivot: 0, wall: 0, rockweak: 0 };
+    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0 };
 
     // Conta i ruoli nel team
     team.forEach(pokemon => {
@@ -316,7 +316,7 @@ function suggestBestPokemon(team, model) {
 
 // Funzione aggiornata per valutare il team rispetto a un modello, considerando debolezze
 function evaluateTeamAgainstModel(team, model) {
-    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, stallbreaker: 0, pivot: 0, wall: 0, rockweak: 0 };
+    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, stallbreaker: 0, wall: 0, rockweak: 0 };
     let score = 0; // Il punteggio parte da 0
     let hasHazards = false;
     let hasHazardRemoval = false;
