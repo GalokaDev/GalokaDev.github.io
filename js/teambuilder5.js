@@ -347,8 +347,6 @@ function evaluateTeamAgainstModel(team, model) {
         });
     });
 
-    console.log('Ruoli nel team:', roles);
-
     // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello
     for (let role in model.roles) {
         const required = model.roles[role];
@@ -373,6 +371,8 @@ function evaluateTeamAgainstModel(team, model) {
     if (model.trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
     return score;
+
+    console.log('Ruoli nel team:', roles);
 }
 
 
