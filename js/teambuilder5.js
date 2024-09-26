@@ -56,7 +56,7 @@ const pokemonRoles = {
     staraptor: { roles: ['sweeper'], types: ['normal', 'flying'] },
     poliwrath: { roles: ['sweeper'], types: ['water', 'fighting'] },
     feraligatr: { roles: ['sweeper', 'wallbreaker'], types: ['water'] },
-    togekiss: { roles: ['sweeper'], types: ['fairy', 'flying'] },
+    togekiss: { roles: ['sweeper'], types: ['flying'] },
     salamence: { roles: ['sweeper'], types: ['dragon', 'flying'] },
     mandibuzz: { roles: ['wall'], types: ['dark', 'flying'] },
     jolteon: { roles: ['sweeper'], types: ['electric'] },
