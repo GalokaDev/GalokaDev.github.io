@@ -1,189 +1,191 @@
-// Lista di Pokémon con ruoli
+// Tabella delle debolezze e resistenze per i tipi
+const typeChart = {
+    normal: { weakTo: ['fighting'], resists: [], immuneTo: ['ghost'] },
+    fire: { weakTo: ['water', 'rock', 'ground'], resists: ['fire', 'grass', 'ice', 'bug', 'steel', 'fairy'], immuneTo: [] },
+    water: { weakTo: ['electric', 'grass'], resists: ['fire', 'water', 'ice', 'steel'], immuneTo: [] },
+    grass: { weakTo: ['fire', 'ice', 'poison', 'flying', 'bug'], resists: ['water', 'electric', 'grass', 'ground'], immuneTo: [] },
+    electric: { weakTo: ['ground'], resists: ['electric', 'flying', 'steel'], immuneTo: [] },
+    ice: { weakTo: ['fire', 'fighting', 'rock', 'steel'], resists: ['ice'], immuneTo: [] },
+    fighting: { weakTo: ['flying', 'psychic', 'fairy'], resists: ['bug', 'rock', 'dark'], immuneTo: [] },
+    poison: { weakTo: ['ground', 'psychic'], resists: ['grass', 'fighting', 'poison', 'bug', 'fairy'], immuneTo: [] },
+    ground: { weakTo: ['water', 'ice', 'grass'], resists: ['poison', 'rock'], immuneTo: ['electric'] },
+    flying: { weakTo: ['electric', 'ice', 'rock'], resists: ['grass', 'fighting', 'bug'], immuneTo: ['ground'] },
+    psychic: { weakTo: ['bug', 'ghost', 'dark'], resists: ['fighting', 'psychic'], immuneTo: [] },
+    bug: { weakTo: ['fire', 'flying', 'rock'], resists: ['grass', 'fighting', 'ground'], immuneTo: [] },
+    rock: { weakTo: ['water', 'grass', 'fighting', 'ground', 'steel'], resists: ['normal', 'fire', 'poison', 'flying'], immuneTo: [] },
+    ghost: { weakTo: ['ghost', 'dark'], resists: ['poison', 'bug'], immuneTo: ['normal', 'fighting'] },
+    dragon: { weakTo: ['ice', 'dragon', 'fairy'], resists: ['fire', 'water', 'electric', 'grass'], immuneTo: [] },
+    dark: { weakTo: ['fighting', 'bug', 'fairy'], resists: ['ghost', 'dark'], immuneTo: ['psychic'] },
+    steel: { weakTo: ['fire', 'fighting', 'ground'], resists: ['normal', 'grass', 'ice', 'flying', 'psychic', 'bug', 'rock', 'dragon', 'steel', 'fairy'], immuneTo: ['poison'] },
+    fairy: { weakTo: ['poison', 'steel'], resists: ['fighting', 'bug', 'dark'], immuneTo: ['dragon'] }
+};
+
+// Tabella dei ruoli per i Pokémon
 const pokemonRoles = {
-    volcarona: { roles: ['sweeper', 'rockweak'], types: ['bug', 'fire'] },
-    ferrothorn: { roles: ['wall'], types: ['grass', 'steel'] },
-    garchomp: { roles: ['sweeper'], types: ['dragon', 'ground'] },
-    blissey: { roles: ['wall'], types: ['normal'] },
-    chansey: { roles: ['wall'], types: ['normal'] },
-    scizor: { roles: ['pivot'], types: ['bug', 'steel'] },
-    skarmory: { roles: ['wall', 'hazardremoval'], types: ['steel', 'flying'] },
-    // Aggiungi altri Pokémon qui
+    volcarona: { types: ['bug', 'fire'], roles: ['sweeper', 'rockweak'] },
+    ferrothorn: { types: ['grass', 'steel'], roles: ['wall', 'stealthrock'] },
+    landorus: { types: ['ground', 'flying'], roles: ['pivot', 'stealthrock'] },
+    excadrill: { types: ['ground', 'steel'], roles: ['sweeper', 'hazardremoval'] },
+    blissey: { types: ['normal'], roles: ['wall'] },
+    toxapex: { types: ['water', 'poison'], roles: ['wall', 'toxicspikes'] },
+    // Aggiungi altri Pokémon e i loro ruoli
 };
 
-// Lista di mosse hazard e hazard removal
-const hazardMoves = ['stealthrock', 'spikes', 'toxicspikes'];
-const hazardRemovalMoves = ['defog', 'rapid spin'];
-const utilityMoves = ['trick', 'taunt'];
-
-// Modelli di team con i requisiti di ruolo
+// Modelli di team
 const teamModels = {
-    balance: {
-        roles: { sweeper: [0, 1], wallbreaker: [1, 2], stallbreaker: 1, pivot_or_wall: [2, 3] },
-        hazardsRequired: true,
-        hazardRemovalRequired: true
-    },
-    hyperOffense: {
-        roles: { sweeper: [2, 4], wallbreaker: [1, 3] },
-        hazardsRequired: true,
-        trickOrTauntRequired: true,
-        hazardRemovalRequiredIfRockWeak: true
-    },
-    bulkyOffense: {
-        roles: { sweeper: 1, wallbreaker: [2, 3], stallbreaker: 1 },
-        hazardsRequired: true,
-        hazardRemovalOptional: true
-    },
-    stall: {
-        roles: { wall: [5, 6], stallbreaker: 1 },
-        hazardsRequired: true,
-        hazardRemovalRequired: true
-    },
-    semiStall: {
-        roles: { wall: [4, 5], stallbreaker: 1, sweeper: [0, 1], wallbreaker: [0, 1] },
-        hazardsRequired: true,
-        hazardRemovalOptional: true
-    }
+    balance: { sweepers: [0, 1], wallbreakers: [1, 2], stallbreakers: 1, pivotsOrWalls: [2, 3], hazardControl: true },
+    hyperOffense: { sweepers: [2, 4], wallbreakers: [1, 3], hazardControl: 'rockWeakOnly', trickOrTaunt: true },
+    bulkyOffense: { sweepers: 1, wallbreakers: [2, 3], stallbreakers: 1, hazardControl: [0, 1] },
+    stall: { walls: [5, 6], stallbreakers: 1, hazardControl: [1, 2] },
+    semiStall: { walls: [4, 5], stallbreakers: 1, sweepers: [0, 1], wallbreakers: [0, 1], hazardControl: true }
 };
 
-// Funzione per raccogliere i Pokémon e le mosse inserite dall'utente
+// Funzione per ottenere i dati del team
 function getTeamData() {
-    let team = [];
+    const team = [];
     for (let i = 1; i <= 6; i++) {
-        const pokemon = document.getElementById(`pokemon-${i}`).value.toLowerCase();
-        const moves = [
-            document.getElementById(`move-${i}-1`).value.toLowerCase(),
-            document.getElementById(`move-${i}-2`).value.toLowerCase(),
-            document.getElementById(`move-${i}-3`).value.toLowerCase(),
-            document.getElementById(`move-${i}-4`).value.toLowerCase()
-        ];
-        if (pokemon) {
-            team.push({ name: pokemon, moves });
+        const name = document.getElementById(`pokemon-${i}`).value.toLowerCase();
+        if (name) {
+            const moves = [];
+            for (let j = 1; j <= 4; j++) {
+                const move = document.getElementById(`move-${i}-${j}`).value;
+                if (move) moves.push(move);
+            }
+            team.push({ name, moves });
         }
     }
     return team;
 }
 
-// Funzione per calcolare le debolezze e resistenze di un team
-function calculateWeaknesses(team) {
-    const typeWeaknessChart = {
-        grass: 0, water: 0, fire: 0, ground: 0, rock: 0, steel: 0, ice: 0, flying: 0, bug: 0, // etc.
+// Funzione per calcolare debolezze, resistenze e immunità del team
+function calculateWeaknessesAndResistances(team) {
+    const typeCounters = {
+        normal: 0, fire: 0, water: 0, grass: 0, electric: 0, ice: 0, fighting: 0, poison: 0,
+        ground: 0, flying: 0, psychic: 0, bug: 0, rock: 0, ghost: 0, dragon: 0, dark: 0, steel: 0, fairy: 0
     };
 
     team.forEach(pokemon => {
         if (pokemonRoles[pokemon.name]) {
             const types = pokemonRoles[pokemon.name].types;
-            // Calcola debolezze e resistenze per ogni tipo
+
             types.forEach(type => {
-                // Esempio di gestione delle debolezze (in realtà è più complessa)
-                if (type === 'fire') typeWeaknessChart.water++;
-                if (type === 'water') typeWeaknessChart.electric++;
-                // Continua per altri tipi
+                const typeData = typeChart[type];
+                if (typeData) {
+                    // Incrementa le debolezze
+                    typeData.weakTo.forEach(weakType => typeCounters[weakType]++);
+                    // Decrementa le resistenze
+                    typeData.resists.forEach(resistType => typeCounters[resistType]--);
+                    // Decrementa ulteriormente per le immunità
+                    typeData.immuneTo.forEach(immuneType => typeCounters[immuneType] -= 2);
+                }
             });
         }
     });
 
-    // Ritorna solo le debolezze con valore maggiore di 2
-    return Object.entries(typeWeaknessChart).filter(([type, count]) => count > 2);
+    // Trova le debolezze principali, quelle con valori maggiori di 2
+    const majorWeaknesses = Object.entries(typeCounters).filter(([type, count]) => count > 2);
+    
+    return { typeCounters, majorWeaknesses };
 }
 
 // Funzione per valutare il team rispetto a un modello
 function evaluateTeamAgainstModel(team, model) {
-    let roles = { sweeper: 0, wallbreaker: 0, stallbreaker: 0, pivot: 0, wall: 0, rockweak: 0 };
-    let hasHazards = false;
-    let hasHazardRemoval = false;
-    let hasTrickOrTaunt = false;
-    
+    let score = 0;
+
+    // Conta i ruoli nel team
+    const roleCount = {
+        sweepers: 0,
+        wallbreakers: 0,
+        stallbreakers: 0,
+        walls: 0,
+        pivotsOrWalls: 0
+    };
+
     team.forEach(pokemon => {
         if (pokemonRoles[pokemon.name]) {
-            pokemonRoles[pokemon.name].roles.forEach(role => {
-                roles[role]++;
-            });
+            const roles = pokemonRoles[pokemon.name].roles;
+            if (roles.includes('sweeper')) roleCount.sweepers++;
+            if (roles.includes('wallbreaker')) roleCount.wallbreakers++;
+            if (roles.includes('stallbreaker')) roleCount.stallbreakers++;
+            if (roles.includes('wall')) roleCount.walls++;
+            if (roles.includes('pivot') || roles.includes('wall')) roleCount.pivotsOrWalls++;
         }
-        pokemon.moves.forEach(move => {
-            if (hazardMoves.includes(move)) hasHazards = true;
-            if (hazardRemovalMoves.includes(move)) hasHazardRemoval = true;
-            if (utilityMoves.includes(move)) hasTrickOrTaunt = true;
-        });
     });
 
-    // Controlla se il team soddisfa i requisiti del modello
-    let score = 100;
-    for (let role in model.roles) {
-        let required = model.roles[role];
-        if (Array.isArray(required)) {
-            if (roles[role] < required[0] || roles[role] > required[1]) {
-                score -= 20;
-            }
-        } else {
-            if (roles[role] !== required) {
-                score -= 20;
-            }
-        }
-    }
+    // Assegna punteggi in base al modello e alla quantità di ruoli
+    if (roleCount.sweepers >= model.sweepers[0] && roleCount.sweepers <= model.sweepers[1]) score += 20;
+    if (roleCount.wallbreakers >= model.wallbreakers[0] && roleCount.wallbreakers <= model.wallbreakers[1]) score += 20;
+    if (roleCount.stallbreakers >= model.stallbreakers) score += 20;
+    if (roleCount.pivotsOrWalls >= model.pivotsOrWalls[0] && roleCount.pivotsOrWalls <= model.pivotsOrWalls[1]) score += 20;
 
-    // Controlla se il team ha gli hazard e hazard removal richiesti
-    if (model.hazardsRequired && !hasHazards) score -= 20;
-    if (model.hazardRemovalRequired && !hasHazardRemoval) score -= 20;
-    if (model.trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
+    // Verifica se ci sono mosse per il controllo degli hazards
+    const hazardControl = team.some(pokemon => pokemon.moves.includes('stealthrock') || pokemon.moves.includes('spikes') || pokemon.moves.includes('toxicspikes'));
+    const hazardRemoval = team.some(pokemon => pokemon.moves.includes('defog') || pokemon.moves.includes('rapidspin'));
+
+    if (model.hazardControl === 'rockWeakOnly' && team.some(pokemon => pokemonRoles[pokemon.name].roles.includes('rockweak')) && hazardRemoval) score += 20;
+    else if (model.hazardControl && hazardControl) score += 20;
 
     return score;
 }
 
 // Funzione per suggerire i migliori Pokémon da aggiungere
-function suggestBestPokemon(team, model) {
-    let suggestions = [];
+function suggestPokemon(team, weaknesses) {
+    const suggestions = [];
+    for (const [pokemonName, data] of Object.entries(pokemonRoles)) {
+        let score = 0;
 
-    // Analizza ciascun Pokémon della lista dei ruoli e calcola il suo punteggio
-    for (let pokemon in pokemonRoles) {
-        if (!team.some(p => p.name === pokemon)) {
-            let testTeam = [...team, { name: pokemon, moves: [] }];
-            let score = evaluateTeamAgainstModel(testTeam, model);
-            let weaknesses = calculateWeaknesses(testTeam);
-            weaknesses.forEach(([type]) => {
-                if (pokemonRoles[pokemon].types.includes(type)) score += 10; // Migliora score se copre debolezza
-            });
-            suggestions.push({ name: pokemon, score });
-        }
+        // Aumenta il punteggio se il Pokémon resiste a debolezze del team
+        data.types.forEach(type => {
+            if (typeChart[type]) {
+                typeChart[type].resists.forEach(resistType => {
+                    if (weaknesses.typeCounters[resistType] > 2) score += 10; // Incremento per copertura
+                });
+            }
+        });
+
+        suggestions.push({ name: pokemonName, score });
     }
 
-    // Ordina le migliori tre soluzioni
+    // Ordina i Pokémon suggeriti in base al punteggio
     return suggestions.sort((a, b) => b.score - a.score).slice(0, 3);
 }
 
-// Funzione principale da eseguire al click del bottone
+// Gestisci il click sul bottone
 document.getElementById('calculate').addEventListener('click', function() {
-    let team = getTeamData();
+    const team = getTeamData();
+    if (team.length === 0) {
+        document.getElementById('result').innerHTML = 'Inserisci almeno un Pokémon.';
+        return;
+    }
 
-    // Identifica il modello di team più vicino
+    const { typeCounters, majorWeaknesses } = calculateWeaknessesAndResistances(team);
+
+    // Calcola il miglior modello di team
     let bestModel = null;
     let bestScore = -Infinity;
-    for (let modelName in teamModels) {
-        let score = evaluateTeamAgainstModel(team, teamModels[modelName]);
+    for (const [modelName, modelData] of Object.entries(teamModels)) {
+        const score = evaluateTeamAgainstModel(team, modelData);
         if (score > bestScore) {
             bestScore = score;
             bestModel = modelName;
         }
     }
 
-    // Calcola la debolezza più frequente
-    let weaknesses = calculateWeaknesses(team);
-    let mainWeakness = weaknesses.length > 0 ? weaknesses[0][0] : "None";
+    // Suggerisci i migliori Pokémon
+    const suggestions = suggestPokemon(team, { typeCounters });
 
-    // Stampa il modello più vicino e suggerimenti di Pokémon
-    if (bestModel) {
-        let suggestions = suggestBestPokemon(team, teamModels[bestModel]);
-        let worstPokemon = team.reduce((worst, pokemon, index) => {
-            let score = evaluateTeamAgainstModel(team.filter((_, i) => i !== index), teamModels[bestModel]);
-            return score < worst.score ? { name: pokemon.name, score } : worst;
-        }, { score: Infinity });
+    // Trova il peggior Pokémon del team
+    const worstPokemon = team.reduce((worst, pokemon) => {
+        const score = evaluateTeamAgainstModel(team.filter(p => p !== pokemon), teamModels[bestModel]);
+        return (score > worst.score) ? { pokemon, score } : worst;
+    }, { pokemon: null, score: -Infinity });
 
-        let resultText = `Team Model: ${bestModel}\n`;
-        resultText += `Main Weakness: ${mainWeakness}\n`;
-        resultText += `Worst Pokémon: ${worstPokemon.name}\n`;
-        suggestions.forEach(suggestion => {
-            resultText += `Suggested Pokémon: ${suggestion.name} (Score: ${suggestion.score})\n`;
-        });
-
-        document.getElementById('result').innerText = resultText;
-    }
+    // Mostra il risultato
+    let resultText = `Best team model: ${bestModel} <br>`;
+    resultText += `Main weakness: ${majorWeaknesses.map(w => w[0]).join(', ')} <br>`;
+    resultText += `Suggested Pokémon to add:<br>`;
+    suggestions.forEach(s => resultText += `${s.name} (${s.score})<br>`);
+    resultText += `Worst Pokémon to replace: ${worstPokemon.pokemon.name}`;
+    
+    document.getElementById('result').innerHTML = resultText;
 });
