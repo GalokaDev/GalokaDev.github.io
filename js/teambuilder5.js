@@ -367,7 +367,7 @@ function evaluateTeamAgainstModel(team, bestModel) {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
                 // Aggiungi un punteggio ponderato per il rainSetter
                 if (role === 'rainSetter' || role === 'rainAbuser') {
-                    score += 20;
+                    score += 30;
                 } else {
                     score += 10; // Aggiungi 10 punti per gli altri ruoli
                 }
