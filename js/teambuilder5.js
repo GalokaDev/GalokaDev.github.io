@@ -64,6 +64,39 @@ const pokemonRoles = {
     // Aggiungi altri Pokémon qui se necessario
 };
 
+// Aggiungi pesi ai ruoli per ogni modello di team
+const roleWeights = {
+    balance: {
+        sweeper: 1,
+        wallbreaker: 2,
+        pivot: 1,
+        wall: 3 // Ruoli difensivi sono più importanti nel bilanciato
+    },
+    hyperOffense: {
+        sweeper: 3, // Gli sweeper sono molto importanti
+        wallbreaker: 2,
+        pivot: 1
+    },
+    bulkyOffense: {
+        sweeper: 2,
+        wallbreaker: 3, // Wallbreaker sono fondamentali
+        wall: 1
+    },
+    stall: {
+        wall: 4, // Le difese sono le più importanti
+        wallbreaker: 2
+    },
+    semiStall: {
+        wall: 3,
+        sweeper: 2,
+        wallbreaker: 2
+    },
+    rain: {
+        rainSetter: 5, // Il rain setter è cruciale
+        rainAbuser: 3,
+        rainUseful: 2
+    }
+};
 
 // Lista di mosse hazard e hazard removal
 const hazardMoves = ['stealthrock', 'spikes', 'toxicspikes'];
@@ -225,8 +258,8 @@ function suggestBestPokemon(team, model) {
     // Analizza ciascun Pokémon della lista dei ruoli e calcola il suo punteggio
     for (let pokemon in pokemonRoles) {
         if (!team.some(p => p.name === pokemon)) {
-            let testTeam = [...team, { name: pokemon, moves: [] }];
             let score = 0; // Il punteggio parte da 0
+            const weight = roleWeights[model] || {}; // Ottieni i pesi per il modello
 
             // Aumenta il punteggio se il Pokémon copre le debolezze del team
             teamWeaknesses.forEach(([weakType]) => {
@@ -242,13 +275,15 @@ function suggestBestPokemon(team, model) {
             // Aumenta il punteggio se il Pokémon corrisponde ai ruoli richiesti dal modello
             for (let role in model.roles) {
                 const roleReq = model.roles[role];
+                const roleWeight = weight[role] ? weight[role] : 1; // Ottieni il peso del ruolo
+
                 if (Array.isArray(roleReq)) {
                     if (pokemonRoles[pokemon].roles.includes(role) && roles[role] < roleReq[1]) {
-                        score += 10;
+                        score += 10 * roleWeight; // Aumenta il punteggio in base al peso
                     }
                 } else {
                     if (pokemonRoles[pokemon].roles.includes(role)) {
-                        score += 10;
+                        score += 10 * roleWeight; // Aumenta il punteggio in base al peso
                     }
                 }
             }
@@ -265,7 +300,7 @@ function suggestBestPokemon(team, model) {
 
 // Funzione aggiornata per valutare il team rispetto a un modello, considerando debolezze
 function evaluateTeamAgainstModel(team, model) {
-    let roles = { rainSetter: 0, rainAbuser: 0,rainUseful: 0, sweeper: 0, wallbreaker: 0, stallbreaker: 0, pivot: 0, wall: 0, rockweak: 0 };
+    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, stallbreaker: 0, pivot: 0, wall: 0, rockweak: 0 };
     let score = 0; // Il punteggio parte da 0
     let hasHazards = false;
     let hasHazardRemoval = false;
@@ -285,16 +320,18 @@ function evaluateTeamAgainstModel(team, model) {
         });
     });
 
-    // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello
+    // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello, ponderando con i pesi
     for (let role in model.roles) {
         const required = model.roles[role];
+        const weight = roleWeights[model] && roleWeights[model][role] ? roleWeights[model][role] : 1;
+
         if (Array.isArray(required)) {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
-                score += 10; // Aggiungi 10 punti se il numero di ruoli corrisponde
+                score += 10 * weight; // Aggiungi 10 punti ponderati se il numero di ruoli corrisponde
             }
         } else {
             if (roles[role] === required) {
-                score += 10; // Aggiungi 10 punti se il ruolo corrisponde esattamente
+                score += 10 * weight; // Aggiungi 10 punti ponderati se il ruolo corrisponde esattamente
             }
         }
     }
