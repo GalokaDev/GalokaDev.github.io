@@ -67,15 +67,13 @@ const pokemonRoles = {
 // Aggiungi pesi ai ruoli per ogni modello di team
 const roleWeights = {
     balance: {
-        sweeper: 1,
+        sweeper: 2,
         wallbreaker: 2,
-        pivot: 1,
-        wall: 3 // Ruoli difensivi sono più importanti nel bilanciato
+        wall: 2 // Ruoli difensivi sono più importanti nel bilanciato
     },
     hyperOffense: {
         sweeper: 3, // Gli sweeper sono molto importanti
         wallbreaker: 2,
-        pivot: 1
     },
     bulkyOffense: {
         sweeper: 2,
@@ -93,7 +91,7 @@ const roleWeights = {
     },
     rain: {
         rainSetter: 5, // Il rain setter è cruciale
-        rainAbuser: 3,
+        rainAbuser: 2,
         rainUseful: 2
     }
 };
@@ -107,7 +105,7 @@ const pivotmoves = ['u-turn', 'volt switch', 'teleport','baton pass'];
 // Modelli di team con i requisiti di ruolo
 const teamModels = {
     balance: {
-        roles: { sweeper: [0, 1], wallbreaker: [1, 2], pivot: [0, 2], wall: [2, 3] },
+        roles: { sweeper: [0, 1], wallbreaker: [1, 2], wall: [2, 3] },
         hazardsRequired: true,
         hazardRemovalRequired: true
     },
