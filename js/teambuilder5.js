@@ -303,10 +303,6 @@ function suggestBestPokemon(team, model) {
                 }
             }
 
-            // Debug per verificare i valori di peso e punteggio
-            console.log(`Pokemon: ${pokemon}, Score: ${score}, Weight: ${JSON.stringify(weight)}`);
-            console.log(`Model: ${model}, Role Weights: ${JSON.stringify(weight)}`);
-
             // Non applichiamo alcun limite ai ruoli non dichiarati nel modello
             pokemonRoles[pokemon].roles.forEach(role => {
                 if (!(role in model.roles)) {
