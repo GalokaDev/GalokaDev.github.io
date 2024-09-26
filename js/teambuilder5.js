@@ -157,6 +157,7 @@ function calculateWeaknesses(team) {
         ice: 0,
         dragon: 0,
         dark: 0,
+        psychic: 0
     };
     
 
