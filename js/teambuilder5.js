@@ -372,15 +372,6 @@ function evaluateTeamAgainstModel(team, bestModel) {
                     score += 10; // Aggiungi 10 punti per gli altri ruoli
                 }
             }
-        } else {
-            if (roles[role] === required) {
-                // Aggiungi un punteggio ponderato per il rainSetter
-                if (role === 'rainSetter') {
-                    score += 35;
-                } else {
-                    score += 10; // Aggiungi 10 punti per gli altri ruoli
-                }
-            }
         }
     }
 
