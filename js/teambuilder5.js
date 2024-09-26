@@ -350,7 +350,6 @@ function evaluateTeamAgainstModel(team, model) {
     // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello, ponderando con i pesi
     for (let role in model.roles) {
         const required = model.roles[role];
-        const weight = roleWeights[model] && roleWeights[model][role] ? roleWeights[model][role] : 1;
 
         if (Array.isArray(required)) {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
