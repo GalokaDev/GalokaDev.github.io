@@ -205,31 +205,50 @@ function calculateWeaknesses(team) {
     return Object.entries(typeWeaknessChart).filter(([type, count]) => count > 1);
 }
 
-// Funzione per suggerire i migliori Pokémon da aggiungere con integrazione debolezze
+// Funzione aggiornata per suggerire i migliori Pokémon
 function suggestBestPokemon(team, model) {
     let suggestions = [];
-    let teamWeaknesses = calculateWeaknesses(team);
+    let teamWeaknesses = calculateWeaknesses(team); // Calcola le debolezze attuali del team
 
     // Analizza ciascun Pokémon della lista dei ruoli e calcola il suo punteggio
     for (let pokemon in pokemonRoles) {
         if (!team.some(p => p.name === pokemon)) {
             let testTeam = [...team, { name: pokemon, moves: [] }];
-            let score = evaluateTeamAgainstModel(testTeam, model);
+            let score = 0; // Il punteggio parte da 0
 
             // Aumenta il punteggio se il Pokémon copre le debolezze del team
-            teamWeaknesses.forEach(([type]) => {
-                if (pokemonRoles[pokemon].types.includes(type)) {
-                    score += 10; // Migliora score se copre debolezza
-                }
+            teamWeaknesses.forEach(([weakType]) => {
+                pokemonRoles[pokemon].types.forEach(type => {
+                    // Se il Pokémon ha una resistenza a una debolezza del team, guadagna punti
+                    const resists = typeEffectiveness[type].resists || [];
+                    if (resists.includes(weakType)) {
+                        score += 9;
+                    }
+                });
             });
+
+            // Aumenta il punteggio se il Pokémon corrisponde ai ruoli richiesti dal modello
+            for (let role in model.roles) {
+                const roleReq = model.roles[role];
+                if (Array.isArray(roleReq)) {
+                    if (pokemonRoles[pokemon].roles.includes(role) && roles[role] < roleReq[1]) {
+                        score += 10;
+                    }
+                } else {
+                    if (pokemonRoles[pokemon].roles.includes(role)) {
+                        score += 10;
+                    }
+                }
+            }
 
             suggestions.push({ name: pokemon, score });
         }
     }
 
-    // Ordina le migliori tre soluzioni
+    // Ordina i Pokémon con il punteggio più alto
     return suggestions.sort((a, b) => b.score - a.score).slice(0, 3);
 }
+
 
 // Funzione aggiornata per valutare il team rispetto a un modello, considerando debolezze
 function evaluateTeamAgainstModel(team, model) {
