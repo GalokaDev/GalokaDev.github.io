@@ -131,7 +131,7 @@ const teamModels = {
         hazardRemovalOptional: false
     },
     rain: {
-        roles: { rainSetter: 1, rainAbuser: [1, 2], rainUseful: [0, 4]},
+        roles: { rainSetter: [0, 1], rainAbuser: [1, 2], rainUseful: [0, 4]},
         hazardsRequired: false,
         hazardRemovalRequired: false
     }
@@ -365,21 +365,11 @@ function evaluateTeamAgainstModel(team, bestModel) {
 
         if (Array.isArray(required)) {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
-                // Aggiungi un punteggio ponderato per il rainSetter
-                if (role === 'rainSetter') {
-                    score += 30;
-                } else {
-                    score += 10; // Aggiungi 10 punti per gli altri ruoli
-                }
+                score += 10; // Aggiungi 10 punti ponderati se il numero di ruoli corrisponde
             }
         } else {
             if (roles[role] === required) {
-                // Aggiungi un punteggio ponderato per il rainSetter
-                if (role === 'rainSetter') {
-                    score += 30;
-                } else {
-                    score += 10; // Aggiungi 10 punti per gli altri ruoli
-                }
+                score += 10; // Aggiungi 10 punti ponderati se il ruolo corrisponde esattamente
             }
         }
     }
@@ -392,8 +382,8 @@ function evaluateTeamAgainstModel(team, bestModel) {
     if (bestModel.trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
     return score;
+    
 }
-
 
 
 document.getElementById('calculate').addEventListener('click', function() {
