@@ -370,8 +370,6 @@ function evaluateTeamAgainstModel(team, model) {
     if (model.hazardRemovalRequired && !hasHazardRemoval) score -= 20;
     if (model.trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
-    console.log('Punteggio finale:', score);
-
     return score;
 }
 
