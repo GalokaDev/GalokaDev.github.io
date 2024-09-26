@@ -366,7 +366,7 @@ function evaluateTeamAgainstModel(team, model) {
     let teamWeaknesses = calculateWeaknesses(team);
     teamWeaknesses.forEach(([type]) => {
         if (team.some(pokemon => pokemonRoles[pokemon.name].types.includes(type))) {
-            score += 5; // Aggiungi 5 punti se almeno un Pokémon copre le debolezze
+            score += 9; // Aggiungi 5 punti se almeno un Pokémon copre le debolezze
         }
     });
 
