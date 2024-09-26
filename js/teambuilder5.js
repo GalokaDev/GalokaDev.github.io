@@ -347,7 +347,7 @@ function evaluateTeamAgainstModel(team, model) {
     console.log('Ruoli nel team:', roles);
     console.log('Movimenti nel team:', team.map(p => p.moves));
 
-    // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello, ponderando con i pesi
+    // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello
     for (let role in model.roles) {
         const required = model.roles[role];
 
