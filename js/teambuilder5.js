@@ -131,7 +131,7 @@ const teamModels = {
         hazardRemovalOptional: false
     },
     rain: {
-        roles: { rainSetter: 1, rainAbuser: [1, 2], rainUseful: [1, 4]},
+        roles: { rainSetter: 1, rainAbuser: [1, 2], rainUseful: [0, 4]},
         hazardsRequired: false,
         hazardRemovalRequired: false
     }
