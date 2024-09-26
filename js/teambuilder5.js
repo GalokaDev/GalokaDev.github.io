@@ -210,6 +210,18 @@ function suggestBestPokemon(team, model) {
     let suggestions = [];
     let teamWeaknesses = calculateWeaknesses(team); // Calcola le debolezze attuali del team
 
+    // Inizializzi un oggetto roles per contare quanti Pokémon nel team hanno ciascun ruolo
+    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, stallbreaker: 0, pivot: 0, wall: 0, rockweak: 0 };
+
+    // Conta i ruoli nel team
+    team.forEach(pokemon => {
+        if (pokemonRoles[pokemon.name]) {
+            pokemonRoles[pokemon.name].roles.forEach(role => {
+                roles[role]++; // Incrementa il ruolo corrispondente
+            });
+        }
+    });
+
     // Analizza ciascun Pokémon della lista dei ruoli e calcola il suo punteggio
     for (let pokemon in pokemonRoles) {
         if (!team.some(p => p.name === pokemon)) {
@@ -248,6 +260,7 @@ function suggestBestPokemon(team, model) {
     // Ordina i Pokémon con il punteggio più alto
     return suggestions.sort((a, b) => b.score - a.score).slice(0, 3);
 }
+
 
 
 // Funzione aggiornata per valutare il team rispetto a un modello, considerando debolezze
