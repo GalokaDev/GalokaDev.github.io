@@ -30,7 +30,7 @@ const pokemonRoles = {
     mienshao: { roles: ['sweeper', 'wallbreaker'], types: ['fighting'] },
     infernape: { roles: ['sweeper', 'wallbreaker'], types: ['fire', 'fighting'] },
     suicune: { roles: ['wallbreaker','wall'], types: ['water'] },
-    chandelure: { roles: ['sweeper', 'wallbreaker'], types: ['ghost', 'fire'] },
+    chandelure: { roles: ['wallbreaker'], types: ['ghost', 'fire'] },
     magnezone: { roles: ['sweeper'], types: ['electric', 'steel'] },
     bronzong: { roles: ['wall'], types: ['steel', 'psychic'] },
     darmanitan: { roles: ['sweeper', 'wallbreaker'], types: ['fire'] },
@@ -136,7 +136,7 @@ const teamModels = {
         hazardRemovalRequired: false
     },
     semiStall: {
-        roles: { wall: [4, 5], wallbreaker: 1, sweeper: [0, 1], wallbreaker: [0, 1] },
+        roles: { wall: [4, 5], sweeper: [0, 1], wallbreaker: [0, 2] },
         hazardsRequired: false,
         hazardRemovalOptional: false
     },
