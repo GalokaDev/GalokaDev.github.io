@@ -333,8 +333,16 @@ function suggestBestPokemon(team, modelName) {
 
 
 
-// Funzione aggiornata per valutare il team rispetto a un modello, considerando debolezze
-function evaluateTeamAgainstModel(team, modelName) {
+function evaluateTeamAgainstModel(team, bestModel) {
+    // Aggiungi un log per controllare modelName
+    console.log("Model name:", bestModel);
+
+    // Controlla se modelName esiste in teamModels
+    if (!teamModels[bestModel]) {
+        console.error(`Modello "${bestModel}" non trovato in teamModels.`);
+        return -Infinity; // Restituisci un punteggio molto basso se il modello non esiste
+    }
+
     let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0 };
     let score = 0; // Il punteggio parte da 0
     let hasHazards = false;
@@ -359,8 +367,8 @@ function evaluateTeamAgainstModel(team, modelName) {
     console.log('Ruoli conteggiati:', roles);
 
     // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello
-    for (let role in teamModels[modelName].roles) {
-        const required = teamModels[modelName].roles[role];
+    for (let role in teamModels[bestModel].roles) {
+        const required = teamModels[bestModel].roles[role];
         
         if (Array.isArray(required) && typeof roles[role] === 'number') {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
@@ -373,12 +381,12 @@ function evaluateTeamAgainstModel(team, modelName) {
     console.log('Punteggio dopo i ruoli:', score);
 
     // Penalizza il punteggio se mancano hazard, hazard removal, trick o taunt se richiesti
-    if (teamModels[modelName].hazardsRequired && !hasHazards) score -= 20;
-    if (teamModels[modelName].hazardRemovalRequired && !hasHazardRemoval) score -= 20;
-    if (teamModels[modelName].trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
+    if (teamModels[bestModel].hazardsRequired && !hasHazards) score -= 20;
+    if (teamModels[bestModel].hazardRemovalRequired && !hasHazardRemoval) score -= 20;
+    if (teamModels[bestModel].trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
     // Se esiste un rainSetter nel team, aumenta il punteggio solo per il modello "rain"
-    if (hasRainSetter && modelName === 'rain') {
+    if (hasRainSetter && bestModel === 'rain') {
         console.log("Rain setter è nel team, aumento del punteggio per il modello rain.");
         score += 30; // Aggiungi un bonus significativo per il modello "rain" se un rainSetter è presente
     }
