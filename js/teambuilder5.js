@@ -72,8 +72,8 @@ const synergies = {
     kingdra: { pelipper: 12 },
     ferrothorn: { rotomWash: 4 },
     rotomWash: { ferrothorn: 4 },
-    volcarona: { hazardRemoval: 12 },
-    dragonite: { hazardRemoval: 12 }
+    volcarona: { hazardRemoval: 52 },
+    dragonite: { hazardRemoval: 52 }
 };
 
 // Aggiungi pesi ai ruoli per ogni modello di team
