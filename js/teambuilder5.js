@@ -409,7 +409,15 @@ document.getElementById('calculate').addEventListener('click', function() {
             bestModel = modelName; // Qui assegniamo 'modelName', che è una stringa
         }
     }
+
+    // Dopo aver determinato il bestModel, aggiungi il bonus se è "rain" e il team ha un rainSetter
+    let hasRainSetter = team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter'));
     
+    if (hasRainSetter && bestModel === 'rain') {
+        console.log("Rain setter è nel team, aumento del punteggio per il modello rain.");
+        bestScore += 30; // Aggiungi un bonus significativo per il modello "rain" se un rainSetter è presente
+    }
+
     // Calcola la debolezza più frequente
     let weaknesses = calculateWeaknesses(team);
 
@@ -438,8 +446,8 @@ document.getElementById('calculate').addEventListener('click', function() {
 
         document.getElementById('result').innerText = resultText;
     }
-
 });
+
 
 
 
