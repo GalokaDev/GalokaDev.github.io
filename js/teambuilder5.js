@@ -1,14 +1,14 @@
 const pokemonRoles = {
-    volcarona: { roles: ['sweeper', 'rockweak'], types: ['bug', 'fire'] },
-    ferrothorn: { roles: ['rainUseful', 'wall'], types: ['grass', 'steel'] },
-    garchomp: { roles: ['sweeper'], types: ['dragon', 'ground'] },
-    blissey: { roles: ['wall'], types: ['normal'] },
-    chansey: { roles: ['wall'], types: ['normal'] },
-    scizor: { roles: ['rainUseful', 'sweeper'], types: ['bug', 'steel'] },
-    skarmory: { roles: ['wall'], types: ['steel', 'flying'] },
-    gallade: { roles: ['sweeper', 'wallbreaker'], types: ['psychic', 'fighting'] },
-    zapdos: { roles: ['rainUseful', 'wall'], types: ['electric', 'flying'] },
-    serperior: { roles: ['rainUseful', 'sweeper'], types: ['grass'] },
+    volcarona: { roles: ['sweeper', 'rockweak'], types: ['bug', 'fire'], tier: 'A' },
+    ferrothorn: { roles: ['rainUseful', 'wall'], types: ['grass', 'steel'], tier: 'S' },
+    garchomp: { roles: ['sweeper'], types: ['dragon', 'ground'], tier: 'S+' },
+    blissey: { roles: ['wall'], types: ['normal'], tier: 'A' },
+    chansey: { roles: ['wall'], types: ['normal'], tier: 'S' },
+    scizor: { roles: ['rainUseful', 'sweeper'], types: ['bug', 'steel'], tier: 'A+' },
+    skarmory: { roles: ['wall'], types: ['steel', 'flying'], tier: 'A' },
+    gallade: { roles: ['sweeper', 'wallbreaker'], types: ['psychic', 'fighting'], tier: 'B+' },
+    zapdos: { roles: ['rainUseful', 'wall'], types: ['electric', 'flying'], tier: 'S' },
+    serperior: { roles: ['rainUseful', 'sweeper'], types: ['grass'], tier: 'A+' },
     jellicent: { roles: ['wall'], types: ['water', 'ghost'] },
     weezing: { roles: ['wall'], types: ['poison'] },
     mamoswine: { roles: ['sweeper', 'wallbreaker', 'rockweak'], types: ['ice', 'ground'] },
@@ -62,6 +62,16 @@ const pokemonRoles = {
     jolteon: { roles: ['sweeper'], types: ['electric'] },
     milotic: { roles: ['wall'], types: ['water'] }
     // Aggiungi altri Pokémon qui se necessario
+};
+
+// Definizione delle sinergie tra Pokémon
+const synergies = {
+    tyranitar: ['excadrill'],
+    excadrill: ['tyranitar'],
+    pelipper: ['kingdra'],
+    kingdra: ['pelipper'],
+    ferrothorn: ['rotom-wash'],
+    rotomWash: ['ferrothorn']
 };
 
 // Aggiungi pesi ai ruoli per ogni modello di team
@@ -314,6 +324,20 @@ function suggestBestPokemon(team, modelName) {
                     }
                 }
             }
+            // Aggiungi il bonus di 10 punti per i Pokémon in tier S+
+            const tier = pokemonRoles[pokemon].tier || 'B'; // Se non ha tier, predefinito è B
+            if (tier === 'S+') {
+                score += 10;
+            }
+
+            // Aggiungi bonus per sinergie con i Pokémon già nel team
+            team.forEach(teamPokemon => {
+                const synergyPartners = synergies[teamPokemon.name] || [];
+                if (synergyPartners.includes(pokemon)) {
+                    score += 5; // Bonus di 5 punti per le sinergie
+                }
+            });
+
 
             // Aggiungi il Pokémon alla lista delle suggerimenti se il punteggio è sufficiente
             if (score > 0) {
