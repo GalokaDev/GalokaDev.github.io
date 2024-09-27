@@ -367,16 +367,11 @@ function evaluateTeamAgainstModel(team, bestModel) {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
                 console.log('ROLES EPICI:',roles[role]);
                 console.log('REQUIRED EPICO:',required);
-                if (role === 'rainSetter') {
                     score += 30;
-                } else{
-                    score += 10; // Aggiungi 10 punti ponderati se il numero di ruoli corrisponde
                 }
                 
             }
         }
-        
-    }
 
     console.log('Punteggio dopo i ruoli:', score);
 
