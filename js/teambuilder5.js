@@ -333,19 +333,18 @@ function suggestBestPokemon(team, modelName) {
 
 
 
-function evaluateTeamAgainstModel(team, bestModel) {
-    // Controlla se bestModel esiste in teamModels
+function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
     if (!teamModels[bestModel]) {
         console.error(`Modello "${bestModel}" non trovato in teamModels.`);
-        return -Infinity; // Restituisci un punteggio molto basso se il modello non esiste
+        return -Infinity;
     }
 
     let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0 };
-    let score = 0; // Il punteggio parte da 0
+    let score = 0;
     let hasHazards = false;
     let hasHazardRemoval = false;
     let hasTrickOrTaunt = false;
-    let hasRainSetter = team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter')); // Controlla se c'è un rainSetter
+    let hasRainSetter = team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter'));
 
     // Conta i ruoli nel team e identifica hazard, hazard removal, trick o taunt
     team.forEach(pokemon => {
@@ -370,7 +369,7 @@ function evaluateTeamAgainstModel(team, bestModel) {
         if (Array.isArray(required) && typeof roles[role] === 'number') {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
                 console.log('Ruolo valido:', role, 'Conteggio:', roles[role], 'Requisiti:', required);
-                score += 10; // Assegna 10 punti per gli altri ruoli
+                score += 10; // Assegna 10 punti per i ruoli corrispondenti
             }
         }
     }
@@ -382,14 +381,15 @@ function evaluateTeamAgainstModel(team, bestModel) {
     if (teamModels[bestModel].hazardRemovalRequired && !hasHazardRemoval) score -= 20;
     if (teamModels[bestModel].trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
-    // Se esiste un rainSetter nel team, aumenta il punteggio solo per il modello "rain"
-    if (hasRainSetter && bestModel === 'rain') {
+    // Se esiste un rainSetter nel team, aumenta il punteggio solo per il modello "rain" una volta
+    if (hasRainSetter && bestModel === 'rain' && !rainBonusApplied) {
         console.log("Rain setter è nel team, aumento del punteggio per il modello rain.");
-        score += 30; // Aggiungi un bonus significativo per il modello "rain" se un rainSetter è presente
+        score += 30; // Aggiungi il bonus per il rain setter
     }
 
     return score;
 }
+
 
 
 document.getElementById('calculate').addEventListener('click', function() {
@@ -398,11 +398,16 @@ document.getElementById('calculate').addEventListener('click', function() {
     // Identifica il modello di team più vicino
     let bestModel = null;
     let bestScore = -Infinity;
+    let rainBonusApplied = false; // Variabile di controllo per il bonus del rain
+
     for (let modelName in teamModels) {
-        let score = evaluateTeamAgainstModel(team, modelName); // Qui dovresti passare 'modelName', che è una stringa
+        let score = evaluateTeamAgainstModel(team, modelName, rainBonusApplied); // Passa rainBonusApplied
+        if (modelName === 'rain' && score > bestScore && team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter'))) {
+            rainBonusApplied = true; // Applica il bonus una sola volta
+        }
         if (score > bestScore) {
             bestScore = score;
-            bestModel = modelName; // Qui assegniamo 'modelName', che è una stringa
+            bestModel = modelName;
         }
     }
 
@@ -413,7 +418,7 @@ document.getElementById('calculate').addEventListener('click', function() {
     if (bestModel) {
         let suggestions = suggestBestPokemon(team, bestModel);
         let worstPokemon = team.reduce((worst, pokemon, index) => {
-            let score = evaluateTeamAgainstModel(team.filter((_, i) => i !== index), bestModel);
+            let score = evaluateTeamAgainstModel(team.filter((_, i) => i !== index), bestModel, rainBonusApplied);
             return score < worst.score ? { name: pokemon.name, score } : worst;
         }, { score: Infinity });
 
@@ -435,7 +440,6 @@ document.getElementById('calculate').addEventListener('click', function() {
         document.getElementById('result').innerText = resultText;
     }
 });
-
 
 
 
