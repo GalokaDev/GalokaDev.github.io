@@ -362,9 +362,11 @@ function evaluateTeamAgainstModel(team, bestModel) {
     // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello
     for (let role in bestModel.roles) {
         const required = bestModel.roles[role];
-
+        
         if (Array.isArray(required) && typeof roles[role] === 'number') {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
+                console.log(roles[role]);
+                console.log(required);
                 if (role === 'rainSetter') {
                     score += 30;
                 } else{
@@ -373,6 +375,7 @@ function evaluateTeamAgainstModel(team, bestModel) {
                 
             }
         }
+        
     }
 
     console.log('Punteggio dopo i ruoli:', score);
