@@ -367,7 +367,6 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
 
         if (Array.isArray(required) && typeof roles[role] === 'number') {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
-                console.log('Ruolo valido:', role, 'Conteggio:', roles[role], 'Requisiti:', required);
                 score += roles[role] * 10; // Assegna 10 punti per ogni Pokémon che ricopre questo ruolo
             }
         }
