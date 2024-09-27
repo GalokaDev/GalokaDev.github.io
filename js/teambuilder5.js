@@ -66,12 +66,12 @@ const pokemonRoles = {
 
 // Definizione delle sinergie tra Pokémon
 const synergies = {
-    tyranitar: { excadrill: 8 },  // Sinergia tyranitar con excadrill +8 punti
-    excadrill: { tyranitar: 8 },  // Sinergia excadrill con tyranitar +8 punti
-    pelipper: { kingdra: 10 },    // Sinergia pelipper con kingdra +10 punti
-    kingdra: { pelipper: 10 },    // Sinergia kingdra con pelipper +10 punti
-    ferrothorn: { rotomWash: 5 }, // Sinergia ferrothorn con rotom-wash +5 punti
-    rotomWash: { ferrothorn: 5 }  // Sinergia rotom-wash con ferrothorn +5 punti
+    tyranitar: { excadrill: 4 },  // Sinergia tyranitar con excadrill +8 punti
+    excadrill: { tyranitar: 4 },  // Sinergia excadrill con tyranitar +8 punti
+    pelipper: { kingdra: 12 },    // Sinergia pelipper con kingdra +10 punti
+    kingdra: { pelipper: 12 },    // Sinergia kingdra con pelipper +10 punti
+    ferrothorn: { rotomWash: 4 }, // Sinergia ferrothorn con rotom-wash +5 punti
+    rotomWash: { ferrothorn: 4 }  // Sinergia rotom-wash con ferrothorn +5 punti
 };
 
 // Aggiungi pesi ai ruoli per ogni modello di team
