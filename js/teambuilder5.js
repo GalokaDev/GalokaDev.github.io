@@ -304,12 +304,8 @@ function suggestBestPokemon(team, modelName) {
             for (let role in model.roles) {
                 const roleReq = model.roles[role];
                 const roleWeight = weight[role] || 1; // Ottieni il peso del ruolo o predefinito a 1
-
-                if (role === 'rainSetter') {
-                    if (pokemonRoles[pokemon].roles.includes(role)) {
-                        score += 10 * roleWeight; // Aumenta il punteggio in base al peso
-                    }
-                } else if (Array.isArray(roleReq)) {
+                
+                if (Array.isArray(roleReq)) {
                     if (pokemonRoles[pokemon].roles.includes(role) && roles[role] < roleReq[1]) {
                         score += 10 * roleWeight; // Aumenta il punteggio in base al peso
                     }
