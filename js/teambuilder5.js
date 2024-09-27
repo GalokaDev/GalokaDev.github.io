@@ -82,26 +82,26 @@ const roleWeights = {
         wall: 2,
     },
     hyperOffense: {
-        sweeper: 3, // Gli sweeper sono molto importanti
-        wallbreaker: 2,
+        sweeper: 2, // Gli sweeper sono molto importanti
+        wallbreaker: 1,5,
     },
     bulkyOffense: {
-        sweeper: 2,
-        wallbreaker: 3, // Wallbreaker sono fondamentali
+        sweeper: 1,
+        wallbreaker: 2, // Wallbreaker sono fondamentali
         wall: 1,
     },
     stall: {
-        wall: 4, // Le difese sono le più importanti
-        wallbreaker: 2,
+        wall: 2, // Le difese sono le più importanti
+        wallbreaker: 1,
     },
     semiStall: {
-        wall: 3,
-        sweeper: 2,
-        wallbreaker: 2,
+        wall: 2,
+        sweeper: 1,
+        wallbreaker: 1,
     },
     rain: {
-        rainSetter: 7, // Il rain setter è cruciale
-        rainAbuser: 3,
+        rainSetter: 5, // Il rain setter è cruciale
+        rainAbuser: 2.5,
         rainUseful: 2
     }
 };
