@@ -334,10 +334,7 @@ function suggestBestPokemon(team, modelName) {
 
 
 function evaluateTeamAgainstModel(team, bestModel) {
-    // Aggiungi un log per controllare modelName
-    console.log("Model name:", bestModel);
-
-    // Controlla se modelName esiste in teamModels
+    // Controlla se bestModel esiste in teamModels
     if (!teamModels[bestModel]) {
         console.error(`Modello "${bestModel}" non trovato in teamModels.`);
         return -Infinity; // Restituisci un punteggio molto basso se il modello non esiste
@@ -393,6 +390,7 @@ function evaluateTeamAgainstModel(team, bestModel) {
 
     return score;
 }
+
 
 
 
