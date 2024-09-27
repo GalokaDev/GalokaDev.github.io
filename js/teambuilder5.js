@@ -271,7 +271,6 @@ function suggestBestPokemon(team, modelName) {
     for (let pokemon in pokemonRoles) {
         if (!team.some(p => p.name === pokemon)) {
             let score = 0; // Il punteggio parte da 0
-            console.log("Evaluating pokemon:", pokemon);
 
             let skip = false; // Variabile per determinare se saltare questo Pokémon
 
