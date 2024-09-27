@@ -345,10 +345,12 @@ function evaluateTeamAgainstModel(team, bestModel) {
     team.forEach(pokemon => {
         if (pokemonRoles[pokemon.name]) {
             pokemonRoles[pokemon.name].roles.forEach(role => {
-                roles[role]++;
+                // Incrementa il conteggio dei ruoli
+                roles[role] = (roles[role] || 0) + 1; // Usa || per inizializzare a 0 se undefined
             });
         }
         pokemon.moves.forEach(move => {
+            // Controlla se ci sono mosse di hazard, rimozione di hazard o utility
             if (hazardMoves.includes(move)) hasHazards = true;
             if (hazardRemovalMoves.includes(move)) hasHazardRemoval = true;
             if (utilityMoves.includes(move)) hasTrickOrTaunt = true;
@@ -362,9 +364,16 @@ function evaluateTeamAgainstModel(team, bestModel) {
         const required = bestModel.roles[role];
         
         if (Array.isArray(required) && typeof roles[role] === 'number') {
+            // Verifica se il conteggio del ruolo è nel range richiesto
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
                 console.log('Ruolo valido:', role, 'Conteggio:', roles[role], 'Requisiti:', required);
-                score += 10; // Assegna 10 punti per gli altri ruoli
+                
+                // Aggiungi punteggio specifico per il rainSetter
+                if (role === 'rainSetter') {
+                    score += 30; // Assegna 30 punti per il rainSetter
+                } else {
+                    score += 10; // Assegna 10 punti per gli altri ruoli
+                }
             }
         }
     }
@@ -376,7 +385,10 @@ function evaluateTeamAgainstModel(team, bestModel) {
     if (bestModel.hazardRemovalRequired && !hasHazardRemoval) score -= 20;
     if (bestModel.trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
-    return score;
+    // Determina se ci sono sufficienti rainSetters per considerare il team un rain team
+    const isRainTeam = roles.rainSetter > 0 && score > 0; // Solo se ci sono rainSetters e punteggio positivo
+
+    return { score, isRainTeam }; // Restituisci sia il punteggio che la verifica del team
 }
 
 
