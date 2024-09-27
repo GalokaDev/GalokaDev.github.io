@@ -77,25 +77,25 @@ const synergies = {
 // Aggiungi pesi ai ruoli per ogni modello di team
 const roleWeights = {
     balance: {
-        sweeper: 2,
-        wallbreaker: 2,
-        wall: 2,
+        sweeper: 1,
+        wallbreaker: 1,
+        wall: 1,
     },
     hyperOffense: {
-        sweeper: 2, // Gli sweeper sono molto importanti
-        wallbreaker: 1.5,
+        sweeper: 1.5, // Gli sweeper sono molto importanti
+        wallbreaker: 1.2,
     },
     bulkyOffense: {
         sweeper: 1,
-        wallbreaker: 2, // Wallbreaker sono fondamentali
+        wallbreaker: 1.5, // Wallbreaker sono fondamentali
         wall: 1,
     },
     stall: {
-        wall: 2, // Le difese sono le più importanti
+        wall: 1.5, // Le difese sono le più importanti
         wallbreaker: 1,
     },
     semiStall: {
-        wall: 2,
+        wall: 1.5,
         sweeper: 1,
         wallbreaker: 1,
     },
