@@ -345,9 +345,7 @@ function evaluateTeamAgainstModel(team, bestModel) {
     let hasHazards = false;
     let hasHazardRemoval = false;
     let hasTrickOrTaunt = false;
-
-    // Controlla se c'è un rainSetter nel team
-    let hasRainSetter = team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter'));
+    let hasRainSetter = team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter')); // Controlla se c'è un rainSetter
 
     // Conta i ruoli nel team e identifica hazard, hazard removal, trick o taunt
     team.forEach(pokemon => {
@@ -384,16 +382,15 @@ function evaluateTeamAgainstModel(team, bestModel) {
     if (teamModels[bestModel].hazardRemovalRequired && !hasHazardRemoval) score -= 20;
     if (teamModels[bestModel].trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
-    // Se esiste un rainSetter e il modello è "rain", aumenta il punteggio
-    // Bonus applicato solo una volta
-    if (hasRainSetter && bestModel === 'rain' && !team.some(pokemon => pokemon.name === 'rainBonusApplied')) {
+    // Se esiste un rainSetter nel team, aumenta il punteggio solo per il modello "rain"
+    if (hasRainSetter && bestModel === 'rain') {
         console.log("Rain setter è nel team, aumento del punteggio per il modello rain.");
         score += 30; // Aggiungi un bonus significativo per il modello "rain" se un rainSetter è presente
-        team.push({ name: 'rainBonusApplied' }); // Aggiungi un flag temporaneo per evitare ripetizioni
     }
 
     return score;
 }
+
 
 document.getElementById('calculate').addEventListener('click', function() {
     let team = getTeamData();
@@ -401,7 +398,6 @@ document.getElementById('calculate').addEventListener('click', function() {
     // Identifica il modello di team più vicino
     let bestModel = null;
     let bestScore = -Infinity;
-
     for (let modelName in teamModels) {
         let score = evaluateTeamAgainstModel(team, modelName); // Qui dovresti passare 'modelName', che è una stringa
         if (score > bestScore) {
@@ -439,3 +435,7 @@ document.getElementById('calculate').addEventListener('click', function() {
         document.getElementById('result').innerText = resultText;
     }
 });
+
+
+
+
