@@ -380,7 +380,7 @@ function evaluateTeamAgainstModel(team, bestModel) {
     // Se Pelipper è presente nel team, aumenta il punteggio per il modello "rain"
     if (hasPelipper && bestModel === teamModels['rain']) {
         console.log("Pelipper è nel team, aumento del punteggio per il modello rain.");
-        score += 30; // Aggiungi un bonus significativo per il modello "rain" se Pelipper è presente
+        score += 20; // Aggiungi un bonus significativo per il modello "rain" se Pelipper è presente
     }
 
     return score;
