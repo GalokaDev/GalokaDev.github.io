@@ -359,8 +359,6 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
         });
     });
 
-    console.log('Ruoli conteggiati:', roles);
-
     // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello
     for (let role in teamModels[bestModel].roles) {
         const required = teamModels[bestModel].roles[role];
