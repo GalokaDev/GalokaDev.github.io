@@ -273,7 +273,7 @@ function suggestBestPokemon(team, modelName) {
     console.log("Team Weaknesses", teamWeaknesses);
 
     // Inizializza un oggetto roles per contare quanti Pokémon nel team hanno ciascun ruolo
-    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0 };
+    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0, pivot: 0, stallbreaker: 0, hazardRemoval: 0, hazardSetter: 0};
 
     // Conta i ruoli nel team
     team.forEach(pokemon => {
@@ -394,7 +394,7 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
         return -Infinity;
     }
 
-    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0 };
+    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0, pivot: 0, stallbreaker: 0, hazardRemoval: 0, hazardSetter: 0};
     let score = 0;
     let hasRainSetter = team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter'));
 
