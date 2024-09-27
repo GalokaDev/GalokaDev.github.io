@@ -131,7 +131,7 @@ const teamModels = {
         roles: { wall: [4, 5], sweeper: [0, 1], wallbreaker: [0, 2] },
     },
     rain: {
-        roles: { rainSetter: [0, 1], rainAbuser: [1, 2], rainUseful: [0, 4], hazardRemoval: [1, 1]},
+        roles: { rainSetter: [0, 1], rainAbuser: [1, 2], rainUseful: [0, 4], hazardRemoval: [0, 1]},
     }
 };
 
