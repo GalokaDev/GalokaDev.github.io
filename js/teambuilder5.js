@@ -359,6 +359,10 @@ function evaluateTeamAgainstModel(team, bestModel) {
         });
     });
 
+    console.log('Ruoli conteggiati:', roles);
+    console.log('roles[role]', roles[role]);
+    console.log('nome pokemon:', roles[pokemon.name]);
+
     // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello
     for (let role in bestModel.roles) {
         const required = bestModel.roles[role];
