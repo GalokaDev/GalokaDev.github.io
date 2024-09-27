@@ -372,8 +372,6 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
         }
     }
 
-    console.log('Punteggio dopo i ruoli:', score);
-
     // Penalizza il punteggio se mancano hazard, hazard removal, trick o taunt se richiesti
     if (teamModels[bestModel].hazardsRequired && !hasHazards) score -= 20;
     if (teamModels[bestModel].hazardRemovalRequired && !hasHazardRemoval) score -= 20;
