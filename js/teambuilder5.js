@@ -396,9 +396,6 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
 
     let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0 };
     let score = 0;
-    let hasHazards = false;
-    let hasHazardRemoval = false;
-    let hasTrickOrTaunt = false;
     let hasRainSetter = team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter'));
 
     // Conta i ruoli nel team e identifica hazard, hazard removal, trick o taunt
