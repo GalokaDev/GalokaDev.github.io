@@ -304,7 +304,7 @@ function suggestBestPokemon(team, modelName) {
             for (let role in model.roles) {
                 const roleReq = model.roles[role];
                 const roleWeight = weight[role] || 1; // Ottieni il peso del ruolo o predefinito a 1
-                
+
                 if (Array.isArray(roleReq)) {
                     if (pokemonRoles[pokemon].roles.includes(role) && roles[role] < roleReq[1]) {
                         score += 10 * roleWeight; // Aumenta il punteggio in base al peso
@@ -364,12 +364,7 @@ function evaluateTeamAgainstModel(team, bestModel) {
         if (Array.isArray(required) && typeof roles[role] === 'number') {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
                 console.log('Ruolo valido:', role, 'Conteggio:', roles[role], 'Requisiti:', required);
-                // Controllo speciale per i rainSetter
-                if (role === 'rainSetter') {
-                    score += 30; // Assegna 30 punti per il rainSetter
-                } else {
-                    score += 10; // Assegna 10 punti per gli altri ruoli
-                }
+                score += 10; // Assegna 10 punti per gli altri ruoli
             }
         }
     }
