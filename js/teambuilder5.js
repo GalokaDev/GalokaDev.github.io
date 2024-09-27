@@ -384,7 +384,7 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
     // Se esiste un rainSetter nel team, aumenta il punteggio solo per il modello "rain" una volta
     if (hasRainSetter && bestModel === 'rain' && !rainBonusApplied) {
         console.log("Rain setter è nel team, aumento del punteggio per il modello rain.");
-        score += 30; // Aggiungi il bonus per il rain setter
+        score += 20; // Aggiungi il bonus per il rain setter
     }
 
     return score;
