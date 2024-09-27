@@ -327,7 +327,22 @@ function suggestBestPokemon(team, modelName) {
             // Aggiungi il bonus di 10 punti per i Pokémon in tier S+
             const tier = pokemonRoles[pokemon].tier || 'B'; // Se non ha tier, predefinito è B
             if (tier === 'S+') {
-                score += 10;
+                score += 8;
+            }
+            if (tier === 'S') {
+                score += 6;
+            }
+            if (tier === 'A') {
+                score += 4;
+            }
+            if (tier === 'B') {
+                score += 2;
+            }
+            if (tier === 'C') {
+                score += 0;
+            }
+            if (tier === 'D') {
+                score -= 2;
             }
 
             // Aggiungi bonus per sinergie con i Pokémon già nel team
