@@ -1,5 +1,5 @@
 const pokemonRoles = {
-    volcarona: { roles: ['sweeper', 'rockweak'], types: ['bug', 'fire'], tier: 'S' },
+    volcarona: { roles: ['sweeper'], types: ['bug', 'fire'], tier: 'S' },
     ferrothorn: { roles: ['rainUseful', 'wall'], types: ['grass', 'steel'], tier: 'A' },
     garchomp: { roles: ['sweeper'], types: ['dragon', 'ground'], tier: 'S+' },
     blissey: { roles: ['wall'], types: ['normal'], tier: 'B' },
@@ -11,8 +11,8 @@ const pokemonRoles = {
     serperior: { roles: ['rainUseful', 'sweeper'], types: ['grass'], tier: 'S+' },
     jellicent: { roles: ['wall'], types: ['water', 'ghost'], tier: 'S+' },
     weezing: { roles: ['wall'], types: ['poison'], tier: 'S+' },
-    mamoswine: { roles: ['sweeper', 'wallbreaker', 'rockweak'], types: ['ice', 'ground'], tier: 'S' },
-    dragonite: { roles: ['sweeper', 'rockweak'], types: ['dragon', 'flying'], tier: 'S' },
+    mamoswine: { roles: ['sweeper', 'wallbreaker'], types: ['ice', 'ground'], tier: 'S' },
+    dragonite: { roles: ['sweeper'], types: ['dragon', 'flying'], tier: 'S' },
     tyranitar: { roles: ['wall','sweeper'], types: ['rock', 'dark'], tier: 'S'},
     rotomwash: { roles: ['wall'], types: ['electric', 'water'], tier: 'S' },
     gliscor: { roles: ['wall'], types: ['ground', 'flying'], tier: 'S' },
@@ -36,7 +36,7 @@ const pokemonRoles = {
     darmanitan: { roles: ['sweeper', 'wallbreaker'], types: ['fire'], tier: 'A' },
     empoleon: { roles: ['wall'], types: ['water', 'steel'], tier: 'A' },
     tentacruel: { roles: ['wall'], types: ['water', 'poison'], tier: 'A' },
-    weavile: { roles: ['sweeper', 'rockweak'], types: ['dark', 'ice'], tier: 'A' },
+    weavile: { roles: ['sweeper'], types: ['dark', 'ice'], tier: 'A' },
     kingdra: { roles: ['rainAbuser'], types: ['water', 'dragon'], tier: 'A' },
     porygon2: { roles: ['wall'], types: ['normal'], tier: 'A' },
     gyarados: { roles: ['sweeper'], types: ['water', 'flying'], tier: 'B' },
@@ -66,12 +66,14 @@ const pokemonRoles = {
 
 // Definizione delle sinergie tra Pokémon
 const synergies = {
-    tyranitar: { excadrill: 4 },  // Sinergia tyranitar con excadrill +8 punti
-    excadrill: { tyranitar: 4 },  // Sinergia excadrill con tyranitar +8 punti
-    pelipper: { kingdra: 12 },    // Sinergia pelipper con kingdra +10 punti
-    kingdra: { pelipper: 12 },    // Sinergia kingdra con pelipper +10 punti
-    ferrothorn: { rotomWash: 4 }, // Sinergia ferrothorn con rotom-wash +5 punti
-    rotomWash: { ferrothorn: 4 }  // Sinergia rotom-wash con ferrothorn +5 punti
+    tyranitar: { excadrill: 4 },
+    excadrill: { tyranitar: 4 },
+    pelipper: { kingdra: 12 },
+    kingdra: { pelipper: 12 },
+    ferrothorn: { rotomWash: 4 },
+    rotomWash: { ferrothorn: 4 },
+    volcarona: { hazardRemoval: 12 },
+    dragonite: { hazardRemoval: 12 }
 };
 
 // Aggiungi pesi ai ruoli per ogni modello di team
@@ -118,10 +120,10 @@ const teamModels = {
         roles: { sweeper: [1, 4], wallbreaker: [1, 2], wall: [2, 3], hazardRemoval: [1, 1], hazardSetter: [1, 1] },
     },
     hyperOffense: {
-        roles: { sweeper: [4, 6], wallbreaker: [1, 3] },
+        roles: { sweeper: [4, 6], wallbreaker: [1, 3], stallbreaker: [0, 1] },
     },
     bulkyOffense: {
-        roles: { wallbreaker: [2, 4], hazardRemoval: [1, 1], hazardSetter: [1, 1]},
+        roles: { wallbreaker: [2, 4], hazardRemoval: [0, 1], hazardSetter: [1, 1]},
  
     },
     stall: {
@@ -273,7 +275,7 @@ function suggestBestPokemon(team, modelName) {
     console.log("Team Weaknesses", teamWeaknesses);
 
     // Inizializza un oggetto roles per contare quanti Pokémon nel team hanno ciascun ruolo
-    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0, pivot: 0, stallbreaker: 0, hazardRemoval: 0, hazardSetter: 0};
+    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, pivot: 0, stallbreaker: 0, hazardRemoval: 0, hazardSetter: 0};
 
     // Conta i ruoli nel team
     team.forEach(pokemon => {
@@ -394,7 +396,7 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
         return -Infinity;
     }
 
-    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, rockweak: 0, pivot: 0, stallbreaker: 0, hazardRemoval: 0, hazardSetter: 0};
+    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, pivot: 0, stallbreaker: 0, hazardRemoval: 0, hazardSetter: 0};
     let score = 0;
     let hasRainSetter = team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter'));
 
