@@ -406,11 +406,16 @@ document.getElementById('calculate').addEventListener('click', function() {
         if (modelName === 'rain' && score > bestScore && team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter'))) {
             rainBonusApplied = true; // Applica il bonus una sola volta
         }
+
+        console.log(`Modello: ${modelName}, Punteggio totale: ${score}`);
+
         if (score > bestScore) {
             bestScore = score;
             bestModel = modelName;
         }
     }
+
+    console.log(`Miglior modello: ${bestModel}, punteggio: ${bestScore}`);
 
     // Calcola la debolezza più frequente
     let weaknesses = calculateWeaknesses(team);
