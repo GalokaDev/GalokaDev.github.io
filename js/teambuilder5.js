@@ -381,12 +381,6 @@ function evaluateTeamAgainstModel(team, bestModel) {
     if (teamModels[bestModel].hazardRemovalRequired && !hasHazardRemoval) score -= 20;
     if (teamModels[bestModel].trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
-    // Se esiste un rainSetter nel team, aumenta il punteggio solo per il modello "rain"
-    if (hasRainSetter && bestModel === 'rain') {
-        console.log("Rain setter è nel team, aumento del punteggio per il modello rain.");
-        score += 15; // Aggiungi un bonus significativo per il modello "rain" se un rainSetter è presente
-    }
-
     return score;
 }
 
