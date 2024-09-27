@@ -71,9 +71,7 @@ const synergies = {
     pelipper: { kingdra: 12 },
     kingdra: { pelipper: 12 },
     ferrothorn: { rotomWash: 4 },
-    rotomWash: { ferrothorn: 4 },
-    volcarona: { hazardRemoval: 52 },
-    dragonite: { hazardRemoval: 52 }
+    rotomWash: { ferrothorn: 4 }
 };
 
 // Aggiungi pesi ai ruoli per ogni modello di team
@@ -370,7 +368,13 @@ function suggestBestPokemon(team, modelName) {
                 if (synergyPartners[pokemon]) {
                     score += synergyPartners[pokemon]; // Aggiungi il punteggio specifico per la sinergia
                 }
+
+                // Se non ci sono hazardRemoval, Consiglia hazardRemoval per pokemon come Volcarona o Dragonite
+                if ((teamPokemon.name === 'volcarona' || teamPokemon.name === 'dragonite') && pokemonRoles[pokemon].roles.includes('hazardRemoval')) {
+                    score += 11; // Aggiungi 6 punti per hazardRemoval se Volcarona o Dragonite sono nel team
+                }
             });
+
 
 
             // Aggiungi il Pokémon alla lista delle suggerimenti se il punteggio è sufficiente
