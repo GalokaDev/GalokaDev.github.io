@@ -385,9 +385,11 @@ function evaluateTeamAgainstModel(team, bestModel) {
     if (teamModels[bestModel].trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
     // Se esiste un rainSetter e il modello è "rain", aumenta il punteggio
-    if (hasRainSetter && bestModel === 'rain') {
+    // Bonus applicato solo una volta
+    if (hasRainSetter && bestModel === 'rain' && !team.some(pokemon => pokemon.name === 'rainBonusApplied')) {
         console.log("Rain setter è nel team, aumento del punteggio per il modello rain.");
         score += 30; // Aggiungi un bonus significativo per il modello "rain" se un rainSetter è presente
+        team.push({ name: 'rainBonusApplied' }); // Aggiungi un flag temporaneo per evitare ripetizioni
     }
 
     return score;
