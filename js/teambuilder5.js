@@ -365,8 +365,8 @@ function evaluateTeamAgainstModel(team, bestModel) {
         
         if (Array.isArray(required) && typeof roles[role] === 'number') {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
-                console.log(roles[role]);
-                console.log(required);
+                console.log('ROLES EPICI:',roles[role]);
+                console.log('REQUIRED EPICO:',required);
                 if (role === 'rainSetter') {
                     score += 30;
                 } else{
