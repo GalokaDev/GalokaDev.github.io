@@ -116,38 +116,26 @@ const pivotmoves = ['u-turn', 'volt switch', 'teleport','baton pass'];
 const teamModels = {
     balance: {
         roles: { sweeper: [1, 4], wallbreaker: [1, 2], wall: [2, 3] },
-        hazardsRequired: false,
-        hazardRemovalRequired: false
     },
     hyperOffense: {
         roles: { sweeper: [4, 6], wallbreaker: [1, 3] },
-        hazardsRequired: false,
-        trickOrTauntRequired: false,
-        hazardRemovalRequiredIfRockWeak: false
     },
     bulkyOffense: {
         roles: { wallbreaker: [2, 4] },
-        hazardsRequired: false,
-        hazardRemovalOptional: false
+ 
     },
     stall: {
         roles: { wall: [5, 6], wallbreaker: [0, 1] },
-        hazardsRequired: false,
-        hazardRemovalRequired: false
     },
     semiStall: {
         roles: { wall: [4, 5], sweeper: [0, 1], wallbreaker: [0, 2] },
-        hazardsRequired: false,
-        hazardRemovalOptional: false
     },
     rain: {
         roles: { rainSetter: [0, 1], rainAbuser: [1, 2], rainUseful: [0, 4]},
-        hazardsRequired: false,
-        hazardRemovalRequired: false
     }
 };
 
-// Funzione per raccogliere i Pokémon e le mosse inserite dall'utente
+// Funzione per ottenere i dati del team
 function getTeamData() {
     let team = [];
     for (let i = 1; i <= 6; i++) {
@@ -163,6 +151,35 @@ function getTeamData() {
         }
     }
     return team;
+}
+
+
+
+// Funzione che aggiunge ruoli in base alle mosse del Pokémon
+function addRolesBasedOnMoves(pokemon) {
+    let roles = [];
+
+    // Controlla se ha mosse hazard
+    if (pokemon.moves.some(move => hazardMoves.includes(move))) {
+        roles.push('hazardSetter');
+    }
+    
+    // Controlla se ha mosse di hazard removal
+    if (pokemon.moves.some(move => hazardRemovalMoves.includes(move))) {
+        roles.push('hazardRemoval');
+    }
+
+    // Controlla se ha mosse utility (trick o taunt)
+    if (pokemon.moves.some(move => utilityMoves.includes(move))) {
+        roles.push('stallbreaker');
+    }
+
+    // Controlla se ha mosse di pivot (U-turn, Volt Switch, etc.)
+    if (pokemon.moves.some(move => pivotMoves.includes(move))) {
+        roles.push('pivot');
+    }
+
+    return roles;
 }
 
 
