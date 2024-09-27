@@ -340,6 +340,7 @@ function evaluateTeamAgainstModel(team, bestModel) {
     let hasHazards = false;
     let hasHazardRemoval = false;
     let hasTrickOrTaunt = false;
+    let hasPelipper = team.some(pokemon => pokemon.name === 'pelipper'); // Controlla se Pelipper è nel team
 
     // Conta i ruoli nel team e identifica hazard, hazard removal, trick o taunt
     team.forEach(pokemon => {
@@ -376,8 +377,15 @@ function evaluateTeamAgainstModel(team, bestModel) {
     if (bestModel.hazardRemovalRequired && !hasHazardRemoval) score -= 20;
     if (bestModel.trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
+    // Se Pelipper è presente nel team, aumenta il punteggio per il modello "rain"
+    if (hasPelipper && bestModel === teamModels['rain']) {
+        console.log("Pelipper è nel team, aumento del punteggio per il modello rain.");
+        score += 30; // Aggiungi un bonus significativo per il modello "rain" se Pelipper è presente
+    }
+
     return score;
 }
+
 
 
 
