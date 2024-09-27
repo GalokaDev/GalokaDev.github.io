@@ -131,7 +131,7 @@ const teamModels = {
         roles: { wall: [4, 5], sweeper: [0, 1], wallbreaker: [0, 2] },
     },
     rain: {
-        roles: { rainSetter: [0, 1], rainAbuser: [1, 2], rainUseful: [0, 4], hazardRemoval: [0, 2]},
+        roles: { rainSetter: [0, 1], rainAbuser: [1, 2], rainUseful: [0, 4], hazardRemoval: [1]},
     }
 };
 
@@ -175,7 +175,7 @@ function addRolesBasedOnMoves(pokemon) {
     }
 
     // Controlla se ha mosse di pivot (U-turn, Volt Switch, etc.)
-    if (pokemon.moves.some(move => pivotMoves.includes(move))) {
+    if (pokemon.moves.some(move => pivotmoves.includes(move))) {
         roles.push('pivot');
     }
 
