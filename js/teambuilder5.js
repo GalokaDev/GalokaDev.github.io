@@ -83,7 +83,7 @@ const roleWeights = {
     },
     hyperOffense: {
         sweeper: 2, // Gli sweeper sono molto importanti
-        wallbreaker: 1,5,
+        wallbreaker: 1.5,
     },
     bulkyOffense: {
         sweeper: 1,
