@@ -368,6 +368,7 @@ function evaluateTeamAgainstModel(team, bestModel) {
         
         if (Array.isArray(required) && typeof roles[role] === 'number') {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
+                console.log('Ruolo valido:', role, 'Conteggio:', roles[role], 'Requisiti:', required);
                 // Controllo speciale per i rainSetter
                 if (role === 'rainSetter') {
                     score += 30; // Assegna 30 punti per il rainSetter
