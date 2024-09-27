@@ -365,11 +365,11 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
     // Aumenta il punteggio se i ruoli corrispondono ai requisiti del modello
     for (let role in teamModels[bestModel].roles) {
         const required = teamModels[bestModel].roles[role];
-        
+
         if (Array.isArray(required) && typeof roles[role] === 'number') {
             if (roles[role] >= required[0] && roles[role] <= required[1]) {
                 console.log('Ruolo valido:', role, 'Conteggio:', roles[role], 'Requisiti:', required);
-                score += 10; // Assegna 10 punti per i ruoli corrispondenti
+                score += roles[role] * 10; // Assegna 10 punti per ogni Pokémon che ricopre questo ruolo
             }
         }
     }
@@ -384,11 +384,12 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
     // Se esiste un rainSetter nel team, aumenta il punteggio solo per il modello "rain" una volta
     if (hasRainSetter && bestModel === 'rain' && !rainBonusApplied) {
         console.log("Rain setter è nel team, aumento del punteggio per il modello rain.");
-        score += 20; // Aggiungi il bonus per il rain setter
+        score += 30; // Aggiungi il bonus per il rain setter
     }
 
     return score;
 }
+
 
 
 
