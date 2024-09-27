@@ -403,12 +403,13 @@ document.getElementById('calculate').addEventListener('click', function() {
     let bestModel = null;
     let bestScore = -Infinity;
     for (let modelName in teamModels) {
-        let score = evaluateTeamAgainstModel(team, teamModels[modelName]);
+        let score = evaluateTeamAgainstModel(team, modelName); // Qui dovresti passare 'modelName', che è una stringa
         if (score > bestScore) {
             bestScore = score;
-            bestModel = modelName;
+            bestModel = modelName; // Qui assegniamo 'modelName', che è una stringa
         }
     }
+    
     // Calcola la debolezza più frequente
     let weaknesses = calculateWeaknesses(team);
 
@@ -416,7 +417,7 @@ document.getElementById('calculate').addEventListener('click', function() {
     if (bestModel) {
         let suggestions = suggestBestPokemon(team, bestModel);
         let worstPokemon = team.reduce((worst, pokemon, index) => {
-            let score = evaluateTeamAgainstModel(team.filter((_, i) => i !== index), teamModels[bestModel]);
+            let score = evaluateTeamAgainstModel(team.filter((_, i) => i !== index), bestModel);
             return score < worst.score ? { name: pokemon.name, score } : worst;
         }, { score: Infinity });
 
