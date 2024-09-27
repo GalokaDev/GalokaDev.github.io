@@ -345,7 +345,6 @@ function evaluateTeamAgainstModel(team, bestModel) {
     let hasHazards = false;
     let hasHazardRemoval = false;
     let hasTrickOrTaunt = false;
-    let hasRainSetter = team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter')); // Controlla se c'è un rainSetter
 
     // Conta i ruoli nel team e identifica hazard, hazard removal, trick o taunt
     team.forEach(pokemon => {
