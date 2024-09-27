@@ -401,14 +401,16 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
     // Conta i ruoli nel team e identifica hazard, hazard removal, trick o taunt
     team.forEach(pokemon => {
         if (pokemonRoles[pokemon.name]) {
+            // Conta i ruoli predefiniti
             pokemonRoles[pokemon.name].roles.forEach(role => {
                 roles[role]++;
             });
         }
-        pokemon.moves.forEach(move => {
-            if (hazardMoves.includes(move)) hasHazards = true;
-            if (hazardRemovalMoves.includes(move)) hasHazardRemoval = true;
-            if (utilityMoves.includes(move)) hasTrickOrTaunt = true;
+        
+        // Aggiungi ruoli dinamici basati sulle mosse
+        const dynamicRoles = addRolesBasedOnMoves(pokemon);
+        dynamicRoles.forEach(role => {
+            roles[role]++;
         });
     });
 
@@ -422,11 +424,6 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
             }
         }
     }
-
-    // Penalizza il punteggio se mancano hazard, hazard removal, trick o taunt se richiesti
-    if (teamModels[bestModel].hazardsRequired && !hasHazards) score -= 20;
-    if (teamModels[bestModel].hazardRemovalRequired && !hasHazardRemoval) score -= 20;
-    if (teamModels[bestModel].trickOrTauntRequired && !hasTrickOrTaunt) score -= 20;
 
     // Se esiste un rainSetter nel team, aumenta il punteggio solo per il modello "rain" una volta
     if (hasRainSetter && bestModel === 'rain' && !rainBonusApplied) {
