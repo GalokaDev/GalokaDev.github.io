@@ -82,7 +82,7 @@ const moveList = [
     "Shadow Force", "Shadow Sneak", "Shadow Snatch", "Sharpen", "Sheer Cold",
     "Shell Smash", "Shield Bash", "Shift Gear", "Shock Wave", "Signal Beam",
     "Silver Wind", "Simple Beam", "Sing", "Sky Attack", "Sky Drop", "Sky Uppercut",
-    "Slack Off", "Slam", "Sludge", "Sludge Bomb", "Sludge Wave", "Smack Down",
+    "Slack Off", "Slam", "Sludge", "Sludge Wave", "Smack Down",
     "Smellingsalt", "Smog", "SmokeScreen", "Snarl", "Snore", "Soak",
     "Soft-Boiled", "Solar Beam", "Solarblade", "Sonic Boom", "Soul Steal",
     "Sound Wave", "Spacial Rend", "Spark", "Sparkling Aria", "Spectral Thief",
