@@ -369,9 +369,14 @@ function suggestBestPokemon(team, modelName) {
                     score += synergyPartners[pokemon]; // Aggiungi il punteggio specifico per la sinergia
                 }
 
+                let hasHazardRemoval = team.some(p => 
+                    pokemonRoles[p.name]?.roles.includes('hazardRemoval') || 
+                    addRolesBasedOnMoves(p).includes('hazardRemoval')
+                );
+
                 // Se non ci sono hazardRemoval, Consiglia hazardRemoval per pokemon come Volcarona o Dragonite
-                if ((teamPokemon.name === 'volcarona' || teamPokemon.name === 'dragonite') && pokemonRoles[pokemon].roles.includes('hazardRemoval')) {
-                    score += 11; // Aggiungi 6 punti per hazardRemoval se Volcarona o Dragonite sono nel team
+                if (!hasHazardRemoval && (teamPokemon.name === 'volcarona' || teamPokemon.name === 'dragonite') && pokemonRoles[pokemon].roles.includes('hazardRemoval')) {
+                    score += 11; // Aggiungi 11 punti per hazardRemoval se Volcarona o Dragonite sono nel team e non ci sono hazardRemoval
                 }
             });
 
