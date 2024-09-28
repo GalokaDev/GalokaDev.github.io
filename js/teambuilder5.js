@@ -1,5 +1,5 @@
 const pokemonRoles = {
-    volcarona: { roles: ['sweeper'], types: ['bug', 'fire'], tier: 'S' },
+    volcarona: { roles: ['sweeper', 'sunUseful'], types: ['bug', 'fire'], tier: 'S' },
     ferrothorn: { roles: ['rainUseful', 'wall'], types: ['grass', 'steel'], tier: 'A' },
     garchomp: { roles: ['sweeper'], types: ['dragon', 'ground'], tier: 'S+' },
     blissey: { roles: ['wall'], types: ['normal'], tier: 'B' },
@@ -12,13 +12,13 @@ const pokemonRoles = {
     jellicent: { roles: ['wall'], types: ['water', 'ghost'], tier: 'S+' },
     weezing: { roles: ['wall'], types: ['poison'], tier: 'S+' },
     mamoswine: { roles: ['sweeper', 'wallbreaker'], types: ['ice', 'ground'], tier: 'S' },
-    dragonite: { roles: ['sweeper'], types: ['dragon', 'flying'], tier: 'S' },
+    dragonite: { roles: ['sweeper', 'sunUseful'], types: ['dragon', 'flying'], tier: 'S' },
     tyranitar: { roles: ['wall','sweeper'], types: ['rock', 'dark'], tier: 'S'},
     rotomwash: { roles: ['wall'], types: ['electric', 'water'], tier: 'S' },
     gliscor: { roles: ['wall'], types: ['ground', 'flying'], tier: 'S' },
     starmie: { roles: ['sweeper'], types: ['water', 'psychic'], tier: 'S' },
     hydreigon: { roles: ['sweeper', 'wallbreaker'], types: ['dark', 'dragon'], tier: 'S' },
-    excadrill: { roles: ['sweeper'], types: ['ground', 'steel'], tier: 'S' },
+    excadrill: { roles: ['sweeper','rainUseful'], types: ['ground', 'steel'], tier: 'S' },
     breloom: { roles: ['sweeper', 'wallbreaker'], types: ['grass', 'fighting'], tier: 'S' },
     reuniclus: { roles: ['wallbreaker', 'wall'], types: ['psychic'], tier: 'S' },
     pelipper: { roles: ['rainSetter', 'wall'], types: ['water', 'flying'], tier: 'A' },
@@ -28,12 +28,12 @@ const pokemonRoles = {
     gengar: { roles: ['sweeper', 'wallbreaker'], types: ['ghost', 'poison'], tier: 'A' },
     amoonguss: { roles: ['wall'], types: ['grass', 'poison'], tier: 'A' },
     mienshao: { roles: ['sweeper', 'wallbreaker'], types: ['fighting'], tier: 'A'},
-    infernape: { roles: ['sweeper', 'wallbreaker'], types: ['fire', 'fighting'], tier: 'A' },
+    infernape: { roles: ['sweeper', 'wallbreaker', 'sunUseful'], types: ['fire', 'fighting'], tier: 'A' },
     suicune: { roles: ['wallbreaker','wall'], types: ['water'], tier: 'A' },
-    chandelure: { roles: ['wallbreaker'], types: ['ghost', 'fire'], tier: 'A' },
+    chandelure: { roles: ['wallbreaker', 'sunUseful'], types: ['ghost', 'fire'], tier: 'A' },
     magnezone: { roles: ['sweeper'], types: ['electric', 'steel'], tier: 'A' },
     bronzong: { roles: ['wall'], types: ['steel', 'psychic'], tier: 'A' },
-    darmanitan: { roles: ['sweeper', 'wallbreaker'], types: ['fire'], tier: 'A' },
+    darmanitan: { roles: ['sweeper', 'wallbreaker', 'sunAbuser'], types: ['fire'], tier: 'A' },
     empoleon: { roles: ['wall'], types: ['water', 'steel'], tier: 'A' },
     tentacruel: { roles: ['wall'], types: ['water', 'poison'], tier: 'A' },
     weavile: { roles: ['sweeper'], types: ['dark', 'ice'], tier: 'A' },
@@ -41,18 +41,18 @@ const pokemonRoles = {
     porygon2: { roles: ['wall'], types: ['normal'], tier: 'A' },
     gyarados: { roles: ['sweeper'], types: ['water', 'flying'], tier: 'B' },
     gastrodon: { roles: ['wall'], types: ['water', 'ground'], tier: 'B' },
-    espeon: { roles: ['sweeper'], types: ['psychic'], tier: 'B'},
-    torkoal: { roles: ['wall'], types: ['fire'], tier: 'B' },
+    espeon: { roles: ['sweeper', 'sunUseful'], types: ['psychic'], tier: 'B'},
+    torkoal: { roles: ['sunSetter'], types: ['fire'], tier: 'B' },
     porygon_z: { roles: ['sweeper'], types: ['normal'], tier: 'B' },
     lucario: { roles: ['sweeper', 'wallbreaker'], types: ['fighting', 'steel'], tier: 'B' },
     sableye: { roles: ['wall', 'utility'], types: ['dark', 'ghost'], tier: 'B' },
     kabutops: { roles: ['rainAbuser'], types: ['rock', 'water'], tier: 'B' },
     cofagrigus: { roles: ['wall'], types: ['ghost'], tier: 'B' },
     cloyster: { roles: ['sweeper'], types: ['water', 'ice'], tier: 'B' },
-    venusaur: { roles: ['sweeper'], types: ['grass', 'poison'], tier: 'B'},
+    venusaur: { roles: ['sunAbuser'], types: ['grass', 'poison'], tier: 'B'},
     ditto: { roles: ['utility'], types: ['normal'], tier: 'B' },
     raikou: { roles: ['sweeper'], types: ['electric'], tier: 'B' },
-    entei: { roles: ['sweeper'], types: ['fire'], tier: 'B' },
+    entei: { roles: ['sweeper', 'sunUseful'], types: ['fire'], tier: 'B' },
     staraptor: { roles: ['sweeper'], types: ['normal', 'flying'], tier: 'B' },
     poliwrath: { roles: ['rainAbuser'], types: ['water', 'fighting'], tier: 'B'},
     feraligatr: { roles: ['sweeper', 'wallbreaker'], types: ['water'], tier: 'B' },
@@ -103,6 +103,11 @@ const roleWeights = {
         rainSetter: 5, // Il rain setter è cruciale
         rainAbuser: 2.5,
         rainUseful: 2
+    },
+    sun: {
+        sunSetter: 5, // Il sun setter è cruciale
+        sunAbuser: 2.5,
+        sunUseful: 2
     }
 };
 
@@ -132,6 +137,9 @@ const teamModels = {
     },
     rain: {
         roles: { rainSetter: [0, 1], rainAbuser: [1, 2], rainUseful: [0, 4], hazardRemoval: [1, 1]},
+    },
+    sun: {
+        roles: { sunSetter: [0, 1], sunAbuser: [1, 2], sunUseful: [0, 2], hazardRemoval: [1, 2]},
     }
 };
 
