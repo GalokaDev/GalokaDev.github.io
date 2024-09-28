@@ -15,7 +15,7 @@ const moveList = [
     "Metal Burst", "Meteor Mash", "Nasty Plot", "Night Shade", "Outrage", "Overheat",
     "Pain Split", "Payback", "Perish Song", "Petal Dance", "Poison Jab", "Power Gem",
     "Power Whip", "Psychic", "Psycho Cut", "Psyshock", "Quick Attack",
-    "Rain Dance", "Rest", "Roar", "Rock Blast",
+    "Rain Dance", "Rest", "Roar",
     "Rock Slide", "Rock Tomb", "Sacred Fire", "Screech", "Seed Bomb",
     "Seismic Toss", "Shadow Ball", "Shadow Claw", "Shadow Sneak", "Signal Beam",
     "Sky Attack", "Sludge Bomb", "Soft-Boiled", "Solar Beam", "Spikes", "Stealth Rock",
