@@ -413,7 +413,7 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
         return -Infinity;
     }
 
-    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, pivot: 0, stallbreaker: 0, hazardRemoval: 0, hazardSetter: 0};
+    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, pivot: 0, stallbreaker: 0, hazardRemoval: 0, hazardSetter: 0, sunSetter: 0, sunAbuser: 0, sunUseful: 0};
     let score = 0;
     let hasRainSetter = team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter'));
 
