@@ -14,7 +14,7 @@ const pokemonRoles = {
     mamoswine: { roles: ['sweeper', 'wallbreaker'], types: ['ice', 'ground'], tier: 'S' },
     dragonite: { roles: ['sweeper'], types: ['dragon', 'flying'], tier: 'S' },
     tyranitar: { roles: ['wall','sweeper'], types: ['rock', 'dark'], tier: 'S'},
-    rotomwash: { roles: ['wall', 'hazardRemoval'], types: ['electric', 'water'], tier: 'S' },
+    rotomwash: { roles: ['wall'], types: ['electric', 'water'], tier: 'S' },
     gliscor: { roles: ['wall'], types: ['ground', 'flying'], tier: 'S' },
     starmie: { roles: ['sweeper'], types: ['water', 'psychic'], tier: 'S' },
     hydreigon: { roles: ['sweeper', 'wallbreaker'], types: ['dark', 'dragon'], tier: 'S' },
