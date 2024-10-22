@@ -567,24 +567,9 @@ document.getElementById('calculate').addEventListener('click', function() {
     if (bestModel) {
         let suggestions = suggestBestPokemon(team, bestModel);
         let worstPokemon = team.reduce((worst, pokemon, index) => {
-            // Calcola il punteggio del team completo con tutti i Pokémon
-            let fullTeamScore = evaluateTeamAgainstModel(team, bestModel, rainBonusApplied);
-        
-            // Calcola il punteggio del team senza il Pokémon corrente
-            let scoreWithoutPokemon = evaluateTeamAgainstModel(team.filter((_, i) => i !== index), bestModel, rainBonusApplied);
-        
-            // Differenza tra il punteggio del team completo e quello senza il Pokémon corrente
-            let scoreDifference = fullTeamScore - scoreWithoutPokemon;
-        
-            // Se la differenza è maggiore o uguale a quella dell'attuale worst (quindi meno impatto positivo o negativo),
-            // allora il Pokémon corrente è considerato peggiore
-            if (scoreDifference >= worst.scoreDifference) {
-                return { name: pokemon.name, scoreDifference };
-            } else {
-                return worst;
-            }
-        }, { scoreDifference: -Infinity });  // Partiamo con un valore molto negativo per assicurarci che la logica funzioni correttamente
-        
+            let score = evaluateTeamAgainstModel(team.filter((_, i) => i !== index), bestModel, rainBonusApplied);
+            return score < worst.score ? { name: pokemon.name, score } : worst;
+        }, { score: Infinity });
 
         let resultText = `Team Model: ${bestModel}\n`;
         
