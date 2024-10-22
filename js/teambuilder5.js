@@ -193,7 +193,7 @@ const roleWeights = {
 };
 
 // Lista di mosse hazard e hazard removal
-const hazardMoves = ['stealthrock', 'spikes', 'toxicspikes'];
+const hazardMoves = ['stealth rock', 'spikes', 'toxic spikes'];
 const hazardRemovalMoves = ['defog', 'rapid spin'];
 const utilityMoves = ['trick', 'taunt'];
 const pivotmoves = ['u-turn', 'volt switch', 'teleport','baton pass'];
