@@ -537,8 +537,12 @@ function suggestBestPokemon(team, modelName) {
 
 
 
-function worstPokemonCalc(pokemon, team, model, roles, weaknesses) {
+function calculatePokemonScoreInTeam(pokemon, team, model, roles, weaknesses) {
     let score = 0;
+
+    // Ottieni i ruoli derivati dalle mosse del Pokémon
+    const moveBasedRoles = addRolesBasedOnMoves(pokemon);
+    const combinedRoles = [...(pokemonRoles[pokemon.name]?.roles || []), ...moveBasedRoles]; // Combina i ruoli predefiniti con quelli derivati dalle mosse
 
     // Aggiungi punteggio per i ruoli del Pokémon in base al modello
     for (let role in model.roles) {
@@ -546,11 +550,11 @@ function worstPokemonCalc(pokemon, team, model, roles, weaknesses) {
         const roleWeight = roleWeights[model.name] || 1; // Pesi specifici per il modello
 
         if (Array.isArray(roleReq)) {
-            if (pokemonRoles[pokemon.name].roles.includes(role) && roles[role] < roleReq[1]) {
+            if (combinedRoles.includes(role) && roles[role] < roleReq[1]) {
                 score += 10 * roleWeight; // Aggiungi punteggio in base al peso del ruolo
             }
         } else {
-            if (pokemonRoles[pokemon.name].roles.includes(role)) {
+            if (combinedRoles.includes(role)) {
                 score += 10 * roleWeight; // Aggiungi punteggio in base al peso del ruolo
             }
         }
@@ -558,7 +562,7 @@ function worstPokemonCalc(pokemon, team, model, roles, weaknesses) {
 
     // Aumenta il punteggio per la copertura delle debolezze del team
     weaknesses.forEach(([weakType]) => {
-        pokemonRoles[pokemon.name].types.forEach(type => {
+        pokemonRoles[pokemon.name]?.types.forEach(type => {
             const resists = typeEffectiveness[type].resists || [];
             if (resists.includes(weakType)) {
                 score += 9; // Aggiungi punti se il Pokémon resiste a una debolezza del team
@@ -575,7 +579,7 @@ function worstPokemonCalc(pokemon, team, model, roles, weaknesses) {
     });
 
     // Aggiungi bonus o penalità basata sul tier del Pokémon
-    const tier = SuggestedMoveset[pokemon.name].tier || 'B';
+    const tier = SuggestedMoveset[pokemon.name]?.tier || 'B';
     if (tier === 'S+') {
         score += 10;
     } else if (tier === 'S') {
