@@ -64,9 +64,90 @@ const pokemonRoles = {
     // Aggiungi altri Pokémon qui se necessario
 };
 
+
+const SuggestedMoveset = {
+    volcarona: { roles: ['sweeper', 'sunUseful'], types: ['bug', 'fire'], tier: 'S' },
+    ferrothorn: { roles: ['rainUseful', 'wall'], types: ['grass', 'steel'], tier: 'A' },
+    garchompPhysical: { roles: ['sweeper', 'hazardSetter'], types: ['dragon', 'ground'], tier: 'C' },
+    garchomp: { roles: ['sweeper', 'hazardSetter'], types: ['dragon', 'ground'], tier: 'S+' },
+    garchompTank: { roles: ['wall', 'hazardSetter'], types: ['dragon', 'ground'], tier: 'S' },
+    blissey: { roles: ['wall'], types: ['normal'], tier: 'B' },
+    chansey: { roles: ['wall'], types: ['normal'], tier: 'S' },
+    scizor: { roles: ['rainUseful', 'sweeper','pivot'], types: ['bug', 'steel'], tier: 'S+' },
+    skarmory: { roles: ['wall','hazardSetter','hazardRemoval'], types: ['steel', 'flying'], tier: 'S' },
+    gallade: { roles: ['sweeper', 'wallbreaker'], types: ['psychic', 'fighting'], tier: 'S+' },
+    zapdos: { roles: ['rainUseful', 'wall','hazardRemoval','pivot'], types: ['electric', 'flying'], tier: 'S+' },
+    zapdosTimid: { roles: ['rainUseful', 'sweeper','hazardRemoval','pivot'], types: ['electric', 'flying'], tier: 'A' },
+    serperior: { roles: ['rainUseful', 'sweeper'], types: ['grass'], tier: 'S+' },
+    serperiorDefogger: { roles: ['rainUseful', 'sweeper','hazardRemoval'], types: ['grass'], tier: 'B' },
+    jellicent: { roles: ['wall'], types: ['water', 'ghost'], tier: 'S+' },
+    jellicentTrick: { roles: ['wallbreaker'], types: ['water', 'ghost'], tier: 'B' },
+    weezing: { roles: ['wall'], types: ['poison'], tier: 'S+' },
+    weezingTS: { roles: ['wall','hazardSetter'], types: ['poison'], tier: 'A' },
+    mamoswine: { roles: ['sweeper', 'wallbreaker','hazardSetter'], types: ['ice', 'ground'], tier: 'S' },
+    dragonite: { roles: ['sweeper', 'sunUseful'], types: ['dragon', 'flying'], tier: 'S' },
+    tyranitar: { roles: ['wall','sweeper'], types: ['rock', 'dark'], tier: 'S'},
+    rotomwash: { roles: ['wall','pivot','hazardRemoval'], types: ['electric', 'water'], tier: 'S' },
+    rotomwashTrick: { roles: ['Wallbreaker','pivot','hazardRemoval'], types: ['electric', 'water'], tier: 'B' },
+    gliscor: { roles: ['wall','hazardRemoval'], types: ['ground', 'flying'], tier: 'S' },
+    gliscorSweeper: { roles: ['sweeper'], types: ['ground', 'flying'], tier: 'C' },
+    starmie: { roles: ['sweeper','hazardRemoval'], types: ['water', 'psychic'], tier: 'S' },
+    starmieTank: { roles: ['tank','hazardRemoval'], types: ['water', 'psychic'], tier: 'B' },
+    hydreigon: { roles: ['sweeper', 'wallbreaker'], types: ['dark', 'dragon'], tier: 'S' },
+    excadrill: { roles: ['rainUseful','hazardSetter','hazardRemoval'], types: ['ground', 'steel'], tier: 'S' },
+    excadrillSand: { roles: ['rainUseful','sweeper'], types: ['ground', 'steel'], tier: 'B' },
+    breloom: { roles: ['sweeper', 'wallbreaker'], types: ['grass', 'fighting'], tier: 'S' },
+    reuniclus: { roles: ['wallbreaker', 'wall'], types: ['psychic'], tier: 'S' },
+    pelipper: { roles: ['rainSetter', 'wall','hazardRemoval'], types: ['water', 'flying'], tier: 'A' },
+    conkeldurr: { roles: ['sweeper', 'wallbreaker'], types: ['fighting'], tier: 'A' },
+    crawdaunt: { roles: ['rainAbuser', 'wallbreaker'], types: ['water', 'dark'], tier: 'A' },
+    metagross: { roles: ['wall','hazardSetter'], types: ['steel', 'psychic'], tier: 'A' },
+    metagrossPhysical: { roles: ['sweeper','hazardSetter'], types: ['steel', 'psychic'], tier: 'C' },
+    gengar: { roles: ['sweeper', 'wallbreaker'], types: ['ghost', 'poison'], tier: 'A' },
+    gengarLead: { roles: ['hazardSetter', 'wallbreaker'], types: ['ghost', 'poison'], tier: 'C' },
+    amoonguss: { roles: ['wall','pivot'], types: ['grass', 'poison'], tier: 'A' },
+    mienshao: { roles: ['sweeper', 'wallbreaker','pivot'], types: ['fighting'], tier: 'A'},
+    infernape: { roles: ['sweeper', 'wallbreaker', 'sunUseful'], types: ['fire', 'fighting'], tier: 'A' },
+    infernapeSL: { roles: ['sunUseful','hazardSetter'], types: ['fire', 'fighting'], tier: 'D' },
+    suicune: { roles: ['wallbreaker','wall'], types: ['water'], tier: 'A' },
+    chandelure: { roles: ['wallbreaker', 'sunUseful'], types: ['ghost', 'fire'], tier: 'A' },
+    magnezone: { roles: ['sweeper','pivot'], types: ['electric', 'steel'], tier: 'A' },
+    bronzong: { roles: ['wall','hazardSetter'], types: ['steel', 'psychic'], tier: 'A' },
+    darmanitan: { roles: ['sweeper','pivot', 'wallbreaker', 'sunAbuser'], types: ['fire'], tier: 'A' },
+    empoleon: { roles: ['wall','hazardRemoval','hazardSetter'], types: ['water', 'steel'], tier: 'A' },
+    tentacruel: { roles: ['wall','hazardRemoval'], types: ['water', 'poison'], tier: 'A' },
+    weavile: { roles: ['sweeper','wallbreaker'], types: ['dark', 'ice'], tier: 'A' },
+    kingdra: { roles: ['rainAbuser'], types: ['water', 'dragon'], tier: 'A' },
+    porygon2: { roles: ['wall'], types: ['normal'], tier: 'A' },
+    gyarados: { roles: ['sweeper'], types: ['water', 'flying'], tier: 'B' },
+    gastrodon: { roles: ['wall','hazardSetter'], types: ['water', 'ground'], tier: 'B' },
+    espeon: { roles: ['wall','hazardRemoval','pivot'], types: ['psychic'], tier: 'B'},
+    espeonSweeper: { roles: ['sweeper', 'sunUseful','hazardRemoval'], types: ['psychic'], tier: 'B'},
+    torkoal: { roles: ['sunSetter','hazardSetter','hazardRemoval'], types: ['fire'], tier: 'B' },
+    porygon_z: { roles: ['sweeper'], types: ['normal'], tier: 'B' },
+    lucario: { roles: ['sweeper', 'wallbreaker'], types: ['fighting', 'steel'], tier: 'B' },
+    sableye: { roles: ['wall', 'utility'], types: ['dark', 'ghost'], tier: 'B' },
+    kabutops: { roles: ['rainAbuser'], types: ['rock', 'water'], tier: 'B' },
+    cofagrigus: { roles: ['wall'], types: ['ghost'], tier: 'B' },
+    cloyster: { roles: ['sweeper','wallbreaker'], types: ['water', 'ice'], tier: 'B' },
+    venusaur: { roles: ['sunAbuser'], types: ['grass', 'poison'], tier: 'B'},
+    ditto: { roles: ['utility'], types: ['normal'], tier: 'B' },
+    raikou: { roles: ['sweeper'], types: ['electric'], tier: 'B' },
+    entei: { roles: ['sweeper', 'sunUseful'], types: ['fire'], tier: 'B' },
+    staraptor: { roles: ['sweeper','pivot'], types: ['normal', 'flying'], tier: 'B' },
+    poliwrath: { roles: ['rainAbuser'], types: ['water', 'fighting'], tier: 'B'},
+    feraligatr: { roles: ['sweeper', 'wallbreaker'], types: ['water'], tier: 'B' },
+    togekiss: { roles: ['sweeper','wallbreaker'], types: ['flying'], tier: 'C' },
+    salamence: { roles: ['sweeper'], types: ['dragon', 'flying'], tier: 'C'},
+    mandibuzz: { roles: ['wall','hazardRemoval'], types: ['dark', 'flying'], tier: 'C' },
+    jolteon: { roles: ['sweeper','pivot'], types: ['electric'], tier: 'D' },
+    milotic: { roles: ['wall'], types: ['water'], tier: 'D' }
+    // Aggiungi altri Pokémon qui se necessario
+};
+
 // Definizione delle sinergie tra Pokémon
 const synergies = {
-    tyranitar: { excadrill: 4 },
+    tyranitar: { excadrillSand: 4 },
     excadrill: { tyranitar: 4 },
     pelipper: { kingdra: 12 },
     kingdra: { pelipper: 12 },
@@ -272,140 +353,6 @@ function calculateWeaknesses(team) {
 }
 
 
-function suggestBestPokemon(team, modelName) {
-    console.log("Team:", team);
-    console.log("Model:", modelName);
-
-    let suggestions = [];
-    let teamWeaknesses = calculateWeaknesses(team); // Calcola le debolezze attuali del team
-    console.log("Team Weaknesses", teamWeaknesses);
-
-    // Inizializza un oggetto roles per contare quanti Pokémon nel team hanno ciascun ruolo
-    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, pivot: 0, stallbreaker: 0, hazardRemoval: 0, hazardSetter: 0, sunSetter: 0, sunAbuser: 0, sunUseful: 0};
-
-    // Conta i ruoli nel team
-    team.forEach(pokemon => {
-        if (pokemonRoles[pokemon.name]) {
-            pokemonRoles[pokemon.name].roles.forEach(role => {
-                roles[role]++; // Incrementa il ruolo corrispondente
-            });
-        }
-    });
-
-    const model = teamModels[modelName]; // Ottieni l'oggetto del modello dal nome
-    if (!model) {
-        console.error(`Model "${modelName}" not found in teamModels`);
-        return [];
-    }
-
-    const weight = roleWeights[modelName] || {}; // Ottieni i pesi per il modello
-    console.log("Model:", model);
-    console.log("Weight:", weight);
-
-    // Analizza ciascun Pokémon della lista dei ruoli e calcola il suo punteggio
-    for (let pokemon in pokemonRoles) {
-        if (!team.some(p => p.name === pokemon)) {
-            let score = 0; // Il punteggio parte da 0
-
-            let skip = false; // Variabile per determinare se saltare questo Pokémon
-
-            // Verifica i ruoli che sono stati dichiarati nel modello
-            for (let role in model.roles) {
-                const roleReq = model.roles[role];
-                // Se il ruolo è già oltre il limite, salta questo Pokémon
-                if (Array.isArray(roleReq)) {
-                    if (pokemonRoles[pokemon].roles.includes(role) && roles[role] >= roleReq[1]) {
-                        skip = true;
-                        break; // Interrompi il ciclo se uno dei ruoli è già pieno
-                    }
-                }
-            }
-
-            if (skip) continue; // Se il Pokémon non è valido, passa al successivo
-
-            // Aumenta il punteggio se il Pokémon copre le debolezze del team
-            teamWeaknesses.forEach(([weakType]) => {
-                pokemonRoles[pokemon].types.forEach(type => {
-                    // Se il Pokémon ha una resistenza a una debolezza del team, guadagna punti
-                    const resists = typeEffectiveness[type].resists || [];
-                    if (resists.includes(weakType)) {
-                        score += 9;
-                    }
-                });
-            });
-
-            // Aumenta il punteggio solo per i ruoli dichiarati nel modello
-            for (let role in model.roles) {
-                const roleReq = model.roles[role];
-                const roleWeight = weight[role] || 1; // Ottieni il peso del ruolo o predefinito a 1
-
-                if (Array.isArray(roleReq)) {
-                    if (pokemonRoles[pokemon].roles.includes(role) && roles[role] < roleReq[1]) {
-                        score += 10 * roleWeight; // Aumenta il punteggio in base al peso
-                    }
-                } else {
-                    if (pokemonRoles [pokemon].roles.includes(role)) {
-                        score += 10 * roleWeight; // Aumenta il punteggio in base al peso
-                    }
-                }
-            }
-            // Aggiungi il bonus di 10 punti per i Pokémon in tier S+
-            const tier = pokemonRoles[pokemon].tier || 'B'; // Se non ha tier, predefinito è B
-            if (tier === 'S+') {
-                score += 10;
-            }
-            if (tier === 'S') {
-                score += 8;
-            }
-            if (tier === 'A') {
-                score += 5;
-            }
-            if (tier === 'B') {
-                score += 3;
-            }
-            if (tier === 'C') {
-                score += 1;
-            }
-            if (tier === 'D') {
-                score -= 2;
-            }
-
-            // Aggiungi bonus per sinergie con i Pokémon già nel team
-            team.forEach(teamPokemon => {
-                const synergyPartners = synergies[teamPokemon.name] || {};
-                if (synergyPartners[pokemon]) {
-                    score += synergyPartners[pokemon]; // Aggiungi il punteggio specifico per la sinergia
-                }
-
-                let hasHazardRemoval = team.some(p => 
-                    pokemonRoles[p.name]?.roles.includes('hazardRemoval') || 
-                    addRolesBasedOnMoves(p).includes('hazardRemoval')
-                );
-
-                // Se non ci sono hazardRemoval, Consiglia hazardRemoval per pokemon come Volcarona o Dragonite
-                if (!hasHazardRemoval && (teamPokemon.name === 'volcarona' || teamPokemon.name === 'dragonite') && pokemonRoles[pokemon].roles.includes('hazardRemoval')) {
-                    score += 11; // Aggiungi 11 punti per hazardRemoval se Volcarona o Dragonite sono nel team e non ci sono hazardRemoval
-                }
-            });
-
-
-
-            // Aggiungi il Pokémon alla lista delle suggerimenti se il punteggio è sufficiente
-            if (score > 0) {
-                suggestions.push({ name: pokemon, score });
-            }
-        }
-    }
-
-    // Ordina le suggerimenti in base al punteggio
-    suggestions.sort((a, b) => b.score - a.score);
-
-    return suggestions;
-}
-
-
-
-
 
 function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
     if (!teamModels[bestModel]) {
@@ -453,6 +400,139 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
     return score;
 }
 
+
+
+
+function suggestBestPokemon(team, modelName) {
+    console.log("Team:", team);
+    console.log("Model:", modelName);
+
+    let suggestions = [];
+    let teamWeaknesses = calculateWeaknesses(team); // Calcola le debolezze attuali del team
+    console.log("Team Weaknesses", teamWeaknesses);
+
+    // Inizializza un oggetto roles per contare quanti Pokémon nel team hanno ciascun ruolo
+    let roles = { rainSetter: 0, rainAbuser: 0, rainUseful: 0, sweeper: 0, wallbreaker: 0, wall: 0, pivot: 0, stallbreaker: 0, hazardRemoval: 0, hazardSetter: 0, sunSetter: 0, sunAbuser: 0, sunUseful: 0};
+
+    // Conta i ruoli nel team
+    team.forEach(pokemon => {
+        if (pokemonRoles[pokemon.name]) {
+            pokemonRoles[pokemon.name].roles.forEach(role => {
+                roles[role]++; // Incrementa il ruolo corrispondente
+            });
+        }
+    });
+
+    const model = teamModels[modelName]; // Ottieni l'oggetto del modello dal nome
+    if (!model) {
+        console.error(`Model "${modelName}" not found in teamModels`);
+        return [];
+    }
+
+    const weight = roleWeights[modelName] || {}; // Ottieni i pesi per il modello
+    console.log("Model:", model);
+    console.log("Weight:", weight);
+
+    // Analizza ciascun Pokémon della lista dei ruoli e calcola il suo punteggio
+    for (let pokemon in SuggestedMoveset) {
+        if (!team.some(p => p.name === pokemon)) {
+            let score = 0; // Il punteggio parte da 0
+
+            let skip = false; // Variabile per determinare se saltare questo Pokémon
+
+            // Verifica i ruoli che sono stati dichiarati nel modello
+            for (let role in model.roles) {
+                const roleReq = model.roles[role];
+                // Se il ruolo è già oltre il limite, salta questo Pokémon
+                if (Array.isArray(roleReq)) {
+                    if (SuggestedMoveset[pokemon].roles.includes(role) && roles[role] >= roleReq[1]) {
+                        skip = true;
+                        break; // Interrompi il ciclo se uno dei ruoli è già pieno
+                    }
+                }
+            }
+
+            if (skip) continue; // Se il Pokémon non è valido, passa al successivo
+
+            // Aumenta il punteggio se il Pokémon copre le debolezze del team
+            teamWeaknesses.forEach(([weakType]) => {
+                SuggestedMoveset[pokemon].types.forEach(type => {
+                    // Se il Pokémon ha una resistenza a una debolezza del team, guadagna punti
+                    const resists = typeEffectiveness[type].resists || [];
+                    if (resists.includes(weakType)) {
+                        score += 9;
+                    }
+                });
+            });
+
+            // Aumenta il punteggio solo per i ruoli dichiarati nel modello
+            for (let role in model.roles) {
+                const roleReq = model.roles[role];
+                const roleWeight = weight[role] || 1; // Ottieni il peso del ruolo o predefinito a 1
+
+                if (Array.isArray(roleReq)) {
+                    if (SuggestedMoveset[pokemon].roles.includes(role) && roles[role] < roleReq[1]) {
+                        score += 10 * roleWeight; // Aumenta il punteggio in base al peso
+                    }
+                } else {
+                    if (SuggestedMoveset[pokemon].roles.includes(role)) {
+                        score += 10 * roleWeight; // Aumenta il punteggio in base al peso
+                    }
+                }
+            }
+            // Aggiungi il bonus di 10 punti per i Pokémon in tier S+
+            const tier = SuggestedMoveset[pokemon].tier || 'B'; // Se non ha tier, predefinito è B
+            if (tier === 'S+') {
+                score += 10;
+            }
+            if (tier === 'S') {
+                score += 8;
+            }
+            if (tier === 'A') {
+                score += 5;
+            }
+            if (tier === 'B') {
+                score += 3;
+            }
+            if (tier === 'C') {
+                score += 1;
+            }
+            if (tier === 'D') {
+                score -= 2;
+            }
+
+            // Aggiungi bonus per sinergie con i Pokémon già nel team
+            team.forEach(teamPokemon => {
+                const synergyPartners = synergies[teamPokemon.name] || {};
+                if (synergyPartners[pokemon]) {
+                    score += synergyPartners[pokemon]; // Aggiungi il punteggio specifico per la sinergia
+                }
+
+                let hasHazardRemoval = team.some(p => 
+                    pokemonRoles[p.name]?.roles.includes('hazardRemoval') || 
+                    addRolesBasedOnMoves(p).includes('hazardRemoval')
+                );
+
+                // Se non ci sono hazardRemoval, Consiglia hazardRemoval per pokemon come Volcarona o Dragonite
+                if (!hasHazardRemoval && (teamPokemon.name === 'volcarona' || teamPokemon.name === 'dragonite') && SuggestedMoveset[pokemon].roles.includes('hazardRemoval')) {
+                    score += 11; // Aggiungi 11 punti per hazardRemoval se Volcarona o Dragonite sono nel team e non ci sono hazardRemoval
+                }
+            });
+
+
+
+            // Aggiungi il Pokémon alla lista delle suggerimenti se il punteggio è sufficiente
+            if (score > 0) {
+                suggestions.push({ name: pokemon, score });
+            }
+        }
+    }
+
+    // Ordina le suggerimenti in base al punteggio
+    suggestions.sort((a, b) => b.score - a.score);
+
+    return suggestions;
+}
 
 
 
