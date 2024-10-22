@@ -537,7 +537,7 @@ function suggestBestPokemon(team, modelName) {
 
 
 
-function calculatePokemonScoreInTeam(pokemon, team, model, roles, weaknesses) {
+function worstPokemonCalc(pokemon, team, model, roles, weaknesses) {
     let score = 0;
 
     // Ottieni i ruoli derivati dalle mosse del Pokémon
