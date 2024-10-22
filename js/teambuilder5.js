@@ -536,21 +536,76 @@ function suggestBestPokemon(team, modelName) {
 
 
 
+
+function worstPokemonCalc(pokemon, team, model, roles, weaknesses) {
+    let score = 0;
+
+    // Aggiungi punteggio per i ruoli del Pokémon in base al modello
+    for (let role in model.roles) {
+        const roleReq = model.roles[role];
+        const roleWeight = roleWeights[model.name] || 1; // Pesi specifici per il modello
+
+        if (Array.isArray(roleReq)) {
+            if (pokemonRoles[pokemon.name].roles.includes(role) && roles[role] < roleReq[1]) {
+                score += 10 * roleWeight; // Aggiungi punteggio in base al peso del ruolo
+            }
+        } else {
+            if (pokemonRoles[pokemon.name].roles.includes(role)) {
+                score += 10 * roleWeight; // Aggiungi punteggio in base al peso del ruolo
+            }
+        }
+    }
+
+    // Aumenta il punteggio per la copertura delle debolezze del team
+    weaknesses.forEach(([weakType]) => {
+        pokemonRoles[pokemon.name].types.forEach(type => {
+            const resists = typeEffectiveness[type].resists || [];
+            if (resists.includes(weakType)) {
+                score += 9; // Aggiungi punti se il Pokémon resiste a una debolezza del team
+            }
+        });
+    });
+
+    // Aggiungi punti per sinergie con altri membri del team
+    team.forEach(teamPokemon => {
+        const synergyPartners = synergies[teamPokemon.name] || {};
+        if (synergyPartners[pokemon.name]) {
+            score += synergyPartners[pokemon.name]; // Aggiungi punti per sinergia
+        }
+    });
+
+    // Aggiungi bonus o penalità basata sul tier del Pokémon
+    const tier = SuggestedMoveset[pokemon.name].tier || 'B';
+    if (tier === 'S+') {
+        score += 10;
+    } else if (tier === 'S') {
+        score += 8;
+    } else if (tier === 'A') {
+        score += 5;
+    } else if (tier === 'B') {
+        score += 3;
+    } else if (tier === 'C') {
+        score += 1;
+    } else if (tier === 'D') {
+        score -= 2;
+    }
+
+    return score;
+}
+
 document.getElementById('calculate').addEventListener('click', function() {
     let team = getTeamData();
 
     // Identifica il modello di team più vicino
     let bestModel = null;
     let bestScore = -Infinity;
-    let rainBonusApplied = false; // Variabile di controllo per il bonus del rain
+    let rainBonusApplied = false;
 
     for (let modelName in teamModels) {
-        let score = evaluateTeamAgainstModel(team, modelName, rainBonusApplied); // Passa rainBonusApplied
+        let score = evaluateTeamAgainstModel(team, modelName, rainBonusApplied);
         if (modelName === 'rain' && score > bestScore && team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter'))) {
-            rainBonusApplied = true; // Applica il bonus una sola volta
+            rainBonusApplied = true;
         }
-
-        console.log(`Modello: ${modelName}, Punteggio totale: ${score}`);
 
         if (score > bestScore) {
             bestScore = score;
@@ -558,21 +613,28 @@ document.getElementById('calculate').addEventListener('click', function() {
         }
     }
 
-    console.log(`Miglior modello: ${bestModel}, punteggio: ${bestScore}`);
-
     // Calcola la debolezza più frequente
     let weaknesses = calculateWeaknesses(team);
 
     // Stampa il modello più vicino e suggerimenti di Pokémon
     if (bestModel) {
         let suggestions = suggestBestPokemon(team, bestModel);
-        let worstPokemon = team.reduce((worst, pokemon, index) => {
-            let score = evaluateTeamAgainstModel(team.filter((_, i) => i !== index), bestModel, rainBonusApplied);
-            return score < worst.score ? { name: pokemon.name, score } : worst;
+
+        // Calcola il punteggio di ciascun Pokémon nel team
+        let roles = { rainSetter: 0, rainAbuser: 0, sweeper: 0, wallbreaker: 0, wall: 0, pivot: 0, stallbreaker: 0, hazardRemoval: 0, hazardSetter: 0, sunSetter: 0, sunAbuser: 0, sunUseful: 0 };
+        team.forEach(pokemon => {
+            pokemonRoles[pokemon.name].roles.forEach(role => {
+                roles[role]++;
+            });
+        });
+
+        let worstPokemon = team.reduce((worst, pokemon) => {
+            let pokemonScore = worstPokemonCalc(pokemon, team, teamModels[bestModel], roles, weaknesses);
+            return pokemonScore < worst.score ? { name: pokemon.name, score: pokemonScore } : worst;
         }, { score: Infinity });
 
         let resultText = `Team Model: ${bestModel}\n`;
-        
+
         // Stampa le debolezze con il numero accanto tra parentesi
         if (weaknesses.length > 0) {
             const weaknessTypes = weaknesses.map(([type, count]) => `${type}(${count})`).join(', ');
@@ -581,7 +643,7 @@ document.getElementById('calculate').addEventListener('click', function() {
             resultText += `Weaknesses: None\n`;
         }
 
-        resultText += `Worst Pokémon: ${worstPokemon.name}\n`;
+        resultText += `Worst Pokémon: ${worstPokemon.name} (Score: ${worstPokemon.score})\n`;
         suggestions.forEach(suggestion => {
             resultText += `Suggested Pokémon: ${suggestion.name} (Score: ${suggestion.score})\n`;
         });
@@ -589,6 +651,3 @@ document.getElementById('calculate').addEventListener('click', function() {
         document.getElementById('result').innerText = resultText;
     }
 });
-
-
-
