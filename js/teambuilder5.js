@@ -197,26 +197,26 @@ const roleWeights = {
         sweeper: 1,
         wallbreaker: 1,
         //WEATHER NO
-        rainAbuser: 0.5,
-        rainSetter: 0.5,
-        sunAbuser: 0.5,
-        sunSetter: 0.5,
+        rainAbuser: -1,
+        rainSetter: -1,
+        sunAbuser: -1,
+        sunSetter: -1,
     },
     rain: {
         rainSetter: 5, // Il rain setter è cruciale
         rainAbuser: 2.5,
         rainUseful: 2,
         //WEATHER NO
-        sunAbuser: 0.5,
-        sunSetter: 0.5,
+        sunAbuser: -1,
+        sunSetter: -1,
     },
     sun: {
         sunSetter: 5, // Il sun setter è cruciale
         sunAbuser: 2.5,
         sunUseful: 2,
         //WEATHER NO
-        rainAbuser: 0.5,
-        rainSetter: 0.5,
+        rainAbuser: -1,
+        rainSetter: -1,
     }
 };
 
@@ -428,7 +428,65 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
     return score;
 }
 
+function worstPokemonCalc(pokemon, team, model, roles, weaknesses) {
+    let score = 0;
 
+    // Ottieni i ruoli derivati dalle mosse del Pokémon
+    const moveBasedRoles = addRolesBasedOnMoves(pokemon);
+    const combinedRoles = [...(pokemonRoles[pokemon.name]?.roles || []), ...moveBasedRoles]; // Combina i ruoli predefiniti con quelli derivati dalle mosse
+
+    // Aggiungi punteggio per i ruoli del Pokémon in base al modello
+    for (let role in model.roles) {
+        const roleReq = model.roles[role];
+        const roleWeight = roleWeights[model.name] || 1; // Pesi specifici per il modello
+
+        if (Array.isArray(roleReq)) {
+            if (combinedRoles.includes(role) && roles[role] < roleReq[1]) {
+                score += 10 * roleWeight; // Aggiungi punteggio in base al peso del ruolo
+            }
+        } else {
+            if (combinedRoles.includes(role)) {
+                score += 10 * roleWeight; // Aggiungi punteggio in base al peso del ruolo
+            }
+        }
+    }
+
+    // Aumenta il punteggio per la copertura delle debolezze del team
+    weaknesses.forEach(([weakType]) => {
+        pokemonRoles[pokemon.name]?.types.forEach(type => {
+            const resists = typeEffectiveness[type].resists || [];
+            if (resists.includes(weakType)) {
+                score += 9; // Aggiungi punti se il Pokémon resiste a una debolezza del team
+            }
+        });
+    });
+
+    // Aggiungi punti per sinergie con altri membri del team
+    team.forEach(teamPokemon => {
+        const synergyPartners = synergies[teamPokemon.name] || {};
+        if (synergyPartners[pokemon.name]) {
+            score += synergyPartners[pokemon.name]; // Aggiungi punti per sinergia
+        }
+    });
+
+    // Aggiungi bonus o penalità basata sul tier del Pokémon
+    const tier = SuggestedMoveset[pokemon.name]?.tier || 'D';
+    if (tier === 'S+') {
+        score += 10;
+    } else if (tier === 'S') {
+        score += 8;
+    } else if (tier === 'A') {
+        score += 5;
+    } else if (tier === 'B') {
+        score += 3;
+    } else if (tier === 'C') {
+        score += 1;
+    } else if (tier === 'D') {
+        score -= 2;
+    }
+
+    return score;
+}
 
 
 function suggestBestPokemon(team, modelName) {
@@ -560,69 +618,6 @@ function suggestBestPokemon(team, modelName) {
     suggestions.sort((a, b) => b.score - a.score);
 
     return suggestions;
-}
-
-
-
-
-function worstPokemonCalc(pokemon, team, model, roles, weaknesses) {
-    let score = 0;
-
-    // Ottieni i ruoli derivati dalle mosse del Pokémon
-    const moveBasedRoles = addRolesBasedOnMoves(pokemon);
-    const combinedRoles = [...(pokemonRoles[pokemon.name]?.roles || []), ...moveBasedRoles]; // Combina i ruoli predefiniti con quelli derivati dalle mosse
-
-    // Aggiungi punteggio per i ruoli del Pokémon in base al modello
-    for (let role in model.roles) {
-        const roleReq = model.roles[role];
-        const roleWeight = roleWeights[model.name] || 1; // Pesi specifici per il modello
-
-        if (Array.isArray(roleReq)) {
-            if (combinedRoles.includes(role) && roles[role] < roleReq[1]) {
-                score += 10 * roleWeight; // Aggiungi punteggio in base al peso del ruolo
-            }
-        } else {
-            if (combinedRoles.includes(role)) {
-                score += 10 * roleWeight; // Aggiungi punteggio in base al peso del ruolo
-            }
-        }
-    }
-
-    // Aumenta il punteggio per la copertura delle debolezze del team
-    weaknesses.forEach(([weakType]) => {
-        pokemonRoles[pokemon.name]?.types.forEach(type => {
-            const resists = typeEffectiveness[type].resists || [];
-            if (resists.includes(weakType)) {
-                score += 9; // Aggiungi punti se il Pokémon resiste a una debolezza del team
-            }
-        });
-    });
-
-    // Aggiungi punti per sinergie con altri membri del team
-    team.forEach(teamPokemon => {
-        const synergyPartners = synergies[teamPokemon.name] || {};
-        if (synergyPartners[pokemon.name]) {
-            score += synergyPartners[pokemon.name]; // Aggiungi punti per sinergia
-        }
-    });
-
-    // Aggiungi bonus o penalità basata sul tier del Pokémon
-    const tier = SuggestedMoveset[pokemon.name]?.tier || 'D';
-    if (tier === 'S+') {
-        score += 10;
-    } else if (tier === 'S') {
-        score += 8;
-    } else if (tier === 'A') {
-        score += 5;
-    } else if (tier === 'B') {
-        score += 3;
-    } else if (tier === 'C') {
-        score += 1;
-    } else if (tier === 'D') {
-        score -= 2;
-    }
-
-    return score;
 }
 
 document.getElementById('calculate').addEventListener('click', function() {
