@@ -162,7 +162,7 @@ const roleWeights = {
         rainAbuser: 0.5,
         rainSetter: 0.5,
         sunAbuser: 0.5,
-        sunSetter: 0.5,
+        sunSetter: 0.5
     },
     hyperOffense: {
         sweeper: 1.5, // Gli sweeper sono molto importanti
@@ -171,7 +171,7 @@ const roleWeights = {
         rainAbuser: 0.25,
         rainSetter: 0.5,
         sunAbuser: 0.5,
-        sunSetter: 0.5,
+        sunSetter: 0.5
     },
     bulkyOffense: {
         sweeper: 1,
@@ -181,7 +181,7 @@ const roleWeights = {
         rainAbuser: 0.5,
         rainSetter: 0.5,
         sunAbuser: 0.5,
-        sunSetter: 0.5,
+        sunSetter: 0.5
     },
     stall: {
         wall: 1.5, // Le difese sono le più importanti
@@ -190,7 +190,7 @@ const roleWeights = {
         rainAbuser: 0.5,
         rainSetter: 0.5,
         sunAbuser: 0.5,
-        sunSetter: 0.5,
+        sunSetter: 0.5
     },
     semiStall: {
         wall: 1.5,
@@ -200,7 +200,7 @@ const roleWeights = {
         rainAbuser: 0.5,
         rainSetter: 0.5,
         sunAbuser: 0.5,
-        sunSetter: 0.5,
+        sunSetter: 0.5
     },
     rain: {
         rainSetter: 5, // Il rain setter è cruciale
@@ -208,7 +208,7 @@ const roleWeights = {
         rainUseful: 2,
         //WEATHER NO
         sunAbuser: 0.5,
-        sunSetter: 0.5,
+        sunSetter: 0.5
     },
     sun: {
         sunSetter: 5, // Il sun setter è cruciale
@@ -216,7 +216,7 @@ const roleWeights = {
         sunUseful: 2,
         //WEATHER NO
         rainAbuser: 0.5,
-        rainSetter: 0.5,
+        rainSetter: 0.5
     }
 };
 
