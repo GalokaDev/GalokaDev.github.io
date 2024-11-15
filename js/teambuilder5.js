@@ -168,7 +168,7 @@ const roleWeights = {
         sweeper: 1.5, // Gli sweeper sono molto importanti
         wallbreaker: 1.2,
         //WEATHER NO
-        rainAbuser: 0.5,
+        rainAbuser: 0.25,
         rainSetter: 0.5,
         sunAbuser: 0.5,
         sunSetter: 0.5,
