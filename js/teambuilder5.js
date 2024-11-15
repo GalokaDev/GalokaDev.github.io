@@ -461,27 +461,6 @@ function suggestBestPokemon(team, modelName) {
     console.log("Model:", model);
     console.log("Weight:", weight);
 
-    // Identifica il peggior Pokémon nel team
-    let worstPokemon = null;
-    let worstScore = Infinity;
-
-    team.forEach(pokemon => {
-        const score = worstPokemonCalc(pokemon, team, model, roles, teamWeaknesses);
-        if (score < worstScore) {
-            worstScore = score;
-            worstPokemon = pokemon;
-        }
-    });
-
-    console.log("Worst Pokemon:", worstPokemon);
-
-    // Rimuovi i ruoli del peggior Pokémon dai conteggi
-    if (worstPokemon && pokemonRoles[worstPokemon.name]) {
-        pokemonRoles[worstPokemon.name].roles.forEach(role => {
-            roles[role]--; // Riduci il conteggio del ruolo corrispondente
-        });
-    }
-
     // Analizza ciascun Pokémon della lista dei ruoli e calcola il suo punteggio
     for (let pokemon in SuggestedMoveset) {
         if (!team.some(p => p.name === pokemon)) {
@@ -568,6 +547,8 @@ function suggestBestPokemon(team, modelName) {
                 }
             });
 
+
+
             // Aggiungi il Pokémon alla lista delle suggerimenti se il punteggio è sufficiente
             if (score > 0) {
                 suggestions.push({ name: pokemon, score });
@@ -580,7 +561,6 @@ function suggestBestPokemon(team, modelName) {
 
     return suggestions;
 }
-
 
 
 
