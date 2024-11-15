@@ -650,6 +650,12 @@ document.getElementById('calculate').addEventListener('click', function() {
 
     // Stampa il modello più vicino e suggerimenti di Pokémon
     if (bestModel) {
+
+        let worstPokemon = team.reduce((worst, pokemon) => {
+            let pokemonScore = worstPokemonCalc(pokemon, team, teamModels[bestModel], roles, weaknesses);
+            return pokemonScore < worst.score ? { name: pokemon.name, score: pokemonScore } : worst;
+        }, { score: Infinity });
+
         let suggestions = suggestBestPokemon(team, bestModel);
 
         // Calcola il punteggio di ciascun Pokémon nel team
@@ -659,11 +665,6 @@ document.getElementById('calculate').addEventListener('click', function() {
                 roles[role]++;
             });
         });
-
-        let worstPokemon = team.reduce((worst, pokemon) => {
-            let pokemonScore = worstPokemonCalc(pokemon, team, teamModels[bestModel], roles, weaknesses);
-            return pokemonScore < worst.score ? { name: pokemon.name, score: pokemonScore } : worst;
-        }, { score: Infinity });
 
         let resultText = `Team Model: ${bestModel}\n`;
 
