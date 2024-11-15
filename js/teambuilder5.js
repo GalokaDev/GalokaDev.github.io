@@ -162,16 +162,16 @@ const roleWeights = {
         rainAbuser: 0.5,
         rainSetter: 0.5,
         sunAbuser: 0.5,
-        sunSetter: 0.5
+        sunSetter: 0.5,
     },
     hyperOffense: {
         sweeper: 1.5, // Gli sweeper sono molto importanti
         wallbreaker: 1.2,
         //WEATHER NO
-        rainAbuser: 0.25,
+        rainAbuser: 0.5,
         rainSetter: 0.5,
         sunAbuser: 0.5,
-        sunSetter: 0.5
+        sunSetter: 0.5,
     },
     bulkyOffense: {
         sweeper: 1,
@@ -181,7 +181,7 @@ const roleWeights = {
         rainAbuser: 0.5,
         rainSetter: 0.5,
         sunAbuser: 0.5,
-        sunSetter: 0.5
+        sunSetter: 0.5,
     },
     stall: {
         wall: 1.5, // Le difese sono le più importanti
@@ -190,7 +190,7 @@ const roleWeights = {
         rainAbuser: 0.5,
         rainSetter: 0.5,
         sunAbuser: 0.5,
-        sunSetter: 0.5
+        sunSetter: 0.5,
     },
     semiStall: {
         wall: 1.5,
@@ -200,7 +200,7 @@ const roleWeights = {
         rainAbuser: 0.5,
         rainSetter: 0.5,
         sunAbuser: 0.5,
-        sunSetter: 0.5
+        sunSetter: 0.5,
     },
     rain: {
         rainSetter: 5, // Il rain setter è cruciale
@@ -208,7 +208,7 @@ const roleWeights = {
         rainUseful: 2,
         //WEATHER NO
         sunAbuser: 0.5,
-        sunSetter: 0.5
+        sunSetter: 0.5,
     },
     sun: {
         sunSetter: 5, // Il sun setter è cruciale
@@ -216,7 +216,7 @@ const roleWeights = {
         sunUseful: 2,
         //WEATHER NO
         rainAbuser: 0.5,
-        rainSetter: 0.5
+        rainSetter: 0.5,
     }
 };
 
@@ -229,7 +229,7 @@ const pivotmoves = ['u-turn', 'volt switch', 'teleport','baton pass'];
 // Modelli di team con i requisiti di ruolo
 const teamModels = {
     balance: {
-        roles: { sweeper: [1, 4], wallbreaker: [1, 2], wall: [2, 3], hazardRemoval: [1], hazardSetter: [1] },
+        roles: { sweeper: [1, 4], wallbreaker: [1, 2], wall: [2, 3], hazardRemoval: [1, 1], hazardSetter: [1, 1] },
     },
     hyperOffense: {
         roles: { sweeper: [4, 6], wallbreaker: [1, 3], stallbreaker: [0, 1] },
@@ -650,12 +650,6 @@ document.getElementById('calculate').addEventListener('click', function() {
 
     // Stampa il modello più vicino e suggerimenti di Pokémon
     if (bestModel) {
-
-        let worstPokemon = team.reduce((worst, pokemon) => {
-            let pokemonScore = worstPokemonCalc(pokemon, team, teamModels[bestModel], roles, weaknesses);
-            return pokemonScore < worst.score ? { name: pokemon.name, score: pokemonScore } : worst;
-        }, { score: Infinity });
-
         let suggestions = suggestBestPokemon(team, bestModel);
 
         // Calcola il punteggio di ciascun Pokémon nel team
@@ -665,6 +659,11 @@ document.getElementById('calculate').addEventListener('click', function() {
                 roles[role]++;
             });
         });
+
+        let worstPokemon = team.reduce((worst, pokemon) => {
+            let pokemonScore = worstPokemonCalc(pokemon, team, teamModels[bestModel], roles, weaknesses);
+            return pokemonScore < worst.score ? { name: pokemon.name, score: pokemonScore } : worst;
+        }, { score: Infinity });
 
         let resultText = `Team Model: ${bestModel}\n`;
 
