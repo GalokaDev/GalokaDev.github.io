@@ -145,12 +145,11 @@ const SuggestedMoveset = {
 
 // Definizione delle sinergie tra Pokémon
 const synergies = {
-    tyranitar: { excadrillSand: 4 },
-    excadrill: { tyranitar: 4 },
     pelipper: { kingdra: 12 },
-    kingdra: { pelipper: 12 },
+    kingdra: { pelipper: 40 },
     ferrothorn: { rotomWash: 4 },
-    rotomWash: { ferrothorn: 4 }
+    rotomWash: { ferrothorn: 4 },
+    torkoal: { darmanitan: 4, venusaur: 4, entei: 4}
 };
 
 // Aggiungi pesi ai ruoli per ogni modello di team
@@ -159,34 +158,65 @@ const roleWeights = {
         sweeper: 1,
         wallbreaker: 1,
         wall: 1,
+        //WEATHER NO
+        rainAbuser: 0.5,
+        rainSetter: 0.5,
+        sunAbuser: 0.5,
+        sunSetter: 0.5,
     },
     hyperOffense: {
         sweeper: 1.5, // Gli sweeper sono molto importanti
         wallbreaker: 1.2,
+        //WEATHER NO
+        rainAbuser: 0.5,
+        rainSetter: 0.5,
+        sunAbuser: 0.5,
+        sunSetter: 0.5,
     },
     bulkyOffense: {
         sweeper: 1,
         wallbreaker: 1.5, // Wallbreaker sono fondamentali
         wall: 1,
+        //WEATHER NO
+        rainAbuser: 0.5,
+        rainSetter: 0.5,
+        sunAbuser: 0.5,
+        sunSetter: 0.5,
     },
     stall: {
         wall: 1.5, // Le difese sono le più importanti
         wallbreaker: 1,
+        //WEATHER NO
+        rainAbuser: 0.5,
+        rainSetter: 0.5,
+        sunAbuser: 0.5,
+        sunSetter: 0.5,
     },
     semiStall: {
         wall: 1.5,
         sweeper: 1,
         wallbreaker: 1,
+        //WEATHER NO
+        rainAbuser: 0.5,
+        rainSetter: 0.5,
+        sunAbuser: 0.5,
+        sunSetter: 0.5,
     },
     rain: {
         rainSetter: 5, // Il rain setter è cruciale
         rainAbuser: 2.5,
-        rainUseful: 2
+        rainUseful: 2,
+        //WEATHER NO
+        sunAbuser: 0.5,
+        sunSetter: 0.5,
     },
     sun: {
         sunSetter: 5, // Il sun setter è cruciale
         sunAbuser: 2.5,
-        sunUseful: 2
+        sunUseful: 2,
+        //WEATHER NO
+        rainAbuser: 0.5,
+        rainSetter: 0.5,
     }
 };
 
@@ -577,7 +607,7 @@ function worstPokemonCalc(pokemon, team, model, roles, weaknesses) {
     });
 
     // Aggiungi bonus o penalità basata sul tier del Pokémon
-    const tier = SuggestedMoveset[pokemon.name]?.tier || 'B';
+    const tier = SuggestedMoveset[pokemon.name]?.tier || 'D';
     if (tier === 'S+') {
         score += 10;
     } else if (tier === 'S') {
