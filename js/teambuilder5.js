@@ -44,7 +44,7 @@ const pokemonRoles = {
     torkoal: { roles: ['sunSetter'], types: ['fire'], tier: 'B' },
     porygon_z: { roles: ['sweeper'], types: ['normal'], tier: 'B' },
     lucario: { roles: ['sweeper', 'wallbreaker'], types: ['fighting', 'steel'], tier: 'B' },
-    sableye: { roles: ['wall', 'utility'], types: ['dark', 'ghost'], tier: 'B' },
+    sableye: { roles: ['wall', 'utility'], types: ['ghost', 'dark'], tier: 'B' },
     kabutops: { roles: ['rainAbuser'], types: ['rock', 'water'], tier: 'B' },
     cofagrigus: { roles: ['wall'], types: ['ghost'], tier: 'B' },
     cloyster: { roles: ['sweeper'], types: ['water', 'ice'], tier: 'B' },
