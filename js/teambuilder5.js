@@ -289,8 +289,6 @@ const typeEffectiveness = {
     steel: { weakTo: ['fire', 'fighting', 'ground'], resists: ['normal', 'flying', 'rock', 'bug', 'steel', 'grass', 'ice', 'psychic', 'dragon', 'ghost', 'dark'], immuneTo: ['poison'] }
 };
 
-
-
 const allTypes=['normal','fire','water','grass','electric','ice','fighting','poison','ground','flying','psychic','bug','rock','ghost','dragon','dark','steel']
 function calculateWeaknesses(team) {
     const typeWeaknessChart = {
@@ -647,6 +645,7 @@ function suggestBestPokemon(team, modelName) {
             }
         }
     }
+}
 
 
 document.getElementById('calculate').addEventListener('click', function() {
