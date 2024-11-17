@@ -12,7 +12,7 @@ const pokemonRoles = {
     weezing: { roles: ['wall'], types: ['poison'], tier: 'S+' },
     mamoswine: { roles: ['sweeper', 'wallbreaker'], types: ['ice', 'ground'], tier: 'S' },
     dragonite: { roles: ['sweeper', 'sunUseful'], types: ['dragon', 'flying'], tier: 'S' },
-    tyranitar: { roles: ['wall','sweeper'], types: ['rock', 'dark'], tier: 'S'},
+    tyranitar: { roles: ['wall'], types: ['rock', 'dark'], tier: 'S'},
     rotomwash: { roles: ['wall'], types: ['electric', 'water'], tier: 'S' },
     gliscor: { roles: ['wall'], types: ['ground', 'flying'], tier: 'S' },
     starmie: { roles: ['sweeper'], types: ['water', 'psychic'], tier: 'S' },
@@ -158,65 +158,34 @@ const roleWeights = {
         sweeper: 1,
         wallbreaker: 1,
         wall: 1,
-        //WEATHER NO
-        rainAbuser: 0.5,
-        rainSetter: 0.5,
-        sunAbuser: 0.5,
-        sunSetter: 0.5,
     },
     hyperOffense: {
         sweeper: 1.5, // Gli sweeper sono molto importanti
         wallbreaker: 1.2,
-        //WEATHER NO
-        rainAbuser: 0.5,
-        rainSetter: 0.5,
-        sunAbuser: 0.5,
-        sunSetter: 0.5,
     },
     bulkyOffense: {
         sweeper: 1,
         wallbreaker: 1.5, // Wallbreaker sono fondamentali
         wall: 1,
-        //WEATHER NO
-        rainAbuser: 0.5,
-        rainSetter: 0.5,
-        sunAbuser: 0.5,
-        sunSetter: 0.5,
     },
     stall: {
         wall: 1.5, // Le difese sono le più importanti
         wallbreaker: 1,
-        //WEATHER NO
-        rainAbuser: 0.5,
-        rainSetter: 0.5,
-        sunAbuser: 0.5,
-        sunSetter: 0.5,
     },
     semiStall: {
         wall: 1.5,
         sweeper: 1,
         wallbreaker: 1,
-        //WEATHER NO
-        rainAbuser: -1,
-        rainSetter: -1,
-        sunAbuser: -1,
-        sunSetter: -1,
     },
     rain: {
         rainSetter: 5, // Il rain setter è cruciale
         rainAbuser: 2.5,
         rainUseful: 2,
-        //WEATHER NO
-        sunAbuser: -1,
-        sunSetter: -1,
     },
     sun: {
         sunSetter: 5, // Il sun setter è cruciale
         sunAbuser: 2.5,
         sunUseful: 2,
-        //WEATHER NO
-        rainAbuser: -1,
-        rainSetter: -1,
     }
 };
 
@@ -319,6 +288,10 @@ const typeEffectiveness = {
     dark: { weakTo: ['fighting', 'bug'], resists: ['ghost', 'dark'], immuneTo: ['psychic'] },
     steel: { weakTo: ['fire', 'fighting', 'ground'], resists: ['normal', 'flying', 'rock', 'bug', 'steel', 'grass', 'ice', 'psychic', 'dragon', 'ghost', 'dark'], immuneTo: ['poison'] }
 };
+
+
+
+const allTypes=['normal','fire','water','grass','electric','ice','fighting','poison','ground','flying','psychic','bug','rock','ghost','dragon','dark','steel']
 function calculateWeaknesses(team) {
     const typeWeaknessChart = {
         normal: 0,
@@ -340,17 +313,58 @@ function calculateWeaknesses(team) {
         psychic: 0
     };
     
-
     team.forEach(pokemon => {
         if (pokemonRoles[pokemon.name]) {
             const types = pokemonRoles[pokemon.name].types;
             const [type1, type2] = types;
+            
+            let type1WeaknessChart = {
+                normal: 0,
+                fighting: 0,
+                flying: 0,
+                poison: 0,
+                ground: 0,
+                rock: 0,
+                bug: 0,
+                ghost: 0,
+                steel: 0,
+                fire: 0,
+                water: 0,
+                grass: 0,
+                electric: 0,
+                ice: 0,
+                dragon: 0,
+                dark: 0,
+                psychic: 0
+            };
+            let type2WeaknessChart = {
+                normal: 0,
+                fighting: 0,
+                flying: 0,
+                poison: 0,
+                ground: 0,
+                rock: 0,
+                bug: 0,
+                ghost: 0,
+                steel: 0,
+                fire: 0,
+                water: 0,
+                grass: 0,
+                electric: 0,
+                ice: 0,
+                dragon: 0,
+                dark: 0,
+                psychic: 0
+            };
 
             // Gestione del primo tipo
             if (typeEffectiveness[type1]) {
-                typeEffectiveness[type1].weakTo.forEach(t => typeWeaknessChart[t]++);
-                typeEffectiveness[type1].resists.forEach(t => typeWeaknessChart[t]--);
-                typeEffectiveness[type1].immuneTo.forEach(t => typeWeaknessChart[t] -= 2);
+                //typeEffectiveness[type1].weakTo.forEach(t => typeWeaknessChart[t]++);
+                typeEffectiveness[type1].weakTo.forEach(t => type1WeaknessChart[t]=1);
+                //typeEffectiveness[type1].resists.forEach(t => typeWeaknessChart[t]--);
+                typeEffectiveness[type1].resists.forEach(t => type1WeaknessChart[t]=-1);
+                //typeEffectiveness[type1].immuneTo.forEach(t => typeWeaknessChart[t] -= 2);
+                typeEffectiveness[type1].immuneTo.forEach(t => type1WeaknessChart[t]=-2);
             } else{
                 console.log(`Pokémon: ${pokemon.name}, Tipo 1: ${type1}, Tipo 2: ${type2}`);
             }
@@ -359,18 +373,32 @@ function calculateWeaknesses(team) {
             if (type2 && typeEffectiveness[type2]) {
                 typeEffectiveness[type2].weakTo.forEach(t => {
                     if (!typeEffectiveness[type1].immuneTo.includes(t)) {
-                        typeWeaknessChart[t]++;
+                        //typeWeaknessChart[t]++;
+                        type2WeaknessChart[t]=1;
                     }
                 });
                 typeEffectiveness[type2].resists.forEach(t => {
                     if (!typeEffectiveness[type1].immuneTo.includes(t)) {
-                        typeWeaknessChart[t]--;
+                        //typeWeaknessChart[t]--;
+                        type2WeaknessChart[t]=-1;
                     }
                 });
                 typeEffectiveness[type2].immuneTo.forEach(t => {
-                    typeWeaknessChart[t] -= 2;
+                    //typeWeaknessChart[t] -= 2;
+                    type2WeaknessChart[t] = -2;
                 });
             }
+            
+            allTypes.forEach(t => {
+                if(type1WeaknessChart[t]===-2 || type2WeaknessChart[t]===-2)
+                {
+                    typeWeaknessChart[t]-=2
+                }
+                else
+                {
+                    typeWeaknessChart[t]+=type1WeaknessChart[t]+type2WeaknessChart[t]
+                }
+            });
         } else {
             console.warn(`Pokémon "${pokemon.name}" non trovato in pokemonRoles.`);
         }
@@ -507,6 +535,12 @@ function suggestBestPokemon(team, modelName) {
                 roles[role]++; // Incrementa il ruolo corrispondente
             });
         }
+
+        // da Adam mancava: Aggiungi ruoli dinamici basati sulle mosse
+        const dynamicRoles = addRolesBasedOnMoves(pokemon);
+        dynamicRoles.forEach(role => {
+            roles[role]++;
+        });
     });
 
     const model = teamModels[modelName]; // Ottieni l'oggetto del modello dal nome
@@ -614,11 +648,6 @@ function suggestBestPokemon(team, modelName) {
         }
     }
 
-    // Ordina le suggerimenti in base al punteggio
-    suggestions.sort((a, b) => b.score - a.score);
-
-    return suggestions;
-}
 
 document.getElementById('calculate').addEventListener('click', function() {
     let team = getTeamData();
