@@ -508,7 +508,7 @@ function worstPokemonCalc(pokemon, team, model, roles, weaknesses) {
     } else if (tier === 'C') {
         score += 1;
     } else if (tier === 'D') {
-        score -= 2;
+        score -= 1;
     }
 
     return score;
