@@ -645,6 +645,10 @@ function suggestBestPokemon(team, modelName) {
             }
         }
     }
+    // Ordina le suggerimenti in base al punteggio
+    suggestions.sort((a, b) => b.score - a.score);
+
+    return suggestions;
 }
 
 
