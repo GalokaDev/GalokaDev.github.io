@@ -198,7 +198,7 @@ const pivotmoves = ['u-turn', 'volt switch', 'teleport','baton pass'];
 // Modelli di team con i requisiti di ruolo
 const teamModels = {
     balance: {
-        roles: { sweeper: [1, 4], wallbreaker: [1, 2], wall: [2, 3], hazardRemoval: [1, 1], hazardSetter: [1, 1] },
+        roles: { sweeper: [1, 4], wallbreaker: [1, 2], wall: [2, 2], hazardRemoval: [1, 1], hazardSetter: [1, 1] },
     },
     hyperOffense: {
         roles: { sweeper: [4, 6], wallbreaker: [1, 3], stallbreaker: [0, 1] },
@@ -448,7 +448,7 @@ function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
     // Se esiste un rainSetter nel team, aumenta il punteggio solo per il modello "rain" una volta
     if (hasRainSetter && bestModel === 'rain' && !rainBonusApplied) {
         console.log("Rain setter è nel team, aumento del punteggio per il modello rain.");
-        score += 30; // Aggiungi il bonus per il rain setter
+        score +=40; // Aggiungi il bonus per il rain setter
     }
 
     return score;
