@@ -676,7 +676,7 @@ function suggestBestPokemon(team, modelName) {
             // vado a contare nel team debolette sr(1=x2 weak, 2=x4weak o sash,multiscale,vigore )
             // al check del hazard removal vado a vedere se sr>=3
             team.forEach(teamPokemon=>{
-                cntStealthRockWeak=hasStealthRockWeakness(teamPokemon.name)
+                cntStealthRockWeak+=hasStealthRockWeakness(teamPokemon.name)
             });
             // Aggiungi bonus per sinergie con i Pokémon già nel team
             team.forEach(teamPokemon => {
