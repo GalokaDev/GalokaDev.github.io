@@ -145,11 +145,8 @@ const SuggestedMoveset = {
 
 // Definizione delle sinergie tra Pokémon
 const synergies = {
-    pelipper: { kingdra: 12 },
-    kingdra: { pelipper: 40 },
-    ferrothorn: { rotomWash: 4 },
-    rotomWash: { ferrothorn: 4 },
-    torkoal: { darmanitan: 4, venusaur: 4, entei: 4}
+    mienshao: { amoonguss:3 },
+    amoonguss: { mienshao: 3 },
 };
 
 // Aggiungi pesi ai ruoli per ogni modello di team
@@ -165,12 +162,12 @@ const roleWeights = {
     },
     bulkyOffense: {
         sweeper: 1,
-        wallbreaker: 1.5, // Wallbreaker sono fondamentali
+        wallbreaker: 1.2,
         wall: 1,
     },
     stall: {
         wall: 1.5, // Le difese sono le più importanti
-        wallbreaker: 1,
+        wallbreaker: 1.1,
     },
     semiStall: {
         wall: 1.5,
@@ -217,7 +214,7 @@ const teamModels = {
         roles: { rainSetter: [0, 1], rainAbuser: [1, 2], rainUseful: [0, 4], hazardRemoval: [1, 1]},
     },
     sun: {
-        roles: { sunSetter: [0, 1], sunAbuser: [1, 2], sunUseful: [0, 2], hazardRemoval: [1, 2]},
+        roles: { sunSetter: [0, 1], sunAbuser: [1, 2], sunUseful: [0, 3], hazardRemoval: [1, 2]},
     }
 };
 
@@ -289,9 +286,13 @@ const typeEffectiveness = {
     steel: { weakTo: ['fire', 'fighting', 'ground'], resists: ['normal', 'flying', 'rock', 'bug', 'steel', 'grass', 'ice', 'psychic', 'dragon', 'ghost', 'dark'], immuneTo: ['poison'] }
 };
 
+const pokeLevitate=['rotomwash','hydreigon'];
+
+const pokeFlashFire=['houndoom','chandelure'];
+
 const allTypes=['normal','fire','water','grass','electric','ice','fighting','poison','ground','flying','psychic','bug','rock','ghost','dragon','dark','steel']
 function calculateWeaknesses(team) {
-    const typeWeaknessChart = {
+    let typeWeaknessChart = {
         normal: 0,
         fighting: 0,
         flying: 0,
@@ -312,100 +313,150 @@ function calculateWeaknesses(team) {
     };
     
     team.forEach(pokemon => {
-        if (pokemonRoles[pokemon.name]) {
-            const types = pokemonRoles[pokemon.name].types;
-            const [type1, type2] = types;
-            
-            let type1WeaknessChart = {
-                normal: 0,
-                fighting: 0,
-                flying: 0,
-                poison: 0,
-                ground: 0,
-                rock: 0,
-                bug: 0,
-                ghost: 0,
-                steel: 0,
-                fire: 0,
-                water: 0,
-                grass: 0,
-                electric: 0,
-                ice: 0,
-                dragon: 0,
-                dark: 0,
-                psychic: 0
-            };
-            let type2WeaknessChart = {
-                normal: 0,
-                fighting: 0,
-                flying: 0,
-                poison: 0,
-                ground: 0,
-                rock: 0,
-                bug: 0,
-                ghost: 0,
-                steel: 0,
-                fire: 0,
-                water: 0,
-                grass: 0,
-                electric: 0,
-                ice: 0,
-                dragon: 0,
-                dark: 0,
-                psychic: 0
-            };
-
-            // Gestione del primo tipo
-            if (typeEffectiveness[type1]) {
-                //typeEffectiveness[type1].weakTo.forEach(t => typeWeaknessChart[t]++);
-                typeEffectiveness[type1].weakTo.forEach(t => type1WeaknessChart[t]=1);
-                //typeEffectiveness[type1].resists.forEach(t => typeWeaknessChart[t]--);
-                typeEffectiveness[type1].resists.forEach(t => type1WeaknessChart[t]=-1);
-                //typeEffectiveness[type1].immuneTo.forEach(t => typeWeaknessChart[t] -= 2);
-                typeEffectiveness[type1].immuneTo.forEach(t => type1WeaknessChart[t]=-2);
-            } else{
-                console.log(`Pokémon: ${pokemon.name}, Tipo 1: ${type1}, Tipo 2: ${type2}`);
-            }
-
-            // Gestione del secondo tipo
-            if (type2 && typeEffectiveness[type2]) {
-                typeEffectiveness[type2].weakTo.forEach(t => {
-                    if (!typeEffectiveness[type1].immuneTo.includes(t)) {
-                        //typeWeaknessChart[t]++;
-                        type2WeaknessChart[t]=1;
-                    }
-                });
-                typeEffectiveness[type2].resists.forEach(t => {
-                    if (!typeEffectiveness[type1].immuneTo.includes(t)) {
-                        //typeWeaknessChart[t]--;
-                        type2WeaknessChart[t]=-1;
-                    }
-                });
-                typeEffectiveness[type2].immuneTo.forEach(t => {
-                    //typeWeaknessChart[t] -= 2;
-                    type2WeaknessChart[t] = -2;
-                });
-            }
-            
-            allTypes.forEach(t => {
-                if(type1WeaknessChart[t]===-2 || type2WeaknessChart[t]===-2)
-                {
-                    typeWeaknessChart[t]-=2
-                }
-                else
-                {
-                    typeWeaknessChart[t]+=type1WeaknessChart[t]+type2WeaknessChart[t]
-                }
-            });
-        } else {
-            console.warn(`Pokémon "${pokemon.name}" non trovato in pokemonRoles.`);
-        }
+        typeWeaknessChart=calcSingleMonWeaknesses(typeWeaknessChart,pokemon.name)
     });
 
-    // Ritorna solo le debolezze con valore maggiore di 2
-    return Object.entries(typeWeaknessChart).filter(([type, count]) => count > 1);
+    return Object.entries(typeWeaknessChart).filter(([type, count]) => count >= 1); //Adam, penso bisogna essere coscienti che si è deboli ad un certo tipo
 }
 
+function calcSingleMonWeaknesses(typeWeakness,poke)
+{
+    if (pokemonRoles[poke]) {
+        const types = pokemonRoles[poke].types;
+        const [type1, type2] = types;
+        
+        let levitate=false;
+        let flashFire=false;
+
+        let type1WeaknessChart = {
+            normal: 0,
+            fighting: 0,
+            flying: 0,
+            poison: 0,
+            ground: 0,
+            rock: 0,
+            bug: 0,
+            ghost: 0,
+            steel: 0,
+            fire: 0,
+            water: 0,
+            grass: 0,
+            electric: 0,
+            ice: 0,
+            dragon: 0,
+            dark: 0,
+            psychic: 0
+        };
+        let type2WeaknessChart = {
+            normal: 0,
+            fighting: 0,
+            flying: 0,
+            poison: 0,
+            ground: 0,
+            rock: 0,
+            bug: 0,
+            ghost: 0,
+            steel: 0,
+            fire: 0,
+            water: 0,
+            grass: 0,
+            electric: 0,
+            ice: 0,
+            dragon: 0,
+            dark: 0,
+            psychic: 0
+        };
+
+        // Gestione del primo tipo
+        if (typeEffectiveness[type1]) {
+            typeEffectiveness[type1].weakTo.forEach(t => type1WeaknessChart[t]=1);
+            typeEffectiveness[type1].resists.forEach(t => type1WeaknessChart[t]=-1);
+            typeEffectiveness[type1].immuneTo.forEach(t => type1WeaknessChart[t]=-2);
+        } else{
+            console.log(`Pokémon: ${poke}, Tipo 1: ${type1}, Tipo 2: ${type2}`);
+        }
+
+        // Gestione del secondo tipo
+        if (type2 && typeEffectiveness[type2]) {
+            typeEffectiveness[type2].weakTo.forEach(t => {
+                if (!typeEffectiveness[type1].immuneTo.includes(t)) {
+                    type2WeaknessChart[t]=1;
+                }
+            });
+            typeEffectiveness[type2].resists.forEach(t => {
+                if (!typeEffectiveness[type1].immuneTo.includes(t)) {
+                    type2WeaknessChart[t]=-1;
+                }
+            });
+            typeEffectiveness[type2].immuneTo.forEach(t => {
+                type2WeaknessChart[t] = -2;
+            });
+        }
+        
+        pokeLevitate.forEach(p=>{
+            if (p===poke){
+                levitate=true
+            }
+        });
+
+        pokeFlashFire.forEach(p=>{
+            if (p===poke){
+                flashFire=true
+            }
+        })
+
+        allTypes.forEach(t => {
+            if(type1WeaknessChart[t]===-2 || type2WeaknessChart[t]===-2)
+            {
+                typeWeakness[t]-=2
+            }
+            else if((t==='ground' && levitate) || (t==='fire' && flashFire)){
+                typeWeakness[t]-=2
+            }
+            else
+            {
+                typeWeakness[t]+=type1WeaknessChart[t]+type2WeaknessChart[t]
+            }
+        });
+    } else {
+        console.warn(`Pokémon "${poke}" non trovato in pokemonRoles.`);
+    }
+    return typeWeakness;
+}
+
+//checks if there is a pokemon that needs someone to remove the rocks i.e. volcarona x4 weakness(typing based) or dragonite because of ability(harcoded)
+function hasStealthRockWeakness(poke){
+
+    const forcePokeWeak=['dragonite','skarmory']; // temporary, in the future there will be items and ability, right now it's forced
+
+    forcePokeWeak.forEach(w => {
+        if (w===poke) return 2;
+    });
+
+    let typeWeaknessChart = {
+        normal: 0,
+        fighting: 0,
+        flying: 0,
+        poison: 0,
+        ground: 0,
+        rock: 0,
+        bug: 0,
+        ghost: 0,
+        steel: 0,
+        fire: 0,
+        water: 0,
+        grass: 0,
+        electric: 0,
+        ice: 0,
+        dragon: 0,
+        dark: 0,
+        psychic: 0
+    };
+
+    typeWeaknessChart=calcSingleMonWeaknesses(typeWeaknessChart,poke)
+
+    return typeWeaknessChart['rock']; 
+}
 
 
 function evaluateTeamAgainstModel(team, bestModel, rainBonusApplied) {
@@ -619,6 +670,14 @@ function suggestBestPokemon(team, modelName) {
                 score -= 2;
             }
 
+
+            let cntStealthRockWeak=0;
+
+            // vado a contare nel team debolette sr(1=x2 weak, 2=x4weak o sash,multiscale,vigore )
+            // al check del hazard removal vado a vedere se sr>=3
+            team.forEach(teamPokemon=>{
+                cntStealthRockWeak=hasStealthRockWeakness(teamPokemon.name)
+            });
             // Aggiungi bonus per sinergie con i Pokémon già nel team
             team.forEach(teamPokemon => {
                 const synergyPartners = synergies[teamPokemon.name] || {};
@@ -630,14 +689,14 @@ function suggestBestPokemon(team, modelName) {
                     pokemonRoles[p.name]?.roles.includes('hazardRemoval') || 
                     addRolesBasedOnMoves(p).includes('hazardRemoval')
                 );
+                
 
-                // Se non ci sono hazardRemoval, Consiglia hazardRemoval per pokemon come Volcarona o Dragonite
-                if (!hasHazardRemoval && (teamPokemon.name === 'volcarona' || teamPokemon.name === 'dragonite') && SuggestedMoveset[pokemon].roles.includes('hazardRemoval')) {
+                if (!hasHazardRemoval && cntStealthRockWeak>2 && SuggestedMoveset[pokemon].roles.includes('hazardRemoval')) {
                     score += 11; // Aggiungi 11 punti per hazardRemoval se Volcarona o Dragonite sono nel team e non ci sono hazardRemoval
                 }
             });
 
-
+            
 
             // Aggiungi il Pokémon alla lista delle suggerimenti se il punteggio è sufficiente
             if (score > 0) {
