@@ -8,7 +8,8 @@ const pokemonList = [
     "Kingdra", "Porygon2", "Gyarados", "Gastrodon", "Espeon", "Torkoal", "Porygonz", 
     "Lucario", "Sableye", "Kabutops", "Cofagrigus", "Cloyster", "Blissey", "Venusaur", 
     "Ditto", "Raikou", "Entei", "Staraptor", "Poliwrath", "Feraligatr", "Togekiss", 
-    "Salamance", "Mandibuzz", "Jolteon", "Milotic"
+    "Salamance", "Mandibuzz", "Jolteon", "Milotic","Houndoom","Clefable","ZapdosTimid",
+    "GarchompTank","MetagrossPhysical","GliscorSweeper","Lanturn","EspeonSweeper"
 ];
 
 const pokemonDataList = document.createElement('datalist');
