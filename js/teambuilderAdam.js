@@ -879,29 +879,17 @@ function isVoltSwitchBlocked(team)
     let blocked=false;
 
     team.forEach(p =>{
-        let typeWeaknessChart = {
-            normal: 0,
-            fighting: 0,
-            flying: 0,
-            poison: 0,
-            ground: 0,
-            rock: 0,
-            bug: 0,
-            ghost: 0,
-            steel: 0,
-            fire: 0,
-            water: 0,
-            grass: 0,
-            electric: 0,
-            ice: 0,
-            dragon: 0,
-            dark: 0,
-            psychic: 0
-        };
-        typeWeaknessChart = calcSingleMonWeaknesses(typeWeaknessChart,p.name,p.index)
-        if (typeWeaknessChart['electric']==-2)
+        blocked = (SuggestedMoveset[p.name].types[0]=='ground' || SuggestedMoveset[p.name].types[1]=='ground');
+
+        if (!blocked)
         {
-            blocked=true;
+            blocked = (chkIfAbilitySelected(p.name,SuggestedMoveset[p.name].ChkAb,'Volt Absorb',p.index));
+        }
+
+        if (blocked)
+        {
+            console.log("Volt switch blocked by: " + p.name);
+            return blocked;
         }
     });
 
