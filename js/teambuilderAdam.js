@@ -208,6 +208,22 @@ const stallmoves = ['whirlwind','roar','haze','will-o-wisp','dragon tail','thund
 const sweepermoves=['swords dance'];
 const prioritymoves=['extreme speed','ice shard','bullet punch','mach punch','sucker punch','fake out','aqua jet']
 
+
+// Mostra o nasconde il dropdown
+function toggleDropdown() {
+    const dropdown = document.getElementById('dropdown');
+    dropdown.classList.toggle('hidden');
+}
+
+// Esegui xAZIONE quando viene selezionato un modello
+function selectTeamModel(model) {
+    alert(`Selected team model: ${model}`); // Da cambiare
+    const dropdown = document.getElementById('dropdown');
+    dropdown.classList.add('hidden');
+}
+
+
+
 // Modelli di team con i requisiti di ruolo
 const teamModels = {
     balance: {
