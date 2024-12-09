@@ -97,7 +97,7 @@ const moveList = [
     "Vise Grip", "Volt Switch", "Volt Tackle", "Wake-Up Slap", "Water Gun",
     "Water Pulse", "Water Sport", "Water Spout", "Waterfall",
     "Weather Ball", "Whirlpool", "Wide Guard",
-    "Worry Seed", "Wrap", "Yawn"
+    "Worry Seed", "Wrap", "Yawn","Hurricane"
 ];
 
 const moveDataList = document.createElement('datalist');

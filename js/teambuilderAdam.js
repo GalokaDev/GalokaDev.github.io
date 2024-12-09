@@ -92,7 +92,7 @@ let SuggestedMoveset = {
     weezingTS: { roles: ['wall','hazardSetter'], types: ['poison'], tier: 'A' ,base:'weezing'},
     mamoswine: { roles: ['sweeper', 'wallbreaker','hazardSetter'], types: ['ice', 'ground'], tier: 'S',priorities:['ice shard']},
     dragonite: { roles: ['sweeper', 'rainUseful'], types: ['dragon', 'flying'], tier: 'S' },
-    tyranitar: { roles: ['wall','sweeper','wallbreaker'], types: ['rock', 'dark'], tier: 'S'},
+    tyranitar: { roles: ['wall','wallbreaker'], types: ['rock', 'dark'], tier: 'S'},
     rotomwash: { roles: ['wall','pivot','hazardRemoval'], types: ['electric', 'water'], tier: 'S' },
     rotomwashtrick: { roles: ['Wallbreaker','pivot','hazardRemoval'], types: ['electric', 'water'], tier: 'B',base:'rotomwash'},
     gliscor: { roles: ['wall','hazardRemoval'], types: ['ground', 'flying'], tier: 'S' },
@@ -151,10 +151,25 @@ let SuggestedMoveset = {
     houndoom: { roles: ['sweeper'],types:['fire','dark'], tier:'D',priorities:['sucker punch']},
     clefable:{roles: ['wall','hazardSetter'],types:['normal'],tier:'C'},
     lanturn:{roles: ['wall'],types:['water','electric'], tier:'D'},
-
+    
     // Aggiungi altri Pokémon qui se necessario
 };
 
+let selectedModel="";
+
+const pokemonAbilities = {
+    "Chandelure": "Flash Fire",
+    "Rotomwash": "Levitate",
+    "Hydreigon":"Levitate",
+    "Houndoom":"Flash Fire",
+    "Mamoswine":"Thick Fat",
+    "Dragonite":"Multiscale",
+    "Skarmory":"Sturdy",
+    "Lanturn":"Volt Absorb",
+    "Jolteon":"Volt Absorb",
+    "Bronzong":"Levitate",
+    // Aggiungi altri Pokémon e abilità qui
+};
 // Definizione delle sinergie tra Pokémon
 const synergies = {
     mienshao: { amoonguss:3 },
@@ -207,6 +222,28 @@ const pivotmoves = ['u-turn', 'volt switch', 'teleport','baton pass'];
 const stallmoves = ['whirlwind','roar','haze','will-o-wisp','dragon tail','thunder wave','soft-boiled','recover','roost'];
 const sweepermoves=['swords dance'];
 const prioritymoves=['extreme speed','ice shard','bullet punch','mach punch','sucker punch','fake out','aqua jet']
+
+// Mostra o nasconde il dropdown
+function toggleDropdown() {
+    const dropdown = document.getElementById('dropdown');
+    dropdown.classList.toggle('hidden');
+}
+
+// Esegui xAZIONE quando viene selezionato un modello
+function selectTeamModel(model) {
+    selectedModel=model;
+    if(model=="")
+    {
+        document.getElementById('tglTeamModel').innerHTML="Selected Model: AI";
+    }
+    else
+    {
+        document.getElementById('tglTeamModel').innerHTML="Selected Model: " + document.getElementById(model).innerHTML
+    }
+    calculate(model);
+    const dropdown = document.getElementById('dropdown');
+    dropdown.classList.add('hidden');
+}
 
 // Modelli di team con i requisiti di ruolo
 const teamModels = {
@@ -319,18 +356,6 @@ const typeEffectiveness = {
     steel: { weakTo: ['fire', 'fighting', 'ground'], resists: ['normal', 'flying', 'rock', 'bug', 'steel', 'grass', 'ice', 'psychic', 'dragon', 'ghost', 'dark'], immuneTo: ['poison'] }
 };
 
-const pokemonAbilities = {
-    "Chandelure": "Flash Fire",
-    "Rotomwash": "Levitate",
-    "Hydreigon":"Levitate",
-    "Houndoom":"Flash Fire",
-    "Mamoswine":"Thick Fat",
-    "Dragonite":"Multiscale",
-    "Skarmory":"Sturdy",
-    "Lanturn":"Volt Absorb",
-    "Jolteon":"Volt Absorb",
-    // Aggiungi altri Pokémon e abilità qui
-};
 
 const allTypes=['normal','fire','water','grass','electric','ice','fighting','poison','ground','flying','psychic','bug','rock','ghost','dragon','dark','steel']
 function calculateWeaknesses(team) {
@@ -800,7 +825,7 @@ function suggestBestPokemon(team, modelName,worstToReplace="") {
 
     for (let pokemon in SuggestedMoveset) {
         let newTeamScore=0;  
-        if (!team.some(p => p.name === pokemon || p.name === SuggestedMoveset[pokemon].base)) {
+        if (!team.some(p => isPokemon(pokemon,p.name))) {
 
             let newTeam=[]
             team.forEach(teamPokemon=>{
@@ -870,33 +895,189 @@ function evaluateTeamScore(team,teamScore,weaknesses){
     {
         teamScore+= 11;
     }
+
+
+    let pokeChkVolca="";
+    let pokeChkSerp="";
+    let pokeChkMamo=[];
+
+    let scarfedMons=['weavile','garchomp','mamoswine','infernape','darmanitan'];
+
+    team.forEach(pokemon=>{
+        let typeWeaknessChart = {
+            normal: 0,
+            fighting: 0,
+            flying: 0,
+            poison: 0,
+            ground: 0,
+            rock: 0,
+            bug: 0,
+            ghost: 0,
+            steel: 0,
+            fire: 0,
+            water: 0,
+            grass: 0,
+            electric: 0,
+            ice: 0,
+            dragon: 0,
+            dark: 0,
+            psychic: 0
+        };
+        
+        if(pokeChkSerp=="" || pokeChkVolca==""|| pokeChkMamo.length<2)
+        {
+
+            
+            typeWeaknessChart=calcSingleMonWeaknesses(typeWeaknessChart,pokemon.name,pokemon.index);
+            let isScarfed=false;
+            
+            scarfedMons.forEach(sm => {
+                if (!isScarfed){
+                    isScarfed=isPokemon(pokemon.name,sm);
+                }
+            });
+            
+            let hasPrior=hasPriorityMoves(pokemon.name,pokemon.moves);
+            
+            //or eventually a sweeper that has access to scarf kill volca and serperior, for now i think we can force those pokemons(to say that they must be scarfed)
+            let canRevenge=isScarfed || hasPrior;
+            
+            //serperior is a special sweepeer that can boost with contrary, being deadly with grass, fire and dragon coverage
+            let hasSerpResi=typeWeaknessChart['grass']<=-1 && typeWeaknessChart['fire'] <=0 && typeWeaknessChart['dragon'] <=0;
+            
+            //volcarona is a special sweeper that can boost with quiver dance, being deadly with grass, fire and bug coverage
+            let hasVolcaResi=typeWeaknessChart['grass']<=0 && typeWeaknessChart['fire'] <=0 && typeWeaknessChart['bug'] <=0;
+            
+            let hasMamoResi=typeWeaknessChart['ground']<=0 && typeWeaknessChart['ice']<=0;
+            
+            //clefable checks both volcarona and serperior
+            if(isPokemon(pokemon.name,"clefable"))
+                {
+                    pokeChkSerp=pokemon.name;
+                    pokeChkVolca=pokemon.name;
+                }
+                else
+                {
+                    
+                    //so the check would be a wall resisting all those types of damage, or a wall that can outdamage those
+                    if(SuggestedMoveset[pokemon.name].roles.includes('wall') && hasVolcaResi)
+                    {
+                        pokeChkVolca=pokemon.name;
+                    }
+                    
+                    if(SuggestedMoveset[pokemon.name].roles.includes('wall') && hasSerpResi)
+                    {
+                        pokeChkSerp=pokemon.name;
+                    }
+                            
+                if(SuggestedMoveset[pokemon.name].roles.includes('sweeper')){
+                    if (SuggestedMoveset[pokemon.name].types.includes('rock') || SuggestedMoveset[pokemon.name].types.includes('water') || SuggestedMoveset[pokemon.name].types.includes('flying'))
+                    {
+                        if(canRevenge)
+                        {
+                            pokeChkVolca=pokemon.name;
+                        }
+                    }
+                    
+                }
+
+                if(SuggestedMoveset[pokemon.name].roles.includes('sweeper')){
+                    if (SuggestedMoveset[pokemon.name].types.includes('bug') || SuggestedMoveset[pokemon.name].types.includes('ice') || SuggestedMoveset[pokemon.name].types.includes('flying'))
+                    {
+                        if(canRevenge)
+                        {
+                            pokeChkSerp=pokemon.name;
+                        }
+                    }
+                }
+            }
+            //not being extremely weak to Mamoswine Either Choice Band or Sash, this meaning having at least 2 answers for it. (ice,ground,fight sometimes)
+            if(isPokemon(pokemon.name,"ferrothorn")||(SuggestedMoveset[pokemon.name].roles.includes('wall') && hasMamoResi))
+            {
+                pokeChkMamo.push(pokemon.name);
+            }
+        }
+    });
+    
+    if(pokeChkSerp!="")
+    {
+        console.log(pokeChkSerp+ " checks Serperior");
+        teamScore+=5;
+    }
+
+    if(pokeChkVolca!="")
+    {
+        console.log(pokeChkVolca + " checks volcarona");
+        teamScore+=5;
+    }
+    if(pokeChkMamo.length>=1)
+    {
+        pokeChkMamo.forEach(p=>{
+            console.log(p + " checks mamoswine");
+            teamScore+=5;
+        });
+    }
+
+    //TODO: If team is defensive how does it cover agaisnt sweepers
     return teamScore;
+}
+
+function isPokemon(pokeName,targetName)
+{
+    return pokeName==targetName||SuggestedMoveset[pokeName].base==targetName;
 }
 
 function isVoltSwitchBlocked(team)
 {
-
+    //TODO: not allowing zapdos to hurt your team with volt/hurricane or rotom with hydropump/volt
     let blocked=false;
 
     team.forEach(p =>{
+        let typeWeaknessChart = {
+            normal: 0,
+            fighting: 0,
+            flying: 0,
+            poison: 0,
+            ground: 0,
+            rock: 0,
+            bug: 0,
+            ghost: 0,
+            steel: 0,
+            fire: 0,
+            water: 0,
+            grass: 0,
+            electric: 0,
+            ice: 0,
+            dragon: 0,
+            dark: 0,
+            psychic: 0
+        };
         blocked = (SuggestedMoveset[p.name].types[0]=='ground' || SuggestedMoveset[p.name].types[1]=='ground');
-
+        
         if (!blocked)
         {
             blocked = (chkIfAbilitySelected(p.name,SuggestedMoveset[p.name].ChkAb,'Volt Absorb',p.index));
         }
-
+            
         if (blocked)
         {
-            console.log("Volt switch blocked by: " + p.name);
-            return blocked;
+            typeWeaknessChart= calcSingleMonWeaknesses(typeWeaknessChart,p.name,p.index);
+            blocked = typeWeaknessChart["water"]<=0 && typeWeaknessChart["flying"]<=0; // esclusivamente per resistere a zapdos e rotomwash
+            if (blocked)
+            {
+                console.log("Volt switch blocked by: " + p.name);
+                return blocked;
+            }
         }
     });
 
     return blocked;
 }
+function calculate(model="")
+{
+    //rendo visibile il bottone forza modello per futuri calculate
+    document.getElementById('tglTeamModel').style.display="inline";
 
-document.getElementById('calculate').addEventListener('click', function() {
     let team = getTeamData();
 
     // Identifica il modello di team più vicino
@@ -904,15 +1085,29 @@ document.getElementById('calculate').addEventListener('click', function() {
     let bestScore = -Infinity;
     let rainBonusApplied = false;
     
-    for (let modelName in teamModels) {
-        let score = evaluateTeamAgainstModel(team, modelName, rainBonusApplied);
-        if (modelName === 'rain' && score > bestScore && team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter'))) {
+    if(model==""){
+
+        for (let modelName in teamModels) {
+            let score = evaluateTeamAgainstModel(team, modelName, rainBonusApplied);
+            if (modelName === 'rain' && score > bestScore && team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter'))) {
+                rainBonusApplied = true;
+            }
+    
+            if (score > bestScore) {
+                bestScore = score;
+                bestModel = modelName;
+            }
+        }
+    }
+    else{
+        let score = evaluateTeamAgainstModel(team, model, rainBonusApplied);
+        if (model === 'rain' && score > bestScore && team.some(pokemon => pokemonRoles[pokemon.name]?.roles.includes('rainSetter'))) {
             rainBonusApplied = true;
         }
 
         if (score > bestScore) {
             bestScore = score;
-            bestModel = modelName;
+            bestModel = model;
         }
     }
     
@@ -959,4 +1154,7 @@ document.getElementById('calculate').addEventListener('click', function() {
         
         document.getElementById('result').innerText = resultText;
     }
+}
+document.getElementById('calculate').addEventListener('click', function() {
+    calculate(selectedModel);
 });

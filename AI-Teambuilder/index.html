@@ -46,7 +46,7 @@
                 <input list="move-suggestions" id="move-2-4" type="text" placeholder="Move 4">
                 <div id="abilities-2" class="mt-4"></div> <!-- Contenitore per i checkbox -->
             </div>
-
+            
             <!-- Box 3 -->
             <div class="pokemon-box">
                 <h2 class="text-xl font-semibold mb-4">Pokémon 3</h2>
@@ -58,7 +58,7 @@
                 <input list="move-suggestions" id="move-3-4" type="text" placeholder="Move 4">
                 <div id="abilities-3" class="mt-4"></div> <!-- Contenitore per i checkbox -->
             </div>
-
+            
             <!-- Box 4 -->
             <div class="pokemon-box">
                 <h2 class="text-xl font-semibold mb-4">Pokémon 4</h2>
@@ -70,7 +70,7 @@
                 <input list="move-suggestions" id="move-4-4" type="text" placeholder="Move 4">
                 <div id="abilities-4" class="mt-4"></div> <!-- Contenitore per i checkbox -->
             </div>
-
+            
             <!-- Box 5 -->
             <div class="pokemon-box">
                 <h2 class="text-xl font-semibold mb-4">Pokémon 5</h2>
@@ -82,7 +82,7 @@
                 <input list="move-suggestions" id="move-5-4" type="text" placeholder="Move 4">
                 <div id="abilities-5" class="mt-4"></div> <!-- Contenitore per i checkbox -->
             </div>
-
+            
             <!-- Box 6 -->
             <div class="pokemon-box">
                 <h2 class="text-xl font-semibold mb-4">Pokémon 6</h2>
@@ -95,19 +95,37 @@
                 <div id="abilities-6" class="mt-4"></div> <!-- Contenitore per i checkbox -->
             </div>
         </div>
-
+        
         <!-- Bottone per eseguire il calcolo -->
         <button id="calculate" class="mt-6 bg-green-600 p-3 rounded-lg font-semibold text-white opacity-90">Start</button>
-
+        
+        <!-- Dropdown per selezionare il modello del team -->
+        <div class="relative inline-block text-left mb-6">
+            <button onclick="toggleDropdown()"  id="tglTeamModel" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg" style="display: none;">
+                Select Team Model
+            </button>
+            <div id="dropdown" class="hidden absolute mt-2 w-48 bg-white rounded-md shadow-lg">
+                <ul class="py-1">
+                    <li><button id="balance" onclick="selectTeamModel('balance')" class="w-full text-left px-4 py-2 hover:bg-gray-200">Balance</button></li>
+                    <li><button id="offensive" onclick="selectTeamModel('offensive')" class="w-full text-left px-4 py-2 hover:bg-gray-200">Offensive</button></li>
+                    <li><button id="hyperOffense" onclick="selectTeamModel('hyperOffense')" class="w-full text-left px-4 py-2 hover:bg-gray-200">Hyper Offensive</button></li>
+                    <li><button id="stall" onclick="selectTeamModel('stall')" class="w-full text-left px-4 py-2 hover:bg-gray-200">Stall</button></li>
+                    <li><button id="semiStall" onclick="selectTeamModel('semiStall')" class="w-full text-left px-4 py-2 hover:bg-gray-200">Semi Stall</button></li>
+                    <li><button id="rain" onclick="selectTeamModel('rain')" class="w-full text-left px-4 py-2 hover:bg-gray-200">Rain</button></li>
+                    <li><button id="sun" onclick="selectTeamModel('sun')" class="w-full text-left px-4 py-2 hover:bg-gray-200">Sun</button></li>
+                    <li><button id="auto" onclick="selectTeamModel('')" class="w-full text-left px-4 py-2 hover:bg-gray-200">Let AI decide</button></li>
+                </ul>
+            </div>
+        </div>
         <!-- Risultato del calcolo -->
         <div id="result" class="mt-6 text-xl font-bold"></div>
     </div>
-
+    
     <!-- Import dei suggerimenti da file esterni -->
     <script src="pokemon-suggestions.js"></script>
     <script src="move-suggestions.js"></script>
     <script src="../js/teambuilderAdam.js"></script>
-
+    
     
 </body>
 </html>
