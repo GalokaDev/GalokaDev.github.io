@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/beatguess/static/css/main.e6c13ad2.css",
+    "main.js": "/beatguess/static/js/main.992316ee.js",
+    "static/js/453.3eca048a.chunk.js": "/beatguess/static/js/453.3eca048a.chunk.js",
+    "index.html": "/beatguess/index.html",
+    "main.e6c13ad2.css.map": "/beatguess/static/css/main.e6c13ad2.css.map",
+    "main.992316ee.js.map": "/beatguess/static/js/main.992316ee.js.map",
+    "453.3eca048a.chunk.js.map": "/beatguess/static/js/453.3eca048a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.992316ee.js"
+  ]
+}
