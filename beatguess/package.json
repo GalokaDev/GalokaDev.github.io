@@ -1,7 +1,7 @@
 {
   "name": "beatguess",
   "version": "0.1.0",
-  "homepage": "https://github.com/GalokaDev/GalokaDev.github.io",
+  "homepage": "https://GalokaDev.github.io/beatguess",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
